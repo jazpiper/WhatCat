@@ -3,6 +3,7 @@
 import breeds from '@/data/breeds.json';
 import questions from '@/data/questions.json';
 import { calculateMatch, getRankEmoji } from '@/utils/matching';
+import { useTest } from '@/contexts/TestContext';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, TrendingUp, TrendingDown, Minus } from 'lucide-react';
