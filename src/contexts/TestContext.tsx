@@ -35,7 +35,7 @@ export function TestProvider({ children }: { children: ReactNode }) {
   };
 
   const nextQuestion = () => {
-    setCurrentQuestion((prev) => prev + 1);
+    setCurrentQuestion((prev) => Math.min(prev + 1, 14)); // Prevent going beyond 14 questions
   };
 
   const previousQuestion = () => {

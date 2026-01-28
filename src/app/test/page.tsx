@@ -12,16 +12,17 @@ export default function TestPage() {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
 
   const question = questions.questions[currentQuestion];
-  const progress = ((currentQuestion + 1) / questions.questions.length) * 100;
+  const progress = Math.min(((currentQuestion + 1) / questions.questions.length) * 100, 100);
 
   useEffect(() => {
+    if (!question) return;
     const existingAnswer = answers.find((a) => a.questionId === question.id);
     if (existingAnswer) {
       setSelectedAnswer(existingAnswer.answerId);
     } else {
       setSelectedAnswer(null);
     }
-  }, [currentQuestion, question.id, answers]);
+  }, [currentQuestion, question?.id, answers]);
 
   const handleAnswer = (answerId: string) => {
     setSelectedAnswer(answerId);
