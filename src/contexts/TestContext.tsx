@@ -32,6 +32,7 @@ export function TestProvider({ children }: { children: ReactNode }) {
       }
       return [...prev, { questionId, answerId }];
     });
+    setCurrentQuestion(0); // 첫 질문으로 초기화하여 useEffect 재실행 방지
   };
 
   const nextQuestion = () => {
