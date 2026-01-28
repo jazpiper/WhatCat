@@ -171,7 +171,14 @@ export default function ResultPage() {
             </h1>
 
             <div className="bg-gradient-to-br from-pink-100 to-purple-100 rounded-2xl p-8 mb-8">
-              <div className="text-8xl mb-4">{firstResult.breed.emoji}</div>
+              {firstResult.breed.image && (
+                <img
+                  src={firstResult.breed.image}
+                  alt={firstResult.breed.name}
+                  className="w-48 h-48 mx-auto rounded-2xl object-cover mb-4 shadow-lg"
+                />
+              )}
+              <div className="text-6xl mb-2">{firstResult.breed.emoji}</div>
               <div className="flex items-center justify-center gap-2 mb-2">
                 <span className="text-5xl">{getRankEmoji(1)}</span>
                 <h2 className="text-4xl font-bold text-gray-800">
@@ -239,6 +246,13 @@ export default function ResultPage() {
                 >
                   <div className="text-3xl">{getRankEmoji(index + 1)}</div>
                   <div className="text-4xl">{result.breed.emoji}</div>
+                  {result.breed.image && (
+                    <img
+                      src={result.breed.image}
+                      alt={result.breed.name}
+                      className="w-12 h-12 rounded-full object-cover"
+                    />
+                  )}
                   <div className="flex-1">
                     <h4 className="font-bold text-gray-800">{result.breed.name}</h4>
                     <p className="text-sm text-gray-600">{result.breed.nameEn}</p>

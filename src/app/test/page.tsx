@@ -43,7 +43,7 @@ export default function TestPage() {
   };
 
   const isLastQuestion = currentQuestion === questions.questions.length - 1;
-  const hasAnswer = answers.some((a) => a.questionId === question.id);
+  const hasAnswer = question ? answers.some((a) => a.questionId === question.id) : false;
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50">

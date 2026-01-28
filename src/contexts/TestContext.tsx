@@ -32,11 +32,10 @@ export function TestProvider({ children }: { children: ReactNode }) {
       }
       return [...prev, { questionId, answerId }];
     });
-    setCurrentQuestion(0); // 첫 질문으로 초기화하여 useEffect 재실행 방지
   };
 
   const nextQuestion = () => {
-    setCurrentQuestion((prev) => Math.min(prev + 1, 14)); // Prevent going beyond 14 questions
+    setCurrentQuestion((prev) => Math.min(prev + 1, 13)); // Max index is 13 for 14 questions
   };
 
   const previousQuestion = () => {

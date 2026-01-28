@@ -3,6 +3,7 @@ export interface Breed {
   name: string;
   nameEn: string;
   emoji: string;
+  image?: string;
   rank: number;
   personality: {
     activity: number; // 1-5

@@ -59,6 +59,13 @@ export default function HomePage() {
               >
                 <div className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl p-6 hover:shadow-lg hover:scale-105 transition-all duration-300 border-2 border-pink-100">
                   <div className="flex items-start justify-between mb-3">
+                    {breed.image && (
+                      <img
+                        src={breed.image}
+                        alt={breed.name}
+                        className="w-16 h-16 rounded-full object-cover"
+                      />
+                    )}
                     <div className="text-4xl">{breed.emoji}</div>
                     <div className="flex items-center gap-1">
                       {index === 0 && (

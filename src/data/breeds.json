@@ -1,10 +1,11 @@
 {
   "breeds": [
-    {
+     {
       "id": "russian-blue",
       "name": "러시안 블루",
       "nameEn": "Russian Blue",
       "emoji": "🐱",
+      "image": "https://images.unsplash.com/photo-1513245543132-31f507417b26?w=800&h=800&fit=crop",
       "rank": 1,
       "personality": {
         "activity": 3,
@@ -30,11 +31,12 @@
       "description": "조용하고 충성심이 강한 러시안 블루는 깔끔한 성격으로 인기가 많습니다. 낯을 가리지만 한 번 마음을 열면 평생 함께할 파트너가 됩니다.",
       "korea_popularity": 95
     },
-    {
+     {
       "id": "scottish-fold",
       "name": "스코티시 폴드",
       "nameEn": "Scottish Fold",
       "emoji": "😺",
+      "image": "https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?w=800&h=800&fit=crop",
       "rank": 2,
       "personality": {
         "activity": 3,
@@ -60,11 +62,12 @@
       "description": "접힌 귀가 특징인 스코티시 폴드는 온순하고 사교적인 성격입니다. 주인에게 애정을 많이 표현하며, 다른 반려동물과도 잘 어울립니다.",
       "korea_popularity": 92
     },
-    {
+     {
       "id": "british-shorthair",
       "name": "브리티시 숏헤어",
       "nameEn": "British Shorthair",
       "emoji": "🦁",
+      "image": "https://images.unsplash.com/photo-1573865526739-10659fec78a5c?w=800&h=800&fit=crop",
       "rank": 3,
       "personality": {
         "activity": 3,
@@ -90,11 +93,12 @@
       "description": "둥근 얼굴과 묵직한 체격의 브리티시 숏헤어는 차분하고 독립적인 성격입니다. 혼자 있는 시간을 잘 지키며 관리가 쉽습니다.",
       "korea_popularity": 90
     },
-    {
+     {
       "id": "ragdoll",
       "name": "래그돌",
       "nameEn": "Ragdoll",
       "emoji": "🐱",
+      "image": "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=800&h=800&fit=crop",
       "rank": 4,
       "personality": {
         "activity": 2,
@@ -125,6 +129,7 @@
       "name": "아메리칸 숏헤어",
       "nameEn": "American Shorthair",
       "emoji": "🐱",
+      "image": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=800&h=800&fit=crop",
       "rank": 5,
       "personality": {
         "activity": 4,
@@ -150,11 +155,12 @@
       "description": "튼튼하고 활동적인 아메리칸 숏헤어는 관리가 쉽고 적응력이 뛰어납니다. 아이들과도 잘 어울리는 가족견의 친구입니다.",
       "korea_popularity": 85
     },
-    {
+     {
       "id": "maine-coon",
       "name": "메인 쿤",
       "nameEn": "Maine Coon",
       "emoji": "🦁",
+      "image": "https://images.unsplash.com/photo-1615796153287-98eacf0abb13?w=800&h=800&fit=crop",
       "rank": 6,
       "personality": {
         "activity": 4,
@@ -185,6 +191,7 @@
       "name": "샴",
       "nameEn": "Siamese",
       "emoji": "😺",
+      "image": "https://images.unsplash.com/photo-1513245543132-31f507417b26?w=800&h=800&fit=crop",
       "rank": 7,
       "personality": {
         "activity": 5,
@@ -210,11 +217,12 @@
       "description": "목소리가 크고 애정표현이 풍부한 샴은 활동적이고 지능적입니다. 주인의 관심을 많이 필요로 하는 종입니다.",
       "korea_popularity": 75
     },
-    {
+     {
       "id": "abyssinian",
       "name": "아비시니안",
       "nameEn": "Abyssinian",
       "emoji": "🐆",
+      "image": "https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?w=800&h=800&fit=crop",
       "rank": 8,
       "personality": {
         "activity": 5,
@@ -245,6 +253,7 @@
       "name": "이그조틱 숏헤어",
       "nameEn": "Exotic Shorthair",
       "emoji": "😺",
+      "image": "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=800&h=800&fit=crop",
       "rank": 9,
       "personality": {
         "activity": 2,
@@ -270,11 +279,12 @@
       "description": "페르시안과 비슷하지만 털이 짧은 이그조틱은 조용하고 애정이 많습니다. 관리는 편하지만 호흡기 질환 주의가 필요합니다.",
       "korea_popularity": 68
     },
-    {
+     {
       "id": "persian",
       "name": "페르시안",
       "nameEn": "Persian",
       "emoji": "😺",
+      "image": "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=800&h=800&fit=crop",
       "rank": 10,
       "personality": {
         "activity": 1,
@@ -305,6 +315,7 @@
       "name": "벵갈",
       "nameEn": "Bengal",
       "emoji": "🐆",
+      "image": "https://images.unsplash.com/photo-1543852786-1cf6626b99f3?w=800&h=800&fit=crop",
       "rank": 11,
       "personality": {
         "activity": 5,
@@ -330,11 +341,12 @@
       "description": "표범처럼 활동적인 벵갈은 지능적이고 놀이를 즐깁니다. 높은 에너지를 가지고 있어 충분한 환경 풍부화가 필요합니다.",
       "korea_popularity": 60
     },
-    {
+     {
       "id": "sphynx",
       "name": "스핑크스",
       "nameEn": "Sphynx",
       "emoji": "🐱",
+      "image": "https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?w=800&h=800&fit=crop",
       "rank": 12,
       "personality": {
         "activity": 4,
@@ -365,6 +377,7 @@
       "name": "노르웨이 숲고양이",
       "nameEn": "Norwegian Forest Cat",
       "emoji": "🐱",
+      "image": "https://images.unsplash.com/photo-1543852786-1cf6626b99f3?w=800&h=800&fit=crop",
       "rank": 13,
       "personality": {
         "activity": 3,
@@ -390,11 +403,12 @@
       "description": "북유럽의 숲에서 유래한 노르웨이 숲고양이는 조용하고 독립적입니다. 클라이밍을 좋아하며 털 관리가 필요합니다.",
       "korea_popularity": 50
     },
-    {
+     {
       "id": "turkish-angora",
       "name": "터키쉬 앙고라",
       "nameEn": "Turkish Angora",
       "emoji": "😺",
+      "image": "https://images.unsplash.com/photo-1529778873920-4da4926a7071?w=800&h=800&fit=crop",
       "rank": 14,
       "personality": {
         "activity": 4,
@@ -425,6 +439,7 @@
       "name": "스코티시 스트레이트",
       "nameEn": "Scottish Straight",
       "emoji": "😺",
+      "image": "https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?w=800&h=800&fit=crop",
       "rank": 15,
       "personality": {
         "activity": 3,
@@ -450,42 +465,13 @@
       "description": "폴드와 비슷한 성격이지만 건강 문제가 적은 스코티시 스트레이트는 온순하고 사교적입니다.",
       "korea_popularity": 42
     },
-    {
-      "id": "scottish-straight",
-      "name": "스코티시 스트레이트",
-      "nameEn": "Scottish Straight",
-      "emoji": "😺",
-      "rank": 16,
-      "personality": {
-        "activity": 3,
-        "affection": 4,
-        "social": 4,
-        "quiet": 4,
-        "loyalty": 4
-      },
-      "maintenance": {
-        "grooming": 3,
-        "training": 4,
-        "health": 2
-      },
-      "cost": {
-        "initial": "high",
-        "monthly": "medium"
-      },
-      "environment": ["apt", "family"],
-      "traits": ["gentle", "calm", "friendly", "playful"],
-      "size": "medium",
-      "coat": "medium",
-      "colors": ["white", "black", "tabby", "bicolor"],
-      "description": "접힌 귀가 특징인 스코티시 폴드는 온순하고 사교적인 성격입니다. 주인에게 애정을 많이 표현합니다.",
-      "korea_popularity": 92
-    },
-    {
+     {
       "id": "devon-rex",
       "name": "데본 렉스",
       "nameEn": "Devon Rex",
       "emoji": "🐱",
-      "rank": 17,
+      "image": "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=800&h=800&fit=crop",
+      "rank": 16,
       "personality": {
         "activity": 4,
         "affection": 5,
@@ -510,12 +496,13 @@
       "description": "독특한 털과 큰 귀의 데본 렉스는 장난기 많고 지능적입니다. 사람을 따르며 관리가 쉽습니다.",
       "korea_popularity": 40
     },
-    {
+     {
       "id": "cornish-rex",
       "name": "코니쉬 렉스",
       "nameEn": "Cornish Rex",
       "emoji": "🐱",
-      "rank": 18,
+      "image": "https://images.unsplash.com/photo-1513245543132-31f507417b26?w=800&h=800&fit=crop",
+      "rank": 17,
       "personality": {
         "activity": 5,
         "affection": 4,
@@ -545,7 +532,8 @@
       "name": "시베리안",
       "nameEn": "Siberian",
       "emoji": "🦁",
-      "rank": 19,
+      "image": "https://images.unsplash.com/photo-1615796153287-98eacf0abb13?w=800&h=800&fit=crop",
+      "rank": 18,
       "personality": {
         "activity": 4,
         "affection": 4,
@@ -570,12 +558,13 @@
       "description": "겨울을 견디는 튼튼한 시베리안은 애정이 많고 활동적입니다. 알레르기가 적은 털로 유명합니다.",
       "korea_popularity": 35
     },
-    {
+     {
       "id": "birman",
       "name": "버만",
       "nameEn": "Birman",
       "emoji": "😺",
-      "rank": 20,
+      "image": "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=800&h=800&fit=crop",
+      "rank": 19,
       "personality": {
         "activity": 3,
         "affection": 5,
