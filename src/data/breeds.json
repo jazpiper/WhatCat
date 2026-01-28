@@ -451,9 +451,9 @@
       "korea_popularity": 42
     },
     {
-      "id": "scottish-fold",
-      "name": "스코티시 폴드",
-      "nameEn": "Scottish Fold",
+      "id": "scottish-straight",
+      "name": "스코티시 스트레이트",
+      "nameEn": "Scottish Straight",
       "emoji": "😺",
       "rank": 16,
       "personality": {
