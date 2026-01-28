@@ -5,6 +5,7 @@ import questions from '@/data/questions.json';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import AdSense from '@/components/AdSense';
+import { Question } from '@/types';
 
 export default function TestPage() {
   const { currentQuestion, answers, setAnswer, nextQuestion, previousQuestion, resetTest } = useTest();
@@ -131,6 +132,7 @@ export default function TestPage() {
               </Link>
             )}
            </div>
+          </div>
         </div>
 
         <div className="hidden md:block">

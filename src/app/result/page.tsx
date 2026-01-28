@@ -7,6 +7,7 @@ import { calculateMatch, getRankEmoji } from '@/utils/matching';
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import html2canvas from 'html2canvas';
+import { Breed, Question } from '@/types';
 import {
   Share2,
   Download,
@@ -26,7 +27,7 @@ export default function ResultPage() {
   const [friendLink, setFriendLink] = useState('');
   const resultRef = useRef<HTMLDivElement>(null);
 
-  const results = calculateMatch(answers, breeds.breeds, questions.questions);
+  const results = calculateMatch(answers, breeds.breeds as Breed[], questions.questions as Question[]);
   const top3Results = results.slice(0, 3);
   const firstResult = top3Results[0];
 
@@ -109,9 +110,9 @@ export default function ResultPage() {
   const handleDownloadImage = async () => {
     if (resultRef.current) {
       const canvas = await html2canvas(resultRef.current, {
-        backgroundColor: '#faf5ff',
+        background: '#faf5ff',
         scale: 2,
-      });
+      } as any);
       const link = document.createElement('a');
       link.download = `냥이매치_${firstResult.breed.name}.png`;
       link.href = canvas.toDataURL();

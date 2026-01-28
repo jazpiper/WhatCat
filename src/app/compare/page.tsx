@@ -1,14 +1,15 @@
 'use client';
 
-import { useTest } from '@/contexts/TestContext';
 import breeds from '@/data/breeds.json';
 import questions from '@/data/questions.json';
 import { calculateMatch, getRankEmoji } from '@/utils/matching';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, TrendingUp, TrendingDown, Minus } from 'lucide-react';
+import { Breed, Question } from '@/types';
+import { Suspense } from 'react';
 
-export default function ComparePage() {
+function CompareContent() {
   const searchParams = useSearchParams();
   const { answers } = useTest();
 
@@ -302,5 +303,13 @@ export default function ComparePage() {
         </footer>
       </div>
     </main>
+  );
+}
+
+export default function ComparePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">로딩 중...</div>}>
+      <CompareContent />
+    </Suspense>
   );
 }
