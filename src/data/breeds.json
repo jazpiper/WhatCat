@@ -93,12 +93,12 @@
       "description": "둥근 얼굴과 묵직한 체격의 브리티시 숏헤어는 차분하고 독립적인 성격입니다. 혼자 있는 시간을 잘 지키며 관리가 쉽습니다.",
       "korea_popularity": 90
     },
-     {
+      {
       "id": "ragdoll",
       "name": "래그돌",
       "nameEn": "Ragdoll",
       "emoji": "🐱",
-      "image": "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=800&h=800&fit=crop",
+      "image": "https://images.unsplash.com/photos/a-white-cat-with-blue-pointed-face-and-long-fur-in-studio-YFPzoHvI4M?w=800&h=800&fit=crop",
       "rank": 4,
       "personality": {
         "activity": 2,
