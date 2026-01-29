@@ -6,13 +6,13 @@ import questions from '@/data/questions.json';
 import { calculateMatch, getRankEmoji } from '@/utils/matching';
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import html2canvas from 'html2canvas';
 import { Breed, Question } from '@/types';
 import {
   Share2,
   Download,
   Copy,
-  Instagram,
   MessageCircle,
   ArrowLeft,
   RotateCcw,
@@ -23,7 +23,6 @@ import AdSense from '@/components/AdSense';
 export default function ResultPage() {
   const { answers, resetTest } = useTest();
   const [copied, setCopied] = useState(false);
-  const [compareLink, setCompareLink] = useState('');
   const [friendLink, setFriendLink] = useState('');
   const resultRef = useRef<HTMLDivElement>(null);
 
@@ -39,17 +38,13 @@ export default function ResultPage() {
     });
   }, []);
 
-  useEffect(() => {
-    const compareUrl = `${window.location.origin}/compare?breed1=${firstResult.breed.id}&score1=${firstResult.score}`;
-    setCompareLink(compareUrl);
-  }, [firstResult.breed.id, firstResult.score]);
-
   const handleShareKakao = () => {
     const url = window.location.href;
     const text = `나와 가장 잘 맞는 냥이는 "${firstResult.breed.name}"! 🐾\n매칭 점수: ${firstResult.score}%`;
 
-    if (typeof window !== 'undefined' && (window as any).Kakao) {
-      (window as any).Kakao.Share.sendDefault({
+    const kakao = (window as unknown as { Kakao?: { Share: { sendDefault: (options: unknown) => void } } }).Kakao;
+    if (typeof window !== 'undefined' && kakao) {
+      kakao.Share.sendDefault({
         objectType: 'feed',
         content: {
           title: '냥이 매치',
@@ -112,7 +107,8 @@ export default function ResultPage() {
       const canvas = await html2canvas(resultRef.current, {
         background: '#faf5ff',
         scale: 2,
-      } as any);
+        useCORS: true,
+      } as any); // eslint-disable-line @typescript-eslint/no-explicit-any
       const link = document.createElement('a');
       link.download = `냥이매치_${firstResult.breed.name}.png`;
       link.href = canvas.toDataURL();
@@ -172,9 +168,11 @@ export default function ResultPage() {
 
             <div className="bg-gradient-to-br from-pink-100 to-purple-100 rounded-2xl p-8 mb-8">
               {firstResult.breed.image && (
-                <img
+                <Image
                   src={firstResult.breed.image}
                   alt={firstResult.breed.name}
+                  width={192}
+                  height={192}
                   className="w-48 h-48 mx-auto rounded-2xl object-cover mb-4 shadow-lg"
                 />
               )}
@@ -247,9 +245,11 @@ export default function ResultPage() {
                   <div className="text-3xl">{getRankEmoji(index + 1)}</div>
                   <div className="text-4xl">{result.breed.emoji}</div>
                   {result.breed.image && (
-                    <img
+                    <Image
                       src={result.breed.image}
                       alt={result.breed.name}
+                      width={48}
+                      height={48}
                       className="w-12 h-12 rounded-full object-cover"
                     />
                   )}

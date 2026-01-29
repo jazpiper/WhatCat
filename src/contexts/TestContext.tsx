@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { AnswerScore, Question } from '@/types';
+import { AnswerScore } from '@/types';
 
 interface TestContextType {
   currentQuestion: number;

@@ -2,30 +2,21 @@
 
 import { useTest } from '@/contexts/TestContext';
 import questions from '@/data/questions.json';
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import AdSense from '@/components/AdSense';
-import { Question } from '@/types';
 
 export default function TestPage() {
-  const { currentQuestion, answers, setAnswer, nextQuestion, previousQuestion, resetTest } = useTest();
-  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  const { currentQuestion, answers, setAnswer, nextQuestion, previousQuestion } = useTest();
 
   const question = questions.questions[currentQuestion];
-  const progress = Math.min(((currentQuestion + 1) / questions.questions.length) * 100, 100);
+  const progress = Math.min(((currentQuestion +1) / questions.questions.length) * 100, 100);
 
-  useEffect(() => {
-    if (!question) return;
+  const selectedAnswer = question ? (() => {
     const existingAnswer = answers.find((a) => a.questionId === question.id);
-    if (existingAnswer) {
-      setSelectedAnswer(existingAnswer.answerId);
-    } else {
-      setSelectedAnswer(null);
-    }
-  }, [currentQuestion, question?.id, answers]);
+    return existingAnswer ? existingAnswer.answerId : null;
+  })() : null;
 
   const handleAnswer = (answerId: string) => {
-    setSelectedAnswer(answerId);
     setAnswer(question.id, answerId);
     setTimeout(() => {
       nextQuestion();

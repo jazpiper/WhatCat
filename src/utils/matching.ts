@@ -1,4 +1,4 @@
-import { Breed, Question, AnswerScore } from '@/types';
+import { Breed, Question } from '@/types';
 
 export interface UserScore {
   personality: {
@@ -91,8 +91,6 @@ function calculateUserScore(
   let personalityCount = 0;
   let maintenanceCount = 0;
   let lifestyleCount = 0;
-  let appearanceCount = 0;
-  let costCount = 0;
 
   for (const answer of userAnswers) {
     const question = questions.find((q) => q.id === answer.questionId);
@@ -150,11 +148,9 @@ function calculateUserScore(
       const a = selectedOption.scores.appearance;
       if (a.size) {
         userScore.appearance.size = a.size;
-        appearanceCount++;
       }
       if (a.coat) {
         userScore.appearance.coat = a.coat;
-        appearanceCount++;
       }
     }
 
@@ -162,11 +158,9 @@ function calculateUserScore(
       const c = selectedOption.scores.cost;
       if (c.initial) {
         userScore.cost.initial = c.initial;
-        costCount++;
       }
       if (c.monthly) {
         userScore.cost.monthly = c.monthly;
-        costCount++;
       }
     }
   }

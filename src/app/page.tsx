@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import breeds from '@/data/breeds.json';
 import { ArrowRight, Star } from 'lucide-react';
 import AdSense from '@/components/AdSense';
@@ -59,9 +60,11 @@ export default function HomePage() {
                 <div className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl p-6 hover:shadow-lg hover:scale-105 transition-all duration-300 border-2 border-pink-100">
                   <div className="flex items-start justify-between mb-3">
                     {breed.image && (
-                      <img
+                      <Image
                         src={breed.image}
                         alt={breed.name}
+                        width={64}
+                        height={64}
                         className="w-16 h-16 rounded-full object-cover"
                       />
                     )}
