@@ -5,7 +5,7 @@
         "name": "러시안 블루",
         "nameEn": "Russian Blue",
         "emoji": "🐱",
-        "image": "https://pixnio.com/fauna-animals/cats-and-kittens/gray-cat-looking-at-camera-40542347",
+        "image": "https://images.unsplash.com/photo-7E9qvMOsZEM?w=800&h=800&fit=crop",
         "rank": 1,
         "personality": {
           "activity": 3,
@@ -36,7 +36,7 @@
         "name": "스코티시 폴드",
         "nameEn": "Scottish Fold",
         "emoji": "😺",
-        "image": "https://pixabay.com/photos/cat-scottish-fold-folded-ears-pet-9297696",
+        "image": "https://images.unsplash.com/photo-13WO7iX78QA?w=800&h=800&fit=crop",
         "rank": 2,
         "personality": {
           "activity": 3,
@@ -67,7 +67,7 @@
         "name": "브리티시 숏헤어",
         "nameEn": "British Shorthair",
         "emoji": "🦁",
-        "image": "https://www.dreamstime.com/stock-photo-two-british-shorthair-sitting-isolated-on-white-background-1403813",
+        "image": "https://images.unsplash.com/photo-skWuwPHq0kU?w=800&h=800&fit=crop",
         "rank": 3,
         "personality": {
           "activity": 3,
@@ -98,7 +98,7 @@
         "name": "래그돌",
         "nameEn": "Ragdoll",
         "emoji": "🐱",
-        "image": "https://images.unsplash.com/photos/a-white-cat-with-blue-pointed-face-and-long-fur-in-studio-YFPzoHvI4M?w=800&h=800&fit=crop",
+        "image": "https://images.unsplash.com/photo-YFPzoHvI4M?w=800&h=800&fit=crop",
         "rank": 4,
         "personality": {
           "activity": 2,
@@ -160,7 +160,7 @@
         "name": "메인 쿤",
         "nameEn": "Maine Coon",
         "emoji": "🦁",
-        "image": "https://unsplash.com/photos/a-fluffy-gray-maine-coon-cat-with-green-eyes-uNCGCOcWibg",
+        "image": "https://images.unsplash.com/photo-bMJ1nyVXc4I?w=800&h=800&fit=crop",
         "rank": 6,
         "personality": {
           "activity": 4,
@@ -284,7 +284,7 @@
         "name": "페르시안",
         "nameEn": "Persian",
         "emoji": "😺",
-        "image": "https://unsplash.com/photos/white-persian-cat-rxvocsh0DUw",
+        "image": "https://images.unsplash.com/photo-rxvocsh0DUw?w=800&h=800&fit=crop",
         "rank": 10,
         "personality": {
           "activity": 1,
@@ -377,7 +377,7 @@
         "name": "노르웨이 숲고양이",
         "nameEn": "Norwegian Forest Cat",
         "emoji": "🐱",
-        "image": "https://images.unsplash.com/photo-1543852786-1cf6626b99f3",
+        "image": "https://images.unsplash.com/photo-Wd7IIoryInQ?w=800&h=800&fit=crop",
         "rank": 13,
         "personality": {
           "activity": 3,
@@ -408,7 +408,7 @@
         "name": "터키쉬 앙고라",
         "nameEn": "Turkish Angora",
         "emoji": "😺",
-        "image": "https://pixabay.com/fauna-animals/cats-and-kittens/animal-cute-persian-cat-kitten-indoor-kitty-fur-whiskers-eyes",
+        "image": "https://images.unsplash.com/photo-13ky5Ycf0ts?w=800&h=800&fit=crop",
         "rank": 14,
         "personality": {
           "activity": 4,
@@ -439,7 +439,7 @@
         "name": "스코티시 스트레이트",
         "nameEn": "Scottish Straight",
         "emoji": "😺",
-        "image": "https://pikbest.com/png-images/22lovely-scottish-fold-cat-pictures%22_9055751.html",
+        "image": "https://images.unsplash.com/photo-ZMrQFOfrWqQ?w=800&h=800&fit=crop",
         "rank": 15,
         "personality": {
           "activity": 3,
@@ -469,7 +469,7 @@
         "id": "devon-rex",
         "name": "데본 렉스",
         "nameEn": "Devon Rex",
-        "image": "https://images.unsplash.com/photo-1543852786-1cf6626b99f3",
+        "image": "https://images.unsplash.com/photo--W4Hk8JQQGc?w=800&h=800&fit=crop",
         "rank": 16,
         "personality": {
           "activity": 4,
@@ -496,11 +496,10 @@
           "korea_popularity": 40
         },
       {
-        "id": "cornish-rex",
+"id": "cornish-rex",
         "name": "코니쉬 렉스",
         "nameEn": "Cornish Rex",
-        "emoji": "🐱",
-        "image": "https://images.unsplash.com/photo-1529778873920-4da4926a7071",
+        "image": "https://images.unsplash.com/photo-F37XfBLVpZw?w=800&h=800&fit=crop",
         "rank": 17,
         "personality": {
           "activity": 5,
@@ -562,7 +561,7 @@
         "name": "버만",
         "nameEn": "Birman",
         "emoji": "😺",
-        "image": "https://images.unsplash.com/photos/a-white-cat-with-blue-pointed-face-and-long-fur-in-studio-YFPzoHvI4M?w=800&h=800&fit=crop",
+        "image": "https://images.unsplash.com/photo-ZMrQFOfrWqQ?w=800&h=800&fit=crop",
         "rank": 19,
         "personality": {
           "activity": 3,
