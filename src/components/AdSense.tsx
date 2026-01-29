@@ -19,6 +19,11 @@ export default function AdSense({ adSlot }: { adSlot: string }) {
           data-ad-format="auto"
           style={{ display: 'block' }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: '(adsbygoogle = window.adsbygoogle || []).push({});'
+          }}
+        />
       </div>
     </>
   );
