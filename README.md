@@ -206,3 +206,244 @@ MIT
 ## 연락처
 
 이 프로젝트는 기획서(`냥이매치_기획서.md`)를 바탕으로 개발되었습니다.
+
+---
+
+## API 및 자동화
+
+### 1. 결과 데이터 구조
+
+테스트 결과는 URL 파라미터를 통해 공유 가능합니다:
+
+```
+/result?answers=[questionId:answerId,...]
+```
+
+#### 결과 데이터 JSON 구조
+
+```typescript
+{
+  breed: {
+    id: string;              // 품종 ID (예: "russian-blue")
+    name: string;            // 한국어 이름
+    nameEn: string;          // 영어 이름
+    emoji: string;           // 이모지
+    image?: string;          // 이미지 URL
+    rank: number;            // 한국 인기 순위
+    personality: {
+      activity: number;      // 1-5
+      affection: number;     // 1-5
+      social: number;        // 1-5
+      quiet: number;         // 1-5
+      loyalty: number;       // 1-5
+    };
+    maintenance: {
+      grooming: number;      // 1-5
+      training: number;      // 1-5
+      health: number;        // 1-5
+    };
+    cost: {
+      initial: "low" | "medium" | "high";
+      monthly: "low" | "medium" | "high";
+    };
+    environment: string[];    // ["apt", "family", "quiet", "house"]
+    traits: string[];        // 성격 키워드
+    size: "small" | "medium" | "large" | "xlarge";
+    coat: "short" | "medium" | "long" | "hairless";
+    colors: string[];        // 털 색상
+    description: string;      // 품종 설명
+    korea_popularity: number; // 0-100
+  };
+  score: number;             // 매칭 점수 (0-100)
+  breakdown: {
+    personality: number;     // 성격 점수
+    maintenance: number;     // 관리 점수
+    lifestyle: number;       // 라이프스타일 점수
+    appearance: number;      // 외형 점수
+    cost: number;           // 비용 점수
+  };
+}
+```
+
+### 2. 비교 URL 형식
+
+친구 결과와 비교할 때 사용하는 URL:
+
+```
+/compare?breed1={품종ID}&score1={점수}&breed2={품종ID}&score2={점수}
+```
+
+### 3. 품종별 해시태그/키워드
+
+| 품종 | 키워드 | 해시태그 |
+|------|--------|----------|
+| 러시안 블루 | 차분, 충성심, 깔끔함 | #러시안블루 #고양이테스트 #냥이매치 |
+| 스코티시 폴드 | 온순, 사교적, 귀여움 | #스코티시폴드 #접힌귀고양이 #고양이 |
+| 브리티시 숏헤어 | 독립적, 차분, 큼큼함 | #브리티시숏헤어 #둥근얼굴고양이 #냥이 |
+| 래그돌 | 얌전, 애정, 조용함 | #래그돌 #인형고양이 #조용한냥이 |
+| 아메리칸 숏헤어 | 활동적, 건강, 적응력 | #아메리칸숏헤어 #튼튼한냥이 #고양이 |
+| 메인 쿤 | 온순, 지능적, 충성심 | #메인쿤 #거대한고양이 #사랑스러운냥이 |
+| 샴 | 목소리 큼, 애정, 활동적 | #샴 #보이스고양이 #활발한냥이 |
+| 아비시니안 | 호기심, 활동성, 지능 | #아비시니안 #호기심많은냥이 #고양이 |
+| 이그조틱 숏헤어 | 조용, 애정, 깔끔함 | #이그조틱숏헤어 #조용한고양이 #브시안고양이 |
+| 페르시안 | 조용, 우아, 고급스러움 | #페르시안 #고양이황제 #우아한고양이 |
+| 벵갈 | 활동적, 지능, 에너지 | #벵갈 #표범무늬 #활기찬냥이 |
+| 스핑크스 | 애정, 활동적, 독특함 | #스핑크스 #털없는고양이 #특별한냥이 |
+
+### 4. 공유 콘텐츠 템플릿
+
+#### 인스타그램 스토리 (이미지 + 캡션)
+
+```typescript
+const caption = `
+나와 가장 잘 맞는 냥이는 "${breed.name}"! 🐾
+
+📊 매칭 점수: ${score}%
+🐱 품종: ${breed.nameEn}
+👀 성격: ${breed.traits.join(', ')}
+
+너랑 딱 맞는 냥이는?
+👉 테스트 받기: ${url}
+
+#냥이매치 #고양이테스트 #${breed.nameEn.replace(/\s/g, '')}
+`;
+```
+
+#### 스레드 포스팅
+
+```typescript
+const threadPost = {
+  text: `내 인생냥이 찾았다! ${score}%로 "${breed.name}"가 나왔고 🐾
+
+테스트 링크: ${url}`,
+  media: breed.image, // 결과 이미지
+  hashtags: ['#냥이매치', '#고양이테스트', `#${breed.nameEn.replace(/\s/g, '')}`]
+};
+```
+
+#### 카카오톡 공유 (자동화 시)
+
+```javascript
+Kakao.Share.sendDefault({
+  objectType: 'feed',
+  content: {
+    title: '나의 냥이 품종 찾기',
+    description: `나와 가장 잘 맞는 냥이는 "${breed.name}"! 매칭 점수: ${score}%`,
+    imageUrl: `${origin}/og-images/${breed.id}.jpg`,
+    link: {
+      mobileWebUrl: url,
+      webUrl: url
+    }
+  },
+  buttons: [{
+    title: '테스트받기',
+    link: {
+      mobileWebUrl: url,
+      webUrl: url
+    }
+  }]
+});
+```
+
+### 5. 자동화 스크립트 예시
+
+#### 매일 자동 게시물 생성 스크립트
+
+```typescript
+// scripts/auto-post.ts
+import breeds from '@/data/breeds.json';
+import fs from 'fs';
+
+// 오늘의 품종 선택 (하루에 하나)
+const today = new Date().getDate();
+const breed = breeds.breeds[today % breeds.breeds.length];
+
+// 포스팅 콘텐츠 생성
+const post = {
+  title: `❤️ ${breed.name}가 당신의 인생냥이일까요?`,
+  description: breed.description,
+  keywords: breed.traits,
+  hashtags: ['#냥이매치', '#고양이테스트', `#${breed.nameEn.replace(/\s/g, '')}`],
+  imageUrl: breed.image,
+  callToAction: '테스트 받기',
+  url: 'https://your-domain.com/test'
+};
+
+// JSON 파일로 저장
+fs.writeFileSync('daily-post.json', JSON.stringify(post, null, 2));
+console.log(`생성된 게시물: ${breed.name}`);
+```
+
+#### 주간 요약 자동화
+
+```typescript
+// scripts/weekly-summary.ts
+import { spawn } from 'child_process';
+
+const weeklyStats = {
+  totalTests: 0,  // 애널리틱스에서 가져옴
+  topBreeds: [],    // 인기 품종 TOP 3
+  avgScore: 0,      // 평균 매칭 점수
+  popularHours: []  // 테스트 시간대 분석
+};
+
+// 주간 통계 기반 콘텐츠 생성
+const summaryPost = {
+  title: '📊 이번 주 냥이 매치 통계',
+  content: `총 ${weeklyStats.totalTests}명이 테스트를 완료했습니다!
+  
+  가장 인기 있는 품종:
+  1️⃣ ${weeklyStats.topBreeds[0]?.name}
+  2️⃣ ${weeklyStats.topBreeds[1]?.name}
+  3️⃣ ${weeklyStats.topBreeds[2]?.name}
+  
+  평균 매칭 점수: ${weeklyStats.avgScore}%
+  
+  지금 바로 테스트 받아보세요! 👉 https://your-domain.com/test`,
+  hashtags: ['#냥이매치', '#주간통계', '#고양이']
+};
+
+console.log(summaryPost);
+```
+
+### 6. OG 이미지 경로
+
+각 품종별 OG(Open Graph) 이미지 경로 (미리보기용):
+
+```
+/og-images/russian-blue.jpg
+/og-images/scottish-fold.jpg
+/og-images/british-shorthair.jpg
+... (총 20종)
+```
+
+**이미지 규격**:
+- 권장: 1200x630 (1.91:1 비율)
+- 최대: 5MB
+- 형식: JPG, PNG
+
+### 7. 블로거/유튜버 제안 템플릿
+
+```typescript
+const bloggerTemplate = (breed: Breed) => `
+안녕하세요! 오늘은 ${breed.name}에 대해 소개해 드릴게요 🐱
+
+## ${breed.name} (${breed.nameEn})
+
+${breed.description}
+
+### 특징
+- 성격: ${breed.traits.join(', ')}
+- 관리 난이도: ${'⭐'.repeat(breed.maintenance.grooming)}
+- 적합 환경: ${breed.environment.join(', ')}
+- 크기: ${breed.size}
+- 털 길이: ${breed.coat}
+
+### 내 냥이가 ${breed.name}와 잘 맞을까요?
+
+테스트를 통해 확인해보세요! 👉
+https://your-domain.com/test
+
+#고양이 #${breed.nameEn.replace(/\s/g, '')} #반려동물
+`;
+```
