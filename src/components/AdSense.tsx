@@ -17,6 +17,7 @@ export default function AdSense({ adSlot }: { adSlot: string }) {
           data-ad-client="ca-pub-4896634202351610"
           data-ad-slot={adSlot}
           data-ad-format="auto"
+          data-full-width-responsive="true"
           style={{ display: 'block' }}
         />
         <script

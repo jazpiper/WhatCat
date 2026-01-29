@@ -158,7 +158,7 @@ export default function ResultPage() {
           </button>
          </div>
 
-        <AdSense adSlot="result-top" />
+        <AdSense adSlot="5187796077" />
 
         <div ref={resultRef} className="bg-white rounded-3xl shadow-xl p-8 mb-6">
           <div className="text-center mb-8">
@@ -351,7 +351,7 @@ export default function ResultPage() {
           </div>
         </div>
 
-        <AdSense adSlot="result-bottom" />
+        <AdSense adSlot="5187796077" />
 
         <div className="text-center text-gray-500 text-sm">
           <p>&copy; 2026 냥이 매치. All rights reserved.</p>

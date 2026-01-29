@@ -128,7 +128,7 @@ export default function TestPage() {
         </div>
 
         <div className="hidden md:block">
-          <AdSense adSlot="test-side" />
+          <AdSense adSlot="5187796077" />
         </div>
       </div>
     </main>

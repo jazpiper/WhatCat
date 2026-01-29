@@ -21,7 +21,7 @@ export default function HomePage() {
           </p>
         </header>
 
-        <AdSense adSlot="home-top" />
+        <AdSense adSlot="5187796077" />
 
         <div className="bg-white rounded-3xl shadow-xl p-8 mb-8">
           <div className="text-center mb-8">
@@ -110,7 +110,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <AdSense adSlot="home-bottom" />
+        <AdSense adSlot="5187796077" />
 
         <footer className="text-center mt-12 text-gray-500 text-sm">
           <p>&copy; 2026 냥이 매치. All rights reserved.</p>
