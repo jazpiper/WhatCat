@@ -2,10 +2,10 @@
 
 import breedsData from '@/data/breeds.json';
 import Link from 'next/link';
-import Image from 'next/image';
 import { ArrowLeft, Star } from 'lucide-react';
 import { Breed } from '@/types';
 import { useParams } from 'next/navigation';
+import CatImage from '@/components/CatImage';
 
 const breeds = breedsData as unknown as { breeds: Breed[] };
 
@@ -60,7 +60,7 @@ export default function BreedDetailPage() {
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden mb-6">
           {breed.image && (
             <div className="relative h-80 bg-gradient-to-br from-pink-100 to-purple-100">
-              <Image
+              <CatImage
                 src={breed.image}
                 alt={breed.name}
                 width={800}

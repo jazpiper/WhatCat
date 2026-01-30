@@ -6,7 +6,6 @@ import questions from '@/data/questions.json';
 import { calculateMatch, getRankEmoji } from '@/utils/matching';
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import html2canvas from 'html2canvas';
 import { Breed, Question } from '@/types';
 import {
@@ -19,6 +18,7 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import AdSense from '@/components/AdSense';
+import CatImage from '@/components/CatImage';
 
 export default function ResultPage() {
   const { answers, resetTest } = useTest();
@@ -166,7 +166,7 @@ export default function ResultPage() {
 
             <div className="bg-gradient-to-br from-pink-100 to-purple-100 rounded-2xl p-8 mb-8">
               {firstResult.breed.image && (
-                <Image
+                <CatImage
                   src={firstResult.breed.image}
                   alt={firstResult.breed.name}
                   width={192}
@@ -243,7 +243,7 @@ export default function ResultPage() {
                   <div className="text-3xl">{getRankEmoji(index + 1)}</div>
                   <div className="text-4xl">{result.breed.emoji}</div>
                   {result.breed.image && (
-                    <Image
+                    <CatImage
                       src={result.breed.image}
                       alt={result.breed.name}
                       width={48}
