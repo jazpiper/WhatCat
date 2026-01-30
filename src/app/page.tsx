@@ -16,12 +16,13 @@ export default function HomePage() {
           <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
             냥이 매치 🐱
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-600 mb-2">
             MBTI 스타일로 나와 가장 잘 맞는 고양이 품종 찾기
           </p>
+          <p className="text-sm text-gray-500">
+            14개 질문으로 당신의 인생냥이를 찾아보세요! 20종의 인기 품종 데이터를 바탕으로 5대 카테고리를 분석하여 정확한 매칭 결과를 제공합니다.
+          </p>
         </header>
-
-        <AdSense adSlot="5187796077" />
 
         <div className="bg-white rounded-3xl shadow-xl p-8 mb-8">
           <div className="text-center mb-8">

@@ -1,14 +1,46 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-export default function AdSense({ adSlot }: { adSlot: string }) {
+export default function AdSense({ adSlot, className = '' }: { adSlot: string; className?: string }) {
   const adElement = useRef<HTMLModElement>(null);
-  const observerRef = useRef<ResizeObserver | null>(null);
-  const loadedRef = useRef(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isScriptReady, setIsScriptReady] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
+  // Hydration 방지
   useEffect(() => {
-    if (typeof window === 'undefined' || loadedRef.current) {
+    setIsMounted(true);
+  }, []);
+
+  // AdSense 스크립트 로드 확인
+  useEffect(() => {
+    if (!isMounted) return;
+
+    const checkScriptReady = () => {
+      if ((window as any).adsbygoogle) {
+        setIsScriptReady(true);
+        return true;
+      }
+      return false;
+    };
+
+    let attempts = 0;
+    const maxAttempts = 30; // 최대 3초까지 체크
+
+    const interval = setInterval(() => {
+      attempts++;
+      if (checkScriptReady() || attempts >= maxAttempts) {
+        clearInterval(interval);
+      }
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, [isMounted]);
+
+  // 광고 로드 로직
+  useEffect(() => {
+    if (typeof window === 'undefined' || isLoaded || !isScriptReady || !isMounted) {
       return;
     }
 
@@ -16,36 +48,51 @@ export default function AdSense({ adSlot }: { adSlot: string }) {
     if (!element) return;
 
     const loadAd = () => {
-      if (loadedRef.current || !element) return;
+      if (isLoaded || !element || !isScriptReady) return;
 
       const width = element.offsetWidth;
-      if (width > 0 && (window as any).adsbygoogle) {
-        loadedRef.current = true;
+      const height = element.offsetHeight;
+
+      // 최소 크기 확인
+      if (width >= 300 && height >= 100) {
         try {
           ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+          setIsLoaded(true);
+          console.log(`AdSense ad loaded: slot=${adSlot}, size=${width}x${height}`);
         } catch (error) {
           console.error('AdSense push error:', error);
         }
       }
     };
 
-    loadAd();
+    const timer = setTimeout(loadAd, 200);
 
-    observerRef.current = new ResizeObserver(() => {
-      loadAd();
-    });
+    // IntersectionObserver로 가시성 감지
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isLoaded) {
+            loadAd();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-    observerRef.current.observe(element);
+    observer.observe(element);
 
     return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
+      clearTimeout(timer);
+      observer.disconnect();
     };
-  }, [adSlot]);
+  }, [adSlot, isLoaded, isScriptReady, isMounted]);
+
+  if (!isMounted) {
+    return <div className="w-full h-[100px] my-6" />;
+  }
 
   return (
-    <div className="w-full flex justify-center my-6">
+    <div className={`w-full flex justify-center my-6 overflow-hidden ${className}`}>
       <ins
         ref={adElement}
         className="adsbygoogle"
@@ -53,7 +100,14 @@ export default function AdSense({ adSlot }: { adSlot: string }) {
         data-ad-slot={adSlot}
         data-ad-format="auto"
         data-full-width-responsive="true"
-        style={{ display: 'block', minHeight: '50px' }}
+        style={{
+          display: 'block',
+          minHeight: '100px',
+          minWidth: '300px',
+          maxWidth: '100%',
+          width: '100%',
+          margin: '0 auto'
+        }}
       />
     </div>
   );

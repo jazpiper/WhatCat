@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { TestProvider } from "@/contexts/TestContext";
 
@@ -35,16 +36,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4896634202351610"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Script
+          id="adsense-script"
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4896634202351610"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <TestProvider>{children}</TestProvider>
       </body>
     </html>

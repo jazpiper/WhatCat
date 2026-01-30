@@ -158,8 +158,6 @@ export default function ResultPage() {
           </button>
          </div>
 
-        <AdSense adSlot="5187796077" />
-
         <div ref={resultRef} className="bg-white rounded-3xl shadow-xl p-8 mb-6">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-800 mb-4">
