@@ -359,7 +359,7 @@
               "grooming": 1
             },
             "appearance": {
-              "coat": "단모"
+              "coat": "short"
             }
           }
         },
@@ -371,7 +371,7 @@
               "grooming": 2
             },
             "appearance": {
-              "coat": "단모"
+              "coat": "short"
             }
           }
         },
@@ -383,7 +383,7 @@
               "grooming": 3
             },
             "appearance": {
-              "coat": "중장모"
+              "coat": "medium"
             }
           }
         },
@@ -395,7 +395,7 @@
               "grooming": 4
             },
             "appearance": {
-              "coat": "장모"
+              "coat": "long"
             }
           }
         }
@@ -468,7 +468,7 @@
           "text": "작은 편 (안고 다니기 좋음)",
           "scores": {
             "appearance": {
-              "size": "소형"
+              "size": "small"
             }
           }
         },
@@ -477,7 +477,7 @@
           "text": "중간 크기 (일반적)",
           "scores": {
             "appearance": {
-              "size": "중형"
+              "size": "medium"
             }
           }
         },
@@ -486,7 +486,7 @@
           "text": "큰 편 (묵직한 느낌)",
           "scores": {
             "appearance": {
-              "size": "대형"
+              "size": "large"
             }
           }
         },
@@ -495,7 +495,7 @@
           "text": "아주 큰 편 (대형견처럼)",
           "scores": {
             "appearance": {
-              "size": "초대형"
+              "size": "xlarge"
             }
           }
         }
@@ -512,7 +512,7 @@
           "text": "짧은 털 (관리 쉬움)",
           "scores": {
             "appearance": {
-              "coat": "단모"
+              "coat": "short"
             },
             "maintenance": {
               "grooming": 2
@@ -524,7 +524,7 @@
           "text": "중간 길이",
           "scores": {
             "appearance": {
-              "coat": "중장모"
+              "coat": "medium"
             },
             "maintenance": {
               "grooming": 3
@@ -536,7 +536,7 @@
           "text": "긴 털 (귀여움 포인트)",
           "scores": {
             "appearance": {
-              "coat": "장모"
+              "coat": "long"
             },
             "maintenance": {
               "grooming": 4
@@ -548,7 +548,7 @@
           "text": "상관없음",
           "scores": {
             "appearance": {
-              "coat": "상관없음"
+              "coat": "any"
             },
             "maintenance": {
               "grooming": 3

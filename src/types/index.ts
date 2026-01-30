@@ -23,8 +23,8 @@ export interface Breed {
   };
   environment: string[];
   traits: string[];
-  size: 'small' | 'medium' | 'large' | 'xlarge';
-  coat: 'short' | 'medium' | 'long' | 'hairless';
+  size: string; // small, medium, large, xlarge, 소형, 중형, 대형, 초대형
+  coat: string; // short, medium, long, hairless, 단모, 중장모, 장모, 무모
   colors: string[];
   description: string;
   korea_popularity: number; // 0-100

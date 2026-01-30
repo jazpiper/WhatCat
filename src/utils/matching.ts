@@ -15,8 +15,8 @@ export interface UserScore {
   };
   lifestyle: number;
   appearance: {
-    size: 'small' | 'medium' | 'large' | 'xlarge' | 'any';
-    coat: 'short' | 'medium' | 'long' | 'hairless' | 'any';
+    size: string; // small, medium, large, xlarge, any, 소형, 중형, 대형, 초대형, 상관없음
+    coat: string; // short, medium, long, hairless, any, 단모, 중장모, 장모, 무모, 상관없음
   };
   cost: {
     initial: 'low' | 'medium' | 'high' | 'veryhigh';
@@ -224,22 +224,32 @@ function calculateBreedScore(userScore: UserScore, breed: Breed): MatchResult['b
 
   // 외형 선호 매칭 (가중치 15%)
   let appearanceScore = 50; // 기본 점수
-  if (userScore.appearance.size !== 'any') {
+  if (userScore.appearance.size !== 'any' && userScore.appearance.size !== '상관없음') {
     if (userScore.appearance.size === breed.size) {
       appearanceScore += 25;
     } else if (
-      (userScore.appearance.size === 'medium' && (breed.size === 'small' || breed.size === 'large')) ||
-      (userScore.appearance.size === 'large' && breed.size === 'xlarge')
+      (userScore.appearance.size === 'medium' || userScore.appearance.size === '중형') && 
+      (breed.size === 'small' || breed.size === '소형' || breed.size === 'large' || breed.size === '대형')
+    ) {
+      appearanceScore += 10;
+    } else if (
+      (userScore.appearance.size === 'large' || userScore.appearance.size === '대형') && 
+      (breed.size === 'xlarge' || breed.size === '초대형')
     ) {
       appearanceScore += 10;
     }
   }
-  if (userScore.appearance.coat !== 'any') {
+  if (userScore.appearance.coat !== 'any' && userScore.appearance.coat !== '상관없음') {
     if (userScore.appearance.coat === breed.coat) {
       appearanceScore += 25;
     } else if (
-      (userScore.appearance.coat === 'short' && breed.coat === 'medium') ||
-      (userScore.appearance.coat === 'medium' && (breed.coat === 'short' || breed.coat === 'long'))
+      (userScore.appearance.coat === 'short' || userScore.appearance.coat === '단모') && 
+      (breed.coat === 'medium' || breed.coat === '중장모')
+    ) {
+      appearanceScore += 10;
+    } else if (
+      (userScore.appearance.coat === 'medium' || userScore.appearance.coat === '중장모') && 
+      (breed.coat === 'short' || breed.coat === '단모' || breed.coat === 'long' || breed.coat === '장모')
     ) {
       appearanceScore += 10;
     }
