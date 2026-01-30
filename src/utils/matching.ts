@@ -191,23 +191,36 @@ function calculateUserScore(
 
 function calculateBreedScore(userScore: UserScore, breed: Breed): MatchResult['breakdown'] {
   // 성격 매칭 (가중치 30%)
+  // 최대 차이: (5-1) * 5 = 20
   const personalityDiff =
     Math.abs(userScore.personality.activity - breed.personality.activity) +
     Math.abs(userScore.personality.affection - breed.personality.affection) +
     Math.abs(userScore.personality.social - breed.personality.social) +
     Math.abs(userScore.personality.quiet - breed.personality.quiet) +
     Math.abs(userScore.personality.loyalty - breed.personality.loyalty);
-  const personalityScore = Math.max(0, 100 - (personalityDiff / 25) * 100);
+  const maxPersonalityDiff = 20;
+  const personalityScore = Math.max(0, 100 - (personalityDiff / maxPersonalityDiff) * 100);
 
   // 관리 용이성 매칭 (가중치 25%)
+  // 최대 차이: (5-1) * 3 = 12
   const maintenanceDiff =
     Math.abs(userScore.maintenance.grooming - breed.maintenance.grooming) +
     Math.abs(userScore.maintenance.training - breed.maintenance.training) +
     Math.abs(userScore.maintenance.health - breed.maintenance.health);
-  const maintenanceScore = Math.max(0, 100 - (maintenanceDiff / 15) * 100);
+  const maxMaintenanceDiff = 12;
+  const maintenanceScore = Math.max(0, 100 - (maintenanceDiff / maxMaintenanceDiff) * 100);
 
   // 라이프스타일 매칭 (가중치 20%)
-  const lifestyleScore = Math.min(100, (userScore.lifestyle / 5) * 100);
+  // 사용자 라이프스타일 점수 (0-5)를 100점으로 환산
+  // 환경 적합성 보너스 점수 (최대 10% 추가)
+  let environmentBonus = 0;
+  if (breed.environment.includes('apt') && userScore.lifestyle >= 4) {
+    environmentBonus += 5; // 아파트 적합 + 높은 라이프스타일 점수
+  }
+  if (breed.environment.includes('quiet') && userScore.personality.quiet >= 4) {
+    environmentBonus += 5; // 조용한 환경 선호 + 품종도 조용함
+  }
+  const lifestyleScore = Math.min(100, (userScore.lifestyle / 5) * 100 + environmentBonus);
 
   // 외형 선호 매칭 (가중치 15%)
   let appearanceScore = 50; // 기본 점수
