@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import Navigation from "../components/Navigation";
 import "./globals.css";
-import { TestProvider } from "../contexts/TestContext";
+import { NyongmatchProvider } from "../contexts/NyongmatchContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,7 +48,7 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
         <Navigation />
-        <TestProvider>{children}</TestProvider>
+        <NyongmatchProvider>{children}</NyongmatchProvider>
       </body>
     </html>
   );

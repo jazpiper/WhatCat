@@ -1,6 +1,6 @@
 'use client';
 
-import { useTest } from '@/contexts/TestContext';
+import { useTest } from '@/contexts/NyongmatchContext';
 import breeds from '@/data/breeds.json';
 import questions from '@/data/questions.json';
 import { calculateMatch, getRankEmoji } from '@/utils/matching';

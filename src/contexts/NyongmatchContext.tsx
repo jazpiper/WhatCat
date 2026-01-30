@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { AnswerScore } from '@/types';
 
-interface TestContextType {
+interface NyongmatchContextType {
   currentQuestion: number;
   answers: AnswerScore[];
   setAnswer: (questionId: string, answerId: string) => void;
@@ -15,9 +15,9 @@ interface TestContextType {
   setIsCompleted: (completed: boolean) => void;
 }
 
-const TestContext = createContext<TestContextType | undefined>(undefined);
+const NyongmatchContext = createContext<NyongmatchContextType | undefined>(undefined);
 
-export function TestProvider({ children }: { children: ReactNode }) {
+export function NyongmatchProvider({ children }: { children: ReactNode }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<AnswerScore[]>([]);
   const [isCompleted, setIsCompleted] = useState(false);
@@ -53,7 +53,7 @@ export function TestProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <TestContext.Provider
+    <NyongmatchContext.Provider
       value={{
         currentQuestion,
         answers,
@@ -67,14 +67,14 @@ export function TestProvider({ children }: { children: ReactNode }) {
       }}
     >
       {children}
-    </TestContext.Provider>
+    </NyongmatchContext.Provider>
   );
 }
 
 export function useTest() {
-  const context = useContext(TestContext);
+  const context = useContext(NyongmatchContext);
   if (context === undefined) {
-    throw new Error('useTest must be used within a TestProvider');
+    throw new Error('useTest must be used within a NyongmatchProvider');
   }
   return context;
 }

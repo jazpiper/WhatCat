@@ -1,6 +1,6 @@
 'use client';
 
-import { useTest } from '@/contexts/TestContext';
+import { useTest } from '@/contexts/NyongmatchContext';
 import questions from '@/data/questions.json';
 import Link from 'next/link';
 import AdSense from '@/components/AdSense';
