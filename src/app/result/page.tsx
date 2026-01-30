@@ -57,7 +57,7 @@ export default function ResultPage() {
         },
         buttons: [
           {
-            title: '테스트받기',
+            title: '냥이매칭받기',
             link: {
               mobileWebUrl: url,
               webUrl: url,
@@ -73,7 +73,7 @@ export default function ResultPage() {
   const handleShareTwitter = () => {
     const url = encodeURIComponent(window.location.href);
     const text = encodeURIComponent(
-      `나와 가장 잘 맞는 냥이는 "${firstResult.breed.name}"! 🐾\n매칭 점수: ${firstResult.score}%\n\n너랑 딱 맞는 냥이는? 냥이 매치 테스트 받아보기! 🐱`
+      `나와 가장 잘 맞는 냥이는 "${firstResult.breed.name}"! 🐾\n매칭 점수: ${firstResult.score}%\n\n너랑 딱 맞는 냥이는? 냥이 매치 냥이매칭 받아보기! 🐱`
     );
     window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
   };
@@ -154,7 +154,7 @@ export default function ResultPage() {
             className="text-purple-500 hover:underline flex items-center gap-2"
           >
             <RotateCcw size={20} />
-            다시 테스트
+            다시 냥이매칭
           </button>
          </div>
 

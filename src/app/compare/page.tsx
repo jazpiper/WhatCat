@@ -33,10 +33,10 @@ function CompareContent() {
               결과 URL이 올바르지 않습니다.
             </p>
             <Link
-              href="/test"
+              href="/nyongmatch"
               className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all"
             >
-              테스트 다시하기
+              냥이매칭 다시하기
             </Link>
           </div>
         </div>
@@ -272,12 +272,12 @@ function CompareContent() {
 
         <div className="grid md:grid-cols-2 gap-4">
           <Link
-            href="/test"
+            href="/nyongmatch"
             className="flex items-center justify-center gap-2 bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all"
           >
             <span className="text-4xl">🧪</span>
             <div className="text-left">
-              <h3 className="font-bold text-gray-800">다시 테스트하기</h3>
+              <h3 className="font-bold text-gray-800">다시 냥이매칭하기</h3>
               <p className="text-sm text-gray-600">새로운 품종 찾기</p>
             </div>
           </Link>

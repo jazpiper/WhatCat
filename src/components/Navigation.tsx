@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 
 const navigation = [
   { name: '홈', href: '/' },
-  { name: '테스트', href: '/test' },
+  { name: '냥이매칭', href: '/nyongmatch' },
   { name: '가이드', href: '/guides', comingSoon: true },
   { name: 'FAQ', href: '/faq' },
   { name: '소개', href: '/about' },
