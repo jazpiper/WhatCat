@@ -95,10 +95,10 @@
     },
     {
       "id": "ragdoll",
-      "name": "래그돌",
+      "name": "랙돌",
       "nameEn": "Ragdoll",
       "emoji": "🐱",
-      "image": "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=800&h=800&fit=crop",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/31dd6fd5-1bea-428e-9c3c-feab3f16ecb4.jpeg",
       "rank": 4,
       "personality": {
         "activity": 2,
@@ -121,7 +121,7 @@
       "size": "대형",
       "coat": "장모",
       "colors": ["pointed"],
-      "description": "안아주면 장난꾸러기처럼 몸이 말랑말랑해지는 래그돌은 애교가 많습니다.",
+      "description": "안아주면 장난꾸러기처럼 몸이 말랑말랑해지는 랙돌은 애교가 많습니다.",
       "korea_popularity": 88
     },
     {
