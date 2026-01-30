@@ -1,9 +1,22 @@
 'use client';
 
 import Link from 'next/link';
-import { Home, TestTube, Compare, BookOpen, Paw, Info, HelpCircle, Shield } from 'lucide-react';
+import { Home, GitCompare, BookOpen, PawPrint, Info, HelpCircle, Shield } from 'lucide-react';
 
-const sitemapData = {
+interface Page {
+  path: string;
+  label: string;
+  description: string;
+  comingSoon?: boolean;
+}
+
+interface Category {
+  title: string;
+  icon: React.ComponentType<{ className?: string }>;
+  pages: Page[];
+}
+
+const sitemapData: Record<string, Category> = {
   main: {
     title: '메인',
     icon: Home,
@@ -23,7 +36,7 @@ const sitemapData = {
   },
   breeds: {
     title: '품종',
-    icon: Paw,
+    icon: PawPrint,
     pages: [
       { path: '/breed/american-shorthair', label: '아메리칸 숏헤어', description: '친근하고 적응력이 좋은 품종' },
       { path: '/breed/scottish-fold', label: '스코티시 폴드', description: '접힌 귀가 특징인 애교 만점 품종' },
