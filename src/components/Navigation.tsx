@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 const navigation = [
   { name: '홈', href: '/' },
   { name: '냥이매칭', href: '/nyongmatch' },
-  { name: '가이드', href: '/guides', comingSoon: true },
+  { name: '가이드', href: '/guides' },
   { name: 'FAQ', href: '/faq' },
   { name: '소개', href: '/about' },
 ];
@@ -39,11 +39,9 @@ export default function Navigation() {
                     ? 'bg-white/20 text-white shadow-md'
                     : 'text-white/90 hover:bg-white/10 hover:text-white'
                   }
-                  ${item.comingSoon ? 'opacity-60 cursor-not-allowed' : ''}
                 `}
               >
                 {item.name}
-                {item.comingSoon && <span className="ml-1 text-xs">(곧)</span>}
               </Link>
             ))}
           </div>
@@ -89,11 +87,9 @@ export default function Navigation() {
                   ? 'bg-white/20 text-white shadow-md'
                   : 'text-white/90 hover:bg-white/10 hover:text-white'
                 }
-                ${item.comingSoon ? 'opacity-60 cursor-not-allowed' : ''}
               `}
             >
               {item.name}
-              {item.comingSoon && <span className="ml-2 text-xs">(곧)</span>}
             </Link>
           ))}
         </div>
