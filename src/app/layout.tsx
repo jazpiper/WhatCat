@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import Navigation from "@/components/Navigation";
 import "./globals.css";
 import { TestProvider } from "@/contexts/TestContext";
 
@@ -46,6 +47,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
+        <Navigation />
         <TestProvider>{children}</TestProvider>
       </body>
     </html>
