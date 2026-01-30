@@ -466,37 +466,6 @@
       "korea_popularity": 60
     },
     {
-      "id": "munchkin",
-      "name": "먼치킨",
-      "nameEn": "Munchkin",
-      "emoji": "😺",
-      "image": "https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?w=800&h=800&fit=crop",
-      "rank": 16,
-      "personality": {
-        "activity": 4,
-        "affection": 4,
-        "social": 5,
-        "quiet": 3,
-        "loyalty": 4
-      },
-      "maintenance": {
-        "grooming": 2,
-        "training": 4,
-        "health": 3
-      },
-      "cost": {
-        "initial": "high",
-        "monthly": "low"
-      },
-      "environment": ["apt", "family"],
-      "traits": ["장난기", "친근함", "작은키", "활발함"],
-      "size": "소형",
-      "coat": "단모",
-      "colors": ["various"],
-      "description": "작은 키에 비해 활발한 먼치킨은 장난꾸러기 고양이입니다.",
-      "korea_popularity": 58
-    },
-    {
       "id": "british-longhair",
       "name": "브리티시 롱헤어",
       "nameEn": "British Longhair",
