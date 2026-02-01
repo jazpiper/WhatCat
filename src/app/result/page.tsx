@@ -4,8 +4,17 @@ import { useTest } from '@/contexts/NyongmatchContext';
 import breeds from '@/data/breeds.json';
 import questions from '@/data/questions.json';
 import { calculateMatch, getRankEmoji } from '@/utils/matching';
+import {
+  createShareUrl,
+  createTwitterShareUrl,
+  createThreadsShareUrl,
+  createInstagramShareUrl,
+  getResultsFromUrl,
+  type ShareResult,
+} from '@/utils/share';
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import html2canvas from 'html2canvas';
 import { Breed, Question } from '@/types';
 import {
@@ -15,6 +24,8 @@ import {
   MessageCircle,
   ArrowLeft,
   RotateCcw,
+  Instagram,
+  AtSign,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import AdSense from '@/components/AdSense';
@@ -22,24 +33,68 @@ import CatImage from '@/components/CatImage';
 
 export default function ResultPage() {
   const { answers, resetTest } = useTest();
+  const router = useRouter();
   const [copied, setCopied] = useState(false);
   const [friendLink, setFriendLink] = useState('');
+  const [urlResults, setUrlResults] = useState<ShareResult[] | null>(null);
   const resultRef = useRef<HTMLDivElement>(null);
 
-  const results = calculateMatch(answers, breeds.breeds as Breed[], questions.questions as Question[]);
-  const top3Results = results.slice(0, 3);
+  // URL 파라미터에서 결과 읽어오기
+  useEffect(() => {
+    const urlData = getResultsFromUrl();
+    if (urlData) {
+      setUrlResults(urlData);
+    }
+  }, []);
+
+  // URL 파라미터 결과를 Breed 데이터로 변환
+  const urlBreedResults = urlResults
+    ? urlResults
+        .map((result) => {
+          const breed = (breeds.breeds as Breed[]).find((b) => b.id === result.breedId);
+          if (!breed) return null;
+          return {
+            breed,
+            score: result.score,
+          };
+        })
+        .filter((r): r is { breed: Breed; score: number } => r !== null)
+    : null;
+
+  // Context에서 계산한 결과
+  const contextResults = answers.length > 0
+    ? calculateMatch(answers, breeds.breeds as Breed[], questions.questions as Question[])
+    : null;
+
+  // URL 파라미터 결과가 있으면 우선, 없으면 Context 결과 사용
+  const displayResults = urlBreedResults || contextResults;
+  const top3Results = displayResults ? displayResults.slice(0, 3) : [];
+
+  // 결과가 없으면 첫 페이지로 리다이렉트
+  useEffect(() => {
+    if (!urlResults && !contextResults) {
+      router.push('/');
+    }
+  }, [urlResults, contextResults, router]);
+
   const firstResult = top3Results[0];
 
   useEffect(() => {
-    confetti({
-      particleCount: 150,
-      spread: 100,
-      origin: { y: 0.6 },
-    });
-  }, []);
+    if (firstResult) {
+      confetti({
+        particleCount: 150,
+        spread: 100,
+        origin: { y: 0.6 },
+      });
+    }
+  }, [firstResult]);
 
   const handleShareKakao = () => {
-    const url = window.location.href;
+    if (!firstResult) return;
+
+    const shareUrl = createShareUrl([
+      { breedId: firstResult.breed.id, score: firstResult.score },
+    ]);
     const text = `나와 가장 잘 맞는 냥이는 "${firstResult.breed.name}"! 🐾\n매칭 점수: ${firstResult.score}%`;
 
     const kakao = (window as unknown as { Kakao?: { Share: { sendDefault: (options: unknown) => void } } }).Kakao;
@@ -51,16 +106,16 @@ export default function ResultPage() {
           description: text,
           imageUrl: `${window.location.origin}/og-images/${firstResult.breed.id}.jpg`,
           link: {
-            mobileWebUrl: url,
-            webUrl: url,
+            mobileWebUrl: shareUrl,
+            webUrl: shareUrl,
           },
         },
         buttons: [
           {
             title: '냥이매칭받기',
             link: {
-              mobileWebUrl: url,
-              webUrl: url,
+              mobileWebUrl: shareUrl,
+              webUrl: shareUrl,
             },
           },
         ],
@@ -71,16 +126,50 @@ export default function ResultPage() {
   };
 
   const handleShareTwitter = () => {
-    const url = encodeURIComponent(window.location.href);
-    const text = encodeURIComponent(
-      `나와 가장 잘 맞는 냥이는 "${firstResult.breed.name}"! 🐾\n매칭 점수: ${firstResult.score}%\n\n너랑 딱 맞는 냥이는? 냥이 매치 냥이매칭 받아보기! 🐱`
+    if (!firstResult) return;
+
+    const shareUrl = createTwitterShareUrl(
+      { breedId: firstResult.breed.id, score: firstResult.score },
+      firstResult.breed.name,
+      firstResult.breed.emoji
     );
-    window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+
+    window.open(shareUrl, '_blank');
+  };
+
+  const handleShareThreads = () => {
+    if (!firstResult) return;
+
+    const shareUrl = createThreadsShareUrl(
+      { breedId: firstResult.breed.id, score: firstResult.score },
+      firstResult.breed.name,
+      firstResult.breed.emoji
+    );
+
+    window.open(shareUrl, '_blank');
+  };
+
+  const handleShareInstagram = () => {
+    if (!firstResult) return;
+
+    // 인스타그램은 웹에서 직접 공유할 수 없으므로 안내
+    alert(
+      '인스타그램은 사진을 직접 업로드해야 합니다.\n\n아래 "이미지 저장" 버튼으로 결과 이미지를 저장한 후 인스타그램 앱에서 업로드해주세요! 📸'
+    );
+
+    // 또는 앱으로 이동
+    window.open(createInstagramShareUrl(), '_blank');
   };
 
   const handleCopyLink = async () => {
+    if (!firstResult) return;
+
+    const shareUrl = createShareUrl([
+      { breedId: firstResult.breed.id, score: firstResult.score },
+    ]);
+
     try {
-      await navigator.clipboard.writeText(window.location.href);
+      await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -89,13 +178,16 @@ export default function ResultPage() {
   };
 
   const handleCompareWithFriend = () => {
-    if (friendLink.trim()) {
+    if (friendLink.trim() && firstResult) {
       const url = new URL(friendLink.trim());
-      const breed2Id = url.searchParams.get('breed2');
-      const score2 = url.searchParams.get('score2');
+      const params = new URLSearchParams(url.search);
+
+      const breed2Id = params.get('breed1');
+      const score2 = params.get('score1');
 
       if (breed2Id && score2) {
-        window.location.href = `/compare?breed1=${firstResult.breed.id}&score1=${firstResult.score}&breed2=${breed2Id}&score2=${score2}`;
+        const compareUrl = `/compare?breed1=${firstResult.breed.id}&score1=${firstResult.score}&breed2=${breed2Id}&score2=${score2}`;
+        window.location.href = compareUrl;
       } else {
         alert('올바른 결과 링크를 입력해주세요.');
       }
@@ -103,7 +195,7 @@ export default function ResultPage() {
   };
 
   const handleDownloadImage = async () => {
-    if (resultRef.current) {
+    if (resultRef.current && firstResult) {
       const canvas = await html2canvas(resultRef.current, {
         background: '#faf5ff',
         scale: 2,
@@ -125,6 +217,8 @@ export default function ResultPage() {
   };
 
   const getShareCopy = () => {
+    if (!firstResult) return '';
+
     const score = firstResult.score;
     let copy = '';
 
@@ -141,6 +235,17 @@ export default function ResultPage() {
     return `내 냥이 품종은 ${firstResult.breed.name}! 🐾 ${copy}`;
   };
 
+  if (!firstResult) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-6xl mb-4">🐾</div>
+          <p className="text-xl text-gray-600 mb-4">결과를 불러오는 중...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -156,7 +261,7 @@ export default function ResultPage() {
             <RotateCcw size={20} />
             다시 냥이매칭
           </button>
-         </div>
+        </div>
 
         <div ref={resultRef} className="bg-white rounded-3xl shadow-xl p-8 mb-6">
           <div className="text-center mb-8">
@@ -272,7 +377,7 @@ export default function ResultPage() {
             <p className="text-gray-800">{getShareCopy()}</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
             <button
               onClick={handleDownloadImage}
               className="flex flex-col items-center gap-2 p-3 md:p-4 rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 text-white hover:shadow-lg transition-all active:scale-95 min-h-[80px] md:min-h-auto"
@@ -291,10 +396,26 @@ export default function ResultPage() {
 
             <button
               onClick={handleShareTwitter}
-              className="flex flex-col items-center gap-2 p-3 md:p-4 rounded-xl bg-gray-100 text-gray-800 hover:shadow-lg transition-all active:scale-95 min-h-[80px] md:min-h-auto"
+              className="flex flex-col items-center gap-2 p-3 md:p-4 rounded-xl bg-black text-white hover:shadow-lg transition-all active:scale-95 min-h-[80px] md:min-h-auto"
             >
               <Share2 size={20} />
+              <span className="text-xs md:text-sm font-semibold">X</span>
+            </button>
+
+            <button
+              onClick={handleShareThreads}
+              className="flex flex-col items-center gap-2 p-3 md:p-4 rounded-xl bg-gray-800 text-white hover:shadow-lg transition-all active:scale-95 min-h-[80px] md:min-h-auto"
+            >
+              <AtSign size={20} />
               <span className="text-xs md:text-sm font-semibold">스레드</span>
+            </button>
+
+            <button
+              onClick={handleShareInstagram}
+              className="flex flex-col items-center gap-2 p-3 md:p-4 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 text-white hover:shadow-lg transition-all active:scale-95 min-h-[80px] md:min-h-auto"
+            >
+              <Instagram size={20} />
+              <span className="text-xs md:text-sm font-semibold">인스타</span>
             </button>
 
             <button
@@ -327,7 +448,7 @@ export default function ResultPage() {
                 type="text"
                 value={friendLink}
                 onChange={(e) => setFriendLink(e.target.value)}
-                placeholder="https://nyongmatch.com/result?..."
+                placeholder="https://nyongmatch.com/result?breed1=1&score1=85..."
                 className="flex-1 px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-pink-500 focus:outline-none text-gray-800"
               />
               <button
@@ -344,7 +465,7 @@ export default function ResultPage() {
               💡 친구 결과 링크를 받으셨나요?
             </p>
             <p className="text-sm text-gray-600">
-              링크를 입력하고 비교하기 버튼을 누르면 두 분의 냥이 품종을 나란히 볼 수 있어요!
+              링크을 입력하고 비교하기 버튼을 누르면 두 분의 냥이 품종을 나란히 볼 수 있어요!
             </p>
           </div>
         </div>
