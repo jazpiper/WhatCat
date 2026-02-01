@@ -3,13 +3,18 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // 이미지 설정
   images: {
-    unoptimized: true,
+    unoptimized: false, // Vercel Image Optimization 활성화
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: '**.unsplash.com',
+      },
     ],
+    formats: ['image/webp', 'image/avif'],
   },
 
   // 보안 및 성능 최적화

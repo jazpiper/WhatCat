@@ -1,189 +1,259 @@
 'use client';
 
-import { useState } from 'react';
+import { ArrowLeft, Mail, Github, ChevronDown, Bug, Star, GitFork, MessageSquare, Clock } from 'lucide-react';
 import Link from 'next/link';
-import { Github, Twitter, Mail, Send } from 'lucide-react';
-
-interface FAQItem {
-  question: string;
-  answer: string;
-}
-
-const faqData: FAQItem[] = [
-  {
-    question: '냥이 매치란 무엇인가요?',
-    answer: '냥이 매치는 MBTI 스타일 테스트를 통해 나와 가장 잘 맞는 고양이 품종을 찾아드리는 서비스입니다. AI 분석 기술을 활용하여 개인의 성향과 고양이 품종 특성을 매칭합니다.'
-  },
-  {
-    question: '어떻게 고양이를 매칭받을 수 있나요?',
-    answer: '홈페이지에서 테스트를 시작하면 성향 테스트 문항을 진행하게 됩니다. 모든 문항에 답변하시면 AI 분석을 통해 가장 잘 맞는 고양이 품종 3개를 추천해 드립니다.'
-  },
-  {
-    question: '매칭은 유료인가요?',
-    answer: '아니요, 기본 테스트는 완전 무료입니다. 무료로 제공되는 기본 매칭 서비스를 통해 여러분의 인생냥이를 찾을 수 있습니다. 추후 프리미엄 서비스가 추가될 수 있습니다.'
-  },
-  {
-    question: '개인정보는 어떻게 보호되나요?',
-    answer: '개인정보보호법 등 관련 법령을 준수하여 회원의 개인정보를 안전하게 보호합니다. 수집된 정보는 서비스 제공 및 개선 목적으로만 사용되며, 제3자에게 제공되지 않습니다.'
-  },
-  {
-    question: '고객센터 연락처는?',
-    answer: '이메일 문의(아래 버튼) 또는 소셜 미디어를 통해 문의하실 수 있습니다. 평일 09:00~18:00에 빠르게 답변 드립니다.'
-  },
-  {
-    question: '테스트 결과가 마음에 안 들어요.',
-    answer: '테스트 결과는 AI 분석 기반의 추천이며, 개인의 취향과 상황에 따라 다를 수 있습니다. 여러 번 테스트하거나 다른 품종 정보를 참고해보세요!'
-  },
-  {
-    question: '친구에게 결과를 공유할 수 있나요?',
-    answer: '네, 테스트 결과는 이미지 형태로 저장할 수 있으며, 소셜 미디어를 통해 친구들과 쉽게 공유할 수 있습니다.'
-  }
-];
 
 export default function ContactPage() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50">
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
-          {/* 제목 */}
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6 text-center">
-            고객센터
+      {/* Navigation */}
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <Link
+          href="/"
+          className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold hover:scale-105 hover:shadow-lg transition-all duration-200 flex items-center gap-2 mb-6 inline-block"
+        >
+          <ArrowLeft size={20} />
+          처음으로
+        </Link>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-4xl mx-auto px-4 pb-12">
+        <div className="bg-white rounded-3xl shadow-xl p-8">
+          {/* Title */}
+          <h1 className="text-3xl font-bold text-gray-800 mb-2 text-center">
+            문의하기
           </h1>
 
-          {/* 소개 문구 */}
-          <p className="text-gray-600 text-center mb-12">
-            궁금한 점이 있으시면 언제든지 문의해주세요!
+          {/* Subtitle */}
+          <p className="text-gray-600 text-center mb-8">
+            문의사항이 있으시면 아래 방법으로 연락해주세요
           </p>
 
-          {/* FAQ 섹션 */}
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-              <span className="bg-gradient-to-r from-pink-500 to-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm">
-                Q
-              </span>
-              자주 묻는 질문
-            </h2>
+          {/* Contact Sections */}
+          <div className="space-y-6">
+            {/* FAQ Section */}
+            <section>
+              <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <span className="text-2xl">❓</span>
+                자주 묻는 질문
+              </h2>
 
-            <div className="space-y-4">
-              {faqData.map((item, index) => (
-                <div
-                  key={index}
-                  className="border border-pink-100 rounded-xl overflow-hidden hover:shadow-md transition-all duration-200"
-                >
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-pink-50 transition-colors"
-                  >
-                    <span className="font-medium text-gray-700 pr-4">{item.question}</span>
-                    <span
-                      className={`text-pink-500 transition-transform duration-200 flex-shrink-0 ${
-                        openIndex === index ? 'rotate-180' : ''
-                      }`}
-                    >
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                      </svg>
+              {/* FAQ Accordion */}
+              <div className="space-y-3">
+                {/* Question 1 */}
+                <details className="group bg-gradient-to-r from-pink-50 to-purple-50 rounded-xl overflow-hidden">
+                  <summary className="cursor-pointer p-4 font-semibold text-gray-800 hover:bg-pink-100 transition-colors flex items-center justify-between">
+                    <span>테스트 결과가 맞지 않아요</span>
+                    <span className="transform group-open:rotate-180 transition-transform">
+                      <ChevronDown size={20} />
                     </span>
-                  </button>
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      openIndex === index ? 'max-h-96' : 'max-h-0'
-                    }`}
-                  >
-                    <div className="px-6 pb-4 pt-0">
-                      <p className="text-gray-600 leading-relaxed">{item.answer}</p>
+                  </summary>
+                  <div className="px-4 pb-4 text-gray-700">
+                    테스트는 사용자의 답변을 기반으로 알고리즘에 의해 계산됩니다.
+                    완벽한 정확도를 보장할 수 없지만, 대다분의 경우 유사한 품종을 추천합니다.
+                    다양한 품종 정보를 참고하여 결정해주세요.
+                  </div>
+                </details>
+
+                {/* Question 2 */}
+                <details className="group bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl overflow-hidden">
+                  <summary className="cursor-pointer p-4 font-semibold text-gray-800 hover:bg-purple-100 transition-colors flex items-center justify-between">
+                    <span>고양이 입양은 어떻게 하나요?</span>
+                    <span className="transform group-open:rotate-180 transition-transform">
+                      <ChevronDown size={20} />
+                    </span>
+                  </summary>
+                  <div className="px-4 pb-4 text-gray-700">
+                    <p className="mb-3">지역 내 동물 보호소, 고양이 카페, 전문 브리더 등에서 입양이 가능합니다.</p>
+                    <Link
+                      href="/guides/adoption"
+                      className="text-pink-600 font-semibold hover:underline inline-flex items-center gap-1"
+                    >
+                      입양 가이드 보기
+                    </Link>
+                  </div>
+                </details>
+
+                {/* Question 3 */}
+                <details className="group bg-gradient-to-r from-blue-50 to-pink-50 rounded-xl overflow-hidden">
+                  <summary className="cursor-pointer p-4 font-semibold text-gray-800 hover:bg-blue-100 transition-colors flex items-center justify-between">
+                    <span>서비스에 버그가 있어요</span>
+                    <span className="transform group-open:rotate-180 transition-transform">
+                      <ChevronDown size={20} />
+                    </span>
+                  </summary>
+                  <div className="px-4 pb-4 text-gray-700">
+                    버그를 발견하셨다면 GitHub Issues에 제보해주세요.
+                    자세한 정보(스크린샷, 재현 방법 등)를 함께 제출해주시면 빠르게 수정하겠습니다.
+                  </div>
+                </details>
+              </div>
+            </section>
+
+            {/* Email Section */}
+            <section>
+              <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <span className="text-2xl">📧</span>
+                이메일 문의
+              </h2>
+
+              <div className="grid md:grid-cols-2 gap-4">
+                {/* General Inquiry */}
+                <a
+                  href="mailto:contact@what-cat-psi.vercel.app?subject=[일반문의]"
+                  className="bg-gradient-to-br from-pink-500 to-purple-600 text-white rounded-xl p-6 hover:shadow-lg transition-all hover:scale-105 flex items-center gap-4 group focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
+                >
+                  <div className="bg-white/20 rounded-full p-3 group-hover:bg-white/30 transition-colors">
+                    <Mail size={32} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg mb-1">일반 문의</h3>
+                    <p className="text-sm text-pink-100">서비스, 제휴, 기타 문의</p>
+                  </div>
+                </a>
+
+                {/* Bug Report */}
+                <a
+                  href="mailto:bug@what-cat-psi.vercel.app?subject=[버그제보]"
+                  className="bg-gradient-to-br from-purple-600 to-blue-600 text-white rounded-xl p-6 hover:shadow-lg transition-all hover:scale-105 flex items-center gap-4 group focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                >
+                  <div className="bg-white/20 rounded-full p-3 group-hover:bg-white/30 transition-colors">
+                    <Bug size={32} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg mb-1">버그 제보</h3>
+                    <p className="text-sm text-purple-100">오류, 장애 신고</p>
+                  </div>
+                </a>
+              </div>
+            </section>
+
+            {/* Social Media Section */}
+            <section>
+              <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <span className="text-2xl">📱</span>
+                소셜 미디어
+              </h2>
+
+              <div className="grid md:grid-cols-3 gap-4">
+                {/* Instagram */}
+                <a
+                  href="https://instagram.com/whatcat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gradient-to-br from-pink-100 to-purple-100 rounded-xl p-6 hover:shadow-lg transition-all hover:scale-105 text-center group focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
+                >
+                  <div className="bg-gradient-to-br from-pink-500 to-purple-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                    <span className="text-3xl">📸</span>
+                  </div>
+                  <h3 className="font-bold text-gray-800 mb-1">Instagram</h3>
+                  <p className="text-sm text-gray-600">@whatcat</p>
+                </a>
+
+                {/* YouTube */}
+                <a
+                  href="https://youtube.com/@whatcat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gradient-to-br from-red-100 to-orange-100 rounded-xl p-6 hover:shadow-lg transition-all hover:scale-105 text-center group focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                >
+                  <div className="bg-gradient-to-br from-red-500 to-orange-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                    <span className="text-3xl">🎬</span>
+                  </div>
+                  <h3 className="font-bold text-gray-800 mb-1">YouTube</h3>
+                  <p className="text-sm text-gray-600">@whatcat</p>
+                </a>
+
+                {/* TikTok */}
+                <a
+                  href="https://tiktok.com/@whatcat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gradient-to-br from-black to-gray-800 rounded-xl p-6 hover:shadow-lg transition-all hover:scale-105 text-center group focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                >
+                  <div className="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                    <span className="text-3xl">🎵</span>
+                  </div>
+                  <h3 className="font-bold text-gray-800 mb-1">TikTok</h3>
+                  <p className="text-sm text-gray-600">@whatcat</p>
+                </a>
+              </div>
+            </section>
+
+            {/* GitHub Section */}
+            <section>
+              <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <span className="text-2xl">💻</span>
+                GitHub (개발자)
+              </h2>
+
+              <a
+                href="https://github.com/jazpiper/WhatCat"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block bg-gradient-to-br from-gray-900 to-gray-700 text-white rounded-xl p-6 hover:shadow-lg transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="bg-white/10 rounded-full p-3">
+                    <Github size={40} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-bold text-xl mb-1">jazpiper/WhatCat</h3>
+                    <p className="text-gray-300 text-sm mb-2">
+                      오픈소스 프로젝트 - 코드, 이슈, 토론 참여
+                    </p>
+                    <div className="flex gap-4 text-sm">
+                      <span className="flex items-center gap-1">
+                        <Star size={14} />
+                        ⭐ Star
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <GitFork size={14} />
+                        🍴 Fork
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <MessageSquare size={14} />
+                        💬 Discuss
+                      </span>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
-          </section>
-
-          {/* 이메일 문의 버튼 */}
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-              이메일 문의
-            </h2>
-
-            <div className="text-center">
-              <a
-                href="mailto:support@whatcat.com"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-xl font-medium hover:scale-105 hover:shadow-lg transition-all duration-200"
-              >
-                <Mail size={20} />
-                이메일 보내기
               </a>
-              <p className="text-sm text-gray-500 mt-3">
-                평일 09:00 ~ 18:00 / 빠른 답변 약속!
-              </p>
-            </div>
-          </section>
+            </section>
 
-          {/* 소셜 미디어 섹션 */}
-          <section>
-            <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-              소셜 미디어
-            </h2>
+            {/* Contact Info Summary */}
+            <section className="bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 rounded-xl p-6 mt-8">
+              <h2 className="text-xl font-bold text-gray-800 mb-4 text-center">
+                📋 연락처 요약
+              </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* GitHub */}
-              <a
-                href="https://github.com/whatcat"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 bg-gray-900 text-white px-6 py-4 rounded-xl hover:scale-105 hover:shadow-lg transition-all duration-200"
-              >
-                <Github size={24} />
-                <span className="font-medium">GitHub</span>
-              </a>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 bg-white rounded-lg p-4">
+                  <Mail className="text-pink-500" size={24} />
+                  <div>
+                    <p className="text-sm text-gray-500">이메일</p>
+                    <p className="font-semibold text-gray-800">contact@what-cat-psi.vercel.app</p>
+                  </div>
+                </div>
 
-              {/* Twitter/X */}
-              <a
-                href="https://twitter.com/whatcat"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 bg-black text-white px-6 py-4 rounded-xl hover:scale-105 hover:shadow-lg transition-all duration-200"
-              >
-                <Twitter size={24} />
-                <span className="font-medium">Twitter</span>
-              </a>
+                <div className="flex items-center gap-3 bg-white rounded-lg p-4">
+                  <Github className="text-purple-500" size={24} />
+                  <div>
+                    <p className="text-sm text-gray-500">GitHub</p>
+                    <p className="font-semibold text-gray-800">github.com/jazpiper/WhatCat</p>
+                  </div>
+                </div>
 
-              {/* Discord */}
-              <a
-                href="https://discord.gg/whatcat"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 bg-indigo-600 text-white px-6 py-4 rounded-xl hover:scale-105 hover:shadow-lg transition-all duration-200"
-              >
-                <Send size={24} />
-                <span className="font-medium">Discord</span>
-              </a>
-            </div>
-          </section>
-
-          {/* 처음으로 버튼 */}
-          <div className="mt-12 text-center border-t border-gray-100 pt-8">
-            <Link
-              href="/"
-              className="inline-block bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-3 rounded-xl font-medium hover:scale-105 hover:shadow-lg transition-all duration-200"
-            >
-              처음으로
-            </Link>
+                <div className="flex items-center gap-3 bg-white rounded-lg p-4">
+                  <Clock className="text-blue-500" size={24} />
+                  <div>
+                    <p className="text-sm text-gray-500">응답 시간</p>
+                    <p className="font-semibold text-gray-800">평일 1~2일 내</p>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
         </div>
       </div>
