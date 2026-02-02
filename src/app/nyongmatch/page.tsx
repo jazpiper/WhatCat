@@ -76,15 +76,15 @@ export default function TestPage() {
               <button
                 key={option.id}
                 onClick={() => handleAnswer(option.id)}
-                className={`w-full text-left p-4 md:p-6 rounded-2xl border-2 transition-all duration-300 hover:shadow-lg active:scale-98 min-h-[56px] md:min-h-auto ${
+                className={`w-full text-center p-4 md:p-6 rounded-2xl border-2 transition-all duration-300 hover:shadow-lg active:scale-98 min-h-[56px] md:min-h-auto ${
                   selectedAnswer === option.id
                     ? 'border-pink-500 bg-pink-50'
                     : 'border-gray-200 hover:border-pink-300 hover:bg-pink-50/50'
                 }`}
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center justify-center gap-4">
                   <div
-                    className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                    className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
                       selectedAnswer === option.id
                         ? 'border-pink-500 bg-pink-500'
                         : 'border-gray-300'
