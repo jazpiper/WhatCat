@@ -111,7 +111,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <AdSense adSlot="5187796077" />
+        <AdSense adSlot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ID || "5187796077"} />
 
         <footer className="text-center mt-12 text-gray-500 text-sm">
           <p>&copy; 2026 냥이 매치. All rights reserved.</p>

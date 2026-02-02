@@ -209,6 +209,71 @@ MIT
 
 ---
 
+## 환경 변수
+
+### 로컬 개발
+
+`.env.example` 파일을 복사하여 `.env.local` 파일을 생성하고 필요한 값을 설정하세요.
+
+```bash
+cp .env.example .env.local
+```
+
+**환경 변수:**
+
+| 변수 | 설명 | 기본값 | 필수 |
+|------|------|--------|------|
+| `NEXT_PUBLIC_ADSENSE_SLOT_ID` | AdSense 광고 슬롯 ID | `5187796077` | 아니오 |
+| `NEXT_PUBLIC_ADS_ENABLED` | 광고 활성/비활성 토글 | `true` | 아니오 |
+
+### Vercel 배포
+
+Vercel에서 환경 변수는 자동으로 설정됩니다. 수동으로 변경이 필요한 경우:
+
+```bash
+# 환경 변수 관리 스크립트 사용
+./scripts/manage-env.sh list              # 모든 환경 변수 조회
+./scripts/manage-env.sh get NEXT_PUBLIC_ADSENSE_SLOT_ID  # 특정 변수 조회
+./scripts/setup-whatcat-env.sh      # WhatCat 환경 변수 자동 설정
+```
+
+**Vercel Token 설정:**
+
+```bash
+export VERCEL_TOKEN=your_token_here
+export VERCEL_PROJECT_ID=prj_wB72ct6kHACQIVIanz9aGzy5jlkz  # WhatCat 프로젝트 ID
+```
+
+### 배포 상태 모니터링
+
+```bash
+# 최신 배포 상태 확인
+./scripts/check-deploy.sh status
+
+# 배포 히스토리 조회
+./scripts/check-deploy.sh list
+
+# 최근 10개 배포 조회
+./scripts/check-deploy.sh list 10
+```
+
+### AdSense 설정
+
+AdSense 승인 후 `NEXT_PUBLIC_ADSENSE_SLOT_ID` 환경 변수를 실제 광고 슬롯 ID로 변경하세요.
+
+현재는 클라이언트 측 사이드 광고만 지원합니다 (AdSense Auto Ads).
+
+```tsx
+<AdSense adSlot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ID || "5187796077"} />
+```
+
+**광고 위치:**
+- 메인 페이지: 상단/하단 배너
+- 테스트 페이지: 데스크톱 사이드바
+- 결과 페이지: 중간 배너
+
+---
+
 ## API 및 자동화
 
 ### 1. 결과 데이터 구조

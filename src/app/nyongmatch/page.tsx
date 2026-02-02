@@ -134,7 +134,7 @@ export default function TestPage() {
         </div>
 
         <div className="hidden md:block">
-          <AdSense adSlot="5187796077" />
+          <AdSense adSlot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ID || "5187796077"} />
         </div>
       </div>
     </main>
