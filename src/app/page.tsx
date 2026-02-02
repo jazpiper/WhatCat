@@ -4,11 +4,16 @@ import { ArrowRight, Star } from 'lucide-react';
 import AdSense from '@/components/AdSense';
 import CatImage from '@/components/CatImage';
 
-export default function HomePage() {
-  const popularBreeds = breeds.breeds
-    .sort((a, b) => b.korea_popularity - a.korea_popularity)
-    .slice(0, 6);
+// ✅ SSG 설정
+export const dynamic = 'force-static';
+export const revalidate = 3600; // 1시간마다 재생성
 
+// ✅ 정적 데이터 계산 (렌더링 전에 계산)
+const popularBreeds = breeds.breeds
+  .sort((a, b) => b.korea_popularity - a.korea_popularity)
+  .slice(0, 6);
+
+export default function HomePage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50">
       <div className="container mx-auto px-4 py-8 max-w-4xl">

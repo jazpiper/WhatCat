@@ -1,7 +1,9 @@
-'use client';
-
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+
+// ✅ SSG 설정
+export const dynamic = 'force-static';
+export const revalidate = 86400; // 24시간마다 재생성
 
 export default function PrivacyPage() {
   return (

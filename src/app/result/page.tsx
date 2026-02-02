@@ -15,7 +15,7 @@ import {
 import { useState, useRef, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import html2canvas from 'html2canvas';
+import dynamic from 'next/dynamic';
 import { Breed, Question } from '@/types';
 import {
   Share2,
@@ -27,9 +27,19 @@ import {
   Instagram,
   AtSign,
 } from 'lucide-react';
-import confetti from 'canvas-confetti';
-import AdSense from '@/components/AdSense';
-import CatImage from '@/components/CatImage';
+
+// ✅ 다이나믹 임포트 (번들 최적화)
+const AdSense = dynamic(() => import('@/components/AdSense'), {
+  ssr: false,
+  loading: () => <div className="w-full h-[100px] my-6 bg-gray-100 animate-pulse" />,
+});
+
+const CatImage = dynamic(() => import('@/components/CatImage'), {
+  ssr: false,
+  loading: ({ width, height, className }: any) => (
+    <div className={`bg-gray-100 animate-pulse ${className}`} style={{ width, height }} />
+  ),
+});
 
 // 상수 정의
 const COPY_FEEDBACK_DURATION_MS = 2000;
@@ -108,7 +118,14 @@ export default function ResultPage() {
 
   useEffect(() => {
     if (firstResult) {
-      confetti(CONFETTI_CONFIG);
+      // ✅ confetti 다이나믹 임포트
+      import('canvas-confetti').then((module) => {
+        module.default({
+          particleCount: 150,
+          spread: 100,
+          origin: { y: 0.6 } as const,
+        });
+      });
     }
   }, [firstResult]);
 
@@ -215,6 +232,8 @@ export default function ResultPage() {
 
   const handleDownloadImage = async () => {
     if (resultRef.current && firstResult) {
+      // ✅ html2canvas 다이나믹 임포트
+      const html2canvas = (await import('html2canvas')).default;
       const canvas = await html2canvas(resultRef.current, {
         background: '#faf5ff',
         scale: 2,
