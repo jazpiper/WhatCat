@@ -37,14 +37,19 @@ export default function ResultPage() {
   const [copied, setCopied] = useState(false);
   const [friendLink, setFriendLink] = useState('');
   const [urlResults, setUrlResults] = useState<ShareResult[] | null>(null);
+  const [isLoadingUrl, setIsLoadingUrl] = useState(false);
+  const [hasUrlParams, setHasUrlParams] = useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
 
   // URL 파라미터에서 결과 읽어오기
   useEffect(() => {
+    setIsLoadingUrl(true);
     const urlData = getResultsFromUrl();
-    if (urlData) {
+    if (urlData && urlData.length > 0) {
+      setHasUrlParams(true);
       setUrlResults(urlData);
     }
+    setIsLoadingUrl(false);
   }, []);
 
   // URL 파라미터 결과를 Breed 데이터로 변환
@@ -72,10 +77,11 @@ export default function ResultPage() {
 
   // 결과가 없으면 첫 페이지로 리다이렉트
   useEffect(() => {
-    if (!urlResults && !contextResults) {
+    // URL 파라미터가 있거나 Context 결과가 있으면 리다이렉트하지 않음
+    if (!isLoadingUrl && !hasUrlParams && !contextResults) {
       router.push('/');
     }
-  }, [urlResults, contextResults, router]);
+  }, [isLoadingUrl, hasUrlParams, contextResults, router]);
 
   const firstResult = top3Results[0];
 
@@ -236,14 +242,21 @@ export default function ResultPage() {
   };
 
   if (!firstResult) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-6xl mb-4">🐾</div>
-          <p className="text-xl text-gray-600 mb-4">결과를 불러오는 중...</p>
+    // URL 파라미터가 있으면 로딩 중 표시
+    if (hasUrlParams || isLoadingUrl) {
+      return (
+        <div className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 flex items-center justify-center">
+          <div className="text-center">
+            <div className="text-6xl mb-4">🐾</div>
+            <p className="text-xl text-gray-600 mb-4">결과를 불러오는 중...</p>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
+
+    // URL 파라미터도 없고 Context 결과도 없으면 홈으로 리다이렉트
+    // (이 useEffect가 실행되기 전이므로 빈 화면 표시)
+    return null;
   }
 
   return (
