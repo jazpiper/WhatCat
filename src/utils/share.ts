@@ -8,6 +8,18 @@ export interface ShareResult {
 }
 
 /**
+ * URL 파라미터 결과의 유효성을 검증합니다.
+ */
+export function validateShareResult(result: ShareResult): boolean {
+  return (
+    typeof result.breedId === 'string' &&
+    typeof result.score === 'number' &&
+    result.score >= 0 &&
+    result.score <= 100
+  );
+}
+
+/**
  * URL 파라미터에서 결과 데이터를 읽어옵니다.
  */
 export function getResultsFromUrl(): ShareResult[] | null {
@@ -22,10 +34,20 @@ export function getResultsFromUrl(): ShareResult[] | null {
     const score = params.get(`score${i}`);
 
     if (breedId && score) {
-      results.push({
-        breedId,
-        score: parseInt(score, 10),
-      });
+      const parsedScore = parseInt(score, 10);
+
+      // 검증
+      const isValid = typeof breedId === 'string' &&
+                      !isNaN(parsedScore) &&
+                      parsedScore >= 0 &&
+                      parsedScore <= 100;
+
+      if (isValid) {
+        results.push({
+          breedId,
+          score: parsedScore,
+        });
+      }
     }
   }
 

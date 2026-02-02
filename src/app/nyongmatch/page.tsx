@@ -1,20 +1,26 @@
 'use client';
 
+import { useMemo } from 'react';
 import { useTest } from '@/contexts/NyongmatchContext';
-import questions from '@/data/questions.json';
+import { questions } from '@/data/questions';
 import Link from 'next/link';
 import AdSense from '@/components/AdSense';
 
 export default function TestPage() {
   const { currentQuestion, answers, setAnswer, nextQuestion, previousQuestion } = useTest();
 
-  const question = questions.questions[currentQuestion];
-  const progress = Math.min(((currentQuestion +1) / questions.questions.length) * 100, 100);
+  const question = questions[currentQuestion];
 
-  const selectedAnswer = question ? (() => {
-    const existingAnswer = answers.find((a) => a.questionId === question.id);
-    return existingAnswer ? existingAnswer.answerId : null;
-  })() : null;
+  // 진행률 계산 (useMemo로 캐싱)
+  const progress = useMemo(
+    () => Math.min(((currentQuestion + 1) / questions.length) * 100, 100),
+    [currentQuestion]
+  );
+
+  // 선택된 답변 찾기 (단순화)
+  const selectedAnswer = question
+    ? answers.find((a) => a.questionId === question.id)?.answerId ?? null
+    : null;
 
   const handleAnswer = (answerId: string) => {
     setAnswer(question.id, answerId);
@@ -33,7 +39,7 @@ export default function TestPage() {
     previousQuestion();
   };
 
-  const isLastQuestion = currentQuestion === questions.questions.length - 1;
+  const isLastQuestion = currentQuestion === questions.length - 1;
   const hasAnswer = question ? answers.some((a) => a.questionId === question.id) : false;
 
   return (
@@ -50,7 +56,7 @@ export default function TestPage() {
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
               <span className="text-sm text-gray-500">
-                {currentQuestion + 1} / {questions.questions.length}
+                {currentQuestion + 1} / {questions.length}
               </span>
               <span className="text-sm font-semibold text-pink-500">
                 {Math.round(progress)}%

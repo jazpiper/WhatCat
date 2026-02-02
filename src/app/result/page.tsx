@@ -1,8 +1,8 @@
 'use client';
 
 import { useTest } from '@/contexts/NyongmatchContext';
-import breeds from '@/data/breeds.json';
-import questions from '@/data/questions.json';
+import { breeds } from '@/data/breeds';
+import { questions } from '@/data/questions';
 import { calculateMatch, getRankEmoji } from '@/utils/matching';
 import {
   createShareUrl,
@@ -12,7 +12,7 @@ import {
   getResultsFromUrl,
   type ShareResult,
 } from '@/utils/share';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import html2canvas from 'html2canvas';
@@ -30,6 +30,14 @@ import {
 import confetti from 'canvas-confetti';
 import AdSense from '@/components/AdSense';
 import CatImage from '@/components/CatImage';
+
+// 상수 정의
+const COPY_FEEDBACK_DURATION_MS = 2000;
+const CONFETTI_CONFIG = {
+  particleCount: 150,
+  spread: 100,
+  origin: { y: 0.6 } as const,
+} as const;
 
 export default function ResultPage() {
   const { answers, resetTest } = useTest();
@@ -52,28 +60,43 @@ export default function ResultPage() {
     setIsLoadingUrl(false);
   }, []);
 
-  // URL 파라미터 결과를 Breed 데이터로 변환
-  const urlBreedResults = urlResults
-    ? urlResults
-        .map((result) => {
-          const breed = (breeds.breeds as Breed[]).find((b) => b.id === result.breedId);
-          if (!breed) return null;
-          return {
-            breed,
-            score: result.score,
-          };
-        })
-        .filter((r): r is { breed: Breed; score: number } => r !== null)
-    : null;
+  // URL 파라미터 결과를 Breed 데이터로 변환 (useMemo로 캐싱)
+  const urlBreedResults = useMemo(
+    () =>
+      urlResults
+        ? urlResults
+            .map((result) => {
+              const breed = breeds.find((b) => b.id === result.breedId);
+              if (!breed) return null;
+              return {
+                breed,
+                score: result.score,
+              };
+            })
+            .filter((r): r is { breed: Breed; score: number } => r !== null)
+        : null,
+    [urlResults]
+  );
 
-  // Context에서 계산한 결과
-  const contextResults = answers.length > 0
-    ? calculateMatch(answers, breeds.breeds as Breed[], questions.questions as Question[])
-    : null;
+  // Context에서 계산한 결과 (useMemo로 캐싱)
+  const contextResults = useMemo(
+    () =>
+      answers.length > 0
+        ? calculateMatch(answers, breeds, questions)
+        : null,
+    [answers]
+  );
 
   // URL 파라미터 결과가 있으면 우선, 없으면 Context 결과 사용
   const displayResults = urlBreedResults || contextResults;
   const top3Results = displayResults ? displayResults.slice(0, 3) : [];
+  const firstResult = top3Results[0];
+
+  // 공유 결과 캐싱
+  const primaryShareResult = useMemo(
+    () => firstResult ? [{ breedId: firstResult.breed.id, score: firstResult.score }] : null,
+    [firstResult]
+  );
 
   // 결과가 없으면 첫 페이지로 리다이렉트
   useEffect(() => {
@@ -87,20 +110,14 @@ export default function ResultPage() {
 
   useEffect(() => {
     if (firstResult) {
-      confetti({
-        particleCount: 150,
-        spread: 100,
-        origin: { y: 0.6 },
-      });
+      confetti(CONFETTI_CONFIG);
     }
   }, [firstResult]);
 
   const handleShareKakao = () => {
-    if (!firstResult) return;
+    if (!firstResult || !primaryShareResult) return;
 
-    const shareUrl = createShareUrl([
-      { breedId: firstResult.breed.id, score: firstResult.score },
-    ]);
+    const shareUrl = createShareUrl(primaryShareResult);
     const text = `나와 가장 잘 맞는 냥이는 "${firstResult.breed.name}"! 🐾\n매칭 점수: ${firstResult.score}%`;
 
     const kakao = (window as unknown as { Kakao?: { Share: { sendDefault: (options: unknown) => void } } }).Kakao;
@@ -168,16 +185,14 @@ export default function ResultPage() {
   };
 
   const handleCopyLink = async () => {
-    if (!firstResult) return;
+    if (!firstResult || !primaryShareResult) return;
 
-    const shareUrl = createShareUrl([
-      { breedId: firstResult.breed.id, score: firstResult.score },
-    ]);
+    const shareUrl = createShareUrl(primaryShareResult);
 
     try {
       await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setTimeout(() => setCopied(false), COPY_FEEDBACK_DURATION_MS);
     } catch (err) {
       console.error('Failed to copy link:', err);
     }
