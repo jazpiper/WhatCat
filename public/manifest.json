@@ -1,0 +1,25 @@
+{
+  "name": "냥이 매치",
+  "short_name": "냥이 매치",
+  "description": "MBTI 스타일 테스트로 나와 가장 잘 맞는 고양이 품종 찾기",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f97316",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["lifestyle", "entertainment"],
+  "lang": "ko"
+}
