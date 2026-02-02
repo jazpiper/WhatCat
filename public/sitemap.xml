@@ -32,8 +32,20 @@
   </url>
   <url>
     <loc>https://what-cat-psi.vercel.app/privacy</loc>
-    <lastmod>2026-01-28</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://what-cat-psi.vercel.app/terms</loc>
+    <lastmod>2026-02-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://what-cat-psi.vercel.app/faq</loc>
+    <lastmod>2026-02-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

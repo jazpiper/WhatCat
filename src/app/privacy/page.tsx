@@ -74,7 +74,31 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="text-xl font-bold text-gray-800 mb-3">
-                6. 개인정보의 파기
+                6. 쿠키 및 광고
+              </h2>
+              <p className="mb-3">
+                본 서비스는 Google AdSense와 같은 써드파티 광고 서비스를 제공할 수 있습니다.
+                이 서비스들은 사용자의 웹사이트 방문 기록을 쿠키를 통해 수집하여,
+                사용자에게 관심 있는 광고를 제공할 수 있습니다.
+              </p>
+              <p className="mb-3">
+                사용자는 언제든지 브라우저 설정에서 쿠키 사용을 거부할 수 있지만,
+                이 경우 일부 서비스 기능이 제한될 수 있습니다.
+              </p>
+              <div className="bg-blue-50 rounded-lg p-4 mt-4">
+                <h3 className="font-bold text-blue-900 mb-2">Google AdSense 쿠키 정책</h3>
+                <ul className="list-disc list-inside space-y-1 ml-4 text-sm text-blue-800">
+                  <li>Google은 쿠키를 사용하여 광고를 게시하고, 사용자가 광고를 클릭했을 때를 추적합니다.</li>
+                  <li>Google은 DART 쿠키를 사용하여 Google 광고를 통해 웹사이트를 방문한 사용자에게 광고를 게시합니다.</li>
+                  <li>사용자는 Google 광고 콘텐츠 쿠키 사용을 거부할 수 있습니다.</li>
+                  <li>자세한 내용은 <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold">Google 개인정보처리방침</a>을 참조하세요.</li>
+                </ul>
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-bold text-gray-800 mb-3">
+                7. 개인정보의 파기
               </h2>
               <p>
                 사용자가 테스트를 완료하고 브라우저를 닫거나,
@@ -84,7 +108,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="text-xl font-bold text-gray-800 mb-3">
-                7. 이용자의 권리와 의무
+                8. 이용자의 권리와 의무
               </h2>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>이용자는 언제든지 본인의 개인정보에 대해 열람, 수정, 삭제를 요청할 수 있습니다.</li>
@@ -95,7 +119,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="text-xl font-bold text-gray-800 mb-3">
-                8. 개인정보처리책임자의 연락처
+                9. 개인정보처리책임자의 연락처
               </h2>
               <div className="bg-pink-50 rounded-xl p-4">
                 <p className="text-gray-800">
