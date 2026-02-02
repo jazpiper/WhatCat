@@ -10,8 +10,6 @@ const navigation = [
   { name: '가이드', href: '/guides' },
   { name: 'FAQ', href: '/faq' },
   { name: '소개', href: '/about' },
-  { name: '이용약관', href: '/terms' },
-  { name: '고객센터', href: '/contact' },
 ];
 
 export default function Navigation() {
