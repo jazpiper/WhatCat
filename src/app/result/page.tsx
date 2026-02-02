@@ -92,7 +92,7 @@ export default function ResultPage() {
   const top3Results = displayResults ? displayResults.slice(0, 3) : [];
   const firstResult = top3Results[0];
 
-  // 공유 결과 캐싱
+  // 공유 결과 캐싱 (firstResult가 정의된 후에 실행)
   const primaryShareResult = useMemo(
     () => firstResult ? [{ breedId: firstResult.breed.id, score: firstResult.score }] : null,
     [firstResult]
@@ -105,8 +105,6 @@ export default function ResultPage() {
       router.push('/');
     }
   }, [isLoadingUrl, hasUrlParams, contextResults, router]);
-
-  const firstResult = top3Results[0];
 
   useEffect(() => {
     if (firstResult) {
