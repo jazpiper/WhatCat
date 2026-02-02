@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import Navigation from "../components/Navigation";
+import ServiceWorkerRegister from "../components/ServiceWorkerRegister";
 import "./globals.css";
 import { NyongmatchProvider } from "../contexts/NyongmatchContext";
 
@@ -54,6 +55,7 @@ export default function RootLayout({
           strategy="lazyOnload"
         />
         <Navigation />
+        <ServiceWorkerRegister />
         <NyongmatchProvider>{children}</NyongmatchProvider>
       </body>
     </html>
