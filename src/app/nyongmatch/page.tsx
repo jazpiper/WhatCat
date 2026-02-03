@@ -1,10 +1,11 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useTest } from '@/contexts/NyongmatchContext';
 import { questions } from '@/data/questions';
 import Link from 'next/link';
 import AdSense from '@/components/AdSense';
+import { getRandomCatTip } from '@/data/catTips';
 
 export default function TestPage() {
   const { currentQuestion, answers, setAnswer, nextQuestion, previousQuestion } = useTest();
@@ -21,6 +22,29 @@ export default function TestPage() {
   const selectedAnswer = question
     ? answers.find((a) => a.questionId === question.id)?.answerId ?? null
     : null;
+
+  // 냥이 힌트 상태
+  const [catTip, setCatTip] = useState('');
+
+  // 질문 전환 애니메이션 상태
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [displayQuestionIndex, setDisplayQuestionIndex] = useState(currentQuestion);
+
+  // 냥이 힌트 업데이트 (질문마다 무작위)
+  useEffect(() => {
+    setCatTip(getRandomCatTip());
+  }, [currentQuestion]);
+
+  // 질문 전환 애니메이션
+  useEffect(() => {
+    if (currentQuestion !== displayQuestionIndex) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setDisplayQuestionIndex(currentQuestion);
+        setIsTransitioning(false);
+      }, 300);
+    }
+  }, [currentQuestion, displayQuestionIndex]);
 
   const handleAnswer = (answerId: string) => {
     setAnswer(question.id, answerId);
@@ -70,7 +94,19 @@ export default function TestPage() {
             </div>
           </div>
 
-          <div className="text-center mb-12">
+          {/* 냥이 힌트 */}
+          <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl p-4 mb-6 text-center">
+            <div className="text-sm text-gray-700">
+              💡 <span className="font-semibold">냥이 팁!</span> {catTip}
+            </div>
+          </div>
+
+          {/* 질문 전환 애니메이션 */}
+          <div
+            className={`text-center mb-12 transition-all duration-300 ${
+              isTransitioning ? 'opacity-0 -translate-y-4' : 'opacity-100 translate-y-0'
+            }`}
+          >
             <div className="text-6xl mb-6">🤔</div>
             <h2 className="text-2xl font-bold text-gray-800 mb-4">
               {question.question}

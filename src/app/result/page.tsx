@@ -27,6 +27,7 @@ import {
   Instagram,
   AtSign,
 } from 'lucide-react';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 // ✅ 다이나믹 임포트 (번들 최적화)
 const AdSense = dynamic(() => import('@/components/AdSense'), {
@@ -116,6 +117,33 @@ export default function ResultPage() {
     }
   }, [isLoadingUrl, hasUrlParams, contextResults, router]);
 
+  // 매칭 점수 애니메이션 상태
+  const [animatedScore, setAnimatedScore] = useState(0);
+
+  // 매칭 점수 애니메이션 (0%에서 실제 점수로)
+  useEffect(() => {
+    if (firstResult && animatedScore === 0) {
+      const targetScore = firstResult.score;
+      const duration = 1500; // 1.5초
+      const interval = 20; // 20ms마다 업데이트
+      const increment = targetScore / (duration / interval);
+
+      let currentScore = 0;
+      const timer = setInterval(() => {
+        currentScore += increment;
+        if (currentScore >= targetScore) {
+          setAnimatedScore(targetScore);
+          clearInterval(timer);
+        } else {
+          setAnimatedScore(Math.round(currentScore));
+        }
+      }, interval);
+
+      return () => clearInterval(timer);
+    }
+  }, [firstResult]);
+
+  // 결과가 로드되면 confetti와 점수 애니메이션 시작
   useEffect(() => {
     if (firstResult) {
       // ✅ confetti 다이나믹 임포트
@@ -126,6 +154,9 @@ export default function ResultPage() {
           origin: { y: 0.6 } as const,
         });
       });
+
+      // 점수 애니메이션 시작
+      setAnimatedScore(0);
     }
   }, [firstResult]);
 
@@ -279,8 +310,8 @@ export default function ResultPage() {
       return (
         <div className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 flex items-center justify-center">
           <div className="text-center">
-            <div className="text-6xl mb-4">🐾</div>
-            <p className="text-xl text-gray-600 mb-4">결과를 불러오는 중...</p>
+            <LoadingSpinner />
+            <p className="text-xl text-gray-600 mt-4">결과를 불러오는 중...</p>
           </div>
         </div>
       );
@@ -331,8 +362,8 @@ export default function ResultPage() {
                   {firstResult.breed.name}
                 </h2>
               </div>
-              <p className="text-xl text-pink-600 font-semibold">
-                매칭 점수: {firstResult.score}%
+              <p className="text-xl text-pink-600 font-semibold transition-all duration-300">
+                매칭 점수: {animatedScore}%
               </p>
             </div>
 
@@ -384,7 +415,7 @@ export default function ResultPage() {
               {top3Results.map((result, index) => (
                 <div
                   key={result.breed.id}
-                  className={`flex items-center gap-4 p-4 rounded-xl ${
+                  className={`flex items-center gap-4 p-4 rounded-xl transition-all duration-300 cursor-pointer hover:scale-102 hover:shadow-lg ${
                     index === 0
                       ? 'bg-gradient-to-r from-pink-100 to-purple-100'
                       : 'bg-gray-50'

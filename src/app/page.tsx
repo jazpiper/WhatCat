@@ -3,10 +3,24 @@ import breeds from '@/data/breeds.json';
 import { ArrowRight, Star } from 'lucide-react';
 import AdSense from '@/components/AdSense';
 import CatImage from '@/components/CatImage';
+import StructuredData from '@/components/StructuredData';
+import type { Metadata } from 'next';
 
 // ✅ SSG 설정
 export const dynamic = 'force-static';
 export const revalidate = 3600; // 1시간마다 재생성
+
+// ✅ 메타 태그
+export const metadata: Metadata = {
+  title: "나와 가장 잘 맞는 고양이 품종 찾기",
+  description: "냥이 매치로 당신의 인생냥이를 찾아보세요! MBTI 스타일 테스트로 20종의 인기 품종 중 당신에게 딱 맞는 냥이를 추천합니다. 한국 인기 품종 랭킹도 확인해보세요!",
+  keywords: ["고양이 테스트", "냥이 매치", "고양이 품종", "인기 품종 랭킹", "반려동물", "고양이 성격"],
+  openGraph: {
+    title: "냥이 매치 - 나와 가장 잘 맞는 고양이 품종 찾기",
+    description: "냥이 매치로 당신의 인생냥이를 찾아보세요! MBTI 스타일 테스트로 20종의 인기 품종 중 당신에게 딱 맞는 냥이를 추천합니다. 한국 인기 품종 랭킹도 확인해보세요!",
+    images: ["/og-images/default.jpg"]
+  }
+};
 
 // ✅ 정적 데이터 계산 (렌더링 전에 계산)
 const popularBreeds = breeds.breeds
@@ -16,6 +30,32 @@ const popularBreeds = breeds.breeds
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50">
+      {/* 구조화된 데이터 */}
+      <StructuredData
+        type="WebSite"
+        data={{
+          '@type': 'WebSite',
+          name: '냥이 매치',
+          url: 'https://what-cat-psi.vercel.app',
+          description: 'MBTI 스타일 테스트로 나의 인생냥이를 찾아보세요!',
+          potentialAction: {
+            '@type': 'SearchAction',
+            target: 'https://what-cat-psi.vercel.app/nyongmatch',
+            'query-input': 'required name=breed'
+          }
+        }}
+      />
+
+      <StructuredData
+        type="Organization"
+        data={{
+          '@type': 'Organization',
+          name: 'Molt Company',
+          url: 'https://what-cat-psi.vercel.app',
+          logo: 'https://what-cat-psi.vercel.app/logo.png'
+        }}
+      />
+
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <header className="text-center mb-12">
           <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">

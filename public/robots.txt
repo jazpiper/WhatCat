@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+Disallow: /api/
+Disallow: /_next/
+Disallow: /compare?
+
 Sitemap: https://what-cat-psi.vercel.app/sitemap.xml
