@@ -76,13 +76,13 @@ export default function HomePage() {
               나랑 잘 맞는 냥이 찾기
             </h2>
             <p className="text-gray-600 mb-6">
-              간단한 냥이매칭으로 나의 인생냥이를 찾아보세요!
+              간단한 냥이매치로 나의 인생냥이를 찾아보세요!
             </p>
             <Link
               href="/nyongmatch"
               className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
             >
-              냥이매칭 시작
+              냥이매치 시작
               <ArrowRight size={24} />
             </Link>
           </div>
