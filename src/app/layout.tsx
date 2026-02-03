@@ -17,6 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://what-cat-psi.vercel.app'),
   title: {
     default: "냥이 매칭 - 나와 가장 잘 맞는 고양이 품종 찾기",
     template: "%s | 냥이 매칭"
