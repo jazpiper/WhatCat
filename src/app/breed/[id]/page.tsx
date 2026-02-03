@@ -6,6 +6,13 @@ import { ArrowLeft, Star } from 'lucide-react';
 import { Breed } from '@/types';
 import { useParams } from 'next/navigation';
 import CatImage from '@/components/CatImage';
+import dynamic from 'next/dynamic';
+
+// ✅ 다이나믹 임포트 (번들 최적화)
+const AdSense = dynamic(() => import('@/components/AdSense'), {
+  ssr: false,
+  loading: () => <div className="w-full h-[100px] my-6 bg-gray-100 animate-pulse" />,
+});
 
 const breeds = breedsData as unknown as { breeds: Breed[] };
 
@@ -245,6 +252,8 @@ export default function BreedDetailPage() {
         </div>
 
         <div className="bg-white rounded-3xl shadow-xl p-6">
+          <AdSense adSlot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ID || "5187796077"} />
+
           <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
             🧪 테스트 시작하기
           </h2>
@@ -252,12 +261,14 @@ export default function BreedDetailPage() {
             나와 딱 맞는 냥이는? 테스트를 시작해보세요!
           </p>
           <Link
-            href="/test"
+            href="/nyongmatch"
             className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:scale-105 transition-all"
           >
             냥이 매칭 테스트 시작하기
           </Link>
         </div>
+
+        <AdSense adSlot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ID || "5187796077"} />
 
         <footer className="text-center mt-8 text-gray-500 text-sm">
           <p>&copy; 2026 냥이 매칭. All rights reserved.</p>

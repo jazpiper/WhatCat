@@ -445,8 +445,9 @@ export default function ResultPage() {
             </h3>
             <div className="space-y-3">
               {top3Results.map((result, index) => (
-                <div
+                <Link
                   key={result.breed.id}
+                  href={`/breed/${result.breed.id}`}
                   className={`flex items-center gap-4 p-4 rounded-xl transition-all duration-300 cursor-pointer hover:scale-102 hover:shadow-lg ${
                     index === 0
                       ? 'bg-gradient-to-r from-pink-100 to-purple-100'
@@ -471,7 +472,7 @@ export default function ResultPage() {
                   <div className="text-2xl font-bold text-pink-600">
                     {result.score}%
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
