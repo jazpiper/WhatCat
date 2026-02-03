@@ -10,6 +10,7 @@ import {
   createThreadsShareUrl,
   createInstagramShareUrl,
   getResultsFromUrl,
+  getShareTextByScore,
   type ShareResult,
 } from '@/utils/share';
 import { useState, useRef, useEffect, useMemo } from 'react';
@@ -288,20 +289,7 @@ export default function ResultPage() {
   const getShareCopy = () => {
     if (!firstResult) return '';
 
-    const score = firstResult.score;
-    let copy = '';
-
-    if (score >= 90) {
-      copy = '인생냥이 확정! 92% 매칭이라니... 이건 운명이지 않나?';
-    } else if (score >= 80) {
-      copy = '88% 나왔는데, 꽤 잘 맞는 것 같아! 얼른 입양하고 싶어 ㅠㅠ';
-    } else if (score >= 70) {
-      copy = '75% 나왔는데... 애매하다 ㅋㅋ 뭐 나쁘지 않은 품종이긴 해';
-    } else {
-      copy = '60% 나왔는데... 이거 내가 냥이랑 안 맞는 건가? ㅠㅠ';
-    }
-
-    return `내 냥이 품종은 ${firstResult.breed.name}! 🐾 ${copy}`;
+    return getShareTextByScore(firstResult.score, firstResult.breed.name, firstResult.breed.emoji);
   };
 
   if (!firstResult) {
