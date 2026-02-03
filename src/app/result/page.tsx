@@ -59,6 +59,8 @@ export default function ResultPage() {
   const [urlResults, setUrlResults] = useState<ShareResult[] | null>(null);
   const [isLoadingUrl, setIsLoadingUrl] = useState(false);
   const [hasUrlParams, setHasUrlParams] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
 
   // URL 파라미터에서 결과 읽어오기
@@ -158,6 +160,9 @@ export default function ResultPage() {
 
       // 점수 애니메이션 시작
       setAnimatedScore(0);
+
+      // 이미지 로딩 대기 (2초 후 완료로 처리)
+      setTimeout(() => setImageLoaded(true), 2000);
     }
   }, [firstResult]);
 
@@ -222,13 +227,16 @@ export default function ResultPage() {
   const handleShareInstagram = () => {
     if (!firstResult) return;
 
-    // 인스타그램은 웹에서 직접 공유할 수 없으므로 안내
-    alert(
-      '인스타그램은 사진을 직접 업로드해야 합니다.\n\n아래 "이미지 저장" 버튼으로 결과 이미지를 저장한 후 인스타그램 앱에서 업로드해주세요! 📸'
-    );
+    // 인스타그램은 웹에서 직접 공유할 수 없으므로 이미지 저장으로 유도
+    if (!imageLoaded) {
+      alert('이미지가 아직 로딩 중입니다. 잠시 후 다시 시도해주세요.');
+      return;
+    }
 
-    // 또는 앱으로 이동
-    window.open(createInstagramShareUrl(), '_blank');
+    alert('인스타그램은 사진을 직접 업로드해야 합니다.\n\n"이미지 저장"을 먼저 눌러 이미지를 저장한 후 인스타그램 앱에서 업로드해주세요! 📸');
+
+    // 바로 이미지 저장으로 연결
+    handleDownloadImage();
   };
 
   const handleCopyLink = async () => {
@@ -263,18 +271,54 @@ export default function ResultPage() {
   };
 
   const handleDownloadImage = async () => {
-    if (resultRef.current && firstResult) {
-      // ✅ html2canvas 다이나믹 임포트
+    if (!firstResult) {
+      alert('결과가 없습니다.');
+      return;
+    }
+
+    if (isDownloading) {
+      return;
+    }
+
+    try {
+      setIsDownloading(true);
+
+      // 이미지가 로딩되지 않은 경우 대기
+      if (!imageLoaded) {
+        alert('이미지가 아직 로딩 중입니다. 잠시 후 다시 시도해주세요.');
+        setIsDownloading(false);
+        return;
+      }
+
+      if (!resultRef.current) {
+        alert('결과 영역을 찾을 수 없습니다.');
+        setIsDownloading(false);
+        return;
+      }
+
+      // html2canvas 다이나믹 임포트
       const html2canvas = (await import('html2canvas')).default;
+
+      // 캡처 옵션
       const canvas = await html2canvas(resultRef.current, {
         background: '#faf5ff',
         scale: 2,
         useCORS: true,
+        allowTaint: true,
+        logging: false,
       } as any); // eslint-disable-line @typescript-eslint/no-explicit-any
+
+      // 다운로드
       const link = document.createElement('a');
-      link.download = `냥이매치_${firstResult.breed.name}.png`;
-      link.href = canvas.toDataURL();
+      const breedName = firstResult.breed.name.replace(/\s+/g, '_');
+      link.download = `냥이매치_${breedName}_${firstResult.score}점.png`;
+      link.href = canvas.toDataURL('image/png', 1.0);
       link.click();
+    } catch (error) {
+      console.error('이미지 다운로드 실패:', error);
+      alert('이미지 저장에 실패했습니다.\n\n브라우저에서 직접 캡처하거나 잠시 후 다시 시도해주세요.');
+    } finally {
+      setIsDownloading(false);
     }
   };
 
@@ -444,10 +488,21 @@ export default function ResultPage() {
           <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
             <button
               onClick={handleDownloadImage}
-              className="flex flex-col items-center gap-2 p-3 md:p-4 rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 text-white hover:shadow-lg transition-all active:scale-95 min-h-[80px] md:min-h-auto"
+              disabled={isDownloading}
+              className={`flex flex-col items-center gap-2 p-3 md:p-4 rounded-xl transition-all active:scale-95 min-h-[80px] md:min-h-auto ${
+                isDownloading
+                  ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
+                  : 'bg-gradient-to-br from-pink-500 to-purple-600 text-white hover:shadow-lg'
+              }`}
             >
-              <Download size={20} />
-              <span className="text-xs md:text-sm font-semibold">이미지 저장</span>
+              {isDownloading ? (
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <Download size={20} />
+              )}
+              <span className="text-xs md:text-sm font-semibold">
+                {isDownloading ? '저장 중...' : '이미지 저장'}
+              </span>
             </button>
 
             <button
