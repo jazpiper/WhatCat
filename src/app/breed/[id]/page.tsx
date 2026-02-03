@@ -54,6 +54,30 @@ export default function BreedDetailPage() {
     return stars.join('');
   };
 
+  // 비용 정보 한글 변환
+  const getCostText = (cost: string) => {
+    const costMap: Record<string, string> = {
+      low: '낮음 (20만원 이하)',
+      medium: '중간 (20-50만원)',
+      high: '높음 (50만원 이상)',
+    };
+    return costMap[cost] || cost;
+  };
+
+  // 적합 환경 한글 변환
+  const getEnvironmentText = (env: string) => {
+    const envMap: Record<string, string> = {
+      apt: '아파트',
+      family: '가족과 함께',
+      quiet: '조용한 환경',
+      children: '아이가 있는 집',
+      pets: '다른 동물과 공존',
+      outdoor: '외부 활동',
+      indoor: '실내 사육',
+    };
+    return envMap[env] || env;
+  };
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -201,11 +225,11 @@ export default function BreedDetailPage() {
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="bg-white rounded-xl p-4">
                   <h3 className="font-bold text-gray-800 mb-2">초기 비용</h3>
-                  <p className="text-gray-700 capitalize">{breed.cost.initial}</p>
+                  <p className="text-gray-700">{getCostText(breed.cost.initial)}</p>
                 </div>
                 <div className="bg-white rounded-xl p-4">
                   <h3 className="font-bold text-gray-800 mb-2">월 비용</h3>
-                  <p className="text-gray-700 capitalize">{breed.cost.monthly}</p>
+                  <p className="text-gray-700">{getCostText(breed.cost.monthly)}</p>
                 </div>
               </div>
             </div>
@@ -220,10 +244,92 @@ export default function BreedDetailPage() {
                     key={env}
                     className="inline-block bg-white px-3 py-1 rounded-full text-sm mr-2 mb-2"
                   >
-                    {env}
+                    {getEnvironmentText(env)}
                   </span>
                 ))}
               </p>
+          </div>
+
+          <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-6 mb-6">
+            <h2 className="text-2xl font-bold text-gray-800 mb-3">
+              🏥 건강 관리
+            </h2>
+            <div className="bg-white rounded-xl p-4 mb-4">
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-gray-600">건강 난이도</span>
+                <span className="font-bold text-gray-800 text-lg">{breed.maintenance.health}/5</span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  className="bg-gradient-to-r from-green-500 to-blue-600 h-2 rounded-full"
+                  style={{ width: `${(breed.maintenance.health / 5) * 100}%` }}
+                />
+              </div>
+            </div>
+            <div className="bg-white rounded-xl p-4">
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-gray-600">교육 난이도</span>
+                <span className="font-bold text-gray-800 text-lg">{breed.maintenance.training}/5</span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  className="bg-gradient-to-r from-green-500 to-blue-600 h-2 rounded-full"
+                  style={{ width: `${(breed.maintenance.training / 5) * 100}%` }}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-6 mb-6">
+            <h2 className="text-2xl font-bold text-gray-800 mb-3">
+              ✨ 관리 팁
+            </h2>
+            <div className="bg-white rounded-xl p-4">
+              <ul className="space-y-2 text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="text-pink-500">🔹</span>
+                  <span>털 관리: {breed.coat === '장모' ? '매일 빗질이 필요합니다.' : '주 2-3회 빗질이 충분합니다.'}</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-pink-500">🔹</span>
+                  <span>운동량: {breed.personality.activity >= 4 ? '활동적인 놀이가 필요합니다.' : '적당한 놀이로 충분합니다.'}</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-pink-500">🔹</span>
+                  <span>사회성: {breed.personality.social >= 4 ? '다른 동물과 잘 어울립니다.' : '느리게 친해집니다.'}</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-pink-500">🔹</span>
+                  <span>적정 온도: 실내 온도 20-26℃를 유지해주세요.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-red-50 to-pink-50 rounded-2xl p-6 mb-6">
+            <h2 className="text-2xl font-bold text-gray-800 mb-3">
+              ⚠️ 유의사항
+            </h2>
+            <div className="bg-white rounded-xl p-4">
+              <ul className="space-y-2 text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="text-red-500">🔴</span>
+                  <span>정기적인 예방접종과 건강검진이 필수입니다.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-500">🔴</span>
+                  <span>스크래칭 포스트를 제공하여 가구를 보호하세요.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-500">🔴</span>
+                  <span>깨끗한 식수와 적절한 양의 사료를 제공하세요.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-500">🔴</span>
+                  <span>스트레스를 줄이기 위해 안정적인 환경을 유지하세요.</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
