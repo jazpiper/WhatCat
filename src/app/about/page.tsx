@@ -18,7 +18,7 @@ export default function AboutPage() {
 
         <div className="bg-white rounded-3xl shadow-xl p-8">
           <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-            냥이 매치 소개
+            냥이 매칭 소개
           </h1>
 
           <div className="space-y-6 text-gray-700">
@@ -27,7 +27,7 @@ export default function AboutPage() {
                 🐱 서비스 개요
               </h2>
               <p>
-                냥이 매치는 사용자의 라이프스타일, 성향, 환경을 분석하여
+                냥이 매칭은 사용자의 라이프스타일, 성향, 환경을 분석하여
                 가장 잘 어울리는 고양이 품종을 추천하는 MBTI 스타일 테스트 서비스입니다.
               </p>
             </section>
@@ -74,10 +74,10 @@ export default function AboutPage() {
                 📝 저작권
               </h2>
               <p>
-                © 2026 냥이 매치. All rights reserved.
+                © 2026 냥이 매칭. All rights reserved.
               </p>
               <p className="text-sm mt-2 text-gray-600">
-                본 서비스의 모든 콘텐츠는 냥이 매치에 저작권이 있습니다.
+                본 서비스의 모든 콘텐츠는 냥이 매칭에 저작권이 있습니다.
                 상업적 이용 시 별도의 허락이 필요합니다.
               </p>
             </section>

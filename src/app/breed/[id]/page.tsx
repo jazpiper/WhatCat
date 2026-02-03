@@ -255,12 +255,12 @@ export default function BreedDetailPage() {
             href="/test"
             className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:scale-105 transition-all"
           >
-            냥이 매치 테스트 시작하기
+            냥이 매칭 테스트 시작하기
           </Link>
         </div>
 
         <footer className="text-center mt-8 text-gray-500 text-sm">
-          <p>&copy; 2026 냥이 매치. All rights reserved.</p>
+          <p>&copy; 2026 냥이 매칭. All rights reserved.</p>
         </footer>
       </div>
     </main>

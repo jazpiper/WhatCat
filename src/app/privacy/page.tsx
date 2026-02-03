@@ -27,7 +27,7 @@ export default function PrivacyPage() {
                 1. 수집하는 개인정보의 항목
               </h2>
               <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>수집하지 않음 - 냥이 매치 서비스는 사용자의 개인정보를 별도로 수집하지 않습니다.</li>
+                <li>수집하지 않음 - 냥이 매칭 서비스는 사용자의 개인정보를 별도로 수집하지 않습니다.</li>
               </ul>
             </section>
 

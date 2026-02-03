@@ -295,7 +295,7 @@ function CompareContent() {
         </div>
 
         <footer className="text-center mt-8 text-gray-500 text-sm">
-          <p>&copy; 2026 냥이 매치. All rights reserved.</p>
+          <p>&copy; 2026 냥이 매칭. All rights reserved.</p>
         </footer>
       </div>
     </main>

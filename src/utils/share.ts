@@ -86,7 +86,7 @@ export function createKakaoShareUrl(result: ShareResult, breedName: string, emoj
 export function createTwitterShareUrl(result: ShareResult, breedName: string, emoji: string): string {
   const shareUrl = createShareUrl([result]);
   const text = encodeURIComponent(
-    `나와 가장 잘 맞는 냥이는 "${breedName}"! ${emoji}\n매칭 점수: ${result.score}%\n\n너랑 딱 맞는 냥이는? 냥이 매치 냥이매칭 받아보기! 🐱`
+    `나와 가장 잘 맞는 냥이는 "${breedName}"! ${emoji}\n매칭 점수: ${result.score}%\n\n너랑 딱 맞는 냥이는? 냥이 매칭 냥이매칭 받아보기! 🐱`
   );
   const url = encodeURIComponent(shareUrl);
 
@@ -107,7 +107,7 @@ export function createInstagramShareUrl(): string {
 export function createThreadsShareUrl(result: ShareResult, breedName: string, emoji: string): string {
   const shareUrl = createShareUrl([result]);
   const text = encodeURIComponent(
-    `나와 가장 잘 맞는 냥이는 "${breedName}"! ${emoji}\n매칭 점수: ${result.score}%\n\n너랑 딱 맞는 냥이는? 냥이 매치 냥이매칭 받아보기! 🐱\n\n${shareUrl}`
+    `나와 가장 잘 맞는 냥이는 "${breedName}"! ${emoji}\n매칭 점수: ${result.score}%\n\n너랑 딱 맞는 냥이는? 냥이 매칭 냥이매칭 받아보기! 🐱\n\n${shareUrl}`
   );
 
   return `https://www.threads.net/intent/post?text=${text}`;

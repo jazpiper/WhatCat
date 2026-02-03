@@ -28,7 +28,7 @@ export default function Navigation() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="text-white font-bold text-xl hover:text-pink-200 transition-colors">
-              WhatCat
+              HOME
             </Link>
           </div>
 

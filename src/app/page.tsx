@@ -13,11 +13,11 @@ export const revalidate = 3600; // 1시간마다 재생성
 // ✅ 메타 태그
 export const metadata: Metadata = {
   title: "나와 가장 잘 맞는 고양이 품종 찾기",
-  description: "냥이 매치로 당신의 인생냥이를 찾아보세요! MBTI 스타일 테스트로 20종의 인기 품종 중 당신에게 딱 맞는 냥이를 추천합니다. 한국 인기 품종 랭킹도 확인해보세요!",
-  keywords: ["고양이 테스트", "냥이 매치", "고양이 품종", "인기 품종 랭킹", "반려동물", "고양이 성격"],
+  description: "냥이 매칭으로 당신의 인생냥이를 찾아보세요! MBTI 스타일 테스트로 20종의 인기 품종 중 당신에게 딱 맞는 냥이를 추천합니다. 한국 인기 품종 랭킹도 확인해보세요!",
+  keywords: ["고양이 테스트", "냥이 매칭", "고양이 품종", "인기 품종 랭킹", "반려동물", "고양이 성격"],
   openGraph: {
-    title: "냥이 매치 - 나와 가장 잘 맞는 고양이 품종 찾기",
-    description: "냥이 매치로 당신의 인생냥이를 찾아보세요! MBTI 스타일 테스트로 20종의 인기 품종 중 당신에게 딱 맞는 냥이를 추천합니다. 한국 인기 품종 랭킹도 확인해보세요!",
+    title: "냥이 매칭 - 나와 가장 잘 맞는 고양이 품종 찾기",
+    description: "냥이 매칭으로 당신의 인생냥이를 찾아보세요! MBTI 스타일 테스트로 20종의 인기 품종 중 당신에게 딱 맞는 냥이를 추천합니다. 한국 인기 품종 랭킹도 확인해보세요!",
     images: ["/og-images/default.jpg"]
   }
 };
@@ -35,7 +35,7 @@ export default function HomePage() {
         type="WebSite"
         data={{
           '@type': 'WebSite',
-          name: '냥이 매치',
+          name: '냥이 매칭',
           url: 'https://what-cat-psi.vercel.app',
           description: 'MBTI 스타일 테스트로 나의 인생냥이를 찾아보세요!',
           potentialAction: {
@@ -59,7 +59,7 @@ export default function HomePage() {
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <header className="text-center mb-12">
           <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
-            냥이 매치 🐱
+            냥이 매칭 🐱
           </h1>
           <p className="text-xl text-gray-600 mb-2">
             MBTI 스타일로 나와 가장 잘 맞는 고양이 품종 찾기
@@ -159,7 +159,7 @@ export default function HomePage() {
         <AdSense adSlot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ID || "5187796077"} />
 
         <footer className="text-center mt-12 text-gray-500 text-sm">
-          <p>&copy; 2026 냥이 매치. All rights reserved.</p>
+          <p>&copy; 2026 냥이 매칭. All rights reserved.</p>
         </footer>
       </div>
     </main>

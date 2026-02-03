@@ -171,7 +171,7 @@ export default function ResultPage() {
       kakao.Share.sendDefault({
         objectType: 'feed',
         content: {
-          title: '냥이 매치',
+          title: '냥이 매칭',
           description: text,
           imageUrl: `${window.location.origin}/og-images/${firstResult.breed.id}.jpg`,
           link: {
@@ -549,7 +549,7 @@ export default function ResultPage() {
         <AdSense adSlot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ID || "5187796077"} />
 
         <div className="text-center text-gray-500 text-sm">
-          <p>&copy; 2026 냥이 매치. All rights reserved.</p>
+          <p>&copy; 2026 냥이 매칭. All rights reserved.</p>
         </div>
       </div>
     </main>

@@ -31,7 +31,7 @@ export default function TermsPage() {
             <section>
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제1조 (목적)</h2>
               <p>
-                본 이용약관은 "냥이 매치"(이하 "서비스")에서 제공하는 인터넷 서비스의 이용조건 및 절차를 규정합니다.
+                본 이용약관은 "냥이 매칭"(이하 "서비스")에서 제공하는 인터넷 서비스의 이용조건 및 절차를 규정합니다.
                 사용자는 본 약관에 동의함으로써 서비스를 이용할 수 있습니다.
               </p>
             </section>
@@ -39,7 +39,7 @@ export default function TermsPage() {
             <section>
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제2조 (정의)</h2>
               <p>
-                <strong>"서비스"</strong>란 "냥이 매치"가 제공하는 고양이 품종 매칭 테스트 웹 서비스를 말합니다.<br />
+                <strong>"서비스"</strong>란 "냥이 매칭"가 제공하는 고양이 품종 매칭 테스트 웹 서비스를 말합니다.<br />
                 <strong>"사용자"</strong>란 본 약관에 따라 서비스를 이용하는 회원 및 비회원을 말합니다.<br />
                 <strong>"콘텐츠"</strong>란 서비스에서 제공하는 모든 정보, 텍스트, 이미지, 비디오 등을 말합니다.
               </p>
@@ -69,7 +69,7 @@ export default function TermsPage() {
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제5조 (콘텐츠의 권리)</h2>
               <p>
                 서비스에서 제공하는 모든 콘텐츠(고양이 품종 정보, 테스트 결과, 텍스트, 이미지 등)의
-                지적재산권은 "냥이 매치" 또는 원저작자에게 있습니다.
+                지적재산권은 "냥이 매칭" 또는 원저작자에게 있습니다.
                 사용자는 개인적인 용도로만 콘텐츠를 이용할 수 있으며, 상업적인 용도로 무단으로 사용할 수 없습니다.
               </p>
             </section>
@@ -77,7 +77,7 @@ export default function TermsPage() {
             <section>
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제6조 (서비스의 변경 및 중단)</h2>
               <p>
-                "냥이 매치"는 서비스의 내용, 운영 정책, 기술적 사양 등을 변경할 권리를 가집니다.
+                "냥이 매칭"는 서비스의 내용, 운영 정책, 기술적 사양 등을 변경할 권리를 가집니다.
                 또한 시스템 점검, 업그레이드, 기술적 문제 등의 사유로 서비스를 일시적으로 중단할 수 있습니다.
                 이 경우 사용자에게 사전에 공지합니다.
               </p>
@@ -86,12 +86,12 @@ export default function TermsPage() {
             <section>
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제7조 (책임의 제한)</h2>
               <p>
-                "냥이 매치"는 무료로 제공되는 서비스로, 사용자가 서비스를 통해 얻은 정보나
+                "냥이 매칭"는 무료로 제공되는 서비스로, 사용자가 서비스를 통해 얻은 정보나
                 매칭 결과에 대하여 보증하지 않습니다.
                 사용자는 테스트 결과를 참고용으로만 활용해야 하며, 고양이 입양 결정에 전적으로 책임을 져야 합니다.
               </p>
               <p className="mt-2">
-                "냥이 매치"는 천재지변, 불가항력, 기술적 문제 등으로 인한 서비스 장애에 대하여
+                "냥이 매칭"는 천재지변, 불가항력, 기술적 문제 등으로 인한 서비스 장애에 대하여
                 손해배상 책임을 지지 않습니다.
               </p>
             </section>
@@ -104,7 +104,7 @@ export default function TermsPage() {
               </p>
               <p className="mt-2">
                 사용자는 광고 클릭이 의무 사항이 아니며, 광고와 관련하여 발생하는 모든 문제에 대하여
-                "냥이 매치"는 책임을 지지 않습니다.
+                "냥이 매칭"는 책임을 지지 않습니다.
               </p>
             </section>
 
@@ -112,7 +112,7 @@ export default function TermsPage() {
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제9조 (개인정보 보호)</h2>
               <p>
                 사용자의 개인정보는 [개인정보처리방침](/privacy)에 따라 보호됩니다.
-                "냥이 매치"는 개인정보보호법을 준수하며, 사용자의 개인정보를 안전하게 보호하기 위해
+                "냥이 매칭"는 개인정보보호법을 준수하며, 사용자의 개인정보를 안전하게 보호하기 위해
                 최선을 다합니다.
               </p>
             </section>
@@ -120,7 +120,7 @@ export default function TermsPage() {
             <section>
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제10조 (약관의 변경)</h2>
               <p>
-                "냥이 매치"는 관련 법령의 변경 또는 서비스 정책의 변경 등 필요한 경우
+                "냥이 매칭"는 관련 법령의 변경 또는 서비스 정책의 변경 등 필요한 경우
                 본 약관을 변경할 수 있습니다. 변경된 약관은 웹사이트에 게시되며,
                 게시 후 7일 이내에 이의를 제기하지 않으면 변경된 약관에 동의한 것으로 간주됩니다.
               </p>

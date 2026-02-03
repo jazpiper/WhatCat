@@ -18,11 +18,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "냥이 매치 - 나와 가장 잘 맞는 고양이 품종 찾기",
-    template: "%s | 냥이 매치"
+    default: "냥이 매칭 - 나와 가장 잘 맞는 고양이 품종 찾기",
+    template: "%s | 냥이 매칭"
   },
   description: "MBTI 스타일 테스트로 나의 인생냥이를 찾아보세요! 14개 질문으로 20종의 인기 품종 중 당신에게 딱 맞는 냥이를 추천합니다.",
-  keywords: ["고양이 테스트", "냥이 매치", "고양이 품종 추천", "인생냥이", "고양이 성격 테스트", "반려동물"],
+  keywords: ["고양이 테스트", "냥이 매칭", "고양이 품종 추천", "인생냥이", "고양이 성격 테스트", "반려동물"],
   authors: [{ name: "Molt Company" }],
   creator: "Molt Company",
   publisher: "Molt Company",
@@ -34,10 +34,10 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   openGraph: {
-    title: "냥이 매치 - 나와 가장 잘 맞는 고양이 품종 찾기",
+    title: "냥이 매칭 - 나와 가장 잘 맞는 고양이 품종 찾기",
     description: "MBTI 스타일 테스트로 나의 인생냥이를 찾아보세요! 14개 질문으로 20종의 인기 품종 중 당신에게 딱 맞는 냥이를 추천합니다.",
     url: "https://what-cat-psi.vercel.app",
-    siteName: "냥이 매치",
+    siteName: "냥이 매칭",
     type: "website",
     locale: "ko_KR",
     images: [
@@ -45,13 +45,13 @@ export const metadata: Metadata = {
         url: "/og-images/default.jpg",
         width: 1200,
         height: 630,
-        alt: "냥이 매치 - 나와 가장 잘 맞는 고양이 품종 찾기"
+        alt: "냥이 매칭 - 나와 가장 잘 맞는 고양이 품종 찾기"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "냥이 매치 - 나와 가장 잘 맞는 고양이 품종 찾기",
+    title: "냥이 매칭 - 나와 가장 잘 맞는 고양이 품종 찾기",
     description: "MBTI 스타일 테스트로 나의 인생냥이를 찾아보세요! 14개 질문으로 20종의 인기 품종 중 당신에게 딱 맞는 냥이를 추천합니다.",
     images: ["/og-images/default.jpg"],
     creator: "@molt_company"
