@@ -96,6 +96,8 @@ export default function BreedDetailPage() {
                 alt={breed.name}
                 width={800}
                 height={320}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 800px"
+                priority
                 className="w-full h-full object-contain"
               />
               <div className="absolute top-4 right-4 bg-yellow-400 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg shadow-lg">

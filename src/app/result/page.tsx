@@ -29,18 +29,12 @@ import {
   AtSign,
 } from 'lucide-react';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import CatImage from '@/components/CatImage';
 
 // ✅ 다이나믹 임포트 (번들 최적화)
 const AdSense = dynamic(() => import('@/components/AdSense'), {
   ssr: false,
   loading: () => <div className="w-full h-[100px] my-6 bg-gray-100 animate-pulse" />,
-});
-
-const CatImage = dynamic(() => import('@/components/CatImage'), {
-  ssr: false,
-  loading: ({ width, height, className }: any) => (
-    <div className={`bg-gray-100 animate-pulse ${className}`} style={{ width, height }} />
-  ),
 });
 
 // 상수 정의
@@ -384,6 +378,8 @@ export default function ResultPage() {
                   alt={firstResult.breed.name}
                   width={192}
                   height={192}
+                  sizes="(max-width: 640px) 192px, 192px"
+                  priority
                   className="w-48 h-48 mx-auto rounded-2xl object-cover mb-4 shadow-lg"
                 />
               )}
@@ -462,6 +458,7 @@ export default function ResultPage() {
                       alt={result.breed.name}
                       width={48}
                       height={48}
+                      sizes="(max-width: 640px) 48px, (max-width: 1024px) 48px, 48px"
                       className="w-12 h-12 rounded-full object-cover"
                     />
                   )}

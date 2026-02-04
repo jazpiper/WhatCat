@@ -11,6 +11,7 @@ interface CatImageProps {
   height: number;
   className?: string;
   priority?: boolean;
+  sizes?: string;
 }
 
 export default function CatImage({
@@ -20,6 +21,7 @@ export default function CatImage({
   height,
   className = '',
   priority = false,
+  sizes = undefined,
 }: CatImageProps) {
   const [imageError, setImageError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -62,6 +64,7 @@ export default function CatImage({
         alt={alt}
         width={width}
         height={height}
+        sizes={sizes}
         className={`
           ${isLoading ? 'absolute opacity-0' : 'opacity-100'}
           transition-opacity duration-300

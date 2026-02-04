@@ -112,7 +112,9 @@ export default function HomePage() {
                         alt={breed.name}
                         width={64}
                         height={64}
+                        sizes="(max-width: 640px) 64px, (max-width: 1024px) 64px, 64px"
                         className="w-16 h-16 rounded-full object-cover"
+                        priority={index === 0}
                       />
                     )}
                     <div className="text-4xl">{breed.emoji}</div>
