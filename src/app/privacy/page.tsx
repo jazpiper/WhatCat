@@ -125,16 +125,14 @@ export default function PrivacyPage() {
               </h2>
               <div className="bg-pink-50 rounded-xl p-4">
                 <p className="text-gray-800">
-                  개인정보와 관련한 문의사항은 GitHub 이슈를 통해 문의해주세요.
+                  개인정보와 관련한 문의사항은 아래 문의하기 페이지를 통해 보내주세요.
                 </p>
-                <a
-                  href="https://github.com/jazpiper/WhatCat/issues"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/contact"
                   className="text-pink-600 font-semibold hover:underline inline-block mt-2"
                 >
-                  GitHub 이슈 바로가기
-                </a>
+                  문의하기 바로가기
+                </Link>
               </div>
             </section>
           </div>

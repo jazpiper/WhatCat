@@ -13,6 +13,7 @@ const navigation = [
 ];
 
 const footerLinks = [
+  { name: '문의하기', href: '/contact' },
   { name: '개인정보처리방침', href: '/privacy' },
   { name: '이용약관', href: '/terms' },
 ];
