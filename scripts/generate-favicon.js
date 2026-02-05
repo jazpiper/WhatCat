@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const sharp = require('sharp');
 const fs = require('fs');
 const https = require('https');
@@ -23,7 +24,7 @@ function downloadImage(url, outputPath) {
         reject(new Error(`Failed to download image: ${response.statusCode}`));
       }
     }).on('error', (err) => {
-      fs.unlink(outputPath, () => {});
+      fs.unlink(outputPath, () => { });
       reject(err);
     });
   });

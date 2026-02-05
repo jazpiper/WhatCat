@@ -1,6 +1,17 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
+import type { Metadata } from 'next';
+
+// ✅ 메타데이터
+export const metadata: Metadata = {
+  title: "개인정보처리방침",
+  description: "냥이 매칭 서비스의 개인정보처리방침입니다. 사용자의 개인정보를 보호하기 위한 노력을 확인해보세요.",
+  alternates: {
+    canonical: 'https://what-cat-psi.vercel.app/privacy',
+  },
+};
+
 // ✅ SSG 설정
 export const dynamic = 'force-static';
 export const revalidate = 86400; // 24시간마다 재생성

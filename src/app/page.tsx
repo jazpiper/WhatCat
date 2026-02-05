@@ -18,8 +18,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "냥이 매칭 - 나와 가장 잘 맞는 고양이 품종 찾기",
     description: "냥이 매칭으로 당신의 인생냥이를 찾아보세요! MBTI 스타일 테스트로 20종의 인기 품종 중 당신에게 딱 맞는 냥이를 추천합니다. 한국 인기 품종 랭킹도 확인해보세요!",
-    images: ["/og-images/default.jpg"]
-  }
+    images: ["https://what-cat-psi.vercel.app/og-images/default.jpg"]
+  },
+  alternates: {
+    canonical: 'https://what-cat-psi.vercel.app',
+  },
 };
 
 // ✅ 정적 데이터 계산 (렌더링 전에 계산)

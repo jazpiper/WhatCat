@@ -70,3 +70,10 @@ export interface AnswerScore {
   questionId: string;
   answerId: string;
 }
+
+export interface ShareResult {
+  breedId: string;
+  score: number;
+  breedName?: string;
+  emoji?: string;
+}

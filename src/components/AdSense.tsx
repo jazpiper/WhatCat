@@ -2,6 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+declare global {
+  interface Window {
+    adsbygoogle: unknown[];
+  }
+}
+
 export default function AdSense({ adSlot, className = '' }: { adSlot: string; className?: string }) {
   const adElement = useRef<HTMLModElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -18,7 +24,7 @@ export default function AdSense({ adSlot, className = '' }: { adSlot: string; cl
     if (!isMounted) return;
 
     const checkScriptReady = () => {
-      if ((window as any).adsbygoogle) {
+      if (typeof window !== 'undefined' && window.adsbygoogle) {
         setIsScriptReady(true);
         return true;
       }
@@ -56,7 +62,7 @@ export default function AdSense({ adSlot, className = '' }: { adSlot: string; cl
       // 최소 크기 확인
       if (width >= 300 && height >= 100) {
         try {
-          ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
           setIsLoaded(true);
           console.log(`AdSense ad loaded: slot=${adSlot}, size=${width}x${height}`);
         } catch (error) {

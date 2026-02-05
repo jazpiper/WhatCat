@@ -1,11 +1,12 @@
 'use client';
 
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo } from 'react';
 import { useTest } from '@/contexts/NyongmatchContext';
 import { questions } from '@/data/questions';
 import Link from 'next/link';
 import AdSense from '@/components/AdSense';
 import { getRandomCatTip } from '@/data/catTips';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function TestPage() {
   const { currentQuestion, answers, setAnswer, nextQuestion, previousQuestion } = useTest();
@@ -23,28 +24,8 @@ export default function TestPage() {
     ? answers.find((a) => a.questionId === question.id)?.answerId ?? null
     : null;
 
-  // 냥이 힌트 상태
-  const [catTip, setCatTip] = useState('');
-
-  // 질문 전환 애니메이션 상태
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [displayQuestionIndex, setDisplayQuestionIndex] = useState(currentQuestion);
-
-  // 냥이 힌트 업데이트 (질문마다 무작위)
-  useEffect(() => {
-    setCatTip(getRandomCatTip());
-  }, [currentQuestion]);
-
-  // 질문 전환 애니메이션
-  useEffect(() => {
-    if (currentQuestion !== displayQuestionIndex) {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setDisplayQuestionIndex(currentQuestion);
-        setIsTransitioning(false);
-      }, 300);
-    }
-  }, [currentQuestion, displayQuestionIndex]);
+  // 냥이 힌트 (질문마다 무작위)
+  const catTip = useMemo(() => getRandomCatTip(), [currentQuestion]);
 
   const handleAnswer = (answerId: string) => {
     setAnswer(question.id, answerId);
@@ -77,95 +58,102 @@ export default function TestPage() {
 
         <div className="grid md:grid-cols-[1fr_300px] gap-6">
           <div className="bg-white rounded-3xl shadow-xl p-8">
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-sm text-gray-500">
-                {currentQuestion + 1} / {questions.length}
-              </span>
-              <span className="text-sm font-semibold text-pink-500">
-                {Math.round(progress)}%
-              </span>
+            <div className="mb-8">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-sm text-gray-500">
+                  {currentQuestion + 1} / {questions.length}
+                </span>
+                <span className="text-sm font-semibold text-pink-500">
+                  {Math.round(progress)}%
+                </span>
+              </div>
+              <div className="w-full bg-pink-100 rounded-full h-3">
+                <div
+                  className="bg-gradient-to-r from-pink-500 to-purple-600 h-3 rounded-full transition-all duration-500"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
             </div>
-            <div className="w-full bg-pink-100 rounded-full h-3">
-              <div
-                className="bg-gradient-to-r from-pink-500 to-purple-600 h-3 rounded-full transition-all duration-500"
-                style={{ width: `${progress}%` }}
-              />
+
+            {/* 냥이 힌트 */}
+            <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl p-4 mb-6 text-center">
+              <div className="text-sm text-gray-700">
+                💡 <span className="font-semibold">냥이 팁!</span> {catTip}
+              </div>
             </div>
-          </div>
 
-          {/* 냥이 힌트 */}
-          <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl p-4 mb-6 text-center">
-            <div className="text-sm text-gray-700">
-              💡 <span className="font-semibold">냥이 팁!</span> {catTip}
-            </div>
-          </div>
-
-          {/* 질문 전환 애니메이션 */}
-          <div
-            className={`text-center mb-12 transition-all duration-300 ${
-              isTransitioning ? 'opacity-0 -translate-y-4' : 'opacity-100 translate-y-0'
-            }`}
-          >
-            <div className="text-6xl mb-6">🤔</div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
-              {question.question}
-            </h2>
-          </div>
-
-          <div className="space-y-4">
-            {question.options.map((option) => (
-              <button
-                key={option.id}
-                onClick={() => handleAnswer(option.id)}
-                className={`w-full text-center p-4 md:p-6 rounded-2xl border-2 transition-all duration-300 hover:shadow-lg active:scale-98 min-h-[56px] md:min-h-auto ${
-                  selectedAnswer === option.id
-                    ? 'border-pink-500 bg-pink-50'
-                    : 'border-gray-200 hover:border-pink-300 hover:bg-pink-50/50'
-                }`}
-              >
-                <div className="flex items-center justify-center gap-4">
-                  <div
-                    className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                      selectedAnswer === option.id
-                        ? 'border-pink-500 bg-pink-500'
-                        : 'border-gray-300'
-                    }`}
-                  >
-                    {selectedAnswer === option.id && (
-                      <div className="w-3 h-3 bg-white rounded-full" />
-                    )}
+            {/* 질문 전환 애니메이션 */}
+            <div className="relative overflow-hidden min-h-[400px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentQuestion}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-full"
+                >
+                  <div className="text-center mb-8">
+                    <div className="text-6xl mb-6">🤔</div>
+                    <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                      {question.question}
+                    </h2>
                   </div>
-                  <span className="text-gray-800 font-medium">{option.text}</span>
-                </div>
-              </button>
-            ))}
-          </div>
 
-          <div className="flex justify-between mt-8">
-            {currentQuestion > 0 && (
-              <button
-                onClick={handlePrevious}
-                className="px-6 py-3 rounded-full border-2 border-gray-300 text-gray-600 hover:bg-gray-100 transition-colors"
-              >
-                이전
-              </button>
-            )}
-            <div className="flex-1" />
-            {hasAnswer && (
-              <Link
-                href={isLastQuestion ? '/result' : '#'}
-                onClick={isLastQuestion ? undefined : handleNext}
-                className={`px-6 py-3 rounded-full font-semibold transition-colors ${
-                  isLastQuestion
+                  <div className="space-y-4">
+                    {question.options.map((option) => (
+                      <button
+                        key={option.id}
+                        onClick={() => handleAnswer(option.id)}
+                        className={`w-full text-center p-4 md:p-6 rounded-2xl border-2 transition-all duration-300 hover:shadow-lg active:scale-[0.98] min-h-[56px] md:min-h-auto ${selectedAnswer === option.id
+                          ? 'border-pink-500 bg-pink-50 ring-2 ring-pink-200'
+                          : 'border-gray-200 hover:border-pink-300 hover:bg-pink-50/50'
+                          }`}
+                        aria-pressed={selectedAnswer === option.id}
+                      >
+                        <div className="flex items-center justify-center gap-4">
+                          <div
+                            className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors ${selectedAnswer === option.id
+                              ? 'border-pink-500 bg-pink-500'
+                              : 'border-gray-300'
+                              }`}
+                          >
+                            {selectedAnswer === option.id && (
+                              <div className="w-2.5 h-2.5 bg-white rounded-full" />
+                            )}
+                          </div>
+                          <span className="text-gray-800 font-medium">{option.text}</span>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            <div className="flex justify-between mt-8">
+              {currentQuestion > 0 && (
+                <button
+                  onClick={handlePrevious}
+                  className="px-6 py-3 rounded-full border-2 border-gray-300 text-gray-600 hover:bg-gray-100 transition-colors"
+                >
+                  이전
+                </button>
+              )}
+              <div className="flex-1" />
+              {hasAnswer && (
+                <Link
+                  href={isLastQuestion ? '/result' : '#'}
+                  onClick={isLastQuestion ? undefined : handleNext}
+                  className={`px-6 py-3 rounded-full font-semibold transition-colors ${isLastQuestion
                     ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white hover:shadow-lg'
                     : 'bg-pink-500 text-white hover:bg-pink-600'
-                }`}
-              >
-                {isLastQuestion ? '결과 보기' : '다음'}
-              </Link>
-            )}
-           </div>
+                    }`}
+                >
+                  {isLastQuestion ? '결과 보기' : '다음'}
+                </Link>
+              )}
+            </div>
           </div>
         </div>
 

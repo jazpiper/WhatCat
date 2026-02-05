@@ -24,6 +24,9 @@ export const metadata: Metadata = {
   },
   description: "MBTI 스타일 테스트로 나의 인생냥이를 찾아보세요! 14개 질문으로 20종의 인기 품종 중 당신에게 딱 맞는 냥이를 추천합니다.",
   keywords: ["고양이 테스트", "냥이 매칭", "고양이 품종 추천", "인생냥이", "고양이 성격 테스트", "반려동물"],
+  alternates: {
+    canonical: 'https://what-cat-psi.vercel.app',
+  },
   authors: [{ name: "Molt Company" }],
   creator: "Molt Company",
   publisher: "Molt Company",
@@ -47,7 +50,7 @@ export const metadata: Metadata = {
     locale: "ko_KR",
     images: [
       {
-        url: "/og-images/default.jpg",
+        url: "https://what-cat-psi.vercel.app/og-images/default.jpg",
         width: 1200,
         height: 630,
         alt: "냥이 매칭 - 나와 가장 잘 맞는 고양이 품종 찾기"
@@ -58,7 +61,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "냥이 매칭 - 나와 가장 잘 맞는 고양이 품종 찾기",
     description: "MBTI 스타일 테스트로 나의 인생냥이를 찾아보세요! 14개 질문으로 20종의 인기 품종 중 당신에게 딱 맞는 냥이를 추천합니다.",
-    images: ["/og-images/default.jpg"],
+    images: ["https://what-cat-psi.vercel.app/og-images/default.jpg"],
     creator: "@molt_company"
   },
   verification: {

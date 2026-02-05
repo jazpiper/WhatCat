@@ -1,11 +1,4 @@
-import { Breed } from '@/types';
-
-export interface ShareResult {
-  breedId: string;
-  score: number;
-  breedName?: string;
-  emoji?: string;
-}
+import { Breed, ShareResult } from '@/types';
 
 /**
  * 점수별로 다른 공유 문구를 반환합니다.
@@ -109,9 +102,9 @@ export function getResultsFromUrl(): ShareResult[] | null {
 
       // 검증
       const isValid = typeof breedId === 'string' &&
-                      !isNaN(parsedScore) &&
-                      parsedScore >= 0 &&
-                      parsedScore <= 100;
+        !isNaN(parsedScore) &&
+        parsedScore >= 0 &&
+        parsedScore <= 100;
 
       if (isValid) {
         results.push({
