@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import breedsData from '@/data/breeds.json';
 import { Breed } from '@/types';
+import Script from 'next/script';
+import { generateBreedStructuredData, generateBreadcrumbStructuredData } from '@/utils/structuredData';
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -44,6 +46,34 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
 }
 
-export default function BreedLayout({ children }: { children: React.ReactNode }) {
-    return <>{children}</>;
+export default async function BreedLayout({ children, params }: Props) {
+    const id = (await params).id;
+    const breed = breeds.breeds.find((b) => b.id === id);
+
+    // 구조화된 데이터 (JSON-LD)
+    const structuredData = breed ? generateBreedStructuredData(breed) : null;
+    const breadcrumbData = breed ? generateBreadcrumbStructuredData([
+        { name: '홈', url: 'https://what-cat-psi.vercel.app' },
+        { name: '품종 상세', url: `https://what-cat-psi.vercel.app/breed/${id}` },
+    ]) : null;
+
+    return (
+        <>
+            {structuredData && (
+                <Script
+                    id="structured-data-breed"
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+                />
+            )}
+            {breadcrumbData && (
+                <Script
+                    id="structured-data-breadcrumb"
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
+                />
+            )}
+            {children}
+        </>
+    );
 }
