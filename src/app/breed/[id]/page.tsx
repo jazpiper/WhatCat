@@ -80,17 +80,17 @@ export default function BreedDetailPage() {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50">
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
-        <div className="mb-6">
-          <Link href="/" className="text-pink-500 hover:underline flex items-center gap-2">
-            <ArrowLeft size={20} />
+      <div className="container mx-auto px-3 md:px-4 py-6 md:py-8 max-w-4xl">
+        <div className="mb-4 md:mb-6">
+          <Link href="/" className="text-pink-500 hover:underline flex items-center gap-2 text-sm md:text-base">
+            <ArrowLeft size={18} />
             처음으로
           </Link>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-xl overflow-hidden mb-6">
+        <div className="bg-white rounded-3xl shadow-xl overflow-hidden mb-4 md:mb-6">
           {breed.image && (
-            <div className="relative h-80 bg-gradient-to-br from-pink-100 to-purple-100">
+            <div className="relative h-64 md:h-80 bg-gradient-to-br from-pink-100 to-purple-100">
               <CatImage
                 src={breed.image}
                 alt={breed.name}
@@ -100,156 +100,156 @@ export default function BreedDetailPage() {
                 priority
                 className="w-full h-full object-contain"
               />
-              <div className="absolute top-4 right-4 bg-yellow-400 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
+              <div className="absolute top-3 md:top-4 right-3 md:right-4 bg-yellow-400 text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-base md:text-lg shadow-lg">
                 #{breed.rank}
               </div>
             </div>
           )}
 
-          <div className="p-8">
-            <div className="text-center mb-8">
-              <div className="text-7xl mb-2">{breed.emoji}</div>
-              <h1 className="text-4xl font-bold text-gray-800 mb-2">
+          <div className="p-4 md:p-8">
+            <div className="text-center mb-6 md:mb-8">
+              <div className="text-5xl md:text-7xl mb-2">{breed.emoji}</div>
+              <h1 className="text-2xl md:text-4xl font-bold text-gray-800 mb-2">
                 {breed.name}
               </h1>
-              <p className="text-xl text-gray-600">{breed.nameEn}</p>
+              <p className="text-base md:text-xl text-gray-600">{breed.nameEn}</p>
             </div>
 
-            <div className="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-6 mb-6">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
+            <div className="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-4 md:p-6 mb-6">
+              <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 text-center">
                 📋 품종 프로필
               </h2>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-white rounded-xl p-4">
-                  <h3 className="font-bold text-gray-800 mb-2">성격</h3>
-                  <p className="text-gray-700">{breed.traits.join(', ')}</p>
+              <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+                <div className="bg-white rounded-xl p-3 md:p-4">
+                  <h3 className="font-bold text-gray-800 mb-2 text-sm md:text-base">성격</h3>
+                  <p className="text-gray-700 text-sm md:text-base">{breed.traits.join(', ')}</p>
                 </div>
-                <div className="bg-white rounded-xl p-4">
-                  <h3 className="font-bold text-gray-800 mb-2">크기</h3>
-                  <p className="text-gray-700 capitalize">{breed.size}</p>
+                <div className="bg-white rounded-xl p-3 md:p-4">
+                  <h3 className="font-bold text-gray-800 mb-2 text-sm md:text-base">크기</h3>
+                  <p className="text-gray-700 capitalize text-sm md:text-base">{breed.size}</p>
                 </div>
-                <div className="bg-white rounded-xl p-4">
-                  <h3 className="font-bold text-gray-800 mb-2">털 길이</h3>
-                  <p className="text-gray-700 capitalize">{breed.coat}</p>
+                <div className="bg-white rounded-xl p-3 md:p-4">
+                  <h3 className="font-bold text-gray-800 mb-2 text-sm md:text-base">털 길이</h3>
+                  <p className="text-gray-700 capitalize text-sm md:text-base">{breed.coat}</p>
                 </div>
-                <div className="bg-white rounded-xl p-4">
-                  <h3 className="font-bold text-gray-800 mb-2">관리 난이도</h3>
-                  <p className="text-2xl text-gray-800">
+                <div className="bg-white rounded-xl p-3 md:p-4">
+                  <h3 className="font-bold text-gray-800 mb-2 text-sm md:text-base">관리 난이도</h3>
+                  <p className="text-xl md:text-2xl text-gray-800">
                     {getMaintenanceStars(breed.maintenance.grooming)}
                   </p>
                 </div>
                 {breed.weight && (
-                  <div className="bg-white rounded-xl p-4">
-                    <h3 className="font-bold text-gray-800 mb-2">체중</h3>
-                    <p className="text-gray-700">{breed.weight}</p>
+                  <div className="bg-white rounded-xl p-3 md:p-4">
+                    <h3 className="font-bold text-gray-800 mb-2 text-sm md:text-base">체중</h3>
+                    <p className="text-gray-700 text-sm md:text-base">{breed.weight}</p>
                   </div>
                 )}
                 {breed.lifespan && (
-                  <div className="bg-white rounded-xl p-4">
-                    <h3 className="font-bold text-gray-800 mb-2">수명</h3>
-                    <p className="text-gray-700">{breed.lifespan}</p>
+                  <div className="bg-white rounded-xl p-3 md:p-4">
+                    <h3 className="font-bold text-gray-800 mb-2 text-sm md:text-base">수명</h3>
+                    <p className="text-gray-700 text-sm md:text-base">{breed.lifespan}</p>
                   </div>
                 )}
               </div>
             </div>
 
-            <div className="bg-blue-50 rounded-2xl p-6 mb-6">
-              <h2 className="text-2xl font-bold text-gray-800 mb-3">
+            <div className="bg-blue-50 rounded-2xl p-4 md:p-6 mb-6">
+              <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">
                 💡 품종 설명
               </h2>
-              <p className="text-gray-700 text-lg leading-relaxed">{breed.description}</p>
+              <p className="text-gray-700 text-base md:text-lg leading-relaxed">{breed.description}</p>
             </div>
 
             {breed.origin && (
-              <div className="bg-amber-50 rounded-2xl p-6 mb-6">
-                <h2 className="text-2xl font-bold text-gray-800 mb-3">
+              <div className="bg-amber-50 rounded-2xl p-4 md:p-6 mb-6">
+                <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">
                   📜 기원과 역사
                 </h2>
-                <p className="text-gray-700 text-lg leading-relaxed">{breed.origin}</p>
+                <p className="text-gray-700 text-base md:text-lg leading-relaxed">{breed.origin}</p>
               </div>
             )}
 
             {breed.features && breed.features.length > 0 && (
-              <div className="bg-purple-50 rounded-2xl p-6 mb-6">
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              <div className="bg-purple-50 rounded-2xl p-4 md:p-6 mb-6">
+                <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">
                   🎭 주요 특징
                 </h2>
                 <ul className="grid md:grid-cols-2 gap-3">
                   {breed.features.map((feature, index) => (
                     <li key={index} className="bg-white rounded-xl p-3 flex items-center gap-2">
-                      <span className="text-2xl">{feature.icon}</span>
-                      <span className="text-gray-700">{feature.text}</span>
+                      <span className="text-xl md:text-2xl">{feature.icon}</span>
+                      <span className="text-gray-700 text-sm md:text-base">{feature.text}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             )}
 
-            <div className="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-6 mb-6">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
+            <div className="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-4 md:p-6 mb-6">
+              <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 text-center">
                 🎭 성격 상세
               </h2>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-white rounded-xl p-4">
+              <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+                <div className="bg-white rounded-xl p-3 md:p-4">
                   <div className="flex justify-between items-center mb-1">
-                    <span className="text-gray-600">활동성</span>
-                    <span className="font-bold text-gray-800 text-lg">{breed.personality.activity}/5</span>
+                    <span className="text-gray-600 text-sm md:text-base">활동성</span>
+                    <span className="font-bold text-gray-800 text-base md:text-lg">{breed.personality.activity}/5</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div className="w-full bg-gray-200 rounded-full h-3 md:h-2">
                     <div
-                      className="bg-gradient-to-r from-pink-500 to-purple-600 h-2 rounded-full"
+                      className="bg-gradient-to-r from-pink-500 to-purple-600 h-3 md:h-2 rounded-full"
                       style={{ width: `${(breed.personality.activity / 5) * 100}%` }}
                     />
                   </div>
                 </div>
 
-                <div className="bg-white rounded-xl p-4">
+                <div className="bg-white rounded-xl p-3 md:p-4">
                   <div className="flex justify-between items-center mb-1">
-                    <span className="text-gray-600">애정</span>
-                    <span className="font-bold text-gray-800 text-lg">{breed.personality.affection}/5</span>
+                    <span className="text-gray-600 text-sm md:text-base">애정</span>
+                    <span className="font-bold text-gray-800 text-base md:text-lg">{breed.personality.affection}/5</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div className="w-full bg-gray-200 rounded-full h-3 md:h-2">
                     <div
-                      className="bg-gradient-to-r from-pink-500 to-purple-600 h-2 rounded-full"
+                      className="bg-gradient-to-r from-pink-500 to-purple-600 h-3 md:h-2 rounded-full"
                       style={{ width: `${(breed.personality.affection / 5) * 100}%` }}
                     />
                   </div>
                 </div>
 
-                <div className="bg-white rounded-xl p-4">
+                <div className="bg-white rounded-xl p-3 md:p-4">
                   <div className="flex justify-between items-center mb-1">
-                    <span className="text-gray-600">사교성</span>
-                    <span className="font-bold text-gray-800 text-lg">{breed.personality.social}/5</span>
+                    <span className="text-gray-600 text-sm md:text-base">사교성</span>
+                    <span className="font-bold text-gray-800 text-base md:text-lg">{breed.personality.social}/5</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div className="w-full bg-gray-200 rounded-full h-3 md:h-2">
                     <div
-                      className="bg-gradient-to-r from-pink-500 to-purple-600 h-2 rounded-full"
+                      className="bg-gradient-to-r from-pink-500 to-purple-600 h-3 md:h-2 rounded-full"
                       style={{ width: `${(breed.personality.social / 5) * 100}%` }}
                     />
                   </div>
                 </div>
 
-                <div className="bg-white rounded-xl p-4">
+                <div className="bg-white rounded-xl p-3 md:p-4">
                   <div className="flex justify-between items-center mb-1">
-                    <span className="text-gray-600">조용함</span>
-                    <span className="font-bold text-gray-800 text-lg">{breed.personality.quiet}/5</span>
+                    <span className="text-gray-600 text-sm md:text-base">조용함</span>
+                    <span className="font-bold text-gray-800 text-base md:text-lg">{breed.personality.quiet}/5</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div className="w-full bg-gray-200 rounded-full h-3 md:h-2">
                     <div
-                      className="bg-gradient-to-r from-pink-500 to-purple-600 h-2 rounded-full"
+                      className="bg-gradient-to-r from-pink-500 to-purple-600 h-3 md:h-2 rounded-full"
                       style={{ width: `${(breed.personality.quiet / 5) * 100}%` }}
                     />
                   </div>
                 </div>
 
-                <div className="bg-white rounded-xl p-4">
+                <div className="bg-white rounded-xl p-3 md:p-4">
                   <div className="flex justify-between items-center mb-1">
-                    <span className="text-gray-600">충성심</span>
-                    <span className="font-bold text-gray-800 text-lg">{breed.personality.loyalty}/5</span>
+                    <span className="text-gray-600 text-sm md:text-base">충성심</span>
+                    <span className="font-bold text-gray-800 text-base md:text-lg">{breed.personality.loyalty}/5</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div className="w-full bg-gray-200 rounded-full h-3 md:h-2">
                     <div
-                      className="bg-gradient-to-r from-pink-500 to-purple-600 h-2 rounded-full"
+                      className="bg-gradient-to-r from-pink-500 to-purple-600 h-3 md:h-2 rounded-full"
                       style={{ width: `${(breed.personality.loyalty / 5) * 100}%` }}
                     />
                   </div>
@@ -257,31 +257,31 @@ export default function BreedDetailPage() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 mb-6">
-              <h2 className="text-2xl font-bold text-gray-800 mb-3">
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-4 md:p-6 mb-6">
+              <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">
                 💰 비용 정보
               </h2>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-white rounded-xl p-4">
-                  <h3 className="font-bold text-gray-800 mb-2">초기 비용</h3>
-                  <p className="text-gray-700">{getCostText(breed.cost.initial)}</p>
+              <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+                <div className="bg-white rounded-xl p-3 md:p-4">
+                  <h3 className="font-bold text-gray-800 mb-2 text-sm md:text-base">초기 비용</h3>
+                  <p className="text-gray-700 text-sm md:text-base">{getCostText(breed.cost.initial)}</p>
                 </div>
-                <div className="bg-white rounded-xl p-4">
-                  <h3 className="font-bold text-gray-800 mb-2">월 비용</h3>
-                  <p className="text-gray-700">{getCostText(breed.cost.monthly)}</p>
+                <div className="bg-white rounded-xl p-3 md:p-4">
+                  <h3 className="font-bold text-gray-800 mb-2 text-sm md:text-base">월 비용</h3>
+                  <p className="text-gray-700 text-sm md:text-base">{getCostText(breed.cost.monthly)}</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-pink-50 to-blue-50 rounded-2xl p-6 mb-6">
-              <h2 className="text-2xl font-bold text-gray-800 mb-3">
+            <div className="bg-gradient-to-r from-pink-50 to-blue-50 rounded-2xl p-4 md:p-6 mb-6">
+              <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">
                 🏠 적합 환경
               </h2>
-              <p className="text-gray-700 text-lg leading-relaxed">
+              <p className="text-gray-700 text-base md:text-lg leading-relaxed">
                 {breed.environment.map((env) => (
                   <span
                     key={env}
-                    className="inline-block bg-white px-3 py-1 rounded-full text-sm mr-2 mb-2"
+                    className="inline-block bg-white px-3 py-1 rounded-full text-xs md:text-sm mr-2 mb-2"
                   >
                     {getEnvironmentText(env)}
                   </span>
@@ -289,38 +289,38 @@ export default function BreedDetailPage() {
               </p>
           </div>
 
-          <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-6 mb-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-3">
+          <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-4 md:p-6 mb-6">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">
               🏥 건강 관리
             </h2>
-            <div className="bg-white rounded-xl p-4 mb-4">
+            <div className="bg-white rounded-xl p-3 md:p-4 mb-4">
               <div className="flex justify-between items-center mb-1">
-                <span className="text-gray-600">건강 난이도</span>
-                <span className="font-bold text-gray-800 text-lg">{breed.maintenance.health}/5</span>
+                <span className="text-gray-600 text-sm md:text-base">건강 난이도</span>
+                <span className="font-bold text-gray-800 text-base md:text-lg">{breed.maintenance.health}/5</span>
               </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
+              <div className="w-full bg-gray-200 rounded-full h-3 md:h-2">
                 <div
-                  className="bg-gradient-to-r from-green-500 to-blue-600 h-2 rounded-full"
+                  className="bg-gradient-to-r from-green-500 to-blue-600 h-3 md:h-2 rounded-full"
                   style={{ width: `${(breed.maintenance.health / 5) * 100}%` }}
                 />
               </div>
             </div>
-            <div className="bg-white rounded-xl p-4 mb-4">
+            <div className="bg-white rounded-xl p-3 md:p-4 mb-4">
               <div className="flex justify-between items-center mb-1">
-                <span className="text-gray-600">교육 난이도</span>
-                <span className="font-bold text-gray-800 text-lg">{breed.maintenance.training}/5</span>
+                <span className="text-gray-600 text-sm md:text-base">교육 난이도</span>
+                <span className="font-bold text-gray-800 text-base md:text-lg">{breed.maintenance.training}/5</span>
               </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
+              <div className="w-full bg-gray-200 rounded-full h-3 md:h-2">
                 <div
-                  className="bg-gradient-to-r from-green-500 to-blue-600 h-2 rounded-full"
+                  className="bg-gradient-to-r from-green-500 to-blue-600 h-3 md:h-2 rounded-full"
                   style={{ width: `${(breed.maintenance.training / 5) * 100}%` }}
                 />
               </div>
             </div>
             {breed.health_issues && breed.health_issues.length > 0 && (
-              <div className="bg-white rounded-xl p-4">
-                <h3 className="font-bold text-gray-800 mb-3">일반적인 건강 문제</h3>
-                <ul className="space-y-2 text-gray-700">
+              <div className="bg-white rounded-xl p-3 md:p-4 mt-4">
+                <h3 className="font-bold text-gray-800 mb-3 text-sm md:text-base">일반적인 건강 문제</h3>
+                <ul className="space-y-2 text-gray-700 text-sm md:text-base">
                   {breed.health_issues.map((issue, index) => (
                     <li key={index} className="flex items-start gap-2">
                       <span className="text-red-500">🔴</span>
@@ -332,12 +332,12 @@ export default function BreedDetailPage() {
             )}
           </div>
 
-          <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-6 mb-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-3">
+          <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-4 md:p-6 mb-6">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">
               ✨ 관리 팁
             </h2>
-            <div className="bg-white rounded-xl p-4">
-              <ul className="space-y-2 text-gray-700">
+            <div className="bg-white rounded-xl p-3 md:p-4">
+              <ul className="space-y-2 text-gray-700 text-sm md:text-base">
                 <li className="flex items-start gap-2">
                   <span className="text-pink-500">🔹</span>
                   <span>털 관리: {breed.coat === '장모' ? '매일 빗질이 필요합니다.' : '주 2-3회 빗질이 충분합니다.'}</span>
@@ -358,12 +358,12 @@ export default function BreedDetailPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-red-50 to-pink-50 rounded-2xl p-6 mb-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-3">
+          <div className="bg-gradient-to-r from-red-50 to-pink-50 rounded-2xl p-4 md:p-6 mb-6">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">
               ⚠️ 유의사항
             </h2>
-            <div className="bg-white rounded-xl p-4">
-              <ul className="space-y-2 text-gray-700">
+            <div className="bg-white rounded-xl p-3 md:p-4">
+              <ul className="space-y-2 text-gray-700 text-sm md:text-base">
                 <li className="flex items-start gap-2">
                   <span className="text-red-500">🔴</span>
                   <span>정기적인 예방접종과 건강검진이 필수입니다.</span>
@@ -385,42 +385,42 @@ export default function BreedDetailPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-xl p-6">
+        <div className="bg-white rounded-3xl shadow-xl p-4 md:p-6">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Star className="text-yellow-400 fill-current" size={24} />
-            <h2 className="text-2xl font-bold text-gray-800">
+            <Star className="text-yellow-400 fill-current" size={20} md:size={24} />
+            <h2 className="text-xl md:text-2xl font-bold text-gray-800">
               한국 인기도
             </h2>
           </div>
-          <div className="bg-gradient-to-r from-pink-100 to-purple-100 rounded-2xl p-6">
+          <div className="bg-gradient-to-r from-pink-100 to-purple-100 rounded-2xl p-4 md:p-6">
             <div className="flex items-center justify-center mb-2">
-              <span className="text-4xl font-bold text-pink-600">{breed.korea_popularity}%</span>
+              <span className="text-3xl md:text-4xl font-bold text-pink-600">{breed.korea_popularity}%</span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-4">
+            <div className="w-full bg-gray-200 rounded-full h-3 md:h-4">
               <div
-                className="bg-gradient-to-r from-pink-500 to-purple-600 h-4 rounded-full transition-all duration-1000"
+                className="bg-gradient-to-r from-pink-500 to-purple-600 h-3 md:h-4 rounded-full transition-all duration-1000"
                 style={{ width: `${breed.korea_popularity}%` }}
               />
             </div>
           </div>
-          <p className="text-center text-gray-600 mt-2">
+          <p className="text-center text-gray-600 mt-2 text-sm md:text-base">
             한국에서 {breed.name} 품종의 인기도입니다.
           </p>
         </div>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-xl p-6">
+        <div className="bg-white rounded-3xl shadow-xl p-4 md:p-6">
           <AdSense adSlot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ID || "5187796077"} />
 
-          <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 text-center">
             🧪 테스트 시작하기
           </h2>
-          <p className="text-gray-700 text-center mb-6">
+          <p className="text-gray-700 text-center mb-6 text-sm md:text-base">
             나와 딱 맞는 냥이는? 테스트를 시작해보세요!
           </p>
           <Link
             href="/nyongmatch"
-            className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:scale-105 transition-all"
+            className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold hover:shadow-lg hover:scale-105 transition-all"
           >
             냥이 매칭 테스트 시작하기
           </Link>
