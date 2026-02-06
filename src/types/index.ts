@@ -28,6 +28,14 @@ export interface Breed {
   colors: string[];
   description: string;
   korea_popularity: number; // 0-100
+  origin?: string; // 품종 기원/역사
+  features?: Array<{ // 품종 특징
+    icon: string;
+    text: string;
+  }>;
+  health_issues?: string[]; // 일반적인 건강 문제
+  lifespan?: string; // 수명
+  weight?: string; // 체중
 }
 
 export interface Question {

@@ -138,6 +138,18 @@ export default function BreedDetailPage() {
                     {getMaintenanceStars(breed.maintenance.grooming)}
                   </p>
                 </div>
+                {breed.weight && (
+                  <div className="bg-white rounded-xl p-4">
+                    <h3 className="font-bold text-gray-800 mb-2">체중</h3>
+                    <p className="text-gray-700">{breed.weight}</p>
+                  </div>
+                )}
+                {breed.lifespan && (
+                  <div className="bg-white rounded-xl p-4">
+                    <h3 className="font-bold text-gray-800 mb-2">수명</h3>
+                    <p className="text-gray-700">{breed.lifespan}</p>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -147,6 +159,31 @@ export default function BreedDetailPage() {
               </h2>
               <p className="text-gray-700 text-lg leading-relaxed">{breed.description}</p>
             </div>
+
+            {breed.origin && (
+              <div className="bg-amber-50 rounded-2xl p-6 mb-6">
+                <h2 className="text-2xl font-bold text-gray-800 mb-3">
+                  📜 기원과 역사
+                </h2>
+                <p className="text-gray-700 text-lg leading-relaxed">{breed.origin}</p>
+              </div>
+            )}
+
+            {breed.features && breed.features.length > 0 && (
+              <div className="bg-purple-50 rounded-2xl p-6 mb-6">
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                  🎭 주요 특징
+                </h2>
+                <ul className="grid md:grid-cols-2 gap-3">
+                  {breed.features.map((feature, index) => (
+                    <li key={index} className="bg-white rounded-xl p-3 flex items-center gap-2">
+                      <span className="text-2xl">{feature.icon}</span>
+                      <span className="text-gray-700">{feature.text}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             <div className="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-6 mb-6">
               <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
@@ -268,7 +305,7 @@ export default function BreedDetailPage() {
                 />
               </div>
             </div>
-            <div className="bg-white rounded-xl p-4">
+            <div className="bg-white rounded-xl p-4 mb-4">
               <div className="flex justify-between items-center mb-1">
                 <span className="text-gray-600">교육 난이도</span>
                 <span className="font-bold text-gray-800 text-lg">{breed.maintenance.training}/5</span>
@@ -280,6 +317,19 @@ export default function BreedDetailPage() {
                 />
               </div>
             </div>
+            {breed.health_issues && breed.health_issues.length > 0 && (
+              <div className="bg-white rounded-xl p-4">
+                <h3 className="font-bold text-gray-800 mb-3">일반적인 건강 문제</h3>
+                <ul className="space-y-2 text-gray-700">
+                  {breed.health_issues.map((issue, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="text-red-500">🔴</span>
+                      <span>{issue}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
           <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-6 mb-6">
