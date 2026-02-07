@@ -7,6 +7,7 @@ import { Breed } from '@/types';
 import { useParams } from 'next/navigation';
 import CatImage from '@/components/CatImage';
 import dynamic from 'next/dynamic';
+import { useBreedExplore } from '@/hooks/useAnalytics';
 
 // ✅ 다이나믹 임포트 (번들 최적화)
 const AdSense = dynamic(() => import('@/components/AdSense'), {
@@ -19,8 +20,16 @@ const breeds = breedsData as unknown as { breeds: Breed[] };
 export default function BreedDetailPage() {
   const params = useParams();
   const breedId = params.id as string;
+  const { trackExplore } = useBreedExplore();
 
   const breed = breeds.breeds.find((b) => b.id === breedId);
+
+  // Track breed explore event
+  useEffect(() => {
+    if (breed) {
+      trackExplore(breed.id);
+    }
+  }, [breedId, trackExplore]);
 
   if (!breed) {
     return (
@@ -387,7 +396,7 @@ export default function BreedDetailPage() {
 
         <div className="bg-white rounded-3xl shadow-xl p-4 md:p-6">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Star className="text-yellow-400 fill-current" size={24} />
+            <Star className="text-yellow-400 fill-current" size={20} md:size={24} />
             <h2 className="text-xl md:text-2xl font-bold text-gray-800">
               한국 인기도
             </h2>

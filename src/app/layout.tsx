@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import Navigation from "../components/Navigation";
 import ServiceWorkerRegister from "../components/ServiceWorkerRegister";
+import { GoogleAnalyticsScript } from "../lib/google-analytics";
 import "./globals.css";
 import { NyongmatchProvider } from "../contexts/NyongmatchContext";
 
@@ -92,6 +93,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="lazyOnload"
         />
+        <GoogleAnalyticsScript />
         <Navigation />
         <ServiceWorkerRegister />
         <NyongmatchProvider>{children}</NyongmatchProvider>

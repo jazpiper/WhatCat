@@ -5,9 +5,12 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, TrendingUp, TrendingDown, Minus } from 'lucide-react';
 import { Suspense } from 'react';
+import { useEffect } from 'react';
+import { useFriendComparison } from '@/hooks/useAnalytics';
 
 function CompareContent() {
   const searchParams = useSearchParams();
+  const { trackComparison } = useFriendComparison();
 
   const breed1Id = searchParams.get('breed1');
   const score1 = searchParams.get('score1');
@@ -19,6 +22,13 @@ function CompareContent() {
 
   const numScore1 = score1 ? parseInt(score1) : 0;
   const numScore2 = score2 ? parseInt(score2) : 0;
+
+  // Track comparison view event
+  useEffect(() => {
+    if (breed1 && breed2) {
+      trackComparison(breed1.id, breed2.id);
+    }
+  }, [breed1Id, breed2Id, trackComparison]);
 
   if (!breed1 || !breed2) {
     return (

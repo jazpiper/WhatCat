@@ -1,15 +1,20 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import { useTest } from '@/contexts/NyongmatchContext';
 import { questions } from '@/data/questions';
 import Link from 'next/link';
 import AdSense from '@/components/AdSense';
 import { getRandomCatTip } from '@/data/catTips';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTestStart, useQuestionViewed, useQuestionAnswered, useTestAbandoned } from '@/hooks/useAnalytics';
 
 export default function TestPage() {
   const { currentQuestion, answers, setAnswer, nextQuestion, previousQuestion } = useTest();
+  const { trackAnswer } = useQuestionAnswered();
+
+  // Track when user views a question
+  useQuestionViewed(currentQuestion);
 
   const question = questions[currentQuestion];
 
@@ -29,6 +34,7 @@ export default function TestPage() {
 
   const handleAnswer = (answerId: string) => {
     setAnswer(question.id, answerId);
+    trackAnswer(currentQuestion, answerId); // Track answer
     setTimeout(() => {
       nextQuestion();
     }, 300);
