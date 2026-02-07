@@ -1,7 +1,9 @@
 'use client';
 
+import { useEffect } from 'react';
 import Link from 'next/link';
 import { Cat, Heart, BookOpen } from 'lucide-react';
+import { trackGuideViewed } from '@/utils/achievements';
 
 const guides = [
   {
@@ -23,6 +25,11 @@ const guides = [
 ];
 
 export default function GuidesPage() {
+  // Track guide page visit for achievement
+  useEffect(() => {
+    trackGuideViewed();
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50">
       {/* Header */}

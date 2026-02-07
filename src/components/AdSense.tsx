@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { logError, ErrorType } from '@/utils/errorHandler';
 
 declare global {
   interface Window {
@@ -66,7 +67,7 @@ export default function AdSense({ adSlot, className = '' }: { adSlot: string; cl
           setIsLoaded(true);
           console.log(`AdSense ad loaded: slot=${adSlot}, size=${width}x${height}`);
         } catch (error) {
-          console.error('AdSense push error:', error);
+          logError(error, 'AdSense.loadAd');
         }
       }
     };

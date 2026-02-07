@@ -3,10 +3,15 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import ThemeToggle from './ThemeToggle';
 
 const navigation = [
   { name: '홈', href: '/' },
   { name: '냥이매칭', href: '/nyongmatch' },
+  { name: '품종 찾기', href: '/breeds' },
+  { name: '데일리 퀴즈', href: '/daily-quiz' },
+  { name: '내 결과', href: '/my-results' },
+  { name: '도전 과제', href: '/achievements' },
   { name: '가이드', href: '/guides' },
   { name: 'FAQ', href: '/faq' },
   { name: '소개', href: '/about' },
@@ -33,13 +38,13 @@ export default function Navigation() {
               className="text-white font-bold text-xl hover:text-pink-200 transition-colors flex items-center gap-2"
               aria-label="냥이 매칭 홈으로 이동"
             >
-              <span className="text-2xl">🐱</span>
+              <span className="text-2xl" aria-hidden="true">🐱</span>
               <span className="tracking-tighter">NYONGMATCH</span>
             </Link>
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-1">
+          <div className="hidden md:flex items-center space-x-1">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -56,10 +61,12 @@ export default function Navigation() {
                 {item.name}
               </Link>
             ))}
+            <ThemeToggle />
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          {/* Mobile Menu Button & Theme Toggle */}
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-white p-2 rounded-lg hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"

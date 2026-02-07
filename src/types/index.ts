@@ -36,6 +36,9 @@ export interface Breed {
   health_issues?: string[]; // 일반적인 건강 문제
   lifespan?: string; // 수명
   weight?: string; // 체중
+  famous_matches?: FamousMatch[];
+  result_percentage?: number; // 사용자 중 이 품종을 결과로 받은 비율
+  fun_facts?: string[]; // 재미있는 사실
 }
 
 export interface Question {
@@ -84,4 +87,74 @@ export interface ShareResult {
   score: number;
   breedName?: string;
   emoji?: string;
+}
+
+export interface SavedResult {
+  id: string;
+  breedId: string;
+  breedName: string;
+  breedNameEn: string;
+  emoji: string;
+  score: number;
+  date: string;
+  personality?: {
+    activity: number;
+    affection: number;
+    social: number;
+    quiet: number;
+    loyalty: number;
+  };
+}
+
+export interface ResultStorageState {
+  results: SavedResult[];
+  lastUpdated: string;
+}
+
+export interface FamousMatch {
+  name: string;
+  type: 'celebrity' | 'character' | 'historical';
+  description?: string;
+}
+
+export interface MatchReason {
+  category: 'personality' | 'lifestyle' | 'appearance' | 'maintenance';
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface SimilarBreed {
+  breed: Breed;
+  similarity: number;
+  keyDifference?: string;
+}
+
+// Achievement Types
+export type AchievementRarity = 'common' | 'rare' | 'epic' | 'legendary';
+
+export interface Achievement {
+  id: string;
+  name: string;
+  nameKo: string;
+  description: string;
+  icon: string;
+  rarity: AchievementRarity;
+  condition: (state: UserAchievementState) => boolean;
+}
+
+export interface UserAchievementState {
+  testsCompleted: number;
+  breedsMatched: string[];
+  platformsShared: number;
+  breedsViewed: number;
+  guidesViewed: number;
+  friendsCompared: number;
+  highestScore: number;
+}
+
+export interface UserAchievements {
+  unlocked: string[];
+  state: UserAchievementState;
+  lastUpdated: string;
 }

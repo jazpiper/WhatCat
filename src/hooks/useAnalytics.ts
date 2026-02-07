@@ -17,6 +17,10 @@ import {
   logResultShared,
   logUserFeedback,
   logAdPerformance,
+  logFamousMatchViewed,
+  logMatchExplanationViewed,
+  logRelatedBreedViewed,
+  logRelatedBreedClicked,
   type TestStartEvent,
   type QuestionViewedEvent,
   type QuestionAnsweredEvent,
@@ -28,6 +32,10 @@ import {
   type ResultSharedEvent,
   type UserFeedbackEvent,
   type AdPerformanceEvent,
+  type FamousMatchViewedEvent,
+  type MatchExplanationViewedEvent,
+  type RelatedBreedViewedEvent,
+  type RelatedBreedClickedEvent,
 } from '../lib/google-analytics'
 
 /**
@@ -222,4 +230,71 @@ export function useAdPerformance() {
   }
 
   return { trackAdPerformance }
+}
+
+/**
+ * Famous Match Hook
+ * Tracks when user views a famous match
+ */
+export function useFamousMatch() {
+  const trackView = (breedId: string, matchName: string, matchType: 'celebrity' | 'character' | 'historical', isRare: boolean, resultPercentage: number) => {
+    const params: FamousMatchViewedEvent = {
+      breed_id: breedId,
+      match_name: matchName,
+      match_type: matchType,
+      is_rare: isRare,
+      result_percentage: resultPercentage,
+    }
+
+    logFamousMatchViewed(params)
+  }
+
+  return { trackView }
+}
+
+/**
+ * Match Explanation Hook
+ * Tracks match explanation engagement
+ */
+export function useMatchExplanation() {
+  const trackView = (breedId: string, timeSpent: number, scrollDepth: number) => {
+    const params: MatchExplanationViewedEvent = {
+      breed_id: breedId,
+      time_spent: timeSpent,
+      scroll_depth: scrollDepth,
+    }
+
+    logMatchExplanationViewed(params)
+  }
+
+  return { trackView }
+}
+
+/**
+ * Related Breed Hook
+ * Tracks related breed interactions
+ */
+export function useRelatedBreed() {
+  const trackView = (mainBreedId: string, relatedBreedId: string, similarityScore: number, position: number) => {
+    const params: RelatedBreedViewedEvent = {
+      main_breed_id: mainBreedId,
+      related_breed_id: relatedBreedId,
+      similarity_score: similarityScore,
+      position,
+    }
+
+    logRelatedBreedViewed(params)
+  }
+
+  const trackClick = (mainBreedId: string, relatedBreedId: string, similarityScore: number) => {
+    const params: RelatedBreedClickedEvent = {
+      main_breed_id: mainBreedId,
+      related_breed_id: relatedBreedId,
+      similarity_score: similarityScore,
+    }
+
+    logRelatedBreedClicked(params)
+  }
+
+  return { trackView, trackClick }
 }

@@ -1,4 +1,4 @@
-import { Breed, Question } from '@/types';
+import { Breed, Question, MatchReason } from '@/types';
 
 export interface UserScore {
   personality: {
@@ -34,6 +34,7 @@ export interface MatchResult {
     appearance: number;
     cost: number;
   };
+  reasons?: MatchReason[];
 }
 
 export function calculateMatch(
@@ -48,11 +49,13 @@ export function calculateMatch(
   const results: MatchResult[] = breeds.map((breed) => {
     const breakdown = calculateBreedScore(userScore, breed);
     const totalScore = calculateTotalScore(breakdown);
+    const reasons = generateMatchReasons(userScore, breed, breakdown);
 
     return {
       breed,
       score: Math.round(totalScore),
       breakdown,
+      reasons,
     };
   });
 
@@ -305,4 +308,141 @@ export function getRankEmoji(rank: number): string {
     default:
       return '🐱';
   }
+}
+
+/**
+ * Generate match reasons based on user score and breed characteristics
+ */
+function generateMatchReasons(
+  userScore: UserScore,
+  breed: Breed,
+  breakdown: MatchResult['breakdown']
+): MatchReason[] {
+  const reasons: MatchReason[] = [];
+
+  // Personality match reasons
+  const personalityTraits: { key: keyof UserScore['personality']; label: string; icon: string; high: string; low: string }[] = [
+    { key: 'activity', label: '활동성', icon: '🏃', high: '활동적인 라이프스타일', low: '차분한 성향' },
+    { key: 'affection', label: '애정', icon: '💕', high: '다정한 성격', low: '독립적인 성향' },
+    { key: 'social', label: '사교성', icon: '👥', high: '사교적인 성격', low: '독립심' },
+    { key: 'quiet', label: '조용함', icon: '🔇', high: '조용한 환경 선호', low: '활기찬 성향' },
+    { key: 'loyalty', label: '충성심', icon: '🐾', high: '충성심 강함', low: '독립적' },
+  ];
+
+  // Find top matching personality traits (difference of 0 or 1)
+  const matchingTraits = personalityTraits
+    .map((trait) => ({
+      ...trait,
+      diff: Math.abs(userScore.personality[trait.key] - breed.personality[trait.key]),
+      userValue: userScore.personality[trait.key],
+      breedValue: breed.personality[trait.key],
+    }))
+    .filter((trait) => trait.diff <= 1)
+    .sort((a, b) => a.diff - b.diff)
+    .slice(0, 2);
+
+  for (const trait of matchingTraits) {
+    const description = trait.userValue >= 3
+      ? `${trait.high}으로 ${trait.label}이 높은 ${breed.name}와 잘 맞아요!`
+      : `${trait.low}으로 ${trait.label}이 낮은 ${breed.name}와 어울려요!`;
+
+    reasons.push({
+      category: 'personality',
+      title: `${trait.icon} 성격 매칭: ${trait.label}`,
+      description,
+      icon: trait.icon,
+    });
+  }
+
+  // Lifestyle match
+  if (breakdown.lifestyle >= 80) {
+    const lifestyleDesc = breed.environment.includes('apt')
+      ? '아파트 거주에 적합하고 실내 생활을 즐길 수 있어요!'
+      : '활동적인 라이프스타일에 맞는 품종이에요!';
+
+    reasons.push({
+      category: 'lifestyle',
+      title: '🏠 라이프스타일 매칭',
+      description: lifestyleDesc,
+      icon: '🏠',
+    });
+  }
+
+  // Appearance match (size)
+  if (userScore.appearance.size !== 'any' && userScore.appearance.size !== '상관없음') {
+    const sizeMatch = userScore.appearance.size === breed.size ||
+      (userScore.appearance.size === 'medium' && (breed.size === 'small' || breed.size === 'large')) ||
+      (userScore.appearance.size === 'large' && breed.size === 'xlarge');
+
+    if (sizeMatch) {
+      const sizeLabel = breed.size === '소형' ? '작은 크기' :
+                       breed.size === '중형' ? '중간 크기' :
+                       breed.size === '대형' ? '큰 크기' : '매우 큰 크기';
+
+      reasons.push({
+        category: 'appearance',
+        title: '📏 크기 선호 매칭',
+        description: `${sizeLabel}의 ${breed.name}가 선호하시는 크기와 일치해요!`,
+        icon: '📏',
+      });
+    }
+  }
+
+  // Appearance match (coat)
+  if (userScore.appearance.coat !== 'any' && userScore.appearance.coat !== '상관없음') {
+    const coatMatch = userScore.appearance.coat === breed.coat ||
+      (userScore.appearance.coat === 'short' && breed.coat === 'medium') ||
+      (userScore.appearance.coat === 'medium' && (breed.coat === 'short' || breed.coat === 'long'));
+
+    if (coatMatch) {
+      const coatLabel = breed.coat === '단모' ? '짧은 털' :
+                       breed.coat === '장모' ? '긴 털' :
+                       breed.coat === '중장모' ? '중간 길이 털' :
+                       breed.coat === '무모' ? '털이 없는' : '다양한';
+
+      reasons.push({
+        category: 'appearance',
+        title: '✨ 털 길이 매칭',
+        description: `${coatLabel} ${breed.name}가 관리하기 쉬워 선호하시는 스타일과 일치해요!`,
+        icon: '✨',
+      });
+    }
+  }
+
+  // Cost match
+  const costOrder = { low: 1, medium: 2, high: 3, veryhigh: 4 };
+  const userInitial = costOrder[userScore.cost.initial as keyof typeof costOrder];
+  const breedInitial = costOrder[breed.cost.initial as keyof typeof costOrder];
+
+  if (userInitial >= breedInitial) {
+    reasons.push({
+      category: 'maintenance',
+      title: '💰 예산 매칭',
+      description: `초음 비용이 예산 범위 내에 들어가서 부담 없이 시작할 수 있어요!`,
+      icon: '💰',
+    });
+  }
+
+  // Maintenance match
+  if (userScore.maintenance.grooming >= breed.maintenance.grooming) {
+    reasons.push({
+      category: 'maintenance',
+      title: '🧼 관리 용이성',
+      description: `그루밍 난이도가 선호하시는 수준과 맞아요!`,
+      icon: '🧼',
+    });
+  }
+
+  // If we have fewer than 3 reasons, add a general one
+  if (reasons.length < 3) {
+    reasons.push({
+      category: 'personality',
+      title: '💝 전반적인 성격 매칭',
+      description: `${breed.traits.slice(0, 2).join(', ')} 성향의 ${breed.name}가 당신과 잘 어울려요!`,
+      icon: '💝',
+    });
+  }
+
+  // Return top 3-4 reasons
+  return reasons.slice(0, 4);
 }

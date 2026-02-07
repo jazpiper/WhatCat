@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import Navigation from "../components/Navigation";
 import ServiceWorkerRegister from "../components/ServiceWorkerRegister";
+import { ThemeProvider } from "../components/ThemeProvider";
 import { GoogleAnalyticsScript } from "../lib/google-analytics";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -84,10 +85,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* Skip to main content link for accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-pink-500 focus:text-white focus:rounded-lg focus:font-medium focus:shadow-lg"
+        >
+          메인 콘텐츠로 바로가기
+        </a>
         <Script
           id="adsense-script"
           async
@@ -98,9 +106,16 @@ export default function RootLayout({
         <GoogleAnalyticsScript />
         <Analytics />
         <SpeedInsights />
-        <Navigation />
-        <ServiceWorkerRegister />
-        <NyongmatchProvider>{children}</NyongmatchProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange={false}
+        >
+          <Navigation />
+          <ServiceWorkerRegister />
+          <NyongmatchProvider>{children}</NyongmatchProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

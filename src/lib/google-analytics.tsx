@@ -184,3 +184,349 @@ export function logAdPerformance(params: AdPerformanceEvent) {
     params
   })
 }
+
+// Result storage events
+export interface ResultSavedEvent {
+  breed_id: string
+  breed_name: string
+  score: number
+  total_saved: number
+}
+
+export function logResultSaved(params: ResultSavedEvent) {
+  logEvent({
+    name: 'result_saved',
+    params
+  })
+}
+
+export interface ResultsViewedEvent {
+  total_results: number
+  has_trends: boolean
+}
+
+export function logResultsViewed(params: ResultsViewedEvent) {
+  logEvent({
+    name: 'results_viewed',
+    params
+  })
+}
+
+// Daily quiz events
+export interface DailyQuizViewedEvent {
+  current_streak: number
+  total_completed: number
+  is_completed_today: boolean
+}
+
+export function logDailyQuizViewed(params: DailyQuizViewedEvent) {
+  logEvent({
+    name: 'daily_quiz_viewed',
+    params
+  })
+}
+
+export interface DailyQuizAnsweredEvent {
+  question_id: string
+  is_correct: boolean
+  current_streak: number
+}
+
+export function logDailyQuizAnswered(params: DailyQuizAnsweredEvent) {
+  logEvent({
+    name: 'daily_quiz_answered',
+    params
+  })
+}
+
+export interface StreakMilestoneEvent {
+  milestone: number
+  total_completed: number
+}
+
+export function logStreakMilestone(params: StreakMilestoneEvent) {
+  logEvent({
+    name: 'streak_milestone_reached',
+    params
+  })
+}
+
+// Journey events
+export interface JourneyViewedEvent {
+  total_tests: number
+  unique_breeds: number
+  has_data: boolean
+}
+
+export interface JourneyClearedEvent {
+  results_count: number
+}
+
+export interface JourneyExportedEvent {
+  results_count: number
+}
+
+export interface JourneyImportedEvent {
+  imported_count: number
+}
+
+export function logJourneyViewed(params: JourneyViewedEvent) {
+  logEvent({
+    name: 'journey_viewed',
+    params
+  })
+}
+
+export function logJourneyCleared(params: JourneyClearedEvent) {
+  logEvent({
+    name: 'journey_cleared',
+    params
+  })
+}
+
+export function logJourneyExported(params: JourneyExportedEvent) {
+  logEvent({
+    name: 'journey_exported',
+    params
+  })
+}
+
+export function logJourneyImported(params: JourneyImportedEvent) {
+  logEvent({
+    name: 'journey_imported',
+    params
+  })
+}
+
+// Breed of the day events
+export interface BreedOfTheDayViewedEvent {
+  breed_id: string
+  breed_name: string
+}
+
+export interface BreedOfTheDayClickedEvent {
+  breed_id: string
+  breed_name: string
+}
+
+export interface BreedOfTheDaySharedEvent {
+  breed_id: string
+  breed_name: string
+  platform: 'copy' | 'kakaotalk' | 'default'
+}
+
+export function logBreedOfTheDayViewed(params: BreedOfTheDayViewedEvent) {
+  logEvent({
+    name: 'breed_of_day_viewed',
+    params
+  })
+}
+
+export function logBreedOfTheDayClicked(params: BreedOfTheDayClickedEvent) {
+  logEvent({
+    name: 'breed_of_day_clicked',
+    params
+  })
+}
+
+export function logBreedOfTheDayShared(params: BreedOfTheDaySharedEvent) {
+  logEvent({
+    name: 'breed_of_day_shared',
+    params
+  })
+}
+
+// Breed search events
+export interface BreedSearchUsedEvent {
+  search_query: string
+  result_count: number
+}
+
+export function logBreedSearchUsed(params: BreedSearchUsedEvent) {
+  logEvent({
+    name: 'breed_search_used',
+    params
+  })
+}
+
+export interface BreedFilterAppliedEvent {
+  filters: string
+  result_count: number
+}
+
+export function logBreedFilterApplied(params: BreedFilterAppliedEvent) {
+  logEvent({
+    name: 'breed_filter_applied',
+    params
+  })
+}
+
+// Achievement events
+export interface AchievementUnlockedEvent {
+  achievement_id: string
+  achievement_name: string
+  rarity: string
+}
+
+export function logAchievementUnlocked(params: AchievementUnlockedEvent) {
+  logEvent({
+    name: 'achievement_unlocked',
+    params
+  })
+}
+
+export interface AchievementViewedEvent {
+  achievement_id: string
+  source: 'gallery' | 'result' | 'profile'
+}
+
+export function logAchievementViewed(params: AchievementViewedEvent) {
+  logEvent({
+    name: 'achievement_viewed',
+    params
+  })
+}
+
+export interface AchievementsPageViewedEvent {
+  total_unlocked: number
+  total_achievements: number
+}
+
+export function logAchievementsPageViewed(params: AchievementsPageViewedEvent) {
+  logEvent({
+    name: 'achievements_page_viewed',
+    params
+  })
+}
+
+// Famous match events
+export interface FamousMatchViewedEvent {
+  breed_id: string
+  match_name: string
+  match_type: 'celebrity' | 'character' | 'historical'
+  is_rare: boolean
+  result_percentage: number
+}
+
+export function logFamousMatchViewed(params: FamousMatchViewedEvent) {
+  logEvent({
+    name: 'famous_match_viewed',
+    params
+  })
+}
+
+export interface FamousMatchSharedEvent {
+  breed_id: string
+  match_name: string
+  platform: 'copy' | 'kakaotalk' | 'default'
+}
+
+export function logFamousMatchShared(params: FamousMatchSharedEvent) {
+  logEvent({
+    name: 'famous_match_shared',
+    params
+  })
+}
+
+// Match explanation events
+export interface MatchExplanationViewedEvent {
+  breed_id: string
+  time_spent: number
+  scroll_depth: number
+}
+
+export function logMatchExplanationViewed(params: MatchExplanationViewedEvent) {
+  logEvent({
+    name: 'match_explanation_viewed',
+    params
+  })
+}
+
+// Related breed events
+export interface RelatedBreedViewedEvent {
+  main_breed_id: string
+  related_breed_id: string
+  similarity_score: number
+  position: number
+}
+
+export function logRelatedBreedViewed(params: RelatedBreedViewedEvent) {
+  logEvent({
+    name: 'related_breed_viewed',
+    params
+  })
+}
+
+export interface RelatedBreedClickedEvent {
+  main_breed_id: string
+  related_breed_id: string
+  similarity_score: number
+}
+
+export function logRelatedBreedClicked(params: RelatedBreedClickedEvent) {
+  logEvent({
+    name: 'related_breed_clicked',
+    params
+  })
+}
+
+// Test preview modal events
+export interface PreviewModalShownEvent {
+  seen_before: boolean
+}
+
+export interface PreviewModalDismissedEvent {
+  action: 'later' | 'start' | 'close'
+}
+
+export interface TestStartedAfterPreviewEvent {
+  time_to_start: number
+}
+
+export function logPreviewModalShown(params: PreviewModalShownEvent) {
+  logEvent({
+    name: 'preview_modal_shown',
+    params
+  })
+}
+
+export function logPreviewModalDismissed(params: PreviewModalDismissedEvent) {
+  logEvent({
+    name: 'preview_modal_dismissed',
+    params
+  })
+}
+
+export function logTestStartedAfterPreview(params: TestStartedAfterPreviewEvent) {
+  logEvent({
+    name: 'test_started_after_preview',
+    params
+  })
+}
+
+// Error tracking events
+export interface ErrorEvent {
+  error_type: 'localStorage' | 'quizData' | 'streakCalc' | 'share' | 'unknown'
+  error_message: string
+  error_context?: string
+  user_action?: string
+}
+
+export function logError(params: ErrorEvent) {
+  logEvent({
+    name: 'error_occurred',
+    params
+  })
+}
+
+export interface ErrorRecoveredEvent {
+  error_type: string
+  recovery_method: 'retry' | 'fallback' | 'user_action'
+}
+
+export function logErrorRecovered(params: ErrorRecoveredEvent) {
+  logEvent({
+    name: 'error_recovered',
+    params
+  })
+}

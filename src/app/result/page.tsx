@@ -4,6 +4,7 @@ import { useTest } from '@/contexts/NyongmatchContext';
 import { breeds } from '@/data/breeds';
 import { questions } from '@/data/questions';
 import { calculateMatch, getRankEmoji } from '@/utils/matching';
+import { getRelatedBreeds } from '@/utils/breedSimilarity';
 import {
   createShareUrl,
   createTwitterShareUrl,
@@ -17,11 +18,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { Breed, ShareResult } from '@/types';
+import type { MatchResult } from '@/utils/matching';
 import {
   ArrowLeft,
   RotateCcw,
 } from 'lucide-react';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import { ResultSkeleton } from '@/components/Skeleton';
 import AdSense from '@/components/AdSense';
 import {
   useTestCompleted,
@@ -29,12 +32,22 @@ import {
   useFriendComparison,
   useResultRetry,
 } from '@/hooks/useAnalytics';
+import { useResultsStorage } from '@/hooks/useResultsStorage';
 
 import ResultHeader from '@/components/Result/ResultHeader';
 import BreedProfile from '@/components/Result/BreedProfile';
 import TopRecommended from '@/components/Result/TopRecommended';
 import SocialShare from '@/components/Result/SocialShare';
 import FriendCompare from '@/components/Result/FriendCompare';
+import FamousMatchCard from '@/components/Result/FamousMatchCard';
+import MatchExplanation from '@/components/Result/MatchExplanation';
+import RelatedBreeds from '@/components/Result/RelatedBreeds';
+
+// Lazy load AchievementTracker for better performance
+const AchievementTracker = dynamic(() =>
+  import('@/components/Achievement/AchievementTracker').then(m => ({ default: m.default })),
+{ ssr: false }
+);
 
 const CONFETTI_CONFIG = {
   particleCount: 150,
@@ -51,6 +64,7 @@ export default function ResultPage() {
   const { trackComparison } = useFriendComparison();
   const { trackShare } = useResultShared();
   const { trackRetry } = useResultRetry();
+  const { saveResult } = useResultsStorage();
   const [copied, setCopied] = useState(false);
   const [friendLink, setFriendLink] = useState('');
   const [urlResults, setUrlResults] = useState<ShareResult[] | null>(null);
@@ -82,9 +96,17 @@ export default function ResultPage() {
             return {
               breed,
               score: result.score,
-            };
+              breakdown: {
+                personality: 0,
+                maintenance: 0,
+                lifestyle: 0,
+                appearance: 0,
+                cost: 0,
+              },
+              reasons: undefined,
+            } as MatchResult;
           })
-          .filter((r): r is { breed: Breed; score: number } => r !== null)
+          .filter((r): r is MatchResult => r !== null)
         : null,
     [urlResults]
   );
@@ -106,6 +128,12 @@ export default function ResultPage() {
   // 공유 결과 캐싱 (firstResult가 정의된 후에 실행)
   const primaryShareResult = useMemo(
     () => firstResult ? [{ breedId: firstResult.breed.id, score: firstResult.score }] : null,
+    [firstResult]
+  );
+
+  // 관련 품종 계산 (useMemo로 캐싱)
+  const relatedBreeds = useMemo(
+    () => firstResult ? getRelatedBreeds(firstResult.breed, breeds, 3) : [],
     [firstResult]
   );
 
@@ -164,6 +192,21 @@ export default function ResultPage() {
       setTimeout(() => setImageLoaded(true), 2000);
     }
   }, [firstResult]);
+
+  // Save result to localStorage when test is completed (not from URL)
+  useEffect(() => {
+    if (firstResult && !hasUrlParams && contextResults) {
+      // Only save if this is a new test result (not from URL)
+      saveResult({
+        breedId: firstResult.breed.id,
+        breedName: firstResult.breed.name,
+        breedNameEn: firstResult.breed.nameEn,
+        emoji: firstResult.breed.emoji,
+        score: firstResult.score,
+        personality: firstResult.breed.personality,
+      });
+    }
+  }, [firstResult, hasUrlParams, contextResults, saveResult]);
 
   const handleShareKakao = () => {
     if (!firstResult || !primaryShareResult) return;
@@ -336,23 +379,16 @@ export default function ResultPage() {
 
   if (!firstResult) {
     if (hasUrlParams || isLoadingUrl) {
-      return (
-        <div className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 flex items-center justify-center">
-          <div className="text-center">
-            <LoadingSpinner />
-            <p className="text-xl text-gray-600 mt-4">결과를 불러오는 중...</p>
-          </div>
-        </div>
-      );
+      return <ResultSkeleton />;
     }
     return null;
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50">
+    <main id="main-content" className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <div className="mb-6 flex items-center justify-between">
-          <Link href="/" onClick={resetTest} className="text-pink-500 hover:underline flex items-center gap-2 font-medium">
+          <Link href="/" onClick={resetTest} className="text-pink-500 dark:text-pink-400 hover:underline flex items-center gap-2 font-medium">
             <ArrowLeft size={20} />
             처음으로
           </Link>
@@ -361,14 +397,14 @@ export default function ResultPage() {
               trackRetry(false, true); // breed_change: false, new_answers: true
               resetTest();
             }}
-            className="text-purple-500 hover:underline flex items-center gap-2 font-medium"
+            className="text-purple-500 dark:text-purple-400 hover:underline flex items-center gap-2 font-medium"
           >
             <RotateCcw size={20} />
             다시 테스트하기
           </button>
         </div>
 
-        <div ref={resultRef} className="bg-white rounded-3xl shadow-xl p-8 mb-8 border border-gray-100">
+        <div ref={resultRef} className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 mb-8 border border-gray-100 dark:border-gray-700">
           <ResultHeader
             breed={firstResult.breed}
             animatedScore={animatedScore}
@@ -378,6 +414,17 @@ export default function ResultPage() {
 
           <div className="mt-8">
             <TopRecommended results={top3Results} />
+          </div>
+
+          <div className="mt-8">
+            <FamousMatchCard breed={firstResult.breed} />
+          </div>
+
+          <div className="mt-8">
+            <MatchExplanation
+              breed={firstResult.breed}
+              reasons={firstResult.reasons || []}
+            />
           </div>
         </div>
 
@@ -399,12 +446,25 @@ export default function ResultPage() {
           onCompare={handleCompareWithFriend}
         />
 
+        <RelatedBreeds
+          mainBreed={firstResult.breed}
+          relatedBreeds={relatedBreeds}
+        />
+
         <AdSense adSlot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ID || "5187796077"} />
 
-        <div className="text-center text-gray-400 text-xs mt-8">
+        <div className="text-center text-gray-400 dark:text-gray-500 text-xs mt-8">
           <p>&copy; 2026 냥이 매칭. All rights reserved.</p>
         </div>
       </div>
+
+      {/* Achievement Tracker */}
+      {firstResult && !hasUrlParams && (
+        <AchievementTracker
+          breedId={firstResult.breed.id}
+          score={firstResult.score}
+        />
+      )}
     </main>
   );
 }

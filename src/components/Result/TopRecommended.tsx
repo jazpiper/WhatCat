@@ -1,5 +1,6 @@
 'use client';
 
+import { memo } from 'react';
 import Link from 'next/link';
 import CatImage from '@/components/CatImage';
 import { getRankEmoji } from '@/utils/matching';
@@ -9,6 +10,47 @@ interface TopRecommendedProps {
     results: { breed: Breed; score: number }[];
 }
 
+// Memoized breed card item for better performance
+const BreedResultCard = memo(function BreedResultCard({
+    result,
+    index,
+}: {
+    result: { breed: Breed; score: number };
+    index: number;
+}) {
+    return (
+        <Link
+            href={`/breed/${result.breed.id}`}
+            className={`flex items-center gap-4 p-4 rounded-xl transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-300 focus:ring-offset-2 ${
+                index === 0
+                    ? 'bg-gradient-to-r from-pink-100 to-purple-100 border border-pink-200'
+                    : 'bg-gray-50 border border-gray-100'
+            }`}
+            aria-label={`${result.breed.name}(${result.breed.nameEn}) 상세보기 - ${result.score}% 매칭`}
+        >
+            <div className="text-3xl flex-shrink-0" aria-hidden="true">{getRankEmoji(index + 1)}</div>
+            <div className="text-4xl flex-shrink-0" aria-hidden="true">{result.breed.emoji}</div>
+            {result.breed.image && (
+                <CatImage
+                    src={result.breed.image}
+                    alt={result.breed.name}
+                    width={48}
+                    height={48}
+                    sizes="48px"
+                    className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm"
+                />
+            )}
+            <div className="flex-1">
+                <h4 className="font-bold text-gray-800">{result.breed.name}</h4>
+                <p className="text-sm text-gray-600">{result.breed.nameEn}</p>
+            </div>
+            <div className="text-2xl font-bold text-pink-600">
+                {result.score}%
+            </div>
+        </Link>
+    );
+});
+
 export default function TopRecommended({ results }: TopRecommendedProps) {
     return (
         <div className="border-t-2 border-pink-100 pt-6">
@@ -17,34 +59,7 @@ export default function TopRecommended({ results }: TopRecommendedProps) {
             </h3>
             <div className="space-y-3">
                 {results.map((result, index) => (
-                    <Link
-                        key={result.breed.id}
-                        href={`/breed/${result.breed.id}`}
-                        className={`flex items-center gap-4 p-4 rounded-xl transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:shadow-lg ${index === 0
-                                ? 'bg-gradient-to-r from-pink-100 to-purple-100 border border-pink-200'
-                                : 'bg-gray-50 border border-gray-100'
-                            }`}
-                    >
-                        <div className="text-3xl flex-shrink-0">{getRankEmoji(index + 1)}</div>
-                        <div className="text-4xl flex-shrink-0">{result.breed.emoji}</div>
-                        {result.breed.image && (
-                            <CatImage
-                                src={result.breed.image}
-                                alt={result.breed.name}
-                                width={48}
-                                height={48}
-                                sizes="48px"
-                                className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm"
-                            />
-                        )}
-                        <div className="flex-1">
-                            <h4 className="font-bold text-gray-800">{result.breed.name}</h4>
-                            <p className="text-sm text-gray-600">{result.breed.nameEn}</p>
-                        </div>
-                        <div className="text-2xl font-bold text-pink-600">
-                            {result.score}%
-                        </div>
-                    </Link>
+                    <BreedResultCard key={result.breed.id} result={result} index={index} />
                 ))}
             </div>
         </div>

@@ -7,6 +7,7 @@ import { ArrowLeft, TrendingUp, TrendingDown, Minus } from 'lucide-react';
 import { Suspense } from 'react';
 import { useEffect } from 'react';
 import { useFriendComparison } from '@/hooks/useAnalytics';
+import { trackFriendComparison } from '@/utils/achievements';
 
 function CompareContent() {
   const searchParams = useSearchParams();
@@ -27,6 +28,8 @@ function CompareContent() {
   useEffect(() => {
     if (breed1 && breed2) {
       trackComparison(breed1.id, breed2.id);
+      // Track achievement progress
+      trackFriendComparison();
     }
   }, [breed1Id, breed2Id, trackComparison]);
 

@@ -1,38 +1,53 @@
+'use client';
+
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 import breeds from '@/data/breeds.json';
 import { ArrowRight, Star } from 'lucide-react';
 import AdSense from '@/components/AdSense';
 import CatImage from '@/components/CatImage';
 import StructuredData from '@/components/StructuredData';
-import type { Metadata } from 'next';
+import { BreedOfTheDay } from '@/components/BreedOfTheDay';
+import { DailyQuizStreak } from '@/components/DailyQuizStreak';
+import TestPreviewModal from '@/components/TestPreviewModal';
 
-// ✅ SSG 설정
-export const dynamic = 'force-static';
-export const revalidate = 3600; // 1시간마다 재생성
-
-// ✅ 메타 태그
-export const metadata: Metadata = {
-  title: "나와 가장 잘 맞는 고양이 품종 찾기",
-  description: "냥이 매칭으로 당신의 인생냥이를 찾아보세요! MBTI 스타일 테스트로 20종의 인기 품종 중 당신에게 딱 맞는 냥이를 추천합니다. 한국 인기 품종 랭킹도 확인해보세요!",
-  keywords: ["고양이 테스트", "냥이 매칭", "고양이 품종", "인기 품종 랭킹", "반려동물", "고양이 성격"],
-  openGraph: {
-    title: "냥이 매칭 - 나와 가장 잘 맞는 고양이 품종 찾기",
-    description: "냥이 매칭으로 당신의 인생냥이를 찾아보세요! MBTI 스타일 테스트로 20종의 인기 품종 중 당신에게 딱 맞는 냥이를 추천합니다. 한국 인기 품종 랭킹도 확인해보세요!",
-    images: ["https://what-cat-psi.vercel.app/og-images/default.jpg"]
-  },
-  alternates: {
-    canonical: 'https://what-cat-psi.vercel.app',
-  },
-};
-
-// ✅ 정적 데이터 계산 (렌더링 전에 계산)
+// 정적 데이터 계산 (렌더링 전에 계산)
 const popularBreeds = breeds.breeds
   .sort((a, b) => b.korea_popularity - a.korea_popularity)
   .slice(0, 6);
 
 export default function HomePage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    // Check if user has already taken the test
+    const hasCompleted = localStorage.getItem('lastTestResult');
+    const hasSeenPreview = localStorage.getItem('hasSeenTestPreview');
+
+    // Only show modal if user hasn't completed test and hasn't seen preview
+    // The modal will be shown when user clicks "Start Test" button
+  }, []);
+
+  const handleStartTest = () => {
+    const hasSeenPreview = localStorage.getItem('hasSeenTestPreview');
+    const hasCompletedTest = localStorage.getItem('lastTestResult');
+
+    // Show modal if user hasn't seen preview or hasn't completed test
+    if (!hasSeenPreview && !hasCompletedTest) {
+      setIsModalOpen(true);
+    } else {
+      // Go directly to test
+      window.location.href = '/nyongmatch';
+    }
+  };
+
+  const handleModalStart = () => {
+    setIsModalOpen(false);
+    window.location.href = '/nyongmatch';
+  };
+
   return (
-    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50">
+    <main id="main-content" className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-gray-900 transition-colors duration-300">
       {/* 구조화된 데이터 */}
       <StructuredData
         type="WebSite"
@@ -64,37 +79,47 @@ export default function HomePage() {
           <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
             냥이 매칭 🐱
           </h1>
-          <p className="text-xl text-gray-600 mb-2">
+          <p className="text-xl text-gray-600 dark:text-gray-300 mb-2">
             MBTI 스타일로 나와 가장 잘 맞는 고양이 품종 찾기
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
             14개 질문으로 당신의 인생냥이를 찾아보세요! 20종의 인기 품종 데이터를 바탕으로 5대 카테고리를 분석하여 정확한 매칭 결과를 제공합니다.
           </p>
         </header>
 
-        <div className="bg-white rounded-3xl shadow-xl p-8 mb-8">
+        <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 mb-8">
           <div className="text-center mb-8">
             <div className="text-6xl mb-4">🏠</div>
-            <h2 className="text-3xl font-bold mb-3 text-gray-800">
+            <h2 className="text-3xl font-bold mb-3 text-gray-800 dark:text-gray-100">
               나랑 잘 맞는 냥이 찾기
             </h2>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
               간단한 냥이매치로 나의 인생냥이를 찾아보세요!
             </p>
-            <Link
-              href="/nyongmatch"
+            <button
+              onClick={handleStartTest}
               className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
             >
               냥이매치 시작
               <ArrowRight size={24} />
-            </Link>
+            </button>
           </div>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-xl p-8">
+        {/* Daily Quiz Streak Section */}
+        <div className="mb-8">
+          <DailyQuizStreak />
+        </div>
+
+        {/* Breed of the Day Section */}
+        <div className="mb-8">
+          <BreedOfTheDay />
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8">
           <div className="flex items-center justify-center gap-2 mb-6">
             <Star className="text-yellow-400 fill-current" size={24} />
-            <h2 className="text-2xl font-bold text-gray-800">
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
               한국 인기 품종 랭킹
             </h2>
             <Star className="text-yellow-400 fill-current" size={24} />
@@ -107,7 +132,7 @@ export default function HomePage() {
                 href={`/breed/${breed.id}`}
                 className="group"
               >
-                <div className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl p-6 hover:shadow-lg hover:scale-105 transition-all duration-300 border-2 border-pink-100">
+                <div className="bg-gradient-to-br from-pink-50 to-purple-50 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-6 hover:shadow-lg hover:scale-105 transition-all duration-300 border-2 border-pink-100 dark:border-gray-500">
                   <div className="flex items-start justify-between mb-3">
                     {breed.image && (
                       <CatImage
@@ -144,13 +169,13 @@ export default function HomePage() {
                       )}
                     </div>
                   </div>
-                  <h3 className="font-bold text-gray-800 mb-1">{breed.name}</h3>
-                  <p className="text-sm text-gray-600">{breed.nameEn}</p>
+                  <h3 className="font-bold text-gray-800 dark:text-gray-100 mb-1">{breed.name}</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">{breed.nameEn}</p>
                   <div className="mt-3 flex gap-1 flex-wrap">
                     {breed.traits.slice(0, 3).map((trait) => (
                       <span
                         key={trait}
-                        className="bg-white px-2 py-1 rounded-full text-xs text-gray-600"
+                        className="bg-white dark:bg-gray-800 px-2 py-1 rounded-full text-xs text-gray-600 dark:text-gray-300"
                       >
                         {trait}
                       </span>
@@ -164,10 +189,17 @@ export default function HomePage() {
 
         <AdSense adSlot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ID || "5187796077"} />
 
-        <footer className="text-center mt-12 text-gray-500 text-sm">
+        <footer className="text-center mt-12 text-gray-500 dark:text-gray-400 text-sm">
           <p>&copy; 2026 냥이 매칭. All rights reserved.</p>
         </footer>
       </div>
+
+      {/* Test Preview Modal */}
+      <TestPreviewModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onStart={handleModalStart}
+      />
     </main>
   );
 }

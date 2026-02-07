@@ -9,6 +9,8 @@ import { useParams } from 'next/navigation';
 import CatImage from '@/components/CatImage';
 import dynamic from 'next/dynamic';
 import { useBreedExplore } from '@/hooks/useAnalytics';
+import { trackBreedViewed } from '@/utils/achievements';
+import { getMaintenanceStars, getCostText, getEnvironmentText } from '@/utils/breedHelpers';
 
 // ✅ 다이나믹 임포트 (번들 최적화)
 const AdSense = dynamic(() => import('@/components/AdSense'), {
@@ -29,19 +31,21 @@ export default function BreedDetailPage() {
   useEffect(() => {
     if (breed) {
       trackExplore(breed.id);
+      // Track achievement progress
+      trackBreedViewed();
     }
   }, [breedId, trackExplore]);
 
   if (!breed) {
     return (
-      <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50">
+      <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-gray-900">
         <div className="container mx-auto px-4 py-8 max-w-4xl">
-          <div className="bg-white rounded-3xl shadow-xl p-8 text-center">
+          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 text-center">
             <div className="text-6xl mb-4">😿</div>
-            <h1 className="text-2xl font-bold text-gray-800 mb-4">
+            <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">
               품종을 찾을 수 없습니다
             </h1>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
               요청하신 품종 정보가 없습니다.
             </p>
             <Link
@@ -56,51 +60,19 @@ export default function BreedDetailPage() {
     );
   }
 
-  const getMaintenanceStars = (level: number) => {
-    const stars = [];
-    for (let i = 0; i < 5; i++) {
-      stars.push(i < level ? '⭐' : '☆');
-    }
-    return stars.join('');
-  };
-
-  // 비용 정보 한글 변환
-  const getCostText = (cost: string) => {
-    const costMap: Record<string, string> = {
-      low: '낮음 (20만원 이하)',
-      medium: '중간 (20-50만원)',
-      high: '높음 (50만원 이상)',
-    };
-    return costMap[cost] || cost;
-  };
-
-  // 적합 환경 한글 변환
-  const getEnvironmentText = (env: string) => {
-    const envMap: Record<string, string> = {
-      apt: '아파트',
-      family: '가족과 함께',
-      quiet: '조용한 환경',
-      children: '아이가 있는 집',
-      pets: '다른 동물과 공존',
-      outdoor: '외부 활동',
-      indoor: '실내 사육',
-    };
-    return envMap[env] || env;
-  };
-
   return (
-    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50">
+    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-3 md:px-4 py-6 md:py-8 max-w-4xl">
         <div className="mb-4 md:mb-6">
-          <Link href="/" className="text-pink-500 hover:underline flex items-center gap-2 text-sm md:text-base">
+          <Link href="/" className="text-pink-500 dark:text-pink-400 hover:underline flex items-center gap-2 text-sm md:text-base">
             <ArrowLeft size={18} />
             처음으로
           </Link>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-xl overflow-hidden mb-4 md:mb-6">
+        <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden mb-4 md:mb-6">
           {breed.image && (
-            <div className="relative h-64 md:h-80 bg-gradient-to-br from-pink-100 to-purple-100">
+            <div className="relative h-64 md:h-80 bg-gradient-to-br from-pink-100 to-purple-100 dark:from-pink-900/30 dark:to-purple-900/30">
               <CatImage
                 src={breed.image}
                 alt={breed.name}

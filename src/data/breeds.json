@@ -66,7 +66,31 @@
         "식도 이형성"
       ],
       "lifespan": "15-20년",
-      "weight": "3.5-5kg"
+      "weight": "3.5-5kg",
+      "famous_matches": [
+        {
+          "name": "빌 게이츠",
+          "type": "celebrity",
+          "description": "분석적이고 조용한 성격"
+        },
+        {
+          "name": "셜록 홈즈",
+          "type": "character",
+          "description": "논리적이고 관찰력이 뛰어남"
+        },
+        {
+          "name": "아이작 뉴턴",
+          "type": "historical",
+          "description": "집중력이 깊고 천재적인 지능"
+        }
+      ],
+      "fun_facts": [
+        "러시안 블루는 원래 '아켄젤 고양이'라고 불렸습니다!",
+        "이들은 물을 무서워하지 않아서 물 장난을 좋아할 수도 있어요.",
+        "러시안 블루는 한 사람에게 특히 강한 애정을 쏟는 '일인일고양이' 경향이 있어요.",
+        "털이 두 겹으로 되어 있어서 손을 대면 '벨벳' 같은 느낌을 줍니다."
+      ],
+      "result_percentage": 18
     },
     {
       "id": "scottish-fold",
@@ -133,7 +157,31 @@
         "관절 질환"
       ],
       "lifespan": "12-15년",
-      "weight": "3-6kg"
+      "weight": "3-6kg",
+      "famous_matches": [
+        {
+          "name": "해리 포터",
+          "type": "character",
+          "description": "충성심 강하고 친구를 아낌"
+        },
+        {
+          "name": "구데타마",
+          "type": "character",
+          "description": "차분하고 둥근 외모"
+        },
+        {
+          "name": "테일러 스위프트",
+          "type": "celebrity",
+          "description": "다정하고 팬을 사랑함"
+        }
+      ],
+      "fun_facts": [
+        "스코티시 폴드의 접힌 귀는 자연 돌연변이로 생겨난 거예요!",
+        "앉아있을 때의 자세가 '돌고래'처럼 보여서 '고양이 중의 돌고래'라고도 불립니다.",
+        "귀가 접히지 않은 '스트레이트' 타입도 있어요.",
+        "모든 스코티시 폴드의 조상은 1961년 스코틀랜드의 한 농장에서 발견된 'Susie'라고 합니다."
+      ],
+      "result_percentage": 15
     },
     {
       "id": "british-shorthair",
@@ -201,7 +249,26 @@
         "비뇨기계 질환"
       ],
       "lifespan": "14-20년",
-      "weight": "4-8kg"
+      "weight": "4-8kg",
+      "famous_matches": [
+        {
+          "name": "퀸 엘리자베스 2세",
+          "type": "historical",
+          "description": "품위 있고 침착함"
+        },
+        {
+          "name": "원더우먼",
+          "type": "character",
+          "description": "튼튼하고 독립적인 영웅"
+        }
+      ],
+      "fun_facts": [
+        "브리티시 숏헤어는 '이상한 나라의 앨리스'에 나오는 체셔 고양이의 모델이 되었어요!",
+        "가장 오래된 영국 품종 중 하나로 로마 시대부터 존재했다고 해요.",
+        "체셔 고양이처럼 미소 짓는 얼굴이 특징이에요.",
+        "털이 둥글둥글해서 '살아있는 테디베어'라고도 불립니다."
+      ],
+      "result_percentage": 12
     },
     {
       "id": "ragdoll",
@@ -268,7 +335,26 @@
         "신장 질환"
       ],
       "lifespan": "15-20년",
-      "weight": "4-9kg"
+      "weight": "4-9kg",
+      "famous_matches": [
+        {
+          "name": "프린세스 다이애나",
+          "type": "historical",
+          "description": "다정하고 사람을 사랑함"
+        },
+        {
+          "name": "엘사",
+          "type": "character",
+          "description": "온화하고 우아한 성격"
+        }
+      ],
+      "fun_facts": [
+        "랙돌은 안아주면 몸이 relax해서 '인형처럼 축 늘어진다'고 해서 이름이 붙었어요!",
+        "이 품종은 모든 랙돌의 조상이 'Josephine'이라는 백색长毛 고양이예요.",
+        "랙돌은 강아지처럼 주인을 따라다니고 잡힐 때도 저항하지 않아서 '고양이 중의 강아지'라고 불려요.",
+        "가장 큰 품종 중 하나로 수컷은 9kg까지 자랄 수 있어요!"
+      ],
+      "result_percentage": 10
     },
     {
       "id": "american-shorthair",
@@ -334,7 +420,20 @@
         "심장 질환"
       ],
       "lifespan": "15-20년",
-      "weight": "3.5-5.5kg"
+      "weight": "3.5-5.5kg",
+      "famous_matches": [
+        {
+          "name": "캡틴 아메리카",
+          "type": "character",
+          "description": "건강하고 친근한 리더"
+        },
+        {
+          "name": "톰 행크스",
+          "type": "celebrity",
+          "description": "친근하고 신뢰감 있는 성격"
+        }
+      ],
+      "result_percentage": 8
     },
     {
       "id": "maine-coon",
@@ -401,7 +500,31 @@
         "척수 근육 위축"
       ],
       "lifespan": "12-15년",
-      "weight": "4-8kg (수컷: 6-10kg)"
+      "weight": "4-8kg (수컷: 6-10kg)",
+      "famous_matches": [
+        {
+          "name": "토르",
+          "type": "character",
+          "description": "거대하고 충성심 강함"
+        },
+        {
+          "name": "더 월드",
+          "type": "celebrity",
+          "description": "빅사이즈와 다정한 성격"
+        },
+        {
+          "name": "존 시나",
+          "type": "celebrity",
+          "description": "튼튼하고 헌신적임"
+        }
+      ],
+      "fun_facts": [
+        "메인 쿤은 물을 좋아해서 물장난을 즐기는 몇 안 되는 품종이에요!",
+        "고양이 중 가장 큰 품종으로, 수컷은 10kg까지 자랄 수 있어요.",
+        "털이 방수라서 비 오는 날에도 끄떡없다고 해요.",
+        "발가락 사이에 털이 있어서 눈위를 걸어도 가라앉지 않는대요!"
+      ],
+      "result_percentage": 7
     },
     {
       "id": "siamese",
@@ -468,7 +591,25 @@
         "심장 질환"
       ],
       "lifespan": "15-20년",
-      "weight": "2.5-5.5kg"
+      "weight": "2.5-5.5kg",
+      "famous_matches": [
+        {
+          "name": "비욘세",
+          "type": "celebrity",
+          "description": "목소리가 크고 화려함"
+        },
+        {
+          "name": "캣우먼",
+          "type": "character",
+          "description": "우아하고 사교적임"
+        },
+        {
+          "name": "아리아 그란데",
+          "type": "celebrity",
+          "description": "목소리가 좋고 활발함"
+        }
+      ],
+      "result_percentage": 6
     },
     {
       "id": "persian",
@@ -536,7 +677,25 @@
         "신장 질환"
       ],
       "lifespan": "10-17년",
-      "weight": "3-5.5kg"
+      "weight": "3-5.5kg",
+      "famous_matches": [
+        {
+          "name": "클레오파트라",
+          "type": "historical",
+          "description": "우아하고 화려함"
+        },
+        {
+          "name": "마리 앙투아네트",
+          "type": "historical",
+          "description": "품위 있고 고급스러움"
+        },
+        {
+          "name": "Jennie (블랙핑크)",
+          "type": "celebrity",
+          "description": "화려하고 우아함"
+        }
+      ],
+      "result_percentage": 5
     },
     {
       "id": "sphynx",
@@ -603,7 +762,20 @@
         "심장 질환"
       ],
       "lifespan": "8-14년",
-      "weight": "3.5-7kg"
+      "weight": "3.5-7kg",
+      "famous_matches": [
+        {
+          "name": "오비완 케노비",
+          "type": "character",
+          "description": "독특한 외모와 지적임"
+        },
+        {
+          "name": "레이디 가가",
+          "type": "celebrity",
+          "description": "독특하고 파격적인 스타일"
+        }
+      ],
+      "result_percentage": 4
     },
     {
       "id": "norwegian-forest",
@@ -669,7 +841,20 @@
         "고관절 이형성"
       ],
       "lifespan": "14-16년",
-      "weight": "4-9kg (수컷: 6-10kg)"
+      "weight": "4-9kg (수컷: 6-10kg)",
+      "famous_matches": [
+        {
+          "name": "바이킹",
+          "type": "historical",
+          "description": "튼튼하고 모험심이 강함"
+        },
+        {
+          "name": "겨울 왕국의 크리스토프",
+          "type": "character",
+          "description": "큰 덩치와 따뜻한 성격"
+        }
+      ],
+      "result_percentage": 3
     },
     {
       "id": "bengal",
@@ -736,7 +921,20 @@
         "심장 질환"
       ],
       "lifespan": "12-16년",
-      "weight": "3.5-6.5kg"
+      "weight": "3.5-6.5kg",
+      "famous_matches": [
+        {
+          "name": "블랙팬서",
+          "type": "character",
+          "description": "야성적이고 활동적임"
+        },
+        {
+          "name": "카카오",
+          "type": "celebrity",
+          "description": "에너지가 넘치고 활발함"
+        }
+      ],
+      "result_percentage": 3
     },
     {
       "id": "abyssinian",
@@ -803,7 +1001,20 @@
         "진행성 망막 위축"
       ],
       "lifespan": "9-15년",
-      "weight": "2.5-4.5kg"
+      "weight": "2.5-4.5kg",
+      "famous_matches": [
+        {
+          "name": "애슐리 그레이",
+          "type": "celebrity",
+          "description": "호기심이 많고 활동적"
+        },
+        {
+          "name": "클레오파트라",
+          "type": "historical",
+          "description": "고대 이집트의 우아함"
+        }
+      ],
+      "result_percentage": 2
     },
     {
       "id": "siberian",
@@ -869,7 +1080,20 @@
         "심장 질환"
       ],
       "lifespan": "12-18년",
-      "weight": "4-8kg (수컷: 6-9kg)"
+      "weight": "4-8kg (수컷: 6-9kg)",
+      "famous_matches": [
+        {
+          "name": "블라디미르 푸틴",
+          "type": "celebrity",
+          "description": "튼튼하고 강한 이미지"
+        },
+        {
+          "name": "헐크",
+          "type": "character",
+          "description": "튼튼하고 충성심 강함"
+        }
+      ],
+      "result_percentage": 2
     },
     {
       "id": "turkish-angora",
@@ -935,7 +1159,20 @@
         "심장 질환"
       ],
       "lifespan": "12-18년",
-      "weight": "2.5-5kg"
+      "weight": "2.5-5kg",
+      "famous_matches": [
+        {
+          "name": "오드리 헵번",
+          "type": "historical",
+          "description": "우아하고 고급스러움"
+        },
+        {
+          "name": "신사옹 김씨의 아내",
+          "type": "character",
+          "description": "우아하고 사교적"
+        }
+      ],
+      "result_percentage": 1
     },
     {
       "id": "scottish-straight",
@@ -1001,7 +1238,15 @@
         "비뇨기계 질환"
       ],
       "lifespan": "12-15년",
-      "weight": "3-6kg"
+      "weight": "3-6kg",
+      "famous_matches": [
+        {
+          "name": "아이언맨",
+          "type": "character",
+          "description": "건강하고 친근한 성격"
+        }
+      ],
+      "result_percentage": 1
     },
     {
       "id": "british-longhair",
@@ -1068,7 +1313,15 @@
         "비뇨기계 질환"
       ],
       "lifespan": "14-20년",
-      "weight": "4-8kg"
+      "weight": "4-8kg",
+      "famous_matches": [
+        {
+          "name": "빅토리아 여왕",
+          "type": "historical",
+          "description": "우아하고 차분함"
+        }
+      ],
+      "result_percentage": 1
     },
     {
       "id": "exotic-shorthair",
@@ -1135,7 +1388,15 @@
         "호흡기 질환"
       ],
       "lifespan": "10-15년",
-      "weight": "3-6kg"
+      "weight": "3-6kg",
+      "famous_matches": [
+        {
+          "name": "가필드",
+          "type": "character",
+          "description": "차분하고 둥근 얼굴"
+        }
+      ],
+      "result_percentage": 1
     },
     {
       "id": "somali",
@@ -1202,7 +1463,15 @@
         "진행성 망막 위축"
       ],
       "lifespan": "9-15년",
-      "weight": "2.5-5kg"
+      "weight": "2.5-5kg",
+      "famous_matches": [
+        {
+          "name": "라이온 킹",
+          "type": "character",
+          "description": "따뜻한 색상과 푹신한 털"
+        }
+      ],
+      "result_percentage": 1
     },
     {
       "id": "ocicat",
@@ -1268,7 +1537,15 @@
         "심장 질환"
       ],
       "lifespan": "10-15년",
-      "weight": "2.5-6.5kg"
+      "weight": "2.5-6.5kg",
+      "famous_matches": [
+        {
+          "name": "치타",
+          "type": "character",
+          "description": "점박이 무늬와 활동성"
+        }
+      ],
+      "result_percentage": 1
     }
   ]
 }
