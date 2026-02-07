@@ -5,6 +5,7 @@ import AdSense from '@/components/AdSense';
 import CatImage from '@/components/CatImage';
 import StructuredData from '@/components/StructuredData';
 import type { Metadata } from 'next';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 // ✅ SSG 설정
 export const dynamic = 'force-static';
