@@ -3,7 +3,7 @@
  * SEO 최적화를 위해 Google에 품종 정보를 제공
  */
 
-export function generateBreedStructuredData(breed) {
+export function generateBreedStructuredData(breed: any) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Cat',
@@ -64,7 +64,7 @@ export function generateWebSiteStructuredData() {
   };
 }
 
-export function generateBreadcrumbStructuredData(items) {
+export function generateBreadcrumbStructuredData(items: any[]) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',

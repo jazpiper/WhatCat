@@ -1,3 +1,5 @@
+"use client"
+
 import { GoogleAnalytics } from '@next/third-parties/google'
 
 /**
@@ -26,7 +28,7 @@ export function GoogleAnalyticsScript() {
 // Event Types
 export interface GAEvent {
   name: string
-  params?: Record<string, string | number | boolean>
+  params?: any
 }
 
 // Test Events

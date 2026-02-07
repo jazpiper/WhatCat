@@ -4,6 +4,8 @@ import Script from "next/script";
 import Navigation from "../components/Navigation";
 import ServiceWorkerRegister from "../components/ServiceWorkerRegister";
 import { GoogleAnalyticsScript } from "../lib/google-analytics";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { NyongmatchProvider } from "../contexts/NyongmatchContext";
 
@@ -94,6 +96,8 @@ export default function RootLayout({
           strategy="lazyOnload"
         />
         <GoogleAnalyticsScript />
+        <Analytics />
+        <SpeedInsights />
         <Navigation />
         <ServiceWorkerRegister />
         <NyongmatchProvider>{children}</NyongmatchProvider>
