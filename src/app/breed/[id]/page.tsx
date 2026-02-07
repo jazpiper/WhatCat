@@ -387,7 +387,7 @@ export default function BreedDetailPage() {
 
         <div className="bg-white rounded-3xl shadow-xl p-4 md:p-6">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Star className="text-yellow-400 fill-current" size={20} md:size={24} />
+            <Star className="text-yellow-400 fill-current" size={24} />
             <h2 className="text-xl md:text-2xl font-bold text-gray-800">
               한국 인기도
             </h2>
