@@ -23,6 +23,12 @@ import {
 } from 'lucide-react';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import AdSense from '@/components/AdSense';
+import {
+  useTestCompleted,
+  useResultShared,
+  useFriendComparison,
+  useResultRetry,
+} from '@/hooks/useAnalytics';
 
 import ResultHeader from '@/components/Result/ResultHeader';
 import BreedProfile from '@/components/Result/BreedProfile';
@@ -42,6 +48,9 @@ const COPY_FEEDBACK_DURATION_MS = 2000;
 export default function ResultPage() {
   const { answers, resetTest } = useTest();
   const router = useRouter();
+  const { trackComparison } = useFriendComparison();
+  const { trackShare } = useResultShared();
+  const { trackRetry } = useResultRetry();
   const [copied, setCopied] = useState(false);
   const [friendLink, setFriendLink] = useState('');
   const [urlResults, setUrlResults] = useState<ShareResult[] | null>(null);
@@ -110,6 +119,7 @@ export default function ResultPage() {
 
   // 매칭 점수 애니메이션 상태
   const [animatedScore, setAnimatedScore] = useState(0);
+  const [startTime] = useState<number>(Date.now());
 
   // 매칭 점수 애니메이션 (0%에서 실제 점수로)
   useEffect(() => {
@@ -133,6 +143,14 @@ export default function ResultPage() {
       return () => clearInterval(timer);
     }
   }, [firstResult, animatedScore]);
+
+  // Track test completion
+  useEffect(() => {
+    if (firstResult && !isLoadingUrl && !hasUrlParams) {
+      const totalTime = Math.floor((Date.now() - startTime) / 1000); // seconds
+      useTestCompleted(totalTime, firstResult.breed.id, firstResult.score);
+    }
+  }, [firstResult, isLoadingUrl, hasUrlParams, startTime]);
 
   // 결과가 로드되면 confetti 시작
   useEffect(() => {
@@ -179,6 +197,9 @@ export default function ResultPage() {
     } else {
       alert('카카오톡 앱이 필요하거나 아직 초기화되지 않았습니다.');
     }
+
+    // Track share event
+    trackShare('kakaotalk', firstResult.breed.id);
   };
 
   const handleShareTwitter = () => {
@@ -191,6 +212,9 @@ export default function ResultPage() {
     );
 
     window.open(shareUrl, '_blank');
+
+    // Track share event
+    trackShare('thread', firstResult.breed.id); // Twitter is now X/Thread
   };
 
   const handleShareThreads = () => {
@@ -203,6 +227,9 @@ export default function ResultPage() {
     );
 
     window.open(shareUrl, '_blank');
+
+    // Track share event
+    trackShare('thread', firstResult.breed.id);
   };
 
   const handleShareInstagram = () => {
@@ -218,6 +245,9 @@ export default function ResultPage() {
 
     // 바로 이미지 저장으로 연결
     handleDownloadImage();
+
+    // Track share event
+    trackShare('instagram', firstResult.breed.id);
   };
 
   const handleCopyLink = async () => {
@@ -229,6 +259,9 @@ export default function ResultPage() {
       await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), COPY_FEEDBACK_DURATION_MS);
+      
+      // Track share event
+      trackShare('copy', firstResult.breed.id);
     } catch (err) {
       console.error('Failed to copy link:', err);
     }
@@ -244,6 +277,9 @@ export default function ResultPage() {
         const score2 = params.get('score1');
 
         if (breed2Id && score2) {
+          // Track comparison event
+          trackComparison(firstResult.breed.id, breed2Id);
+          
           router.push(`/compare?breed1=${firstResult.breed.id}&score1=${firstResult.score}&breed2=${breed2Id}&score2=${score2}`);
         } else {
           alert('올바른 결과 링크를 입력해주세요.');
@@ -321,7 +357,10 @@ export default function ResultPage() {
             처음으로
           </Link>
           <button
-            onClick={resetTest}
+            onClick={() => {
+              trackRetry(false, true); // breed_change: false, new_answers: true
+              resetTest();
+            }}
             className="text-purple-500 hover:underline flex items-center gap-2 font-medium"
           >
             <RotateCcw size={20} />
