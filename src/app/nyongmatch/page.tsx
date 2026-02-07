@@ -4,6 +4,7 @@ import { useMemo, useEffect } from 'react';
 import { useTest } from '@/contexts/NyongmatchContext';
 import { questions } from '@/data/questions';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import AdSense from '@/components/AdSense';
 import { getRandomCatTip } from '@/data/catTips';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -12,6 +13,7 @@ import { useTestStart, useQuestionViewed, useQuestionAnswered, useTestAbandoned 
 export default function TestPage() {
   const { currentQuestion, answers, setAnswer, nextQuestion, previousQuestion } = useTest();
   const { trackAnswer } = useQuestionAnswered();
+  const router = useRouter();
 
   // Track when user views a question
   useQuestionViewed(currentQuestion);
@@ -148,16 +150,15 @@ export default function TestPage() {
               )}
               <div className="flex-1" />
               {hasAnswer && (
-                <Link
-                  href={isLastQuestion ? '/result' : '#'}
-                  onClick={isLastQuestion ? undefined : handleNext}
+                <button
+                  onClick={isLastQuestion ? () => router.push('/result') : handleNext}
                   className={`px-6 py-3 rounded-full font-semibold transition-colors ${isLastQuestion
                     ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white hover:shadow-lg'
                     : 'bg-pink-500 text-white hover:bg-pink-600'
                     }`}
                 >
                   {isLastQuestion ? '결과 보기' : '다음'}
-                </Link>
+                </button>
               )}
             </div>
           </div>
