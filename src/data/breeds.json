@@ -1,0 +1,1274 @@
+{
+  "breeds": [
+    {
+      "id": "russian-blue",
+      "name": "러시안 블루",
+      "nameEn": "Russian Blue",
+      "emoji": "🐱",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/c1-z7CPwMgrp0uJDSZBo8YiDubjIgX46Z.jpeg",
+      "rank": 1,
+      "personality": {
+        "activity": 3,
+        "affection": 4,
+        "social": 3,
+        "quiet": 5,
+        "loyalty": 5
+      },
+      "maintenance": {
+        "grooming": 2,
+        "training": 4,
+        "health": 4
+      },
+      "cost": {
+        "initial": "medium",
+        "monthly": "low"
+      },
+      "environment": [
+        "apt",
+        "family",
+        "quiet"
+      ],
+      "traits": [
+        "조용함",
+        "충성심",
+        "깔끔함",
+        "수줍음"
+      ],
+      "size": "중형",
+      "coat": "단모",
+      "colors": [
+        "blue",
+        "gray"
+      ],
+      "description": "조용하고 충성심이 강한 러시안 블루는 깔끔한 성격으로 인기가 많습니다.",
+      "korea_popularity": 95,
+      "origin": "러시아 원산, 19세기에 발견되어 영국으로 전파된 역사가 있습니다. 엘리자베스 왕비가 사랑하던 고양이로 유명합니다.",
+      "features": [
+        {
+          "icon": "💙",
+          "text": "은빛 푸른 털"
+        },
+        {
+          "icon": "👁️",
+          "text": "에메랄드 초록 눈"
+        },
+        {
+          "icon": "🐾",
+          "text": "벨벳 같은 부드러움"
+        },
+        {
+          "icon": "🔇",
+          "text": "알란의 고양이보다 조용한 소리"
+        }
+      ],
+      "health_issues": [
+        "비뇨기계 질환",
+        "식도 이형성"
+      ],
+      "lifespan": "15-20년",
+      "weight": "3.5-5kg"
+    },
+    {
+      "id": "scottish-fold",
+      "name": "스코티시 폴드",
+      "nameEn": "Scottish Fold",
+      "emoji": "😺",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/422f40c7-06fd-4cc0-97e8-b98db39afd0a-3vfp1j1uKzNoKPcXblL9mAx7Ic2qa0.jpeg",
+      "rank": 2,
+      "personality": {
+        "activity": 3,
+        "affection": 4,
+        "social": 4,
+        "quiet": 4,
+        "loyalty": 4
+      },
+      "maintenance": {
+        "grooming": 3,
+        "training": 4,
+        "health": 3
+      },
+      "cost": {
+        "initial": "high",
+        "monthly": "low"
+      },
+      "environment": [
+        "apt",
+        "family"
+      ],
+      "traits": [
+        "온순함",
+        "차분함",
+        "친근함",
+        "예민함"
+      ],
+      "size": "중형",
+      "coat": "중장모",
+      "colors": [
+        "various"
+      ],
+      "description": "접힌 귀가 매력적인 스코티시 폴드는 온순하고 사람을 좋아합니다.",
+      "korea_popularity": 92,
+      "origin": "스코틀랜드 원산, 1961년 폴드 귀를 가진 고양이 'Susie'로부터 시작된 품종입니다.",
+      "features": [
+        {
+          "icon": "👂",
+          "text": "접힌 귀가 특징"
+        },
+        {
+          "icon": "🧸",
+          "text": "곰 같은 외모"
+        },
+        {
+          "icon": "😺",
+          "text": "둥글고 귀여운 얼굴"
+        },
+        {
+          "icon": "💤",
+          "text": "많은 시간을 누워서 보냄"
+        }
+      ],
+      "health_issues": [
+        "골격계 질환",
+        "심장 질환",
+        "관절 질환"
+      ],
+      "lifespan": "12-15년",
+      "weight": "3-6kg"
+    },
+    {
+      "id": "british-shorthair",
+      "name": "브리티시 숏헤어",
+      "nameEn": "British Shorthair",
+      "emoji": "🦁",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/a48bdd38-c771-4d88-ba2a-decd381a127f.jpeg",
+      "rank": 3,
+      "personality": {
+        "activity": 2,
+        "affection": 3,
+        "social": 3,
+        "quiet": 5,
+        "loyalty": 4
+      },
+      "maintenance": {
+        "grooming": 2,
+        "training": 4,
+        "health": 4
+      },
+      "cost": {
+        "initial": "medium",
+        "monthly": "low"
+      },
+      "environment": [
+        "apt",
+        "family",
+        "quiet"
+      ],
+      "traits": [
+        "차분함",
+        "독립적",
+        "온순함",
+        "뚱뚱이"
+      ],
+      "size": "중형",
+      "coat": "단모",
+      "colors": [
+        "blue",
+        "various"
+      ],
+      "description": "독립적이고 차분한 브리티시 숏헤어는 묵묵히 곁을 지킵니다.",
+      "korea_popularity": 90,
+      "origin": "영국 원산, 로마 시대부터 있었던 고양이로 '영국의 국민 고양이'로 불립니다.",
+      "features": [
+        {
+          "icon": "🏰",
+          "text": "체셔 고양이의 모델"
+        },
+        {
+          "icon": "🧸",
+          "text": "푸른 벨벳 같은 털"
+        },
+        {
+          "icon": "😐",
+          "text": "침착하고 독립적"
+        },
+        {
+          "icon": "🐾",
+          "text": "튼튼하고 건강함"
+        }
+      ],
+      "health_issues": [
+        "심장 질환",
+        "비뇨기계 질환"
+      ],
+      "lifespan": "14-20년",
+      "weight": "4-8kg"
+    },
+    {
+      "id": "ragdoll",
+      "name": "랙돌",
+      "nameEn": "Ragdoll",
+      "emoji": "🐱",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/31dd6fd5-1bea-428e-9c3c-feab3f16ecb4.jpeg",
+      "rank": 4,
+      "personality": {
+        "activity": 2,
+        "affection": 5,
+        "social": 3,
+        "quiet": 5,
+        "loyalty": 4
+      },
+      "maintenance": {
+        "grooming": 3,
+        "training": 4,
+        "health": 3
+      },
+      "cost": {
+        "initial": "high",
+        "monthly": "low"
+      },
+      "environment": [
+        "apt",
+        "family",
+        "quiet"
+      ],
+      "traits": [
+        "온화함",
+        "온순함",
+        "애교",
+        "안아줌"
+      ],
+      "size": "대형",
+      "coat": "장모",
+      "colors": [
+        "pointed"
+      ],
+      "description": "안아주면 장난꾸러기처럼 몸이 말랑말랑해지는 랙돌은 애교가 많습니다.",
+      "korea_popularity": 88,
+      "origin": "미국 캘리포니아 원산, 1960년대에 'Ann Baker'가 개발한 품종입니다.",
+      "features": [
+        {
+          "icon": "🧸",
+          "text": "인형처럼 부드러운 감촉"
+        },
+        {
+          "icon": "💙",
+          "text": "파란 눈"
+        },
+        {
+          "icon": "🤲",
+          "text": "안아주면 약해짐"
+        },
+        {
+          "icon": "😺",
+          "text": "긴 털과 풍성한 꼬리"
+        }
+      ],
+      "health_issues": [
+        "심장 질환",
+        "신장 질환"
+      ],
+      "lifespan": "15-20년",
+      "weight": "4-9kg"
+    },
+    {
+      "id": "american-shorthair",
+      "name": "아메리칸 숏헤어",
+      "nameEn": "American Shorthair",
+      "emoji": "🐱",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/a55ea3f7-3187-4215-b449-8ebd2cc6e381.jpeg",
+      "rank": 5,
+      "personality": {
+        "activity": 3,
+        "affection": 4,
+        "social": 4,
+        "quiet": 3,
+        "loyalty": 4
+      },
+      "maintenance": {
+        "grooming": 2,
+        "training": 4,
+        "health": 5
+      },
+      "cost": {
+        "initial": "low",
+        "monthly": "low"
+      },
+      "environment": [
+        "apt",
+        "family"
+      ],
+      "traits": [
+        "활발함",
+        "친근함",
+        "순함",
+        "건강함"
+      ],
+      "size": "중형",
+      "coat": "단모",
+      "colors": [
+        "various"
+      ],
+      "description": "건강하고 순한 아메리칸 숏헤어는 초보자에게도 추천합니다.",
+      "korea_popularity": 85,
+      "origin": "미국 원산, 17세기에 유럽 이주민들이 가져온 고양이들이 자연적으로 발전했습니다.",
+      "features": [
+        {
+          "icon": "🇺🇸",
+          "text": "미국의 국민 고양이"
+        },
+        {
+          "icon": "🐾",
+          "text": "튼튼하고 건강함"
+        },
+        {
+          "icon": "🎨",
+          "text": "다양한 털 색상"
+        },
+        {
+          "icon": "😊",
+          "text": "친근하고 활동적"
+        }
+      ],
+      "health_issues": [
+        "비만",
+        "심장 질환"
+      ],
+      "lifespan": "15-20년",
+      "weight": "3.5-5.5kg"
+    },
+    {
+      "id": "maine-coon",
+      "name": "메인 쿤",
+      "nameEn": "Maine Coon",
+      "emoji": "🦁",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/2ee32593-6a92-440f-b413-92b0432fcff0.jpeg",
+      "rank": 6,
+      "personality": {
+        "activity": 4,
+        "affection": 4,
+        "social": 4,
+        "quiet": 3,
+        "loyalty": 5
+      },
+      "maintenance": {
+        "grooming": 4,
+        "training": 4,
+        "health": 4
+      },
+      "cost": {
+        "initial": "high",
+        "monthly": "medium"
+      },
+      "environment": [
+        "apt",
+        "family"
+      ],
+      "traits": [
+        "온순함",
+        "장난기",
+        "지능",
+        "큰덩치"
+      ],
+      "size": "초대형",
+      "coat": "장모",
+      "colors": [
+        "various"
+      ],
+      "description": "거대한 덩치와 온순한 성격의 메인 쿤은 부드러운 거인입니다.",
+      "korea_popularity": 82,
+      "origin": "미국 메인 주 원산, 거대한 체구로 '고양이의 왕'으로 불립니다.",
+      "features": [
+        {
+          "icon": "👑",
+          "text": "고양이 중 최대형"
+        },
+        {
+          "icon": "🦁",
+          "text": "사자 같은 갈기"
+        },
+        {
+          "icon": "🧤",
+          "text": "털 장갑 같은 발"
+        },
+        {
+          "icon": "🎵",
+          "text": "특유의 노래 소리"
+        }
+      ],
+      "health_issues": [
+        "심장 질환",
+        "고관절 이형성",
+        "척수 근육 위축"
+      ],
+      "lifespan": "12-15년",
+      "weight": "4-8kg (수컷: 6-10kg)"
+    },
+    {
+      "id": "siamese",
+      "name": "샴",
+      "nameEn": "Siamese",
+      "emoji": "😺",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/dkfmkewn-dRDxlb4Q8ESpMCtdf9huhYFeuj0BGb.jpeg",
+      "rank": 7,
+      "personality": {
+        "activity": 5,
+        "affection": 4,
+        "social": 5,
+        "quiet": 1,
+        "loyalty": 4
+      },
+      "maintenance": {
+        "grooming": 1,
+        "training": 4,
+        "health": 4
+      },
+      "cost": {
+        "initial": "medium",
+        "monthly": "low"
+      },
+      "environment": [
+        "apt",
+        "family"
+      ],
+      "traits": [
+        "활발함",
+        "수다",
+        "지능",
+        "사교적"
+      ],
+      "size": "중형",
+      "coat": "단모",
+      "colors": [
+        "pointed"
+      ],
+      "description": "수다쟁이 샴은 활발하고 지능이 높아 주인과 대화하기 좋아합니다.",
+      "korea_popularity": 80,
+      "origin": "태국 원산, 고대부터 사원에서 신성하게 여겨진 고양이입니다.",
+      "features": [
+        {
+          "icon": "👁️",
+          "text": "푸른 알몬드 눈"
+        },
+        {
+          "icon": "🎭",
+          "text": "포인트 컬러"
+        },
+        {
+          "icon": "💬",
+          "text": "많은 소리를 냄"
+        },
+        {
+          "icon": "🤴",
+          "text": "고귀하고 우아함"
+        }
+      ],
+      "health_issues": [
+        "치과 질환",
+        "호흡기 질환",
+        "심장 질환"
+      ],
+      "lifespan": "15-20년",
+      "weight": "2.5-5.5kg"
+    },
+    {
+      "id": "persian",
+      "name": "페르시안",
+      "nameEn": "Persian",
+      "emoji": "😺",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/vpfmtldks.jpeg",
+      "rank": 8,
+      "personality": {
+        "activity": 1,
+        "affection": 3,
+        "social": 3,
+        "quiet": 5,
+        "loyalty": 4
+      },
+      "maintenance": {
+        "grooming": 5,
+        "training": 3,
+        "health": 3
+      },
+      "cost": {
+        "initial": "high",
+        "monthly": "medium"
+      },
+      "environment": [
+        "apt",
+        "family",
+        "quiet"
+      ],
+      "traits": [
+        "우아함",
+        "차분함",
+        "고집",
+        "예쁨"
+      ],
+      "size": "중형",
+      "coat": "장모",
+      "colors": [
+        "various"
+      ],
+      "description": "우아하고 차분한 페르시안은 뷰티의 여왕입니다.",
+      "korea_popularity": 78,
+      "origin": "이란(페르시아) 원산, 세계에서 가장 오래된 고양이 품종 중 하나입니다.",
+      "features": [
+        {
+          "icon": "👸",
+          "text": "평평한 얼굴"
+        },
+        {
+          "icon": "👑",
+          "text": "길고 풍성한 털"
+        },
+        {
+          "icon": "😺",
+          "text": "우아하고 고요함"
+        },
+        {
+          "icon": "🧴",
+          "text": "꼼꼼한 그루밍 필요"
+        }
+      ],
+      "health_issues": [
+        "치과 질환",
+        "호흡기 질환",
+        "신장 질환"
+      ],
+      "lifespan": "10-17년",
+      "weight": "3-5.5kg"
+    },
+    {
+      "id": "sphynx",
+      "name": "스핑크스",
+      "nameEn": "Sphynx",
+      "emoji": "😺",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/tmvldzmtm.jpeg",
+      "rank": 9,
+      "personality": {
+        "activity": 4,
+        "affection": 5,
+        "social": 5,
+        "quiet": 2,
+        "loyalty": 5
+      },
+      "maintenance": {
+        "grooming": 4,
+        "training": 4,
+        "health": 3
+      },
+      "cost": {
+        "initial": "high",
+        "monthly": "medium"
+      },
+      "environment": [
+        "apt",
+        "family"
+      ],
+      "traits": [
+        "애교",
+        "사교적",
+        "따뜻함",
+        "털없음"
+      ],
+      "size": "중형",
+      "coat": "무모",
+      "colors": [
+        "various"
+      ],
+      "description": "털이 없는 스핑크스는 사람을 좋아하고 온기가 필요합니다.",
+      "korea_popularity": 75,
+      "origin": "캐나다 원산, 1966년 자연적 유전자 변이로 털이 없는 고양이가 태어났습니다.",
+      "features": [
+        {
+          "icon": "🤗",
+          "text": "털이 없는 피부"
+        },
+        {
+          "icon": "🌡️",
+          "text": "체온이 높음"
+        },
+        {
+          "icon": "😺",
+          "text": "주인을 따라다님"
+        },
+        {
+          "icon": "🧖",
+          "text": "많은 스킨십 원함"
+        }
+      ],
+      "health_issues": [
+        "피부 질환",
+        "치과 질환",
+        "심장 질환"
+      ],
+      "lifespan": "8-14년",
+      "weight": "3.5-7kg"
+    },
+    {
+      "id": "norwegian-forest",
+      "name": "노르웨이 숲",
+      "nameEn": "Norwegian Forest Cat",
+      "emoji": "🦁",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/sdfg-GL6nA6nMkkYTM8oFa1qQXsK0X58vDV.jpeg",
+      "rank": 10,
+      "personality": {
+        "activity": 4,
+        "affection": 4,
+        "social": 3,
+        "quiet": 4,
+        "loyalty": 4
+      },
+      "maintenance": {
+        "grooming": 4,
+        "training": 4,
+        "health": 4
+      },
+      "cost": {
+        "initial": "high",
+        "monthly": "medium"
+      },
+      "environment": [
+        "apt",
+        "family"
+      ],
+      "traits": [
+        "큰덩치",
+        "친근함",
+        "독립적",
+        "장난기"
+      ],
+      "size": "초대형",
+      "coat": "장모",
+      "colors": [
+        "various"
+      ],
+      "description": "거대하고 푹신한 노르웨이 숲은 북유럽의 신화적인 고양이입니다.",
+      "korea_popularity": 72,
+      "origin": "노르웨이 원산, 북유럽의 신화 속에서 발견된 고양이입니다.",
+      "features": [
+        {
+          "icon": "🦁",
+          "text": "사자 같은 갈기"
+        },
+        {
+          "icon": "🌲",
+          "text": "겨울에 튼튼함"
+        },
+        {
+          "icon": "🧗",
+          "text": "뛰어난 등반 능력"
+        },
+        {
+          "icon": "🐾",
+          "text": "큰 발"
+        }
+      ],
+      "health_issues": [
+        "심장 질환",
+        "고관절 이형성"
+      ],
+      "lifespan": "14-16년",
+      "weight": "4-9kg (수컷: 6-10kg)"
+    },
+    {
+      "id": "bengal",
+      "name": "방갈",
+      "nameEn": "Bengal",
+      "emoji": "🐆",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/gfgtgfllfg-5JvimhH58cXhyTjuTs6zniMfFRh7Gi.jpeg",
+      "rank": 11,
+      "personality": {
+        "activity": 5,
+        "affection": 3,
+        "social": 4,
+        "quiet": 2,
+        "loyalty": 3
+      },
+      "maintenance": {
+        "grooming": 2,
+        "training": 3,
+        "health": 4
+      },
+      "cost": {
+        "initial": "veryhigh",
+        "monthly": "medium"
+      },
+      "environment": [
+        "apt",
+        "family"
+      ],
+      "traits": [
+        "활발함",
+        "장난꾸러기",
+        "우아함",
+        "야생스러움"
+      ],
+      "size": "중형",
+      "coat": "단모",
+      "colors": [
+        "spotted",
+        "marbled"
+      ],
+      "description": "야생의 호랑이 같은 방갈은 활발하고 에너지가 넘칩니다.",
+      "korea_popularity": 70,
+      "origin": "미국 원산, 1960년대에 아시아 레퍼드 고양이와 가정용 고양이를 교배했습니다.",
+      "features": [
+        {
+          "icon": "🐆",
+          "text": "표범 같은 무늬"
+        },
+        {
+          "icon": "🌟",
+          "text": "반짝이는 털"
+        },
+        {
+          "icon": "🏃",
+          "text": "높은 활동성"
+        },
+        {
+          "icon": "💧",
+          "text": "물을 좋아함"
+        }
+      ],
+      "health_issues": [
+        "진행성 망막 위축",
+        "심장 질환"
+      ],
+      "lifespan": "12-16년",
+      "weight": "3.5-6.5kg"
+    },
+    {
+      "id": "abyssinian",
+      "name": "아비시니안",
+      "nameEn": "Abyssinian",
+      "emoji": "🐱",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/dkqltlsldks.jpeg",
+      "rank": 12,
+      "personality": {
+        "activity": 5,
+        "affection": 4,
+        "social": 4,
+        "quiet": 2,
+        "loyalty": 4
+      },
+      "maintenance": {
+        "grooming": 2,
+        "training": 4,
+        "health": 4
+      },
+      "cost": {
+        "initial": "medium",
+        "monthly": "low"
+      },
+      "environment": [
+        "apt",
+        "family"
+      ],
+      "traits": [
+        "활발함",
+        "호기심",
+        "지능",
+        "친근함"
+      ],
+      "size": "중형",
+      "coat": "단모",
+      "colors": [
+        "ruddy",
+        "sorrel"
+      ],
+      "description": "활기차고 호기심 많은 아비시니안은 고양이계의 애슐리 그레이입니다.",
+      "korea_popularity": 68,
+      "origin": "에티오피아 원산, 고대 이집트에서 신성하게 여겨진 고양이의 후손으로 추정됩니다.",
+      "features": [
+        {
+          "icon": "🏛️",
+          "text": "이집트 벽화에 등장"
+        },
+        {
+          "icon": "🌅",
+          "text": "따뜻한 색상"
+        },
+        {
+          "icon": "🏃",
+          "text": "활동적이고 호기심 많음"
+        },
+        {
+          "icon": "👂",
+          "text": "큰 귀"
+        }
+      ],
+      "health_issues": [
+        "신장 질환",
+        "진행성 망막 위축"
+      ],
+      "lifespan": "9-15년",
+      "weight": "2.5-4.5kg"
+    },
+    {
+      "id": "siberian",
+      "name": "시베리안",
+      "nameEn": "Siberian",
+      "emoji": "🦁",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/tlqpfldks.jpeg",
+      "rank": 13,
+      "personality": {
+        "activity": 4,
+        "affection": 4,
+        "social": 4,
+        "quiet": 3,
+        "loyalty": 5
+      },
+      "maintenance": {
+        "grooming": 4,
+        "training": 4,
+        "health": 5
+      },
+      "cost": {
+        "initial": "high",
+        "monthly": "medium"
+      },
+      "environment": [
+        "apt",
+        "family"
+      ],
+      "traits": [
+        "친근함",
+        "건강함",
+        "큰덩치",
+        "푹신함"
+      ],
+      "size": "초대형",
+      "coat": "장모",
+      "colors": [
+        "various"
+      ],
+      "description": "시베리안 품종은 친근하고 건강하며 푹신한 털이 매력적입니다.",
+      "korea_popularity": 65,
+      "origin": "러시아 시베리아 원산, 1000년 이상의 역사를 가진 자연 품종입니다.",
+      "features": [
+        {
+          "icon": "❄️",
+          "text": "혹한에서 튼튼함"
+        },
+        {
+          "icon": "🧥",
+          "text": "3중 방수 털"
+        },
+        {
+          "icon": "🐾",
+          "text": "튼튼한 체구"
+        },
+        {
+          "icon": "😺",
+          "text": "친근하고 사교적"
+        }
+      ],
+      "health_issues": [
+        "비뇨기계 질환",
+        "심장 질환"
+      ],
+      "lifespan": "12-18년",
+      "weight": "4-8kg (수컷: 6-9kg)"
+    },
+    {
+      "id": "turkish-angora",
+      "name": "터키쉬 앙고라",
+      "nameEn": "Turkish Angora",
+      "emoji": "😺",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/xjzltnldkdrhfk.jpeg",
+      "rank": 14,
+      "personality": {
+        "activity": 4,
+        "affection": 4,
+        "social": 4,
+        "quiet": 3,
+        "loyalty": 4
+      },
+      "maintenance": {
+        "grooming": 4,
+        "training": 4,
+        "health": 4
+      },
+      "cost": {
+        "initial": "high",
+        "monthly": "medium"
+      },
+      "environment": [
+        "apt",
+        "family"
+      ],
+      "traits": [
+        "우아함",
+        "친근함",
+        "지능",
+        "장난기"
+      ],
+      "size": "중형",
+      "coat": "장모",
+      "colors": [
+        "various"
+      ],
+      "description": "우아한 터키쉬 앙고라는 털카페의 원조입니다.",
+      "korea_popularity": 62,
+      "origin": "터키 앙카라 원산, 세계에서 가장 오래된 고양이 품종 중 하나입니다.",
+      "features": [
+        {
+          "icon": "💎",
+          "text": "흰 털과 푸른 눈"
+        },
+        {
+          "icon": "👑",
+          "text": "우아하고 고급스러움"
+        },
+        {
+          "icon": "🏃",
+          "text": "활동적이고 민첩함"
+        },
+        {
+          "icon": "🌟",
+          "text": "지능적이고 장난감 많음"
+        }
+      ],
+      "health_issues": [
+        "청각 장애",
+        "심장 질환"
+      ],
+      "lifespan": "12-18년",
+      "weight": "2.5-5kg"
+    },
+    {
+      "id": "scottish-straight",
+      "name": "스코티시 스트레이트",
+      "nameEn": "Scottish Straight",
+      "emoji": "😺",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/tmzhxltltmxmfpdlxm.jpeg",
+      "rank": 15,
+      "personality": {
+        "activity": 3,
+        "affection": 4,
+        "social": 4,
+        "quiet": 4,
+        "loyalty": 4
+      },
+      "maintenance": {
+        "grooming": 3,
+        "training": 4,
+        "health": 4
+      },
+      "cost": {
+        "initial": "medium",
+        "monthly": "low"
+      },
+      "environment": [
+        "apt",
+        "family"
+      ],
+      "traits": [
+        "온순함",
+        "차분함",
+        "친근함",
+        "건강함"
+      ],
+      "size": "중형",
+      "coat": "중장모",
+      "colors": [
+        "various"
+      ],
+      "description": "접히지 않은 귀가 특징인 스코티시 스트레이트는 폴드와 비슷하지만 더 건강합니다.",
+      "korea_popularity": 60,
+      "origin": "스코틀랜드 원산, 스코티시 폴드와 같은 조상을 가졌으나 귀가 접히지 않는 품종입니다.",
+      "features": [
+        {
+          "icon": "👂",
+          "text": "직립된 귀"
+        },
+        {
+          "icon": "🧸",
+          "text": "둥글고 귀여운 얼굴"
+        },
+        {
+          "icon": "😺",
+          "text": "친근하고 부드러움"
+        },
+        {
+          "icon": "🐾",
+          "text": "튼튼한 체구"
+        }
+      ],
+      "health_issues": [
+        "심장 질환",
+        "비뇨기계 질환"
+      ],
+      "lifespan": "12-15년",
+      "weight": "3-6kg"
+    },
+    {
+      "id": "british-longhair",
+      "name": "브리티시 롱헤어",
+      "nameEn": "British Longhair",
+      "emoji": "🦁",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/dkgirjiww-zxXgQR1Qhgmpjr8usgEMIuoUIJxs0K.jpeg",
+      "rank": 17,
+      "personality": {
+        "activity": 2,
+        "affection": 3,
+        "social": 3,
+        "quiet": 5,
+        "loyalty": 4
+      },
+      "maintenance": {
+        "grooming": 4,
+        "training": 4,
+        "health": 4
+      },
+      "cost": {
+        "initial": "high",
+        "monthly": "medium"
+      },
+      "environment": [
+        "apt",
+        "family",
+        "quiet"
+      ],
+      "traits": [
+        "차분함",
+        "독립적",
+        "푹신함",
+        "뚱뚱이"
+      ],
+      "size": "중형",
+      "coat": "장모",
+      "colors": [
+        "various"
+      ],
+      "description": "브리티시 숏헤어의 롱헤어 버전으로 차분하고 푹신합니다.",
+      "korea_popularity": 55,
+      "origin": "영국 원산, 브리티시 숏헤어와 페르시안의 교배로 만들어진 품종입니다.",
+      "features": [
+        {
+          "icon": "🧶",
+          "text": "길고 풍성한 털"
+        },
+        {
+          "icon": "😐",
+          "text": "침착하고 독립적"
+        },
+        {
+          "icon": "🏰",
+          "text": "우아하고 고급스러움"
+        },
+        {
+          "icon": "🐾",
+          "text": "튼튼한 체구"
+        }
+      ],
+      "health_issues": [
+        "심장 질환",
+        "비뇨기계 질환"
+      ],
+      "lifespan": "14-20년",
+      "weight": "4-8kg"
+    },
+    {
+      "id": "exotic-shorthair",
+      "name": "엑조틱 숏헤어",
+      "nameEn": "Exotic Shorthair",
+      "emoji": "😺",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/dprwhxlrtytgpdj.jpeg",
+      "rank": 18,
+      "personality": {
+        "activity": 2,
+        "affection": 3,
+        "social": 3,
+        "quiet": 5,
+        "loyalty": 4
+      },
+      "maintenance": {
+        "grooming": 3,
+        "training": 3,
+        "health": 3
+      },
+      "cost": {
+        "initial": "high",
+        "monthly": "medium"
+      },
+      "environment": [
+        "apt",
+        "family",
+        "quiet"
+      ],
+      "traits": [
+        "우아함",
+        "차분함",
+        "순함",
+        "예쁨"
+      ],
+      "size": "중형",
+      "coat": "단모",
+      "colors": [
+        "various"
+      ],
+      "description": "페르시안의 쉬운 관리 버전으로 차분하고 우아합니다.",
+      "korea_popularity": 52,
+      "origin": "미국 원산, 브리티시 숏헤어와 페르시안의 교배로 만들어진 품종입니다.",
+      "features": [
+        {
+          "icon": "🐱",
+          "text": "페르시안의 얼굴"
+        },
+        {
+          "icon": "✂️",
+          "text": "짧은 털로 관리 쉬움"
+        },
+        {
+          "icon": "😺",
+          "text": "침착하고 조용함"
+        },
+        {
+          "icon": "🧸",
+          "text": "곰 같은 외모"
+        }
+      ],
+      "health_issues": [
+        "치과 질환",
+        "호흡기 질환"
+      ],
+      "lifespan": "10-15년",
+      "weight": "3-6kg"
+    },
+    {
+      "id": "somali",
+      "name": "소말리",
+      "nameEn": "Somali",
+      "emoji": "🐱",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/gkmrkqkn-C5ZGOfxdLYGCYWP0Gm1D73zL5Enoo4.jpeg",
+      "rank": 19,
+      "personality": {
+        "activity": 5,
+        "affection": 4,
+        "social": 4,
+        "quiet": 2,
+        "loyalty": 4
+      },
+      "maintenance": {
+        "grooming": 3,
+        "training": 4,
+        "health": 4
+      },
+      "cost": {
+        "initial": "medium",
+        "monthly": "low"
+      },
+      "environment": [
+        "apt",
+        "family"
+      ],
+      "traits": [
+        "활발함",
+        "호기심",
+        "친근함",
+        "푹신함"
+      ],
+      "size": "중형",
+      "coat": "장모",
+      "colors": [
+        "ruddy",
+        "sorrel"
+      ],
+      "description": "롱헤어 버전의 아비시니안으로 푹신하고 활발합니다.",
+      "korea_popularity": 50,
+      "origin": "소말리아 원산, 아비시니안의 긴 털 변종으로 자연스럽게 발생했습니다.",
+      "features": [
+        {
+          "icon": "🌅",
+          "text": "따뜻한 색상"
+        },
+        {
+          "icon": "🧶",
+          "text": "길고 부드러운 털"
+        },
+        {
+          "icon": "👁️",
+          "text": "큰 아몬드 눈"
+        },
+        {
+          "icon": "🐾",
+          "text": "불독 같은 발"
+        }
+      ],
+      "health_issues": [
+        "신장 질환",
+        "진행성 망막 위축"
+      ],
+      "lifespan": "9-15년",
+      "weight": "2.5-5kg"
+    },
+    {
+      "id": "ocicat",
+      "name": "오시캣",
+      "nameEn": "Ocicat",
+      "emoji": "🐆",
+      "image": "https://i3ylwjx1czcnizgm.public.blob.vercel-storage.com/whatcat/dhtlzot.jpeg",
+      "rank": 20,
+      "personality": {
+        "activity": 4,
+        "affection": 4,
+        "social": 4,
+        "quiet": 3,
+        "loyalty": 4
+      },
+      "maintenance": {
+        "grooming": 2,
+        "training": 4,
+        "health": 4
+      },
+      "cost": {
+        "initial": "high",
+        "monthly": "medium"
+      },
+      "environment": [
+        "apt",
+        "family"
+      ],
+      "traits": [
+        "활발함",
+        "지능",
+        "친근함",
+        "점박이"
+      ],
+      "size": "중형",
+      "coat": "단모",
+      "colors": [
+        "spotted"
+      ],
+      "description": "야생의 표범 같은 오시캣은 지능적이고 사람을 좋아합니다.",
+      "korea_popularity": 48,
+      "origin": "미국 원산, 1964년에 아비시니안과 샴 교배 실험 중 우연히 태어난 품종입니다.",
+      "features": [
+        {
+          "icon": "🐆",
+          "text": "오셀롯 같은 무늬"
+        },
+        {
+          "icon": "🌟",
+          "text": "반짝이는 털"
+        },
+        {
+          "icon": "🏃",
+          "text": "활동적이고 민첩함"
+        },
+        {
+          "icon": "😺",
+          "text": "사교적이고 친근함"
+        }
+      ],
+      "health_issues": [
+        "신장 질환",
+        "심장 질환"
+      ],
+      "lifespan": "10-15년",
+      "weight": "2.5-6.5kg"
+    }
+  ]
+}

@@ -1,0 +1,697 @@
+{
+  "questions": [
+    {
+      "id": "q1",
+      "category": "lifestyle",
+      "subCategory": "workTime",
+      "question": "평일 업무 시간 중 평균 외출 시간은?",
+      "options": [
+        {
+          "id": "a1",
+          "text": "8시간 이상 (일반적인 직장인)",
+          "scores": {
+            "lifestyle": 3,
+            "personality": {
+              "activity": 2,
+              "affection": 3
+            }
+          }
+        },
+        {
+          "id": "a2",
+          "text": "5-8시간",
+          "scores": {
+            "lifestyle": 4,
+            "personality": {
+              "activity": 3,
+              "affection": 3
+            }
+          }
+        },
+        {
+          "id": "a3",
+          "text": "5시간 미만 (재택근무 등)",
+          "scores": {
+            "lifestyle": 5,
+            "personality": {
+              "activity": 4,
+              "affection": 4
+            }
+          }
+        },
+        {
+          "id": "a4",
+          "text": "거의 집에 있음",
+          "scores": {
+            "lifestyle": 5,
+            "personality": {
+              "activity": 5,
+              "affection": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "category": "lifestyle",
+      "subCategory": "livingSpace",
+      "question": "거주하는 공간의 형태는?",
+      "options": [
+        {
+          "id": "a1",
+          "text": "원룸/오피스텔 (20평 이하)",
+          "scores": {
+            "lifestyle": 3,
+            "environment": "apt"
+          }
+        },
+        {
+          "id": "a2",
+          "text": "중형 아파트 (20-30평)",
+          "scores": {
+            "lifestyle": 4,
+            "environment": "apt"
+          }
+        },
+        {
+          "id": "a3",
+          "text": "대형 아파트/빌라 (30평 이상)",
+          "scores": {
+            "lifestyle": 5,
+            "environment": "apt"
+          }
+        },
+        {
+          "id": "a4",
+          "text": "단독주택/타운하우스",
+          "scores": {
+            "lifestyle": 5,
+            "environment": "house"
+          }
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "category": "lifestyle",
+      "subCategory": "family",
+      "question": "함께 사는 가족 구성원은?",
+      "options": [
+        {
+          "id": "a1",
+          "text": "혼자 살고 있음",
+          "scores": {
+            "lifestyle": 3,
+            "personality": {
+              "social": 3
+            }
+          }
+        },
+        {
+          "id": "a2",
+          "text": "가족/배우자와 함께",
+          "scores": {
+            "lifestyle": 4,
+            "personality": {
+              "social": 4
+            }
+          }
+        },
+        {
+          "id": "a3",
+          "text": "어린 자녀가 있음",
+          "scores": {
+            "lifestyle": 5,
+            "personality": {
+              "social": 5,
+              "quiet": 3
+            }
+          }
+        },
+        {
+          "id": "a4",
+          "text": "다른 반려동물이 있음",
+          "scores": {
+            "lifestyle": 4,
+            "personality": {
+              "social": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "category": "personality",
+      "subCategory": "noisePreference",
+      "question": "조용하고 차분한 분위기를 선호하는가?",
+      "options": [
+        {
+          "id": "a1",
+          "text": "아주 강하게 선호함 (시끄러운 건 질색)",
+          "scores": {
+            "personality": {
+              "quiet": 5,
+              "activity": 1
+            }
+          }
+        },
+        {
+          "id": "a2",
+          "text": "대체로 선호함",
+          "scores": {
+            "personality": {
+              "quiet": 4,
+              "activity": 2
+            }
+          }
+        },
+        {
+          "id": "a3",
+          "text": "중립임",
+          "scores": {
+            "personality": {
+              "quiet": 3,
+              "activity": 3
+            }
+          }
+        },
+        {
+          "id": "a4",
+          "text": "활기찬 분위기도 괜찮음",
+          "scores": {
+            "personality": {
+              "quiet": 2,
+              "activity": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "category": "personality",
+      "subCategory": "affectionPreference",
+      "question": "집사에게 애정을 표현하는 냥이가 선호되는가?",
+      "options": [
+        {
+          "id": "a1",
+          "text": "항상 곁에 있고 스킨십 많은 게 좋음",
+          "scores": {
+            "personality": {
+              "affection": 5,
+              "loyalty": 5
+            }
+          }
+        },
+        {
+          "id": "a2",
+          "text": "가끔 다가와서 꾹꾹이 정도는 좋음",
+          "scores": {
+            "personality": {
+              "affection": 4,
+              "loyalty": 4
+            }
+          }
+        },
+        {
+          "id": "a3",
+          "text": "같은 공간에 있는 것만으로도 충분",
+          "scores": {
+            "personality": {
+              "affection": 3,
+              "loyalty": 3
+            }
+          }
+        },
+        {
+          "id": "a4",
+          "text": "독립적인 게 더 편함",
+          "scores": {
+            "personality": {
+              "affection": 2,
+              "loyalty": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "category": "personality",
+      "subCategory": "experience",
+      "question": "처음 키우는 반려동물인가?",
+      "options": [
+        {
+          "id": "a1",
+          "text": "네, 완전 초보자임",
+          "scores": {
+            "maintenance": {
+              "training": 3,
+              "grooming": 3
+            },
+            "personality": {
+              "social": 3
+            }
+          }
+        },
+        {
+          "id": "a2",
+          "text": "아니요, 고양이 키워본 경험이 있음",
+          "scores": {
+            "maintenance": {
+              "training": 4,
+              "grooming": 4
+            },
+            "personality": {
+              "social": 4
+            }
+          }
+        },
+        {
+          "id": "a3",
+          "text": "다른 반려동물은 키워봤음",
+          "scores": {
+            "maintenance": {
+              "training": 4,
+              "grooming": 3
+            },
+            "personality": {
+              "social": 4
+            }
+          }
+        },
+        {
+          "id": "a4",
+          "text": "고양이 전문가 수준임",
+          "scores": {
+            "maintenance": {
+              "training": 5,
+              "grooming": 5
+            },
+            "personality": {
+              "social": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "category": "maintenance",
+      "subCategory": "time",
+      "question": "하루에 쓸 수 있는 냥이 관리 시간은?",
+      "options": [
+        {
+          "id": "a1",
+          "text": "5분 미만 (기본적인 것만)",
+          "scores": {
+            "maintenance": {
+              "grooming": 2,
+              "training": 3
+            }
+          }
+        },
+        {
+          "id": "a2",
+          "text": "5-15분",
+          "scores": {
+            "maintenance": {
+              "grooming": 3,
+              "training": 4
+            }
+          }
+        },
+        {
+          "id": "a3",
+          "text": "15-30분",
+          "scores": {
+            "maintenance": {
+              "grooming": 4,
+              "training": 4
+            }
+          }
+        },
+        {
+          "id": "a4",
+          "text": "30분 이상 (빗질, 놀이 등)",
+          "scores": {
+            "maintenance": {
+              "grooming": 5,
+              "training": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "q8",
+      "category": "maintenance",
+      "subCategory": "shedding",
+      "question": "털 빠짐에 대한 고민 정도는?",
+      "options": [
+        {
+          "id": "a1",
+          "text": "아주 심각함 (털 날림 최소화하고 싶음)",
+          "scores": {
+            "maintenance": {
+              "grooming": 1
+            },
+            "appearance": {
+              "coat": "단모"
+            }
+          }
+        },
+        {
+          "id": "a2",
+          "text": "조금 고민됨",
+          "scores": {
+            "maintenance": {
+              "grooming": 2
+            },
+            "appearance": {
+              "coat": "단모"
+            }
+          }
+        },
+        {
+          "id": "a3",
+          "text": "중간 정도는 괜찮음",
+          "scores": {
+            "maintenance": {
+              "grooming": 3
+            },
+            "appearance": {
+              "coat": "중장모"
+            }
+          }
+        },
+        {
+          "id": "a4",
+          "text": "그렇게 신경 쓰지 않음",
+          "scores": {
+            "maintenance": {
+              "grooming": 4
+            },
+            "appearance": {
+              "coat": "장모"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "q9",
+      "category": "maintenance",
+      "subCategory": "training",
+      "question": "매일 꾸준히 훈련할 의향이 있는가?",
+      "options": [
+        {
+          "id": "a1",
+          "text": "아니요, 자연스럭게 자라길 바람",
+          "scores": {
+            "maintenance": {
+              "training": 2
+            },
+            "personality": {
+              "activity": 2
+            }
+          }
+        },
+        {
+          "id": "a2",
+          "text": "기본적인 것만 할 수 있음",
+          "scores": {
+            "maintenance": {
+              "training": 3
+            },
+            "personality": {
+              "activity": 3
+            }
+          }
+        },
+        {
+          "id": "a3",
+          "text": "꾸준히 하려고 노력함",
+          "scores": {
+            "maintenance": {
+              "training": 4
+            },
+            "personality": {
+              "activity": 4
+            }
+          }
+        },
+        {
+          "id": "a4",
+          "text": "네, 적극적으로 교육하고 싶음",
+          "scores": {
+            "maintenance": {
+              "training": 5
+            },
+            "personality": {
+              "activity": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "category": "appearance",
+      "subCategory": "size",
+      "question": "선호하는 고양이 크기는?",
+      "options": [
+        {
+          "id": "a1",
+          "text": "작은 편 (안고 다니기 좋음)",
+          "scores": {
+            "appearance": {
+              "size": "소형"
+            }
+          }
+        },
+        {
+          "id": "a2",
+          "text": "중간 크기 (일반적)",
+          "scores": {
+            "appearance": {
+              "size": "중형"
+            }
+          }
+        },
+        {
+          "id": "a3",
+          "text": "큰 편 (묵직한 느낌)",
+          "scores": {
+            "appearance": {
+              "size": "대형"
+            }
+          }
+        },
+        {
+          "id": "a4",
+          "text": "아주 큰 편 (대형견처럼)",
+          "scores": {
+            "appearance": {
+              "size": "초대형"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "q11",
+      "category": "appearance",
+      "subCategory": "coat",
+      "question": "털 길이는 어떤 것을 선호하는가?",
+      "options": [
+        {
+          "id": "a1",
+          "text": "짧은 털 (관리 쉬움)",
+          "scores": {
+            "appearance": {
+              "coat": "단모"
+            },
+            "maintenance": {
+              "grooming": 2
+            }
+          }
+        },
+        {
+          "id": "a2",
+          "text": "중간 길이",
+          "scores": {
+            "appearance": {
+              "coat": "중장모"
+            },
+            "maintenance": {
+              "grooming": 3
+            }
+          }
+        },
+        {
+          "id": "a3",
+          "text": "긴 털 (귀여움 포인트)",
+          "scores": {
+            "appearance": {
+              "coat": "장모"
+            },
+            "maintenance": {
+              "grooming": 4
+            }
+          }
+        },
+        {
+          "id": "a4",
+          "text": "상관없음",
+          "scores": {
+            "appearance": {
+              "coat": "상관없음"
+            },
+            "maintenance": {
+              "grooming": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "q12",
+      "category": "cost",
+      "subCategory": "initial",
+      "question": "초기 입양 예산 범위는?",
+      "options": [
+        {
+          "id": "a1",
+          "text": "50만원 이하",
+          "scores": {
+            "cost": {
+              "initial": "low"
+            }
+          }
+        },
+        {
+          "id": "a2",
+          "text": "50-100만원",
+          "scores": {
+            "cost": {
+              "initial": "medium"
+            }
+          }
+        },
+        {
+          "id": "a3",
+          "text": "100-200만원",
+          "scores": {
+            "cost": {
+              "initial": "high"
+            }
+          }
+        },
+        {
+          "id": "a4",
+          "text": "200만원 이상 (상관없음)",
+          "scores": {
+            "cost": {
+              "initial": "veryhigh"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "q13",
+      "category": "cost",
+      "subCategory": "monthly",
+      "question": "월 평균 반려동물 비용은 얼마까지 가능한가?",
+      "options": [
+        {
+          "id": "a1",
+          "text": "5만원 이하",
+          "scores": {
+            "cost": {
+              "monthly": "low"
+            }
+          }
+        },
+        {
+          "id": "a2",
+          "text": "5-10만원",
+          "scores": {
+            "cost": {
+              "monthly": "low"
+            }
+          }
+        },
+        {
+          "id": "a3",
+          "text": "10-20만원",
+          "scores": {
+            "cost": {
+              "monthly": "medium"
+            }
+          }
+        },
+        {
+          "id": "a4",
+          "text": "20만원 이상",
+          "scores": {
+            "cost": {
+              "monthly": "high"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "q14",
+      "category": "lifestyle",
+      "subCategory": "activityLevel",
+      "question": "평소 활동량이 많은 편인가?",
+      "options": [
+        {
+          "id": "a1",
+          "text": "아주 활동적임 (운동, 야외활동 즐김)",
+          "scores": {
+            "personality": {
+              "activity": 5
+            },
+            "lifestyle": 4
+          }
+        },
+        {
+          "id": "a2",
+          "text": "보통 수준임",
+          "scores": {
+            "personality": {
+              "activity": 3
+            },
+            "lifestyle": 4
+          }
+        },
+        {
+          "id": "a3",
+          "text": "조금 조용한 편",
+          "scores": {
+            "personality": {
+              "activity": 2
+            },
+            "lifestyle": 3
+          }
+        },
+        {
+          "id": "a4",
+          "text": "활동적이지 않음 (집에 있는 편)",
+          "scores": {
+            "personality": {
+              "activity": 1
+            },
+            "lifestyle": 3
+          }
+        }
+      ]
+    }
+  ]
+}
