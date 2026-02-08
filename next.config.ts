@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
         hostname: '**.public.blob.vercel-storage.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.pexels.com',
+        pathname: '/**',
+      },
     ],
     formats: ['image/avif', 'image/webp'], // AVIF 우선순위
     deviceSizes: [640, 750, 828, 1080, 1200],

@@ -12,6 +12,8 @@ interface CatImageProps {
   className?: string;
   priority?: boolean;
   sizes?: string;
+  showCredit?: boolean;
+  credit?: string;
 }
 
 export default function CatImage({
@@ -22,6 +24,8 @@ export default function CatImage({
   className = '',
   priority = false,
   sizes = undefined,
+  showCredit = false,
+  credit = 'Photo by Pexels',
 }: CatImageProps) {
   const [imageError, setImageError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -46,37 +50,44 @@ export default function CatImage({
   }
 
   return (
-    <>
-      {isLoading && (
-        <div
+    <div className="relative inline-block">
+      <>
+        {isLoading && (
+          <div
+            className={`
+              bg-gradient-to-br from-pink-100 to-purple-100
+              flex items-center justify-center animate-pulse
+              ${className}
+            `}
+            style={{ width, height }}
+          >
+            <CatIcon className="w-8 h-8 text-pink-300" />
+          </div>
+        )}
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          sizes={sizes}
           className={`
-            bg-gradient-to-br from-pink-100 to-purple-100
-            flex items-center justify-center animate-pulse
+            ${isLoading ? 'absolute opacity-0' : 'opacity-100'}
+            transition-opacity duration-300
             ${className}
           `}
-          style={{ width, height }}
-        >
-          <CatIcon className="w-8 h-8 text-pink-300" />
-        </div>
-      )}
-      <Image
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        sizes={sizes}
-        className={`
-          ${isLoading ? 'absolute opacity-0' : 'opacity-100'}
-          transition-opacity duration-300
-          ${className}
-        `}
-        priority={priority}
-        onLoad={() => setIsLoading(false)}
-        onError={() => {
-          setIsLoading(false);
-          setImageError(true);
-        }}
-      />
-    </>
+          priority={priority}
+          onLoad={() => setIsLoading(false)}
+          onError={() => {
+            setIsLoading(false);
+            setImageError(true);
+          }}
+        />
+        {showCredit && !isLoading && (
+          <div className="absolute bottom-1 right-1 text-[8px] text-white/70 bg-black/30 px-1.5 py-0.5 rounded backdrop-blur-sm">
+            {credit}
+          </div>
+        )}
+      </>
+    </div>
   );
 }

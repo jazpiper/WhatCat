@@ -81,6 +81,8 @@ export default function BreedDetailPage() {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 800px"
                 priority
                 className="w-full h-full object-contain"
+                showCredit={true}
+                credit="Photo by Pexels"
               />
               <div className="absolute top-3 md:top-4 right-3 md:right-4 bg-yellow-400 text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-base md:text-lg shadow-lg">
                 #{breed.rank}
