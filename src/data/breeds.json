@@ -99,7 +99,7 @@
       "name": "스코티시 폴드",
       "nameEn": "Scottish Fold",
       "emoji": "😺",
-      "image": "https://images.pexels.com/photos/35527107/pexels-photo-35527107.jpeg",
+      "image": "https://images.pexels.com/photos/33084218/pexels-photo-33084218.jpeg",
       "rank": 2,
       "personality": {
         "activity": 3,
@@ -185,7 +185,7 @@
       ],
       "result_percentage": 15,
       "imageCredit": "Photo by Pexels",
-      "pexels_id": 35527107
+      "pexels_id": 33084218
     },
     {
       "id": "british-shorthair",
@@ -281,7 +281,7 @@
       "name": "랙돌",
       "nameEn": "Ragdoll",
       "emoji": "🐱",
-      "image": "https://images.pexels.com/photos/29616975/pexels-photo-29616975.jpeg",
+      "image": "https://images.pexels.com/photos/35608953/pexels-photo-35608953.jpeg",
       "rank": 4,
       "personality": {
         "activity": 2,
@@ -362,7 +362,7 @@
       ],
       "result_percentage": 10,
       "imageCredit": "Photo by Pexels",
-      "pexels_id": 29616975
+      "pexels_id": 35608953
     },
     {
       "id": "american-shorthair",
@@ -630,7 +630,7 @@
       "name": "페르시안",
       "nameEn": "Persian",
       "emoji": "😺",
-      "image": "https://images.pexels.com/photos/35395433/pexels-photo-35395433.jpeg",
+      "image": "https://images.pexels.com/photos/30295072/pexels-photo-30295072.jpeg",
       "rank": 8,
       "personality": {
         "activity": 1,
@@ -711,7 +711,7 @@
       ],
       "result_percentage": 5,
       "imageCredit": "Photo by Pexels",
-      "pexels_id": 35395433
+      "pexels_id": 30295072
     },
     {
       "id": "sphynx",
@@ -1045,7 +1045,7 @@
       "name": "시베리안",
       "nameEn": "Siberian",
       "emoji": "🦁",
-      "image": "https://images.pexels.com/photos/1461622/pexels-photo-1461622.jpeg",
+      "image": "https://images.pexels.com/photos/29976323/pexels-photo-29976323.jpeg",
       "rank": 13,
       "personality": {
         "activity": 4,
@@ -1119,7 +1119,7 @@
       ],
       "result_percentage": 2,
       "imageCredit": "Photo by Pexels",
-      "pexels_id": 1461622
+      "pexels_id": 29976323
     },
     {
       "id": "turkish-angora",
@@ -1283,7 +1283,7 @@
       "name": "브리티시 롱헤어",
       "nameEn": "British Longhair",
       "emoji": "🦁",
-      "image": "https://images.pexels.com/photos/3423805/pexels-photo-3423805.jpeg",
+      "image": "https://images.pexels.com/photos/13291646/pexels-photo-13291646.jpeg",
       "rank": 17,
       "personality": {
         "activity": 2,
@@ -1353,7 +1353,7 @@
       ],
       "result_percentage": 1,
       "imageCredit": "Photo by Pexels",
-      "pexels_id": 3423805
+      "pexels_id": 13291646
     },
     {
       "id": "exotic-shorthair",
@@ -1437,7 +1437,7 @@
       "name": "소말리",
       "nameEn": "Somali",
       "emoji": "🐱",
-      "image": "https://images.pexels.com/photos/3643714/pexels-photo-3643714.jpeg",
+      "image": "https://images.pexels.com/photos/12196782/pexels-photo-12196782.jpeg",
       "rank": 19,
       "personality": {
         "activity": 5,
@@ -1507,7 +1507,7 @@
       ],
       "result_percentage": 1,
       "imageCredit": "Photo by Pexels",
-      "pexels_id": 3643714
+      "pexels_id": 12196782
     },
     {
       "id": "ocicat",

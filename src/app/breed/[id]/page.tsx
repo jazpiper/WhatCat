@@ -72,7 +72,7 @@ export default function BreedDetailPage() {
 
         <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden mb-4 md:mb-6">
           {breed.image && (
-            <div className="relative h-[250px] md:h-[400px] bg-gradient-to-br from-pink-100 to-purple-100 dark:from-pink-900/30 dark:to-purple-900/30">
+            <div className="relative h-[250px] md:h-[400px] overflow-hidden bg-gradient-to-br from-pink-100 to-purple-100 dark:from-pink-900/30 dark:to-purple-900/30">
               <CatImage
                 src={breed.image}
                 alt={breed.name}

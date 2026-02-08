@@ -42,6 +42,8 @@ import FriendCompare from '@/components/Result/FriendCompare';
 import FamousMatchCard from '@/components/Result/FamousMatchCard';
 import MatchExplanation from '@/components/Result/MatchExplanation';
 import RelatedBreeds from '@/components/Result/RelatedBreeds';
+import InstagramStoryCard from '@/components/Result/InstagramStoryCard';
+import { generateInstagramStoryImage } from '@/utils/instagramStoryCanvas';
 
 // Lazy load AchievementTracker for better performance
 const AchievementTracker = dynamic(() =>
@@ -72,7 +74,9 @@ export default function ResultPage() {
   const [hasUrlParams, setHasUrlParams] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isGeneratingStory, setIsGeneratingStory] = useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
+  const storyCardRef = useRef<HTMLDivElement>(null);
 
   // URL 파라미터에서 결과 읽어오기
   useEffect(() => {
@@ -293,6 +297,30 @@ export default function ResultPage() {
     trackShare('instagram', firstResult.breed.id);
   };
 
+  const handleShareInstagramStory = async () => {
+    if (!firstResult || !storyCardRef.current) return;
+
+    if (isGeneratingStory) return;
+
+    if (!imageLoaded) {
+      alert('이미지가 아직 로딩 중입니다. 잠시 후 다시 시도해주세요.');
+      return;
+    }
+
+    await generateInstagramStoryImage({
+      element: storyCardRef.current,
+      breedName: firstResult.breed.name,
+      score: firstResult.score,
+      onLoadingChange: setIsGeneratingStory,
+      onError: (error) => {
+        console.error('Instagram Story 이미지 생성 실패:', error);
+      },
+    });
+
+    // Track share event
+    trackShare('instagram_story', firstResult.breed.id);
+  };
+
   const handleCopyLink = async () => {
     if (!firstResult || !primaryShareResult) return;
 
@@ -434,8 +462,10 @@ export default function ResultPage() {
           onShareX={handleShareTwitter}
           onShareThreads={handleShareThreads}
           onShareInstagram={handleShareInstagram}
+          onShareInstagramStory={handleShareInstagramStory}
           onCopyLink={handleCopyLink}
           isDownloading={isDownloading}
+          isGeneratingStory={isGeneratingStory}
           copied={copied}
           shareCopy={shareCopy}
         />
@@ -464,6 +494,20 @@ export default function ResultPage() {
           breedId={firstResult.breed.id}
           score={firstResult.score}
         />
+      )}
+
+      {/* Hidden Instagram Story Card for image generation */}
+      {firstResult && (
+        <div
+          ref={storyCardRef}
+          className="fixed -left-[9999px] top-0 w-[400px]"
+          aria-hidden="true"
+        >
+          <InstagramStoryCard
+            breed={firstResult.breed}
+            score={firstResult.score}
+          />
+        </div>
       )}
     </main>
   );

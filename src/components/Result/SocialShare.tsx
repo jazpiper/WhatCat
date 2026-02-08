@@ -15,8 +15,10 @@ interface SocialShareProps {
     onShareX: () => void;
     onShareThreads: () => void;
     onShareInstagram: () => void;
+    onShareInstagramStory: () => void;
     onCopyLink: () => void;
     isDownloading: boolean;
+    isGeneratingStory: boolean;
     copied: boolean;
     shareCopy: string;
 }
@@ -27,8 +29,10 @@ export default function SocialShare({
     onShareX,
     onShareThreads,
     onShareInstagram,
+    onShareInstagramStory,
     onCopyLink,
     isDownloading,
+    isGeneratingStory,
     copied,
     shareCopy,
 }: SocialShareProps) {
@@ -88,12 +92,20 @@ export default function SocialShare({
                 </button>
 
                 <button
-                    onClick={onShareInstagram}
-                    className="flex flex-col items-center justify-center gap-2 p-4 rounded-2xl bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCB045] text-white hover:shadow-lg transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-purple-300 focus:ring-offset-2"
-                    aria-label="인스타그램으로 결과 공유 (이미지 저장 필요)"
+                    onClick={onShareInstagramStory}
+                    disabled={isGeneratingStory}
+                    className={`flex flex-col items-center justify-center gap-2 p-4 rounded-2xl transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-purple-300 focus:ring-offset-2 ${isGeneratingStory
+                            ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                            : 'bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCB045] text-white hover:shadow-lg'
+                        }`}
+                    aria-label="인스타그램 스토리용 이미지 저장"
                 >
-                    <Instagram size={24} aria-hidden="true" />
-                    <span className="text-xs font-bold">인스타그램</span>
+                    {isGeneratingStory ? (
+                        <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" aria-hidden="true" />
+                    ) : (
+                        <Instagram size={24} aria-hidden="true" />
+                    )}
+                    <span className="text-xs font-bold">{isGeneratingStory ? '생성 중...' : '스토리'}</span>
                 </button>
 
                 <button
