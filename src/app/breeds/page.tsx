@@ -17,7 +17,6 @@ import {
 } from '@/utils/breedFilters';
 import { Search, X } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
-import Navigation from '@/components/Navigation';
 import { logBreedSearchUsed, logBreedFilterApplied } from '@/lib/google-analytics';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { isSafeInput } from '@/utils/sanitize';
@@ -112,7 +111,6 @@ function BreedsPageContent() {
 
   return (
     <>
-      <Navigation />
       <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50">
         <div className="container mx-auto px-4 py-8 max-w-7xl">
           {/* Header */}
@@ -302,7 +300,6 @@ export default function BreedsPage() {
     <ErrorBoundary>
       <Suspense fallback={
         <main className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50">
-          <Navigation />
           <div className="container mx-auto px-4 py-8 max-w-7xl">
             <BreedsGridSkeleton count={6} />
           </div>

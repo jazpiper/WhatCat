@@ -1,7 +1,10 @@
 'use client';
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { AnswerScore } from '@/types';
+
+const STORAGE_KEY = 'nyongmatch_answers';
+const QUESTION_KEY = 'nyongmatch_question';
 
 interface NyongmatchContextType {
   currentQuestion: number;
@@ -18,9 +21,38 @@ interface NyongmatchContextType {
 const NyongmatchContext = createContext<NyongmatchContextType | undefined>(undefined);
 
 export function NyongmatchProvider({ children }: { children: ReactNode }) {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState<AnswerScore[]>([]);
+  // Initialize state from localStorage
+  const [currentQuestion, setCurrentQuestion] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem(QUESTION_KEY);
+      return saved ? parseInt(saved, 10) : 0;
+    }
+    return 0;
+  });
+
+  const [answers, setAnswers] = useState<AnswerScore[]>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      return saved ? JSON.parse(saved) : [];
+    }
+    return [];
+  });
+
   const [isCompleted, setIsCompleted] = useState(false);
+
+  // Save answers to localStorage whenever they change
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+    }
+  }, [answers]);
+
+  // Save current question to localStorage whenever it changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(QUESTION_KEY, currentQuestion.toString());
+    }
+  }, [currentQuestion]);
 
   const setAnswer = (questionId: string, answerId: string) => {
     setAnswers((prev) => {
@@ -46,6 +78,11 @@ export function NyongmatchProvider({ children }: { children: ReactNode }) {
     setCurrentQuestion(0);
     setAnswers([]);
     setIsCompleted(false);
+    // Clear localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(QUESTION_KEY);
+    }
   };
 
   const goToQuestion = (index: number) => {

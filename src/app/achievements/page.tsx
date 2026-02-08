@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, Suspense } from 'react';
-import Navigation from '@/components/Navigation';
 import BadgeGallery from '@/components/Achievement/BadgeGallery';
 import { achievements } from '@/data/achievements';
 import { useAchievements, useAchievementsPageViewed } from '@/hooks/useAchievements';
@@ -38,7 +37,6 @@ function AchievementsPageContent() {
 
   return (
     <>
-      <Navigation />
       <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50">
         <div className="container mx-auto px-4 py-8 max-w-6xl">
           {/* Header */}
@@ -52,6 +50,22 @@ function AchievementsPageContent() {
             <p className="text-gray-600">
               다양한 도전 과제를 완료하고 뱃지를 수집하세요!
             </p>
+          </div>
+
+          {/* Cache Notice */}
+          <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-2xl p-4 mb-8">
+            <div className="flex items-start gap-3">
+              <Info className="text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" size={20} />
+              <div className="flex-1">
+                <h3 className="font-semibold text-blue-900 dark:text-blue-100 mb-1">
+                  데이터 저장 안내
+                </h3>
+                <p className="text-sm text-blue-700 dark:text-blue-300 leading-relaxed">
+                  도전 과제와 테스트 결과는 브라우저에 저장됩니다.
+                  브라우저 캐시를 삭제하거나 다른 기기에서 접속하면 데이터가 초기화될 수 있습니다.
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Stats Overview */}
