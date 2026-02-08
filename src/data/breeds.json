@@ -91,7 +91,8 @@
         "털이 두 겹으로 되어 있어서 손을 대면 '벨벳' 같은 느낌을 줍니다."
       ],
       "result_percentage": 18,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 8810701
     },
     {
       "id": "scottish-fold",
@@ -183,14 +184,15 @@
         "모든 스코티시 폴드의 조상은 1961년 스코틀랜드의 한 농장에서 발견된 'Susie'라고 합니다."
       ],
       "result_percentage": 15,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 35527107
     },
     {
       "id": "british-shorthair",
       "name": "브리티시 숏헤어",
       "nameEn": "British Shorthair",
       "emoji": "🦁",
-      "image": "https://images.pexels.com/photos/17089872/pexels-photo-17089872.jpeg",
+      "image": "https://images.pexels.com/photos/10503543/pexels-photo-10503543.jpeg",
       "rank": 3,
       "personality": {
         "activity": 2,
@@ -271,7 +273,8 @@
         "털이 둥글둥글해서 '살아있는 테디베어'라고도 불립니다."
       ],
       "result_percentage": 12,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 10503543
     },
     {
       "id": "ragdoll",
@@ -358,14 +361,15 @@
         "가장 큰 품종 중 하나로 수컷은 9kg까지 자랄 수 있어요!"
       ],
       "result_percentage": 10,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 29616975
     },
     {
       "id": "american-shorthair",
       "name": "아메리칸 숏헤어",
       "nameEn": "American Shorthair",
       "emoji": "🐱",
-      "image": "https://images.pexels.com/photos/2167221/pexels-photo-2167221.png",
+      "image": "https://images.pexels.com/photos/33477579/pexels-photo-33477579.jpeg",
       "rank": 5,
       "personality": {
         "activity": 3,
@@ -438,7 +442,8 @@
         }
       ],
       "result_percentage": 8,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 33477579
     },
     {
       "id": "maine-coon",
@@ -530,14 +535,15 @@
         "발가락 사이에 털이 있어서 눈위를 걸어도 가라앉지 않는대요!"
       ],
       "result_percentage": 7,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 32126021
     },
     {
       "id": "siamese",
       "name": "샴",
       "nameEn": "Siamese",
       "emoji": "😺",
-      "image": "https://images.pexels.com/photos/33660000/pexels-photo-33660000.jpeg",
+      "image": "https://images.pexels.com/photos/14017008/pexels-photo-14017008.jpeg",
       "rank": 7,
       "personality": {
         "activity": 5,
@@ -616,14 +622,15 @@
         }
       ],
       "result_percentage": 6,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 14017008
     },
     {
       "id": "persian",
       "name": "페르시안",
       "nameEn": "Persian",
       "emoji": "😺",
-      "image": "https://images.pexels.com/photos/35603961/pexels-photo-35603961.jpeg",
+      "image": "https://images.pexels.com/photos/35395433/pexels-photo-35395433.jpeg",
       "rank": 8,
       "personality": {
         "activity": 1,
@@ -703,14 +710,15 @@
         }
       ],
       "result_percentage": 5,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 35395433
     },
     {
       "id": "sphynx",
       "name": "스핑크스",
       "nameEn": "Sphynx",
       "emoji": "😺",
-      "image": "https://images.pexels.com/photos/4587969/pexels-photo-4587969.jpeg",
+      "image": "https://images.pexels.com/photos/7680672/pexels-photo-7680672.jpeg",
       "rank": 9,
       "personality": {
         "activity": 4,
@@ -784,7 +792,8 @@
         }
       ],
       "result_percentage": 4,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 7680672
     },
     {
       "id": "norwegian-forest",
@@ -864,7 +873,8 @@
         }
       ],
       "result_percentage": 3,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 31739872
     },
     {
       "id": "bengal",
@@ -945,14 +955,15 @@
         }
       ],
       "result_percentage": 3,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 30189391
     },
     {
       "id": "abyssinian",
       "name": "아비시니안",
       "nameEn": "Abyssinian",
       "emoji": "🐱",
-      "image": "https://images.pexels.com/photos/10923694/pexels-photo-10923694.jpeg",
+      "image": "https://images.pexels.com/photos/11926856/pexels-photo-11926856.jpeg",
       "rank": 12,
       "personality": {
         "activity": 5,
@@ -1026,14 +1037,15 @@
         }
       ],
       "result_percentage": 2,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 11926856
     },
     {
       "id": "siberian",
       "name": "시베리안",
       "nameEn": "Siberian",
       "emoji": "🦁",
-      "image": "https://images.pexels.com/photos/13132035/pexels-photo-13132035.jpeg",
+      "image": "https://images.pexels.com/photos/1461622/pexels-photo-1461622.jpeg",
       "rank": 13,
       "personality": {
         "activity": 4,
@@ -1106,14 +1118,15 @@
         }
       ],
       "result_percentage": 2,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 1461622
     },
     {
       "id": "turkish-angora",
       "name": "터키쉬 앙고라",
       "nameEn": "Turkish Angora",
       "emoji": "😺",
-      "image": "https://images.pexels.com/photos/29268291/pexels-photo-29268291.jpeg",
+      "image": "https://images.pexels.com/photos/28525311/pexels-photo-28525311.jpeg",
       "rank": 14,
       "personality": {
         "activity": 4,
@@ -1186,14 +1199,15 @@
         }
       ],
       "result_percentage": 1,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 28525311
     },
     {
       "id": "scottish-straight",
       "name": "스코티시 스트레이트",
       "nameEn": "Scottish Straight",
       "emoji": "😺",
-      "image": "https://images.pexels.com/photos/8315572/pexels-photo-8315572.jpeg",
+      "image": "https://images.pexels.com/photos/29295095/pexels-photo-29295095.jpeg",
       "rank": 15,
       "personality": {
         "activity": 3,
@@ -1261,14 +1275,15 @@
         }
       ],
       "result_percentage": 1,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 29295095
     },
     {
       "id": "british-longhair",
       "name": "브리티시 롱헤어",
       "nameEn": "British Longhair",
       "emoji": "🦁",
-      "image": "https://images.pexels.com/photos/7439489/pexels-photo-7439489.jpeg",
+      "image": "https://images.pexels.com/photos/3423805/pexels-photo-3423805.jpeg",
       "rank": 17,
       "personality": {
         "activity": 2,
@@ -1337,7 +1352,8 @@
         }
       ],
       "result_percentage": 1,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 3423805
     },
     {
       "id": "exotic-shorthair",
@@ -1413,14 +1429,15 @@
         }
       ],
       "result_percentage": 1,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 18823325
     },
     {
       "id": "somali",
       "name": "소말리",
       "nameEn": "Somali",
       "emoji": "🐱",
-      "image": "https://images.pexels.com/photos/11926856/pexels-photo-11926856.jpeg",
+      "image": "https://images.pexels.com/photos/3643714/pexels-photo-3643714.jpeg",
       "rank": 19,
       "personality": {
         "activity": 5,
@@ -1489,14 +1506,15 @@
         }
       ],
       "result_percentage": 1,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 3643714
     },
     {
       "id": "ocicat",
       "name": "오시캣",
       "nameEn": "Ocicat",
       "emoji": "🐆",
-      "image": "https://images.pexels.com/photos/821736/pexels-photo-821736.jpeg",
+      "image": "https://images.pexels.com/photos/7556880/pexels-photo-7556880.jpeg",
       "rank": 20,
       "personality": {
         "activity": 4,
@@ -1564,7 +1582,8 @@
         }
       ],
       "result_percentage": 1,
-      "imageCredit": "Photo by Pexels"
+      "imageCredit": "Photo by Pexels",
+      "pexels_id": 7556880
     }
   ]
 }

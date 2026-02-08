@@ -34,7 +34,7 @@ export default function BreedDetailPage() {
       // Track achievement progress
       trackBreedViewed();
     }
-  }, [breedId, trackExplore]);
+  }, [breed, breedId, trackExplore]);
 
   if (!breed) {
     return (
@@ -72,15 +72,15 @@ export default function BreedDetailPage() {
 
         <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden mb-4 md:mb-6">
           {breed.image && (
-            <div className="relative h-64 md:h-80 bg-gradient-to-br from-pink-100 to-purple-100 dark:from-pink-900/30 dark:to-purple-900/30">
+            <div className="relative h-[250px] md:h-[400px] bg-gradient-to-br from-pink-100 to-purple-100 dark:from-pink-900/30 dark:to-purple-900/30">
               <CatImage
                 src={breed.image}
                 alt={breed.name}
                 width={800}
-                height={320}
+                height={400}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 800px"
                 priority
-                className="w-full h-full object-contain"
+                className="w-full h-full object-cover"
                 showCredit={true}
                 credit="Photo by Pexels"
               />
