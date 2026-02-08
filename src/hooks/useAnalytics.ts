@@ -182,7 +182,7 @@ export function useBreedExplore() {
  * Tracks when user shares result
  */
 export function useResultShared() {
-  const trackShare = (platform: 'instagram' | 'thread' | 'kakaotalk' | 'copy' | 'default', breedShared: string) => {
+  const trackShare = (platform: 'instagram' | 'instagram_story' | 'thread' | 'kakaotalk' | 'copy' | 'default', breedShared: string) => {
     const params: ResultSharedEvent = {
       platform,
       breed_shared: breedShared,
