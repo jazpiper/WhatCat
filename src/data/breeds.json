@@ -718,7 +718,7 @@
       "name": "스핑크스",
       "nameEn": "Sphynx",
       "emoji": "😺",
-      "image": "https://images.pexels.com/photos/7680672/pexels-photo-7680672.jpeg",
+      "image": "https://images.pexels.com/photos/28264032/pexels-photo-28264032.jpeg",
       "rank": 9,
       "personality": {
         "activity": 4,
@@ -793,7 +793,7 @@
       ],
       "result_percentage": 4,
       "imageCredit": "Photo by Pexels",
-      "pexels_id": 7680672
+      "pexels_id": 28264032
     },
     {
       "id": "norwegian-forest",
@@ -1514,7 +1514,7 @@
       "name": "오시캣",
       "nameEn": "Ocicat",
       "emoji": "🐆",
-      "image": "https://images.pexels.com/photos/7556880/pexels-photo-7556880.jpeg",
+      "image": "https://images.pexels.com/photos/15575358/pexels-photo-15575358.jpeg",
       "rank": 20,
       "personality": {
         "activity": 4,

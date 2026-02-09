@@ -24,7 +24,7 @@ import {
   RotateCcw,
 } from 'lucide-react';
 import LoadingSpinner from '@/components/LoadingSpinner';
-import { ResultSkeleton } from '@/components/Skeleton';
+import ResultSkeleton from '@/components/Skeleton/ResultSkeleton';
 import AdSense from '@/components/AdSense';
 import {
   useTestCompleted,
