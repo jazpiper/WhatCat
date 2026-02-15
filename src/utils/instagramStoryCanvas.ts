@@ -1,4 +1,7 @@
-import html2canvas from 'html2canvas';
+// IMPORTANT: html2canvas is heavy — keep it lazy-loaded to avoid inflating baseline bundles.
+async function getHtml2Canvas() {
+  return (await import('html2canvas')).default;
+}
 
 export interface GenerateInstagramStoryImageOptions {
   element: HTMLElement;
@@ -58,6 +61,7 @@ export async function generateInstagramStoryImage({
     }
 
     // html2canvas로 캡처
+    const html2canvas = await getHtml2Canvas();
     const canvas = await html2canvas(element, {
       background: '#ffffff',
       scale: 3, // Instagram Story용 고해상도
@@ -106,6 +110,7 @@ export async function generateInstagramStoryImage({
 export async function generateInstagramStoryBlob(
   element: HTMLElement
 ): Promise<Blob> {
+  const html2canvas = await getHtml2Canvas();
   const canvas = await html2canvas(element, {
     background: '#ffffff',
     scale: 3,
@@ -139,6 +144,7 @@ export async function generateInstagramStoryBlob(
 export async function generateInstagramStoryDataUrl(
   element: HTMLElement
 ): Promise<string> {
+  const html2canvas = await getHtml2Canvas();
   const canvas = await html2canvas(element, {
     background: '#ffffff',
     scale: 3,

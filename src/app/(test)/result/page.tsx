@@ -42,7 +42,8 @@ import FamousMatchCard from '@/components/Result/FamousMatchCard';
 import RecommendationReasonCards from '@/components/Result/RecommendationReasonCards';
 import RelatedBreeds from '@/components/Result/RelatedBreeds';
 import InstagramStoryCard from '@/components/Result/InstagramStoryCard';
-import { generateInstagramStoryImage } from '@/utils/instagramStoryCanvas';
+// IMPORTANT: keep instagram story generator lazy-loaded (it pulls html2canvas)
+
 
 // Lazy load AchievementTracker for better performance
 const AchievementTracker = dynamic(() =>
@@ -320,6 +321,8 @@ export default function ResultPage() {
       alert('이미지가 아직 로딩 중입니다. 잠시 후 다시 시도해주세요.');
       return;
     }
+
+    const { generateInstagramStoryImage } = await import('@/utils/instagramStoryCanvas');
 
     await generateInstagramStoryImage({
       element: storyCardRef.current,
