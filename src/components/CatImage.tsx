@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import Image from 'next/image';
 import { Cat as CatIcon } from 'lucide-react';
 
@@ -36,7 +36,7 @@ function getImageClassNames(className: string): { wrapper: string; image: string
   };
 }
 
-export default function CatImage({
+function CatImage({
   src,
   alt,
   width,
@@ -103,3 +103,5 @@ export default function CatImage({
     </div>
   );
 }
+
+export default memo(CatImage);

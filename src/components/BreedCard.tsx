@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { memo } from 'react';
 import { Breed } from '@/types';
 import CatImage from './CatImage';
 import { getMaintenanceStars, getSizeEmoji, getCoatEmoji } from '@/utils/breedHelpers';
@@ -11,7 +12,7 @@ interface BreedCardProps {
   showRank?: boolean;
 }
 
-export default function BreedCard({ breed, score, showRank = false }: BreedCardProps) {
+function BreedCard({ breed, score, showRank = false }: BreedCardProps) {
   return (
     <Link
       href={`/breed/${breed.id}`}
@@ -105,3 +106,5 @@ export default function BreedCard({ breed, score, showRank = false }: BreedCardP
     </Link>
   );
 }
+
+export default memo(BreedCard);
