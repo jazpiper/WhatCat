@@ -3,10 +3,18 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useDebouncedValue } from '@/hooks/useDebouncedValue';
 import { useRouter, usePathname } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { breeds } from '@/data/breeds';
 import BreedCard from '@/components/BreedCard';
-import BreedFilters from '@/components/BreedFilters';
 import BreedsGridSkeleton from '@/components/Skeleton/BreedsGridSkeleton';
+
+const BreedFilters = dynamic(() => import('@/components/BreedFilters'), {
+  ssr: false,
+  loading: () => (
+    <div className="bg-white rounded-2xl shadow-md p-4 animate-pulse h-[520px]" />
+  ),
+});
+
 import {
   filterBreeds,
   sortBreeds,
@@ -15,7 +23,7 @@ import {
   type BreedFilters as BreedFiltersType,
   type SortOption,
 } from '@/utils/breedFilters';
-import { Search, X } from 'lucide-react';
+import { Search, SlidersHorizontal, X } from 'lucide-react';
 import { logBreedSearchUsed } from '@/lib/google-analytics';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { isSafeInput } from '@/utils/sanitize';
@@ -29,6 +37,7 @@ export default function BreedsClient({
 }) {
   const [isFiltering, setIsFiltering] = useState(false);
   const [searchError, setSearchError] = useState<string>('');
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -185,16 +194,79 @@ export default function BreedsClient({
 
           {/* Main Content */}
           <div className="flex flex-col lg:flex-row gap-6">
-            <div className="lg:w-72 flex-shrink-0">
+            {/* Mobile: Filters button */}
+            <div className="lg:hidden">
+              <button
+                type="button"
+                onClick={() => setIsFiltersOpen(true)}
+                className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-white rounded-2xl border border-gray-200 shadow-sm"
+              >
+                <SlidersHorizontal size={18} />
+                필터 열기
+              </button>
+            </div>
+
+            {/* Desktop: Filters sidebar */}
+            <div className="hidden lg:block lg:w-72 flex-shrink-0">
               <BreedFilters
                 filters={filters}
-                onFiltersChange={setFilters}
+                onFiltersChange={(f) => {
+                  setFilters(f);
+                  setVisibleCount(PAGE_SIZE);
+                }}
                 sort={sort}
-                onSortChange={setSort}
+                onSortChange={(s) => {
+                  setSort(s);
+                  setVisibleCount(PAGE_SIZE);
+                }}
                 resultCount={filteredBreeds.length}
                 totalCount={breeds.length}
               />
             </div>
+
+            {/* Mobile: Filters drawer */}
+            {isFiltersOpen && (
+              <div
+                className="fixed inset-0 z-50 lg:hidden"
+                role="dialog"
+                aria-modal="true"
+                aria-label="필터"
+              >
+                <button
+                  className="absolute inset-0 bg-black/40"
+                  onClick={() => setIsFiltersOpen(false)}
+                  aria-label="필터 닫기"
+                />
+                <div className="absolute right-0 top-0 h-full w-[90%] max-w-sm bg-white shadow-2xl overflow-y-auto">
+                  <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex items-center justify-between">
+                    <div className="font-bold text-gray-800">필터</div>
+                    <button
+                      onClick={() => setIsFiltersOpen(false)}
+                      className="p-2 text-gray-500 hover:text-gray-700"
+                      aria-label="닫기"
+                    >
+                      <X size={20} />
+                    </button>
+                  </div>
+                  <div className="p-2">
+                    <BreedFilters
+                      filters={filters}
+                      onFiltersChange={(f) => {
+                        setFilters(f);
+                        setVisibleCount(PAGE_SIZE);
+                      }}
+                      sort={sort}
+                      onSortChange={(s) => {
+                        setSort(s);
+                        setVisibleCount(PAGE_SIZE);
+                      }}
+                      resultCount={filteredBreeds.length}
+                      totalCount={breeds.length}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
 
             <div className="flex-1">
               <div className="flex items-center justify-between mb-4">
@@ -258,6 +330,7 @@ export default function BreedsClient({
                     onClick={() => {
                       setFilters(defaultFilters);
                       setSearchQuery('');
+                      setVisibleCount(PAGE_SIZE);
                     }}
                     className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all"
                   >
