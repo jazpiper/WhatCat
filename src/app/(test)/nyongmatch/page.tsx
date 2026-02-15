@@ -9,13 +9,14 @@ import { useRouter } from 'next/navigation';
 import AdSense from '@/components/AdSense';
 import ProgressIndicator from '@/components/ProgressIndicator';
 import { getRandomCatTip } from '@/data/catTips';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useQuestionViewed, useQuestionAnswered } from '@/hooks/useAnalytics';
 
 export default function TestPage() {
   const { currentQuestion, answers, setAnswer, nextQuestion, previousQuestion } = useTest();
   const { trackAnswer } = useQuestionAnswered();
   const router = useRouter();
+  const prefersReducedMotion = useReducedMotion();
 
   // Track when user views a question
   useQuestionViewed(currentQuestion);
@@ -90,10 +91,10 @@ export default function TestPage() {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentQuestion}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.3 }}
+                  initial={prefersReducedMotion ? false : { opacity: 0, x: 20 }}
+                  animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
+                  exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: -20 }}
+                  transition={prefersReducedMotion ? { duration: 0.1 } : { duration: 0.3 }}
                   className="w-full"
                 >
                   <div className="text-center mb-8">
