@@ -1,15 +1,12 @@
-'use client';
-
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
 import breeds from '@/data/breeds.json';
-import { ArrowRight, Star } from 'lucide-react';
+import { Star } from 'lucide-react';
 import AdSense from '@/components/AdSense';
 import CatImage from '@/components/CatImage';
 import StructuredData from '@/components/StructuredData';
 import { BreedOfTheDay } from '@/components/BreedOfTheDay';
 import { DailyQuizStreak } from '@/components/DailyQuizStreak';
-import TestPreviewModal from '@/components/TestPreviewModal';
+import StartTestCTA from '@/components/Home/StartTestCTA';
 
 // 정적 데이터 계산 (렌더링 전에 계산)
 const popularBreeds = breeds.breeds
@@ -17,35 +14,6 @@ const popularBreeds = breeds.breeds
   .slice(0, 6);
 
 export default function HomePage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    // Check if user has already taken the test
-    const hasCompleted = localStorage.getItem('lastTestResult');
-    const hasSeenPreview = localStorage.getItem('hasSeenTestPreview');
-
-    // Only show modal if user hasn't completed test and hasn't seen preview
-    // The modal will be shown when user clicks "Start Test" button
-  }, []);
-
-  const handleStartTest = () => {
-    const hasSeenPreview = localStorage.getItem('hasSeenTestPreview');
-    const hasCompletedTest = localStorage.getItem('lastTestResult');
-
-    // Show modal if user hasn't seen preview or hasn't completed test
-    if (!hasSeenPreview && !hasCompletedTest) {
-      setIsModalOpen(true);
-    } else {
-      // Go directly to test
-      window.location.href = '/nyongmatch';
-    }
-  };
-
-  const handleModalStart = () => {
-    setIsModalOpen(false);
-    window.location.href = '/nyongmatch';
-  };
-
   return (
     <main id="main-content" className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-gray-900 transition-colors duration-300">
       {/* 구조화된 데이터 */}
@@ -96,13 +64,7 @@ export default function HomePage() {
             <p className="text-gray-600 dark:text-gray-300 mb-6">
               간단한 냥이매치로 나의 인생냥이를 찾아보세요!
             </p>
-            <button
-              onClick={handleStartTest}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
-            >
-              냥이매치 시작
-              <ArrowRight size={24} />
-            </button>
+            <StartTestCTA />
           </div>
         </div>
 
@@ -194,12 +156,6 @@ export default function HomePage() {
         </footer>
       </div>
 
-      {/* Test Preview Modal */}
-      <TestPreviewModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onStart={handleModalStart}
-      />
     </main>
   );
 }
