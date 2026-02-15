@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode, useMemo, useCallback } from 'react';
 import { AnswerScore } from '@/types';
 
 const STORAGE_KEY = 'nyongmatch_answers';
@@ -54,7 +54,7 @@ export function NyongmatchProvider({ children }: { children: ReactNode }) {
     }
   }, [currentQuestion]);
 
-  const setAnswer = (questionId: string, answerId: string) => {
+  const setAnswer = useCallback((questionId: string, answerId: string) => {
     setAnswers((prev) => {
       const existingIndex = prev.findIndex((a) => a.questionId === questionId);
       if (existingIndex >= 0) {
@@ -64,17 +64,17 @@ export function NyongmatchProvider({ children }: { children: ReactNode }) {
       }
       return [...prev, { questionId, answerId }];
     });
-  };
+  }, []);
 
-  const nextQuestion = () => {
+  const nextQuestion = useCallback(() => {
     setCurrentQuestion((prev) => Math.min(prev + 1, 13)); // Max index is 13 for 14 questions
-  };
+  }, []);
 
-  const previousQuestion = () => {
+  const previousQuestion = useCallback(() => {
     setCurrentQuestion((prev) => Math.max(0, prev - 1));
-  };
+  }, []);
 
-  const resetTest = () => {
+  const resetTest = useCallback(() => {
     setCurrentQuestion(0);
     setAnswers([]);
     setIsCompleted(false);
@@ -83,26 +83,38 @@ export function NyongmatchProvider({ children }: { children: ReactNode }) {
       localStorage.removeItem(STORAGE_KEY);
       localStorage.removeItem(QUESTION_KEY);
     }
-  };
+  }, []);
 
-  const goToQuestion = (index: number) => {
+  const goToQuestion = useCallback((index: number) => {
     setCurrentQuestion(index);
-  };
+  }, []);
+
+  const value = useMemo(
+    () => ({
+      currentQuestion,
+      answers,
+      setAnswer,
+      nextQuestion,
+      previousQuestion,
+      resetTest,
+      goToQuestion,
+      isCompleted,
+      setIsCompleted,
+    }),
+    [
+      currentQuestion,
+      answers,
+      setAnswer,
+      nextQuestion,
+      previousQuestion,
+      resetTest,
+      goToQuestion,
+      isCompleted,
+    ]
+  );
 
   return (
-    <NyongmatchContext.Provider
-      value={{
-        currentQuestion,
-        answers,
-        setAnswer,
-        nextQuestion,
-        previousQuestion,
-        resetTest,
-        goToQuestion,
-        isCompleted,
-        setIsCompleted,
-      }}
-    >
+    <NyongmatchContext.Provider value={value}>
       {children}
     </NyongmatchContext.Provider>
   );
