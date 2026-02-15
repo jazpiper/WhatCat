@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import breedsData from '@/data/breeds.json';
 import { Breed } from '@/types';
-import Script from 'next/script';
 import { generateBreedStructuredData, generateBreadcrumbStructuredData } from '@/utils/structuredData';
 
 interface Props {
@@ -60,14 +59,15 @@ export default async function BreedLayout({ children, params }: Props) {
     return (
         <>
             {structuredData && (
-                <Script
+                <script
                     id="structured-data-breed"
                     type="application/ld+json"
+                    // Render server-side so "View Source" contains it.
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
                 />
             )}
             {breadcrumbData && (
-                <Script
+                <script
                     id="structured-data-breadcrumb"
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
