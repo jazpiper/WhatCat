@@ -8,7 +8,7 @@ import { GoogleAnalyticsScript } from "../lib/google-analytics";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
-import { NyongmatchProvider } from "../contexts/NyongmatchContext";
+// NyongmatchProvider is mounted only for test-related routes via route group layout
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -135,7 +135,7 @@ export default function RootLayout({
         >
           <Navigation />
           <ServiceWorkerRegister />
-          <NyongmatchProvider>{children}</NyongmatchProvider>
+          {children}
         </ThemeProvider>
       </body>
     </html>
