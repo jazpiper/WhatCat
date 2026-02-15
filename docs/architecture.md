@@ -26,10 +26,14 @@ WhatCat(냥이 매치)는 **질문(설문) → 사용자 프로필 점수/벡터
 - 규칙/문구 생성: `src/utils/matchingExplanation.ts`
 
 ## 5) Pages (App Router)
-- `src/app/nyongmatch/page.tsx`: 설문 진행
-- `src/app/result/page.tsx`: 결과(Top3 + 추천 이유)
-- `src/app/breed/[id]/page.tsx`: 품종 상세
-- `src/app/compare/page.tsx`: 비교
+- 테스트 관련 라우트는 route group으로 분리되어 있습니다: `src/app/(test)/...`
+  - `src/app/(test)/nyongmatch/page.tsx`: 설문 진행
+  - `src/app/(test)/result/page.tsx`: 결과(Top3 + 추천 이유)
+  - `src/app/(test)/compare/page.tsx`: 비교
+- 품종 상세는 SSG로 생성됩니다
+  - `src/app/breed/[id]/page.tsx`: 품종 상세 (generateStaticParams 기반)
+- 품종 목록은 server wrapper + client UI로 분리되어 있습니다
+  - `src/app/breeds/page.tsx` (server) + `src/app/breeds/BreedsClient.tsx` (client)
 
 ## 6) Analytics/Ads
 - GA4/Vercel Analytics 관련 문서: `docs/ANALYTICS_GUIDE.md`, `docs/GA4_IMPLEMENTATION_SUMMARY.md`
