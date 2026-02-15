@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, useMemo, memo } from 'react';
 import Link from 'next/link';
 import { useResultsStorage } from '@/hooks/useResultsStorage';
 import { logResultsViewed } from '@/lib/google-analytics';
@@ -23,7 +23,7 @@ interface PersonalityBarProps {
   color: string;
 }
 
-function PersonalityBar({ label, value, color }: PersonalityBarProps) {
+const PersonalityBar = memo(function PersonalityBar({ label, value, color }: PersonalityBarProps) {
   return (
     <div className="flex items-center gap-3">
       <span className="text-xs text-gray-600 w-16">{label}</span>
@@ -36,7 +36,7 @@ function PersonalityBar({ label, value, color }: PersonalityBarProps) {
       <span className="text-xs font-medium text-gray-700 w-8 text-right">{value}</span>
     </div>
   );
-}
+});
 
 export default function MyResultsPage() {
   return (
@@ -60,6 +60,15 @@ function MyResultsPageContent() {
     formatResultDate,
   } = useResultsStorage();
 
+  // Pagination
+  const PAGE_SIZE = 10;
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+
+  const visibleResults = useMemo(
+    () => results.slice(0, visibleCount),
+    [results, visibleCount]
+  );
+
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
   const [showClearConfirm, setShowClearConfirm] = useState(false);
@@ -75,6 +84,11 @@ function MyResultsPageContent() {
       });
     }
   }, [isLoading, results.length, trends]);
+
+  // Reset pagination when results change (import/delete)
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [results.length]);
 
   const handleDelete = (id: string) => {
     setDeleteTargetId(id);
@@ -242,7 +256,7 @@ function MyResultsPageContent() {
           </div>
         ) : (
           <div className="space-y-4">
-            {results.map((result) => (
+            {visibleResults.map((result) => (
               <ResultCard
                 key={result.id}
                 result={result}
@@ -250,6 +264,17 @@ function MyResultsPageContent() {
                 formatResultDate={formatResultDate}
               />
             ))}
+
+            {visibleCount < results.length && (
+              <div className="pt-4 flex justify-center">
+                <button
+                  onClick={() => setVisibleCount((c) => Math.min(results.length, c + PAGE_SIZE))}
+                  className="px-6 py-3 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition"
+                >
+                  더 보기 ({visibleCount}/{results.length})
+                </button>
+              </div>
+            )}
           </div>
         )}
 
@@ -321,7 +346,7 @@ interface ResultCardProps {
   formatResultDate: (date: string) => string;
 }
 
-function ResultCard({ result, onDelete, formatResultDate }: ResultCardProps) {
+const ResultCard = memo(function ResultCard({ result, onDelete, formatResultDate }: ResultCardProps) {
   return (
     <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow">
       <div className="flex items-start justify-between">
@@ -375,4 +400,4 @@ function ResultCard({ result, onDelete, formatResultDate }: ResultCardProps) {
       )}
     </div>
   );
-}
+});
