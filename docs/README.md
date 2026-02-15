@@ -11,6 +11,7 @@
 - 매칭 알고리즘 개요: [Matching Logic](./matching-logic-analysis.md)
 - 추천 이유(결과 설명) 생성 규칙: [Result Explanations](./result-explanations.md)
 - ADR: [`docs/adr/`](./adr/)
+- SEO 검증: [SEO Verification](./seo-verification.md)
 - 분석/트래킹: [Analytics Guide](./ANALYTICS_GUIDE.md), [GA4 Summary](./GA4_IMPLEMENTATION_SUMMARY.md)
 
 ## 문서 규칙(권장)
