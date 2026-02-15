@@ -1,6 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect, ReactNode, useMemo, useCallback } from 'react';
+import { useDebouncedValue } from '@/hooks/useDebouncedValue';
 import { AnswerScore } from '@/types';
 
 const STORAGE_KEY = 'nyongmatch_answers';
@@ -40,12 +41,14 @@ export function NyongmatchProvider({ children }: { children: ReactNode }) {
 
   const [isCompleted, setIsCompleted] = useState(false);
 
-  // Save answers to localStorage whenever they change
+  const debouncedAnswers = useDebouncedValue(answers, 200);
+
+  // Save answers to localStorage (debounced to reduce write churn)
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(debouncedAnswers));
     }
-  }, [answers]);
+  }, [debouncedAnswers]);
 
   // Save current question to localStorage whenever it changes
   useEffect(() => {
