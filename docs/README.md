@@ -7,6 +7,7 @@
 - 개발/실행: [Development](./development.md)
 - 아키텍처: [Architecture](./architecture.md)
 - 기여 가이드: [Contributing](./contributing.md)
+- PRD: [Breed Detail Page Enhancement v2](./prd-breed-detail-page.md)
 - 매칭 알고리즘 개요: [Matching Logic](./matching-logic-analysis.md)
 - 추천 이유(결과 설명) 생성 규칙: [Result Explanations](./result-explanations.md)
 - ADR: [`docs/adr/`](./adr/)
