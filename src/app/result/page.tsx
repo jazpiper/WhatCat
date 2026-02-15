@@ -115,6 +115,9 @@ export default function ResultPage() {
     [urlResults]
   );
 
+  // URL params were present, but none of the breed IDs were valid
+  const hasInvalidUrlResults = hasUrlParams && !isLoadingUrl && urlResults && urlResults.length > 0 && (!urlBreedResults || urlBreedResults.length === 0);
+
   // Context에서 계산한 결과 (useMemo로 캐싱)
   const contextResults = useMemo<MatchResult[] | null>(() => {
     if (answers.length === 0) return null;
@@ -151,8 +154,14 @@ export default function ResultPage() {
     // URL 파라미터가 있거나 Context 결과가 있으면 리다이렉트하지 않음
     if (!isLoadingUrl && !hasUrlParams && !contextResults) {
       router.push('/');
+      return;
     }
-  }, [isLoadingUrl, hasUrlParams, contextResults, router]);
+
+    // URL params exist but are invalid (breed id not found)
+    if (hasInvalidUrlResults) {
+      router.push('/');
+    }
+  }, [isLoadingUrl, hasUrlParams, contextResults, router, hasInvalidUrlResults]);
 
   // 매칭 점수 애니메이션 상태
   const [animatedScore, setAnimatedScore] = useState(0);
@@ -411,7 +420,10 @@ export default function ResultPage() {
     : '';
 
   if (!firstResult) {
+    // While loading/parsing URL params, show skeleton.
     if (hasUrlParams || isLoadingUrl) {
+      // But if URL params were invalid, we will redirect.
+      if (hasInvalidUrlResults) return null;
       return <ResultSkeleton />;
     }
     return null;
