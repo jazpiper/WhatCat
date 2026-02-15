@@ -50,7 +50,8 @@ export default async function BreedLayout({ children, params }: Props) {
     const breed = breeds.breeds.find((b) => b.id === id);
 
     // 구조화된 데이터 (JSON-LD)
-    const structuredData = breed ? generateBreedStructuredData(breed) : null;
+    const canonicalUrl = `https://what-cat-psi.vercel.app/breed/${id}`;
+    const structuredData = breed ? generateBreedStructuredData(breed, canonicalUrl) : null;
     const breadcrumbData = breed ? generateBreadcrumbStructuredData([
         { name: '홈', url: 'https://what-cat-psi.vercel.app' },
         { name: '품종 상세', url: `https://what-cat-psi.vercel.app/breed/${id}` },
