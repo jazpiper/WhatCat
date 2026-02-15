@@ -3,13 +3,12 @@
 import { useTest } from '@/contexts/NyongmatchContext';
 import { breeds } from '@/data/breeds';
 import { questions } from '@/data/questions';
-import { calculateMatch, getRankEmoji } from '@/utils/matching';
+import { calculateMatch } from '@/utils/matching';
 import { getRelatedBreeds } from '@/utils/breedSimilarity';
 import {
   createShareUrl,
   createTwitterShareUrl,
   createThreadsShareUrl,
-  createInstagramShareUrl,
   getResultsFromUrl,
   getShareTextByScore,
 } from '@/utils/share';
@@ -17,13 +16,13 @@ import { useState, useRef, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
-import { Breed, ShareResult } from '@/types';
+import { ShareResult } from '@/types';
 import type { MatchResult } from '@/utils/matching';
 import {
   ArrowLeft,
   RotateCcw,
 } from 'lucide-react';
-import LoadingSpinner from '@/components/LoadingSpinner';
+// (LoadingSpinner import removed)
 import ResultSkeleton from '@/components/Skeleton/ResultSkeleton';
 import AdSense from '@/components/AdSense';
 import {
@@ -40,7 +39,7 @@ import TopRecommended from '@/components/Result/TopRecommended';
 import SocialShare from '@/components/Result/SocialShare';
 import FriendCompare from '@/components/Result/FriendCompare';
 import FamousMatchCard from '@/components/Result/FamousMatchCard';
-import MatchExplanation from '@/components/Result/MatchExplanation';
+import RecommendationReasonCards from '@/components/Result/RecommendationReasonCards';
 import RelatedBreeds from '@/components/Result/RelatedBreeds';
 import InstagramStoryCard from '@/components/Result/InstagramStoryCard';
 import { generateInstagramStoryImage } from '@/utils/instagramStoryCanvas';
@@ -116,13 +115,18 @@ export default function ResultPage() {
   );
 
   // Context에서 계산한 결과 (useMemo로 캐싱)
-  const contextResults = useMemo(
-    () =>
-      answers.length > 0
-        ? calculateMatch(answers, breeds, questions)
-        : null,
-    [answers]
-  );
+  const contextResults = useMemo<MatchResult[] | null>(() => {
+    if (answers.length === 0) return null;
+
+    const calculated = calculateMatch(answers, breeds, questions);
+
+    // calculateMatch는 옵션에 따라 { results, comparison } 형태를 반환할 수 있어요.
+    if (calculated && typeof calculated === 'object' && 'results' in calculated) {
+      return calculated.results;
+    }
+
+    return calculated as MatchResult[];
+  }, [answers]);
 
   // URL 파라미터 결과가 있으면 우선, 없으면 Context 결과 사용
   const displayResults = urlBreedResults || contextResults;
@@ -355,7 +359,7 @@ export default function ResultPage() {
         } else {
           alert('올바른 결과 링크를 입력해주세요.');
         }
-      } catch (e) {
+      } catch {
         alert('올바른 URL 형식이 아닙니다.');
       }
     } else {
@@ -448,12 +452,7 @@ export default function ResultPage() {
             <FamousMatchCard breed={firstResult.breed} />
           </div>
 
-          <div className="mt-8">
-            <MatchExplanation
-              breed={firstResult.breed}
-              reasons={firstResult.reasons || []}
-            />
-          </div>
+          <RecommendationReasonCards results={top3Results} />
         </div>
 
         <SocialShare

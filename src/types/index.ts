@@ -67,8 +67,28 @@ export interface Option {
     };
     lifestyle?: number;
     appearance?: {
-      size?: 'small' | 'medium' | 'large' | 'xlarge' | 'any';
-      coat?: 'short' | 'medium' | 'long' | 'hairless' | 'any';
+      size?:
+        | 'small'
+        | 'medium'
+        | 'large'
+        | 'xlarge'
+        | 'any'
+        | '소형'
+        | '중형'
+        | '대형'
+        | '초대형'
+        | '상관없음';
+      coat?:
+        | 'short'
+        | 'medium'
+        | 'long'
+        | 'hairless'
+        | 'any'
+        | '단모'
+        | '중장모'
+        | '장모'
+        | '무모'
+        | '상관없음';
     };
     cost?: {
       initial?: 'low' | 'medium' | 'high' | 'veryhigh';

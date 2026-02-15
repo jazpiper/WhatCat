@@ -105,6 +105,7 @@ export function calculateMatch(
       breed: vr.breed,
       score: vr.score,
       breakdown: vr.breakdown,
+      reasons: [],
       cosineSimilarity: vr.cosineSimilarity,
       euclideanDistance: vr.euclideanDistance,
     }));
@@ -147,6 +148,7 @@ function calculateOriginalMatch(
       breed,
       score: Math.round(totalScore),
       breakdown,
+      reasons: [],
     };
   });
 
@@ -174,6 +176,7 @@ export function calculateVectorOnly(
     breed: vr.breed,
     score: vr.score,
     breakdown: vr.breakdown,
+    reasons: [],
     cosineSimilarity: vr.cosineSimilarity,
     euclideanDistance: vr.euclideanDistance,
   }));
