@@ -36,12 +36,15 @@ import { useResultsStorage } from '@/hooks/useResultsStorage';
 import ResultHeader from '@/components/Result/ResultHeader';
 import BreedProfile from '@/components/Result/BreedProfile';
 import TopRecommended from '@/components/Result/TopRecommended';
-import SocialShare from '@/components/Result/SocialShare';
-import FriendCompare from '@/components/Result/FriendCompare';
-import FamousMatchCard from '@/components/Result/FamousMatchCard';
-import RecommendationReasonCards from '@/components/Result/RecommendationReasonCards';
-import RelatedBreeds from '@/components/Result/RelatedBreeds';
-import InstagramStoryCard from '@/components/Result/InstagramStoryCard';
+
+// Heavier/less critical sections: lazy-load to keep initial Result bundle smaller
+const SocialShare = dynamic(() => import('@/components/Result/SocialShare'), { ssr: false });
+const FriendCompare = dynamic(() => import('@/components/Result/FriendCompare'), { ssr: false });
+const FamousMatchCard = dynamic(() => import('@/components/Result/FamousMatchCard'), { ssr: false });
+const RecommendationReasonCards = dynamic(() => import('@/components/Result/RecommendationReasonCards'), { ssr: false });
+const RelatedBreeds = dynamic(() => import('@/components/Result/RelatedBreeds'), { ssr: false });
+const InstagramStoryCard = dynamic(() => import('@/components/Result/InstagramStoryCard'), { ssr: false });
+
 // IMPORTANT: keep instagram story generator lazy-loaded (it pulls html2canvas)
 
 
