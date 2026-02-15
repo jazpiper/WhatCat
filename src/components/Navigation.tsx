@@ -1,8 +1,5 @@
-'use client';
-
-import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import NavLink from './NavLink';
 import ThemeToggle from './ThemeToggle';
 
 const navigation = [
@@ -24,9 +21,6 @@ const footerLinks = [
 ];
 
 export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
-
   return (
     <nav className="bg-gradient-to-r from-pink-500/90 via-purple-500/90 to-pink-500/90 backdrop-blur-md shadow-lg sticky top-0 z-50 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,7 +32,9 @@ export default function Navigation() {
               className="text-white font-bold text-xl hover:text-pink-200 transition-colors flex items-center gap-2"
               aria-label="냥이 매칭 홈으로 이동"
             >
-              <span className="text-2xl" aria-hidden="true">🐱</span>
+              <span className="text-2xl" aria-hidden="true">
+                🐱
+              </span>
               <span className="tracking-tighter">NYONGMATCH</span>
             </Link>
           </div>
@@ -46,89 +42,73 @@ export default function Navigation() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-1">
             {navigation.map((item) => (
-              <Link
+              <NavLink
                 key={item.name}
                 href={item.href}
-                className={`
-                  px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
-                  ${pathname === item.href
-                    ? 'bg-white/20 text-white shadow-md'
-                    : 'text-white/90 hover:bg-white/10 hover:text-white'
-                  }
-                `}
-                aria-current={pathname === item.href ? 'page' : undefined}
+                className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200"
+                activeClassName="bg-white/20 text-white shadow-md"
+                inactiveClassName="text-white/90 hover:bg-white/10 hover:text-white"
               >
                 {item.name}
-              </Link>
+              </NavLink>
             ))}
             <ThemeToggle />
           </div>
 
-          {/* Mobile Menu Button & Theme Toggle */}
+          {/* Mobile Menu (no React state; <details> controls open/close) */}
           <div className="md:hidden flex items-center gap-2">
             <ThemeToggle />
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-white p-2 rounded-lg hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
-              aria-label={isOpen ? "메뉴 닫기" : "메뉴 열기"}
-              aria-expanded={isOpen}
-            >
-              <svg
-                className={`w-6 h-6 transition-transform duration-300 ${isOpen ? 'rotate-90' : ''}`}
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+            <details id="mobile-nav" className="relative">
+              <summary
+                className="list-none text-white p-2 rounded-lg hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer"
+                aria-label="메뉴"
               >
-                {isOpen ? (
-                  <path d="M6 18L18 6M6 6l12 12" />
-                ) : (
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
                   <path d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
+                </svg>
+              </summary>
 
-      {/* Mobile Menu Dropdown */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[500px] opacity-100 border-t border-white/10' : 'max-h-0 opacity-0'
-          }`}
-      >
-        <div className="px-4 py-4 space-y-1 bg-gradient-to-b from-purple-500/30 to-pink-500/30 backdrop-blur-lg">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              onClick={() => setIsOpen(false)}
-              className={`
-                block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200
-                ${pathname === item.href
-                  ? 'bg-white/30 text-white shadow-md translate-x-1'
-                  : 'text-white/90 hover:bg-white/10 hover:translate-x-1'
-                }
-              `}
-              aria-current={pathname === item.href ? 'page' : undefined}
-            >
-              {item.name}
-            </Link>
-          ))}
+              <div className="absolute right-0 mt-2 w-64 origin-top-right rounded-2xl overflow-hidden bg-gradient-to-b from-purple-500/90 to-pink-500/90 backdrop-blur-lg shadow-2xl border border-white/10">
+                <div className="px-3 py-3 space-y-1">
+                  {navigation.map((item) => (
+                    <NavLink
+                      key={item.name}
+                      href={item.href}
+                      closeMobileMenu
+                      className="block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200"
+                      activeClassName="bg-white/30 text-white shadow-md"
+                      inactiveClassName="text-white/90 hover:bg-white/10"
+                    >
+                      {item.name}
+                    </NavLink>
+                  ))}
 
-          <div className="pt-4 mt-4 border-t border-white/10 flex flex-wrap gap-x-4 gap-y-2 px-2">
-            {footerLinks.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className="text-xs text-white/70 hover:text-white transition-colors"
-                aria-label={`${item.name} 페이지로 이동`}
-              >
-                {item.name}
-              </Link>
-            ))}
+                  <div className="pt-3 mt-3 border-t border-white/10 flex flex-wrap gap-x-4 gap-y-2 px-2">
+                    {footerLinks.map((item) => (
+                      <NavLink
+                        key={item.name}
+                        href={item.href}
+                        closeMobileMenu
+                        className="text-xs text-white/70 hover:text-white transition-colors"
+                        activeClassName="text-white"
+                        inactiveClassName=""
+                        aria-label={`${item.name} 페이지로 이동`}
+                      >
+                        {item.name}
+                      </NavLink>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </details>
           </div>
         </div>
       </div>
@@ -137,14 +117,16 @@ export default function Navigation() {
       <div className="hidden md:block bg-black/5 px-4 py-1.5 text-[10px] uppercase tracking-widest">
         <div className="max-w-7xl mx-auto flex justify-end space-x-6">
           {footerLinks.map((item) => (
-            <Link
+            <NavLink
               key={item.name}
               href={item.href}
               className="text-white/60 hover:text-white transition-colors"
+              activeClassName="text-white"
+              inactiveClassName=""
               aria-label={`${item.name} 페이지로 이동`}
             >
               {item.name}
-            </Link>
+            </NavLink>
           ))}
         </div>
       </div>
