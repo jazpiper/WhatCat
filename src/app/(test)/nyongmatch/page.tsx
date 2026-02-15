@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useEffect } from 'react';
+import { useMemo } from 'react';
 import { useTest } from '@/contexts/NyongmatchContext';
 import { questions } from '@/data/questions';
 import Link from 'next/link';
@@ -9,7 +9,7 @@ import AdSense from '@/components/AdSense';
 import ProgressIndicator from '@/components/ProgressIndicator';
 import { getRandomCatTip } from '@/data/catTips';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTestStart, useQuestionViewed, useQuestionAnswered, useTestAbandoned } from '@/hooks/useAnalytics';
+import { useQuestionViewed, useQuestionAnswered } from '@/hooks/useAnalytics';
 
 export default function TestPage() {
   const { currentQuestion, answers, setAnswer, nextQuestion, previousQuestion } = useTest();
