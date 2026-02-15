@@ -109,10 +109,29 @@ export function createUserVector(
     cost_initial: 0.5,
   };
 
-  // 답변 집계용 카운터
-  let personalityCount = 0;
-  let maintenanceCount = 0;
-  let lifestyleCount = 0;
+  // 답변 집계용 sum/count (dimension-wise)
+  const sum = {
+    activity: 0,
+    affection: 0,
+    social: 0,
+    quiet: 0,
+    loyalty: 0,
+    grooming: 0,
+    training: 0,
+    health: 0,
+    lifestyle: 0,
+  };
+  const cnt = {
+    activity: 0,
+    affection: 0,
+    social: 0,
+    quiet: 0,
+    loyalty: 0,
+    grooming: 0,
+    training: 0,
+    health: 0,
+    lifestyle: 0,
+  };
 
   // 사용자 답변으로 벡터 구성
   for (const answer of userAnswers) {
@@ -122,52 +141,52 @@ export function createUserVector(
     const selectedOption = question.options.find((o) => o.id === answer.answerId);
     if (!selectedOption) continue;
 
-    // Personality scores
+    // Personality scores (accumulate then average)
     if (selectedOption.scores.personality) {
       const p = selectedOption.scores.personality;
       if (p.activity !== undefined) {
-        userVector.activity = p.activity;
-        personalityCount++;
+        sum.activity += p.activity;
+        cnt.activity++;
       }
       if (p.affection !== undefined) {
-        userVector.affection = p.affection;
-        personalityCount++;
+        sum.affection += p.affection;
+        cnt.affection++;
       }
       if (p.social !== undefined) {
-        userVector.social = p.social;
-        personalityCount++;
+        sum.social += p.social;
+        cnt.social++;
       }
       if (p.quiet !== undefined) {
-        userVector.quiet = p.quiet;
-        personalityCount++;
+        sum.quiet += p.quiet;
+        cnt.quiet++;
       }
       if (p.loyalty !== undefined) {
-        userVector.loyalty = p.loyalty;
-        personalityCount++;
+        sum.loyalty += p.loyalty;
+        cnt.loyalty++;
       }
     }
 
-    // Maintenance scores
+    // Maintenance scores (accumulate then average)
     if (selectedOption.scores.maintenance) {
       const m = selectedOption.scores.maintenance;
       if (m.grooming !== undefined) {
-        userVector.grooming = m.grooming;
-        maintenanceCount++;
+        sum.grooming += m.grooming;
+        cnt.grooming++;
       }
       if (m.training !== undefined) {
-        userVector.training = m.training;
-        maintenanceCount++;
+        sum.training += m.training;
+        cnt.training++;
       }
       if (m.health !== undefined) {
-        userVector.health = m.health;
-        maintenanceCount++;
+        sum.health += m.health;
+        cnt.health++;
       }
     }
 
-    // Lifestyle scores
+    // Lifestyle scores (accumulate then average)
     if (selectedOption.scores.lifestyle !== undefined) {
-      userVector.lifestyle = selectedOption.scores.lifestyle;
-      lifestyleCount++;
+      sum.lifestyle += selectedOption.scores.lifestyle;
+      cnt.lifestyle++;
     }
 
     // Appearance (size & coat)
@@ -248,10 +267,18 @@ export function createUserVector(
     }
   }
 
-  // Lifestyle 점수 정규화 (0-5)
-  if (lifestyleCount > 0) {
-    userVector.lifestyle = Math.min(5, userVector.lifestyle / lifestyleCount * 5);
-  }
+  // Apply averaged scores (keep defaults if unanswered)
+  if (cnt.activity) userVector.activity = sum.activity / cnt.activity;
+  if (cnt.affection) userVector.affection = sum.affection / cnt.affection;
+  if (cnt.social) userVector.social = sum.social / cnt.social;
+  if (cnt.quiet) userVector.quiet = sum.quiet / cnt.quiet;
+  if (cnt.loyalty) userVector.loyalty = sum.loyalty / cnt.loyalty;
+
+  if (cnt.grooming) userVector.grooming = sum.grooming / cnt.grooming;
+  if (cnt.training) userVector.training = sum.training / cnt.training;
+  if (cnt.health) userVector.health = sum.health / cnt.health;
+
+  if (cnt.lifestyle) userVector.lifestyle = sum.lifestyle / cnt.lifestyle;
 
   return userVector;
 }
