@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useDebouncedValue } from '@/hooks/useDebouncedValue';
 import { useRouter, usePathname } from 'next/navigation';
 import { breeds } from '@/data/breeds';
 import BreedCard from '@/components/BreedCard';
@@ -37,12 +38,21 @@ export default function BreedsClient({
   }));
   const [sort, setSort] = useState<SortOption>(initialSort);
   const [searchQuery, setSearchQuery] = useState(filters.searchQuery || '');
+  const debouncedSearchQuery = useDebouncedValue(searchQuery, 250);
 
   // Filter and sort breeds
   const filteredBreeds = useMemo(() => {
     const filtered = filterBreeds(breeds, filters);
     return sortBreeds(filtered, sort);
   }, [filters, sort]);
+
+  // Apply debounced searchQuery to filters (avoid re-filtering + URL churn on every keystroke)
+  useEffect(() => {
+    setIsFiltering(true);
+    setFilters((prev) => ({ ...prev, searchQuery: debouncedSearchQuery }));
+    const t = setTimeout(() => setIsFiltering(false), 200);
+    return () => clearTimeout(t);
+  }, [debouncedSearchQuery]);
 
   // Update URL when filters change
   useEffect(() => {
@@ -70,17 +80,11 @@ export default function BreedsClient({
 
     setSearchError('');
     setSearchQuery(sanitized);
-    setIsFiltering(true);
-    setFilters((prev) => ({ ...prev, searchQuery: sanitized }));
-    setTimeout(() => setIsFiltering(false), 300);
   };
 
   const clearSearch = () => {
     setSearchError('');
-    setIsFiltering(true);
     setSearchQuery('');
-    setFilters((prev) => ({ ...prev, searchQuery: '' }));
-    setTimeout(() => setIsFiltering(false), 300);
   };
 
   const handleSortChange = useCallback((newSort: SortOption) => {
