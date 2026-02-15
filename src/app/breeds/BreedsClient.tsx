@@ -301,17 +301,15 @@ export default function BreedsClient({
               </div>
 
               {filteredBreeds.length > 0 ? (
-                isFiltering ? (
-                  <BreedsGridSkeleton count={Math.min(filteredBreeds.length, 6)} />
-                ) : (
-                  <>
+                <div className="relative">
+                  <div className={isFiltering ? 'opacity-60 pointer-events-none transition-opacity' : 'transition-opacity'}>
                     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
                       {visibleBreeds.map((breed) => (
                         <BreedCard key={breed.id} breed={breed} showRank />
                       ))}
                     </div>
 
-                    {visibleCount < filteredBreeds.length && (
+                    {!isFiltering && visibleCount < filteredBreeds.length && (
                       <div className="mt-8 flex justify-center">
                         <button
                           onClick={() => setVisibleCount((c) => Math.min(filteredBreeds.length, c + PAGE_SIZE))}
@@ -321,8 +319,17 @@ export default function BreedsClient({
                         </button>
                       </div>
                     )}
-                  </>
-                )
+                  </div>
+
+                  {isFiltering && (
+                    <div className="absolute inset-0 flex items-start justify-center pt-6">
+                      <div className="inline-flex items-center gap-2 bg-white/90 border border-gray-200 rounded-full px-4 py-2 shadow-sm">
+                        <span className="w-2.5 h-2.5 rounded-full bg-pink-500 animate-pulse" />
+                        <span className="text-sm text-gray-700">필터 적용 중…</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
               ) : (
                 <div className="bg-white rounded-2xl shadow-md p-8 text-center">
                   <div className="text-6xl mb-4">😿</div>
