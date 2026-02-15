@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import breedsData from '@/data/breeds.json';
 import Link from 'next/link';
-import { ArrowLeft, Star } from 'lucide-react';
+import { ArrowLeft, Share2, Copy, Check, Star } from 'lucide-react';
 import { Breed } from '@/types';
 import { useParams } from 'next/navigation';
 import CatImage from '@/components/CatImage';
@@ -25,7 +25,52 @@ export default function BreedDetailPage() {
   const breedId = params.id as string;
   const { trackExplore } = useBreedExplore();
 
+  const [copied, setCopied] = useState(false);
+
   const breed = breeds.breeds.find((b) => b.id === breedId);
+
+  const shareUrl = typeof window !== 'undefined'
+    ? window.location.href
+    : `https://what-cat-psi.vercel.app/breed/${breedId}`;
+
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // Fallback for older browsers
+      const textarea = document.createElement('textarea');
+      textarea.value = shareUrl;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    }
+  };
+
+  const handleNativeShare = async () => {
+    if (!breed) return;
+    if (!('share' in navigator)) {
+      await handleCopyLink();
+      return;
+    }
+
+    try {
+      await navigator.share({
+        title: `${breed.name} (${breed.nameEn}) | 냥이 매칭`,
+        text: `${breed.name} 품종 정보 같이 볼래?`,
+        url: shareUrl,
+      });
+    } catch {
+      // user cancelled
+    }
+  };
 
   // Track breed explore event
   useEffect(() => {
@@ -63,11 +108,32 @@ export default function BreedDetailPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-3 md:px-4 py-6 md:py-8 max-w-4xl">
-        <div className="mb-4 md:mb-6">
+        <div className="mb-4 md:mb-6 flex items-center justify-between gap-3">
           <Link href="/" className="text-pink-500 dark:text-pink-400 hover:underline flex items-center gap-2 text-sm md:text-base">
             <ArrowLeft size={18} />
             처음으로
           </Link>
+
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleNativeShare}
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 text-xs md:text-sm hover:shadow-sm transition"
+              aria-label="공유하기"
+            >
+              <Share2 size={16} />
+              공유
+            </button>
+            <button
+              type="button"
+              onClick={handleCopyLink}
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 text-xs md:text-sm hover:shadow-sm transition"
+              aria-label="링크 복사"
+            >
+              {copied ? <Check size={16} /> : <Copy size={16} />}
+              {copied ? '복사됨' : '링크 복사'}
+            </button>
+          </div>
         </div>
 
         <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden mb-4 md:mb-6">
