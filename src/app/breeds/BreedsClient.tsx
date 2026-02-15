@@ -40,16 +40,26 @@ export default function BreedsClient({
   const [searchQuery, setSearchQuery] = useState(filters.searchQuery || '');
   const debouncedSearchQuery = useDebouncedValue(searchQuery, 250);
 
+  // Pagination (keep initial render cheap)
+  const PAGE_SIZE = 18;
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+
   // Filter and sort breeds
   const filteredBreeds = useMemo(() => {
     const filtered = filterBreeds(breeds, filters);
     return sortBreeds(filtered, sort);
   }, [filters, sort]);
 
+  const visibleBreeds = useMemo(
+    () => filteredBreeds.slice(0, visibleCount),
+    [filteredBreeds, visibleCount]
+  );
+
   // Apply debounced searchQuery to filters (avoid re-filtering + URL churn on every keystroke)
   useEffect(() => {
     setIsFiltering(true);
     setFilters((prev) => ({ ...prev, searchQuery: debouncedSearchQuery }));
+    setVisibleCount(PAGE_SIZE); // reset pagination on new search
     const t = setTimeout(() => setIsFiltering(false), 200);
     return () => clearTimeout(t);
   }, [debouncedSearchQuery]);
@@ -90,6 +100,7 @@ export default function BreedsClient({
   const handleSortChange = useCallback((newSort: SortOption) => {
     setIsFiltering(true);
     setSort(newSort);
+    setVisibleCount(PAGE_SIZE);
     setTimeout(() => setIsFiltering(false), 300);
   }, []);
 
@@ -217,11 +228,24 @@ export default function BreedsClient({
                 isFiltering ? (
                   <BreedsGridSkeleton count={Math.min(filteredBreeds.length, 6)} />
                 ) : (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-                    {filteredBreeds.map((breed) => (
-                      <BreedCard key={breed.id} breed={breed} showRank />
-                    ))}
-                  </div>
+                  <>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+                      {visibleBreeds.map((breed) => (
+                        <BreedCard key={breed.id} breed={breed} showRank />
+                      ))}
+                    </div>
+
+                    {visibleCount < filteredBreeds.length && (
+                      <div className="mt-8 flex justify-center">
+                        <button
+                          onClick={() => setVisibleCount((c) => Math.min(filteredBreeds.length, c + PAGE_SIZE))}
+                          className="px-6 py-3 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition"
+                        >
+                          더 보기 ({visibleCount}/{filteredBreeds.length})
+                        </button>
+                      </div>
+                    )}
+                  </>
                 )
               ) : (
                 <div className="bg-white rounded-2xl shadow-md p-8 text-center">
