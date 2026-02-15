@@ -94,9 +94,12 @@ export function useQuestionAnswered() {
 /**
  * Test Completed Hook
  * Tracks when a user completes the test
+ *
+ * NOTE: Returns an imperative tracker function so callers can safely invoke it
+ * inside effects/handlers without violating Rules of Hooks.
  */
-export function useTestCompleted(totalTime: number, resultBreed: string, confidenceScore: number) {
-  useEffect(() => {
+export function useTestCompleted() {
+  const trackCompleted = (totalTime: number, resultBreed: string, confidenceScore: number) => {
     const params: TestCompletedEvent = {
       total_time: totalTime,
       result_breed: resultBreed,
@@ -104,7 +107,9 @@ export function useTestCompleted(totalTime: number, resultBreed: string, confide
     }
 
     logTestCompleted(params)
-  }, [totalTime, resultBreed, confidenceScore])
+  }
+
+  return { trackCompleted }
 }
 
 /**

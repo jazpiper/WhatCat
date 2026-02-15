@@ -65,6 +65,7 @@ export default function ResultPage() {
   const { trackComparison } = useFriendComparison();
   const { trackShare } = useResultShared();
   const { trackRetry } = useResultRetry();
+  const { trackCompleted } = useTestCompleted();
   const { saveResult } = useResultsStorage();
   const [copied, setCopied] = useState(false);
   const [friendLink, setFriendLink] = useState('');
@@ -184,9 +185,9 @@ export default function ResultPage() {
   useEffect(() => {
     if (firstResult && !isLoadingUrl && !hasUrlParams) {
       const totalTime = Math.floor((Date.now() - startTime) / 1000); // seconds
-      useTestCompleted(totalTime, firstResult.breed.id, firstResult.score);
+      trackCompleted(totalTime, firstResult.breed.id, firstResult.score);
     }
-  }, [firstResult, isLoadingUrl, hasUrlParams, startTime]);
+  }, [firstResult, isLoadingUrl, hasUrlParams, startTime, trackCompleted]);
 
   // 결과가 로드되면 confetti 시작
   useEffect(() => {
