@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import path from 'path';
 
 const nextConfig: NextConfig = {
   // 이미지 설정
@@ -38,8 +39,11 @@ const nextConfig: NextConfig = {
   productionBrowserSourceMaps: false, // Source Map 제거 (production)
   reactStrictMode: true, // React 엄격 모드
 
-  // Turbopack 설정 (Next.js 16 기본값)
-  turbopack: {},
+  // Turbopack 설정 (workspace root warning fix)
+  // Next.js may infer an incorrect monorepo root when multiple lockfiles exist.
+  turbopack: {
+    root: path.join(__dirname),
+  },
 
   // 캐싱 헤더 설정
   async headers() {
