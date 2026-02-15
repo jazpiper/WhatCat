@@ -73,12 +73,16 @@ export default function BreedsClient({
     return () => clearTimeout(t);
   }, [debouncedSearchQuery]);
 
-  // Update URL when filters change
-  useEffect(() => {
-    const params = filtersToSearchParams(filters, sort);
-    const queryString = params.toString();
-    const url = queryString ? `${pathname}?${queryString}` : pathname;
+  // Debounce URL updates to avoid churn while dragging sliders / tapping filters
+  const queryString = useMemo(
+    () => filtersToSearchParams(filters, sort).toString(),
+    [filters, sort]
+  );
+  const debouncedQueryString = useDebouncedValue(queryString, 200);
 
+  // Update URL when filters change (debounced)
+  useEffect(() => {
+    const url = debouncedQueryString ? `${pathname}?${debouncedQueryString}` : pathname;
     router.replace(url, { scroll: false });
 
     if (filters.searchQuery) {
@@ -87,7 +91,7 @@ export default function BreedsClient({
         result_count: filteredBreeds.length,
       });
     }
-  }, [filters, sort, pathname, router, filteredBreeds.length]);
+  }, [debouncedQueryString, pathname, router, filteredBreeds.length, filters.searchQuery]);
 
   const handleSearchChange = (value: string) => {
     const sanitized = value.trim().slice(0, 50);
