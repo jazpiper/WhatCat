@@ -16,6 +16,7 @@ function BreedCard({ breed, score, showRank = false }: BreedCardProps) {
   return (
     <Link
       href={`/breed/${breed.id}`}
+      prefetch={false}
       className="group block bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-pink-200 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:ring-offset-2"
       aria-label={`${breed.name}(${breed.nameEn}) 상세 정보${score ? ` - 매칭 점수 ${score}%` : ''}`}
     >
