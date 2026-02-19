@@ -1,4 +1,89 @@
-import { Breed, ShareResult } from '@/types';
+import { Breed, ShareResult, FamousMatch } from '@/types';
+
+/**
+ * seed 문자열을 기반으로 일관된 해시값을 생성합니다.
+ */
+const getSeededRandom = (seed: string): number => {
+  let hash = 0;
+  for (let i = 0; i < seed.length; i++) {
+    hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+    hash = hash & hash; // 32비트 정수로 변환
+  }
+  return Math.abs(hash);
+};
+
+/**
+ * 품종과 점수를 기반으로 일관된 유명인 매칭을 반환합니다.
+ */
+export function getConsistentCelebrityMatch(breed: Breed, score: number): FamousMatch | null {
+  if (!breed.famous_matches || breed.famous_matches.length === 0) {
+    return null;
+  }
+  const seed = `${breed.id}-${score}`;
+  const hash = getSeededRandom(seed);
+  return breed.famous_matches[hash % breed.famous_matches.length];
+}
+
+/**
+ * 유명인 정보가 포함된 공유 문구를 반환합니다.
+ * "나는 {유명인}과 같은 냥이 타입! 나의 인생냥이는 {품종} ({점수}% 매칭)"
+ */
+export function getShareTextWithCelebrity(score: number, breedName: string, emoji: string, celebrityName: string | null): string {
+  const celebrityIntro = celebrityName
+    ? `나는 ${celebrityName}과(와) 같은 냥이 타입! `
+    : '';
+
+  if (score >= 90) {
+    const messages = [
+      `${celebrityIntro}나의 인생냥이는 "${breedName}" (${score}% 매칭) ${emoji}\n\n너도 나의 인생냥이 찾아보세요! 냥이 매칭 테스트 🐱`,
+      `${celebrityIntro}완벽한 매칭 "${breedName}"! ${emoji} (${score}%)\n\n나와 같은 냥이 타입인 유명인은? 냥이 매칭 🐱`,
+      `${celebrityIntro}💕 "${breedName}"이(가) 나랑 찰떡궁합! (${score}%) ${emoji}\n\n너도 인생냥이 찾기! 냥이 매칭 테스트`,
+    ];
+    return messages[Math.floor(Math.random() * messages.length)];
+  } else if (score >= 80) {
+    const messages = [
+      `${celebrityIntro}나의 인생냥이는 "${breedName}" (${score}% 매칭) ${emoji}\n\n너도 나의 인생냥이 찾아보세요! 냥이 매칭 테스트 🐱`,
+      `${celebrityIntro}아주 잘 맞는 "${breedName}"! ${emoji} (${score}%)\n\n나와 같은 냥이 타입인 유명인은? 냥이 매칭 🐱`,
+      `${celebrityIntro}😻 "${breedName}" 나랑 딱 맞아! (${score}%) ${emoji}\n\n너도 인생냥이 찾기! 냥이 매칭 테스트`,
+    ];
+    return messages[Math.floor(Math.random() * messages.length)];
+  } else if (score >= 70) {
+    const messages = [
+      `${celebrityIntro}나의 인생냥이 후보 "${breedName}" (${score}% 매칭) ${emoji}\n\n너도 나의 인생냥이 찾아보세요! 냥이 매칭 테스트 🐱`,
+      `${celebrityIntro}꽤 잘 맞는 "${breedName}"! ${emoji} (${score}%)\n\n나와 같은 냥이 타입인 유명인은? 냥이 매칭 🐱`,
+      `${celebrityIntro}😸 "${breedName}" 나쁘지 않아! (${score}%) ${emoji}\n\n너도 인생냥이 찾기! 냥이 매칭 테스트`,
+    ];
+    return messages[Math.floor(Math.random() * messages.length)];
+  } else if (score >= 60) {
+    const messages = [
+      `${celebrityIntro}나와 매칭된 냥이 "${breedName}" (${score}% 매칭) ${emoji}\n\n너도 나의 인생냥이 찾아보세요! 냥이 매칭 테스트 🐱`,
+      `${celebrityIntro}"${breedName}" 어떨까? ${emoji} (${score}%)\n\n나와 같은 냥이 타입인 유명인은? 냥이 매칭 🐱`,
+      `${celebrityIntro}🐱 "${breedName}" 알아가보세요! (${score}%) ${emoji}\n\n너도 인생냥이 찾기! 냥이 매칭 테스트`,
+    ];
+    return messages[Math.floor(Math.random() * messages.length)];
+  } else if (score >= 50) {
+    const messages = [
+      `${celebrityIntro}냥이 매칭 결과 "${breedName}" (${score}% 매칭) ${emoji}\n\n너도 나의 인생냥이 찾아보세요! 냥이 매칭 테스트 🐱`,
+      `${celebrityIntro}"${breedName}" 흥미로운 조합! ${emoji} (${score}%)\n\n나와 같은 냥이 타입인 유명인은? 냥이 매칭 🐱`,
+      `${celebrityIntro}😶 "${breedName}" 평범한 매칭 (${score}%) ${emoji}\n\n너도 인생냥이 찾기! 냥이 매칭 테스트`,
+    ];
+    return messages[Math.floor(Math.random() * messages.length)];
+  } else if (score >= 40) {
+    const messages = [
+      `${celebrityIntro}"${breedName}" 새로운 발견! (${score}% 매칭) ${emoji}\n\n너도 나의 인생냥이 찾아보세요! 냥이 매칭 테스트 🐱`,
+      `${celebrityIntro}의외의 매칭 "${breedName}"! ${emoji} (${score}%)\n\n나와 같은 냥이 타입인 유명인은? 냥이 매칭 🐱`,
+      `${celebrityIntro}🤔 "${breedName}" 다른 스타일? (${score}%) ${emoji}\n\n너도 인생냥이 찾기! 냥이 매칭 테스트`,
+    ];
+    return messages[Math.floor(Math.random() * messages.length)];
+  } else {
+    const messages = [
+      `${celebrityIntro}"${breedName}" 의외의 매칭! (${score}% 매칭) ${emoji}\n\n너도 나의 인생냥이 찾아보세요! 냥이 매칭 테스트 🐱`,
+      `${celebrityIntro}다른 스타일의 "${breedName}"! ${emoji} (${score}%)\n\n나와 같은 냥이 타입인 유명인은? 냥이 매칭 🐱`,
+      `${celebrityIntro}😂 "${breedName}" 완전 다른 타입! (${score}%) ${emoji}\n\n너도 인생냥이 찾기! 냥이 매칭 테스트`,
+    ];
+    return messages[Math.floor(Math.random() * messages.length)];
+  }
+}
 
 /**
  * 점수별로 다른 공유 문구를 반환합니다.

@@ -5,9 +5,11 @@ import { Breed } from '@/types';
 import CatImage from '@/components/CatImage';
 import AdSense from '@/components/AdSense';
 import BreedDetailActions from '@/components/Breed/BreedDetailActions';
+import BreedFaqSection from '@/components/Breed/BreedFaqSection';
 import RelatedBreeds from '@/components/Result/RelatedBreeds';
 import { getMaintenanceStars, getCostText, getEnvironmentText } from '@/utils/breedHelpers';
 import { getRelatedBreeds } from '@/utils/breedSimilarity';
+import { getBreedFaqs } from '@/data/breedFaqs';
 
 const breeds = breedsData as unknown as { breeds: Breed[] };
 
@@ -49,6 +51,9 @@ export default async function BreedDetailPage({
       </main>
     );
   }
+
+  // FAQ 데이터 가져오기
+  const faqs = getBreedFaqs(breedId);
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-gray-900 transition-colors duration-300">
@@ -363,6 +368,8 @@ export default async function BreedDetailPage({
             </div>
           </div>
         </div>
+
+        <BreedFaqSection breedName={breed.name} faqs={faqs} />
 
         <div className="bg-white rounded-3xl shadow-xl p-4 md:p-6">
           <div className="flex items-center justify-center gap-2 mb-4">

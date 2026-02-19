@@ -80,7 +80,7 @@ export interface BreedExploreEvent {
 
 // Social Share Events
 export interface ResultSharedEvent {
-  platform: 'instagram' | 'instagram_story' | 'thread' | 'kakaotalk' | 'copy' | 'default'
+  platform: 'instagram' | 'instagram_story' | 'celebrity_story' | 'thread' | 'kakaotalk' | 'copy' | 'default'
   breed_shared: string
   timestamp: string
 }

@@ -10,7 +10,8 @@ import {
   createTwitterShareUrl,
   createThreadsShareUrl,
   getResultsFromUrl,
-  getShareTextByScore,
+  getShareTextWithCelebrity,
+  getConsistentCelebrityMatch,
 } from '@/utils/share';
 import { useState, useRef, useEffect, useMemo } from 'react';
 import Link from 'next/link';
@@ -44,6 +45,7 @@ const FamousMatchCard = dynamic(() => import('@/components/Result/FamousMatchCar
 const RecommendationReasonCards = dynamic(() => import('@/components/Result/RecommendationReasonCards'), { ssr: false });
 const RelatedBreeds = dynamic(() => import('@/components/Result/RelatedBreeds'), { ssr: false });
 const InstagramStoryCard = dynamic(() => import('@/components/Result/InstagramStoryCard'), { ssr: false });
+const CelebrityMatchStoryCard = dynamic(() => import('@/components/Result/CelebrityMatchStoryCard'), { ssr: false });
 
 // IMPORTANT: keep instagram story generator lazy-loaded (it pulls html2canvas)
 
@@ -79,8 +81,10 @@ export default function ResultPage() {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [isGeneratingStory, setIsGeneratingStory] = useState(false);
+  const [isGeneratingCelebrityStory, setIsGeneratingCelebrityStory] = useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
   const storyCardRef = useRef<HTMLDivElement>(null);
+  const celebrityStoryCardRef = useRef<HTMLDivElement>(null);
 
   // URL 파라미터에서 결과 읽어오기
   useEffect(() => {
@@ -150,6 +154,12 @@ export default function ResultPage() {
   // 관련 품종 계산 (useMemo로 캐싱)
   const relatedBreeds = useMemo(
     () => firstResult ? getRelatedBreeds(firstResult.breed, breeds, 3) : [],
+    [firstResult]
+  );
+
+  // 유명인 매칭 계산 (useMemo로 캐싱)
+  const celebrityMatch = useMemo(
+    () => firstResult ? getConsistentCelebrityMatch(firstResult.breed, firstResult.score) : null,
     [firstResult]
   );
 
@@ -234,7 +244,10 @@ export default function ResultPage() {
     if (!firstResult || !primaryShareResult) return;
 
     const shareUrl = createShareUrl(primaryShareResult);
-    const text = `나와 가장 잘 맞는 냥이는 "${firstResult.breed.name}"! 🐾\n매칭 점수: ${firstResult.score}%`;
+    const celebrityIntro = celebrityMatch
+      ? `나는 ${celebrityMatch.name}과(와) 같은 냥이 타입! `
+      : '';
+    const text = `${celebrityIntro}나의 인생냥이는 "${firstResult.breed.name}" (${firstResult.score}% 매칭) 🐾`;
 
     const kakao = (window as unknown as { Kakao: { Share: { sendDefault: (config: unknown) => void } } }).Kakao;
     if (typeof window !== 'undefined' && kakao) {
@@ -341,6 +354,32 @@ export default function ResultPage() {
     trackShare('instagram_story', firstResult.breed.id);
   };
 
+  const handleShareCelebrityStory = async () => {
+    if (!firstResult || !celebrityStoryCardRef.current || !celebrityMatch) return;
+
+    if (isGeneratingCelebrityStory) return;
+
+    if (!imageLoaded) {
+      alert('이미지가 아직 로딩 중입니다. 잠시 후 다시 시도해주세요.');
+      return;
+    }
+
+    const { generateInstagramStoryImage } = await import('@/utils/instagramStoryCanvas');
+
+    await generateInstagramStoryImage({
+      element: celebrityStoryCardRef.current,
+      breedName: firstResult.breed.name,
+      score: firstResult.score,
+      onLoadingChange: setIsGeneratingCelebrityStory,
+      onError: (error) => {
+        console.error('Celebrity Story 이미지 생성 실패:', error);
+      },
+    });
+
+    // Track share event
+    trackShare('celebrity_story', firstResult.breed.id);
+  };
+
   const handleCopyLink = async () => {
     if (!firstResult || !primaryShareResult) return;
 
@@ -422,7 +461,7 @@ export default function ResultPage() {
   };
 
   const shareCopy = firstResult
-    ? getShareTextByScore(firstResult.score, firstResult.breed.name, firstResult.breed.emoji)
+    ? getShareTextWithCelebrity(firstResult.score, firstResult.breed.name, firstResult.breed.emoji, celebrityMatch?.name ?? null)
     : '';
 
   if (!firstResult) {
@@ -468,7 +507,7 @@ export default function ResultPage() {
           </div>
 
           <div className="mt-8">
-            <FamousMatchCard breed={firstResult.breed} />
+            <FamousMatchCard breed={firstResult.breed} score={firstResult.score} />
           </div>
 
           <RecommendationReasonCards results={top3Results} />
@@ -481,11 +520,14 @@ export default function ResultPage() {
           onShareThreads={handleShareThreads}
           onShareInstagram={handleShareInstagram}
           onShareInstagramStory={handleShareInstagramStory}
+          onShareCelebrityStory={handleShareCelebrityStory}
           onCopyLink={handleCopyLink}
           isDownloading={isDownloading}
           isGeneratingStory={isGeneratingStory}
+          isGeneratingCelebrityStory={isGeneratingCelebrityStory}
           copied={copied}
           shareCopy={shareCopy}
+          hasCelebrityMatch={!!celebrityMatch}
         />
 
         <FriendCompare
@@ -524,6 +566,21 @@ export default function ResultPage() {
           <InstagramStoryCard
             breed={firstResult.breed}
             score={firstResult.score}
+          />
+        </div>
+      )}
+
+      {/* Hidden Celebrity Match Story Card for image generation */}
+      {firstResult && celebrityMatch && (
+        <div
+          ref={celebrityStoryCardRef}
+          className="fixed -left-[9999px] top-0 w-[400px]"
+          aria-hidden="true"
+        >
+          <CelebrityMatchStoryCard
+            breed={firstResult.breed}
+            score={firstResult.score}
+            celebrityMatch={celebrityMatch}
           />
         </div>
       )}

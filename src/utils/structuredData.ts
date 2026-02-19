@@ -85,3 +85,36 @@ export function generateBreadcrumbStructuredData(items: any[]) {
     }))
   };
 }
+
+/**
+ * FAQPage 구조화된 데이터 생성
+ * Google Rich Results FAQ 스니펫을 위한 JSON-LD
+ */
+export interface FaqItem {
+  question: string;
+  answer: string;
+  category?: 'personality' | 'care' | 'health' | 'cost' | 'environment';
+}
+
+export function generateFaqPageStructuredData(
+  breedName: string,
+  faqs: FaqItem[],
+  url: string
+) {
+  if (!faqs || faqs.length === 0) {
+    return null;
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer.replace(/<[^>]*>/g, '') // HTML 태그 제거
+      }
+    }))
+  };
+}

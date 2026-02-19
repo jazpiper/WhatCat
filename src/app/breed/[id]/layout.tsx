@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
 import breedsData from '@/data/breeds.json';
 import { Breed } from '@/types';
-import { generateBreedStructuredData, generateBreadcrumbStructuredData } from '@/utils/structuredData';
+import { generateBreedStructuredData, generateBreadcrumbStructuredData, generateFaqPageStructuredData } from '@/utils/structuredData';
+import { getBreedFaqs } from '@/data/breedFaqs';
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -57,6 +58,12 @@ export default async function BreedLayout({ children, params }: Props) {
         { name: '품종 상세', url: `https://what-cat-psi.vercel.app/breed/${id}` },
     ]) : null;
 
+    // FAQ 구조화된 데이터
+    const faqs = breed ? getBreedFaqs(breed.id) : [];
+    const faqStructuredData = breed && faqs.length > 0
+        ? generateFaqPageStructuredData(breed.name, faqs, canonicalUrl)
+        : null;
+
     return (
         <>
             {structuredData && (
@@ -72,6 +79,13 @@ export default async function BreedLayout({ children, params }: Props) {
                     id="structured-data-breadcrumb"
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
+                />
+            )}
+            {faqStructuredData && (
+                <script
+                    id="structured-data-faq"
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
                 />
             )}
             {children}

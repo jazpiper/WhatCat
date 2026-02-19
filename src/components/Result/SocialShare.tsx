@@ -6,7 +6,8 @@ import {
     Share2,
     AtSign,
     Instagram,
-    Copy
+    Copy,
+    Star
 } from 'lucide-react';
 
 interface SocialShareProps {
@@ -16,11 +17,14 @@ interface SocialShareProps {
     onShareThreads: () => void;
     onShareInstagram: () => void;
     onShareInstagramStory: () => void;
+    onShareCelebrityStory?: () => void;
     onCopyLink: () => void;
     isDownloading: boolean;
     isGeneratingStory: boolean;
+    isGeneratingCelebrityStory?: boolean;
     copied: boolean;
     shareCopy: string;
+    hasCelebrityMatch?: boolean;
 }
 
 export default function SocialShare({
@@ -30,11 +34,14 @@ export default function SocialShare({
     onShareThreads,
     onShareInstagram,
     onShareInstagramStory,
+    onShareCelebrityStory,
     onCopyLink,
     isDownloading,
     isGeneratingStory,
+    isGeneratingCelebrityStory,
     copied,
     shareCopy,
+    hasCelebrityMatch = true,
 }: SocialShareProps) {
     return (
         <div className="bg-white rounded-3xl shadow-xl p-6 mb-6 border border-gray-100">
@@ -46,7 +53,7 @@ export default function SocialShare({
                 <p className="text-gray-800 text-sm leading-relaxed">{shareCopy}</p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            <div className={`grid gap-3 ${hasCelebrityMatch && onShareCelebrityStory ? 'grid-cols-3 md:grid-cols-4 lg:grid-cols-7' : 'grid-cols-2 md:grid-cols-3 lg:grid-cols-6'}`}>
                 <button
                     onClick={onDownload}
                     disabled={isDownloading}
@@ -107,6 +114,25 @@ export default function SocialShare({
                     )}
                     <span className="text-xs font-bold">{isGeneratingStory ? '생성 중...' : '스토리'}</span>
                 </button>
+
+                {hasCelebrityMatch && onShareCelebrityStory && (
+                    <button
+                        onClick={onShareCelebrityStory}
+                        disabled={isGeneratingCelebrityStory}
+                        className={`flex flex-col items-center justify-center gap-2 p-4 rounded-2xl transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2 ${isGeneratingCelebrityStory
+                                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                : 'bg-gradient-to-br from-amber-400 via-orange-500 to-rose-500 text-white hover:shadow-lg'
+                            }`}
+                        aria-label="유명인 매칭 스토리 이미지 저장"
+                    >
+                        {isGeneratingCelebrityStory ? (
+                            <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" aria-hidden="true" />
+                        ) : (
+                            <Star size={24} aria-hidden="true" />
+                        )}
+                        <span className="text-xs font-bold">{isGeneratingCelebrityStory ? '생성 중...' : '유명인 스토리'}</span>
+                    </button>
+                )}
 
                 <button
                     onClick={onCopyLink}

@@ -5,9 +5,23 @@ import { Star, Sparkles } from 'lucide-react';
 
 interface FamousMatchCardProps {
   breed: Breed;
+  score?: number;
 }
 
-export default function FamousMatchCard({ breed }: FamousMatchCardProps) {
+/**
+ * seed 문자열을 기반으로 일관된 해시값을 생성합니다.
+ * 같은 seed에 대해 항상 동일한 결과를 반환합니다.
+ */
+const getSeededRandom = (seed: string): number => {
+  let hash = 0;
+  for (let i = 0; i < seed.length; i++) {
+    hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+    hash = hash & hash; // 32비트 정수로 변환
+  }
+  return Math.abs(hash);
+};
+
+export default function FamousMatchCard({ breed, score = 0 }: FamousMatchCardProps) {
   if (!breed.famous_matches || breed.famous_matches.length === 0) {
     return null;
   }
@@ -41,8 +55,10 @@ export default function FamousMatchCard({ breed }: FamousMatchCardProps) {
     }
   };
 
-  // Select a random famous match to display
-  const randomMatch = breed.famous_matches[Math.floor(Math.random() * breed.famous_matches.length)];
+  // seed 기반 일관된 유명인 선택 (breed.id + score 조합)
+  const seed = `${breed.id}-${score}`;
+  const hash = getSeededRandom(seed);
+  const selectedMatch = breed.famous_matches[hash % breed.famous_matches.length];
 
   return (
     <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 border border-amber-200">
@@ -62,18 +78,18 @@ export default function FamousMatchCard({ breed }: FamousMatchCardProps) {
       <div className="bg-white rounded-xl p-4 shadow-sm">
         <div className="flex items-start gap-4">
           <div className="text-4xl">
-            {randomMatch.type === 'celebrity' ? '🌟' : randomMatch.type === 'character' ? '🎭' : '📜'}
+            {selectedMatch.type === 'celebrity' ? '🌟' : selectedMatch.type === 'character' ? '🎭' : '📜'}
           </div>
           <div className="flex-1">
             <p className="text-sm text-gray-500 mb-1">
-              {getTypeLabel(randomMatch.type)} 매치
+              {getTypeLabel(selectedMatch.type)} 매치
             </p>
             <p className="text-lg font-semibold text-gray-800 mb-1">
-              {randomMatch.name}
+              {selectedMatch.name}
             </p>
-            {randomMatch.description && (
+            {selectedMatch.description && (
               <p className="text-sm text-gray-600">
-                {randomMatch.description}
+                {selectedMatch.description}
               </p>
             )}
           </div>
