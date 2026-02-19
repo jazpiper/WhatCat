@@ -93,7 +93,7 @@ export default function CompatibilityCard({
       {/* 점수 표시 */}
       <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 mb-6">
         <div className="flex items-center justify-center gap-2 mb-4">
-          <span className="text-4xl md:text-5xl font-bold ${getScoreColor(score)}">
+          <span className={`text-4xl md:text-5xl font-bold ${getScoreColor(score)}`}>
             {score}
           </span>
           <span className="text-2xl text-gray-500">점</span>

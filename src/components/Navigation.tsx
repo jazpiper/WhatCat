@@ -8,6 +8,8 @@ const navigation = [
   { name: '품종 찾기', href: '/breeds' },
   { name: '데일리 퀴즈', href: '/daily-quiz' },
   { name: '내 결과', href: '/my-results' },
+  { name: '내 여정', href: '/my-journey' },
+  { name: '비교', href: '/compare' },
   { name: '도전 과제', href: '/achievements' },
   { name: '가이드', href: '/guides' },
   { name: 'FAQ', href: '/faq' },
