@@ -36,6 +36,56 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Force dark mode styles for common patterns */
+.dark .bg-white {
+  background-color: #1f2937 !important;
+}
+
+.dark .bg-gray-50 {
+  background-color: #111827 !important;
+}
+
+.dark .bg-gray-100 {
+  background-color: #1f2937 !important;
+}
+
+.dark .text-gray-800 {
+  color: #f3f4f6 !important;
+}
+
+.dark .text-gray-700 {
+  color: #e5e7eb !important;
+}
+
+.dark .text-gray-600 {
+  color: #d1d5db !important;
+}
+
+.dark .border-gray-200 {
+  border-color: #374151 !important;
+}
+
+.dark .border-gray-100 {
+  border-color: #4b5563 !important;
+}
+
+/* Dark mode gradient overrides */
+.dark .from-pink-50 {
+  --tw-gradient-from: #831843 !important;
+}
+
+.dark .via-purple-50 {
+  --tw-gradient-via: #581c87 !important;
+}
+
+.dark .to-blue-50 {
+  --tw-gradient-to: #1e3a5f !important;
+}
+
+.dark .from-gray-900 {
+  --tw-gradient-from: #030712 !important;
+}
+
 /* Smooth color transitions */
 * {
   transition-property: background-color, border-color, color, fill, stroke;
