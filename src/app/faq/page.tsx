@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { PageContainer, Card, PageTitle } from '@/components/ui';
 
 interface FAQItem {
   question: string;
@@ -172,7 +173,7 @@ const faqData: FAQCategory[] = [
       },
       {
         question: '이갈이는 언제 하나요?',
-        answer: '생후 3-6개월에 유치가 빠지고 영구치가 나옵니다. 이 시기에는 적절한 씹는 장난감을 제공해주세요.'
+        answer: '생후 3-6개월에 유치가 빼지고 영구치가 나옵니다. 이 시기에는 적절한 씹는 장난감을 제공해주세요.'
       },
       {
         question: '체중 관리는 어떻게 하나요?',
@@ -253,86 +254,82 @@ export default function FAQPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
-              자주 묻는 질문
-            </span>
-          </h1>
-          <p className="text-gray-600 text-lg">
-            WhatCat 이용에 관한 궁금증을 해결해 드립니다
-          </p>
-        </div>
+    <PageContainer className="pt-12">
+      {/* Header */}
+      <PageTitle
+        subtitle="WhatCat 이용에 관한 궁금증을 해결해 드립니다"
+        className="mb-12"
+      >
+        <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent dark:from-pink-400 dark:via-purple-400 dark:to-indigo-400">
+          자주 묻는 질문
+        </span>
+      </PageTitle>
 
-        {/* FAQ Categories */}
-        <div className="space-y-4">
-          {faqData.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="bg-white rounded-2xl shadow-lg overflow-hidden">
-              {/* Category Header */}
-              <button
-                onClick={() => toggleCategory(categoryIndex)}
-                className="w-full px-6 py-4 flex items-center justify-between bg-gradient-to-r from-pink-100 to-purple-100 hover:from-pink-200 hover:to-purple-200 transition-all duration-300"
-              >
-                <h2 className="text-xl font-semibold text-gray-800">{category.title}</h2>
-                <div className={`transform transition-transform duration-300 ${openCategory === categoryIndex ? 'rotate-180' : ''}`}>
-                  <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-              </button>
+      {/* FAQ Categories */}
+      <div className="space-y-4">
+        {faqData.map((category, categoryIndex) => (
+          <Card key={categoryIndex} variant="elevated" className="overflow-hidden p-0">
+            {/* Category Header */}
+            <button
+              onClick={() => toggleCategory(categoryIndex)}
+              className="w-full px-6 py-4 flex items-center justify-between bg-gradient-to-r from-pink-100 to-purple-100 hover:from-pink-200 hover:to-purple-200 transition-all duration-300 dark:from-pink-900/30 dark:to-purple-900/30 dark:hover:from-pink-900/50 dark:hover:to-purple-900/50"
+            >
+              <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">{category.title}</h2>
+              <div className={`transform transition-transform duration-300 ${openCategory === categoryIndex ? 'rotate-180' : ''}`}>
+                <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </button>
 
-              {/* Category Items */}
-              <div
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                  openCategory === categoryIndex ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
-                }`}
-              >
-                <div className="p-4 space-y-3">
-                  {category.items.map((item, itemIndex) => (
-                    <div
-                      key={itemIndex}
-                      className="border border-gray-100 rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-200"
+            {/* Category Items */}
+            <div
+              className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                openCategory === categoryIndex ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
+              }`}
+            >
+              <div className="p-4 space-y-3">
+                {category.items.map((item, itemIndex) => (
+                  <div
+                    key={itemIndex}
+                    className="border border-gray-100 dark:border-gray-700 rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-200"
+                  >
+                    <button
+                      onClick={() => toggleItem(itemIndex)}
+                      className="w-full px-5 py-4 text-left flex items-start justify-between gap-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200"
                     >
-                      <button
-                        onClick={() => toggleItem(itemIndex)}
-                        className="w-full px-5 py-4 text-left flex items-start justify-between gap-4 hover:bg-gray-50 transition-colors duration-200"
-                      >
-                        <span className="text-gray-700 font-medium flex-1">{item.question}</span>
-                        <div className={`flex-shrink-0 mt-1 transform transition-transform duration-300 ${openItem === itemIndex ? 'rotate-180' : ''}`}>
-                          <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                          </svg>
-                        </div>
-                      </button>
-                      <div
-                        className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                          openItem === itemIndex ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-                        }`}
-                      >
-                        <div className="px-5 pb-4 pt-0">
-                          <p className="text-gray-600 leading-relaxed pl-4 border-l-4 border-purple-300">
-                            {item.answer}
-                          </p>
-                        </div>
+                      <span className="text-gray-700 dark:text-gray-200 font-medium flex-1">{item.question}</span>
+                      <div className={`flex-shrink-0 mt-1 transform transition-transform duration-300 ${openItem === itemIndex ? 'rotate-180' : ''}`}>
+                        <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </button>
+                    <div
+                      className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                        openItem === itemIndex ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                      }`}
+                    >
+                      <div className="px-5 pb-4 pt-0">
+                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed pl-4 border-l-4 border-purple-300 dark:border-purple-600">
+                          {item.answer}
+                        </p>
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* Footer */}
-        <div className="mt-12 text-center">
-          <p className="text-gray-500 text-sm">
-            다른 궁금한 점이 있으시면 고객센터에 문의해주세요
-          </p>
-        </div>
+          </Card>
+        ))}
       </div>
-    </div>
+
+      {/* Footer */}
+      <div className="mt-12 text-center">
+        <p className="text-gray-500 dark:text-gray-400 text-sm">
+          다른 궁금한 점이 있으시면 고객센터에 문의해주세요
+        </p>
+      </div>
+    </PageContainer>
   );
 }
