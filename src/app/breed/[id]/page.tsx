@@ -5,7 +5,9 @@ import { Breed } from '@/types';
 import CatImage from '@/components/CatImage';
 import AdSense from '@/components/AdSense';
 import BreedDetailActions from '@/components/Breed/BreedDetailActions';
+import RelatedBreeds from '@/components/Result/RelatedBreeds';
 import { getMaintenanceStars, getCostText, getEnvironmentText } from '@/utils/breedHelpers';
+import { getRelatedBreeds } from '@/utils/breedSimilarity';
 
 const breeds = breedsData as unknown as { breeds: Breed[] };
 
@@ -384,6 +386,8 @@ export default async function BreedDetailPage({
             한국에서 {breed.name} 품종의 인기도입니다.
           </p>
         </div>
+
+        <RelatedBreeds mainBreed={breed} relatedBreeds={getRelatedBreeds(breed, breeds.breeds, 3)} />
 
         <div className="bg-white rounded-3xl shadow-xl p-4 md:p-6">
           <AdSense adSlot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ID || '5187796077'} />
