@@ -230,6 +230,27 @@ export function createKakaoShareUrl(result: ShareResult, breedName: string, emoj
 }
 
 /**
+ * 동적 OG 이미지 URL을 생성합니다.
+ * Edge API Route를 통해 실시간으로 OG 이미지를 생성합니다.
+ */
+export function createDynamicOgImageUrl(breedId: string, score: number): string {
+  const baseUrl = typeof window !== 'undefined'
+    ? window.location.origin
+    : process.env.NEXT_PUBLIC_SITE_URL || 'https://what-cat-psi.vercel.app';
+
+  return `${baseUrl}/api/og?type=result&breed=${encodeURIComponent(breedId)}&score=${score}`;
+}
+
+/**
+ * 카카오톡 공유용 OG 이미지 URL을 반환합니다.
+ * 기존 정적 이미지 대신 동적 OG 이미지를 우선 사용합니다.
+ */
+export function getKakaoShareImageUrl(breedId: string, score: number): string {
+  // 동적 OG 이미지 사용
+  return createDynamicOgImageUrl(breedId, score);
+}
+
+/**
  * 트위터/X 공유 URL을 생성합니다.
  */
 export function createTwitterShareUrl(result: ShareResult, breedName: string, emoji: string): string {

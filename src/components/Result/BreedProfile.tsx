@@ -3,6 +3,8 @@
 import { memo } from 'react';
 import { Breed } from '@/types';
 import { getMaintenanceStars } from '@/utils/breedHelpers';
+import { calculateCatMBTI } from '@/utils/catMBTI';
+import MBTIBadge from './MBTIBadge';
 
 interface BreedProfileProps {
     breed: Breed;
@@ -14,8 +16,21 @@ const MaintenanceStars = memo(function MaintenanceStars({ level }: { level: numb
 });
 
 export default function BreedProfile({ breed }: BreedProfileProps) {
+    const mbti = calculateCatMBTI(breed);
+
     return (
         <div className="space-y-6">
+            {/* MBTI 뱃지 섹션 */}
+            <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 text-left border border-purple-100">
+                <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <span className="text-purple-500" aria-hidden="true">🌟</span> 고양이 MBTI
+                </h3>
+                <div className="flex items-center gap-4 mb-4">
+                    <MBTIBadge mbti={mbti} size="lg" showEmoji={true} showNickname={true} />
+                </div>
+                <p className="text-gray-600 text-sm leading-relaxed">{mbti.description}</p>
+            </div>
+
             <div className="bg-gray-50 rounded-2xl p-6 text-left border border-gray-100">
                 <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
                     <span className="text-pink-500" aria-hidden="true">📋</span> 품종 프로필

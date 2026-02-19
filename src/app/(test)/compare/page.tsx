@@ -8,6 +8,10 @@ import { Suspense } from 'react';
 import { useEffect } from 'react';
 import { useFriendComparison } from '@/hooks/useAnalytics';
 import { trackFriendComparison } from '@/utils/achievements';
+import { calculateCompatibility, CompatibilityResult } from '@/utils/compatibility';
+import { isValidMBTI, getMBTIByCode } from '@/utils/catMBTI';
+import { Breed } from '@/types';
+import CompatibilityCard from '@/components/Compatibility/CompatibilityCard';
 
 function CompareContent() {
   const searchParams = useSearchParams();
@@ -17,12 +21,35 @@ function CompareContent() {
   const score1 = searchParams.get('score1');
   const breed2Id = searchParams.get('breed2');
   const score2 = searchParams.get('score2');
+  const mbti1Param = searchParams.get('mbti1');
+  const mbti2Param = searchParams.get('mbti2');
 
-  const breed1 = breeds.breeds.find((b) => b.id === breed1Id);
-  const breed2 = breeds.breeds.find((b) => b.id === breed2Id);
+  const breed1 = breeds.breeds.find((b) => b.id === breed1Id) as Breed | undefined;
+  const breed2 = breeds.breeds.find((b) => b.id === breed2Id) as Breed | undefined;
 
   const numScore1 = score1 ? parseInt(score1) : 0;
   const numScore2 = score2 ? parseInt(score2) : 0;
+
+  // 궁합 계산
+  let compatibilityResult: CompatibilityResult | null = null;
+
+  if (breed1 && breed2) {
+    const baseResult = calculateCompatibility(breed1, breed2);
+
+    // URL 파라미터로 MBTI가 지정된 경우 해당 MBTI로 덮어쓰기
+    const mbti1 = (mbti1Param && isValidMBTI(mbti1Param))
+      ? getMBTIByCode(mbti1Param)
+      : baseResult.mbti1;
+    const mbti2 = (mbti2Param && isValidMBTI(mbti2Param))
+      ? getMBTIByCode(mbti2Param)
+      : baseResult.mbti2;
+
+    compatibilityResult = {
+      ...baseResult,
+      mbti1,
+      mbti2,
+    };
+  }
 
   // Track comparison view event
   useEffect(() => {
@@ -103,6 +130,19 @@ function CompareContent() {
             처음으로
           </Link>
         </div>
+
+        {/* MBTI 궁합 카드 */}
+        {compatibilityResult && (
+          <div className="mb-6">
+            <CompatibilityCard
+              result={compatibilityResult}
+              breed1Emoji={breed1.emoji}
+              breed2Emoji={breed2.emoji}
+              breed1Name={breed1.name}
+              breed2Name={breed2.name}
+            />
+          </div>
+        )}
 
         <div className="bg-white rounded-3xl shadow-xl p-8 mb-6">
           <h1 className="text-3xl font-bold text-gray-800 text-center mb-2">
