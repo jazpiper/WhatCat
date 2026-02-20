@@ -83,11 +83,16 @@
 - 범위: `src/app`, `src/components`, `src/data/achievements.ts`
 - 변경: `text/bg/border/ring/from/to/via/fill/stroke/placeholder` 계열의 `gray-*` 유틸리티를
   토큰 기반 유틸리티로 일괄 변환
+- `docs/design-tokens.md` 생성 완료
 - 검증:
   - `npm run build` 통과
   - `npm run lint` 통과
   - `rg -n "gray-[0-9]{2,3}" src` 실행 결과 `0` 건
 - 주의: 시각적 QA(실제 브라우저/스크린샷)은 수동 점검이 남음
+
+## 6-ter) 교차 점검 결과 (2026-02-20)
+- 산출물 누락: 없음 (`theme-uiux-replan`, `design-system`, `theme-qa`, `design-tokens`)
+- 현재 미완료 항목: 스크린샷/FOUC 정량 점검(Playwright 수동 실행 미완)
 
 ## 7) 산출물
 - 기획 문서 1개(본 문서)

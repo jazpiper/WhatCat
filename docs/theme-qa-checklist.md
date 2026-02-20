@@ -46,6 +46,7 @@
 - 검증:
   - `npm run build` ✅
   - `npm run lint` ✅
+  - `npm run theme:qa:snap` 환경 점검(Playwright 미설치로 미실행): `-`
   - `rg -n "gray-[0-9]{2,3}" src` → `0` 건
 - 미완료: FOUC 체감 점검, 스크린샷 회귀는 운영 브라우저에서 수동 실행 필요
 

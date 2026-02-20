@@ -1,6 +1,6 @@
 # WhatCat 디자인 시스템
 
-**버전:** 1.1.1  
+**버전:** 1.1.2  
 **업데이트:** 2026-02-20
 
 ## 목표
@@ -69,6 +69,7 @@
 - 신규 화면은 `PageContainer + Card + PageTitle + Section` 조합 우선
 - `bg-white`, `text-gray-800` 단독 사용은 지양하고 `dark:*` 또는 토큰을 함께 사용
 - 다크 대응 없는 고정 색상은 PR에서 차단
+- 토큰 명세: `docs/design-tokens.md`
 
 ## 금지 사항
 - `.dark .bg-*` 형태 전역 강제 치환
