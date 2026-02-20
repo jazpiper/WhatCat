@@ -16,6 +16,7 @@
 - 디자인 시스템: [Design System](./design-system.md)
 - 테마 재기획: [Theme/UIUX Replan](./theme-uiux-replan-2026-02-20.md)
 - 테마 QA 체크리스트: [Theme QA Checklist](./theme-qa-checklist.md)
+- 정리/정합성: [PR Summary 346850d](./pr-summary-346850d.md)
 
 ## 문서 규칙(권장)
 - 의사결정은 ADR로 남기기: `docs/adr/NNN-*.md`
