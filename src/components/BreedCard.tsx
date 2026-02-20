@@ -17,7 +17,7 @@ function BreedCard({ breed, score, showRank = false }: BreedCardProps) {
     <Link
       href={`/breed/${breed.id}`}
       prefetch={false}
-      className="group block bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-pink-200 dark:hover:border-pink-500/60 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:ring-offset-2"
+      className="group block bg-[var(--bg-surface)] rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-[var(--border-default)] hover:border-pink-200 dark:hover:border-pink-500/60 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:ring-offset-2"
       aria-label={`${breed.name}(${breed.nameEn}) 상세 정보${score ? ` - 매칭 점수 ${score}%` : ''}`}
     >
       <div className="relative h-48 bg-gradient-to-br from-pink-100 to-purple-100 overflow-hidden">
@@ -50,10 +50,10 @@ function BreedCard({ breed, score, showRank = false }: BreedCardProps) {
       <div className="p-4">
         <div className="flex items-start justify-between mb-2">
           <div>
-            <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100 group-hover:text-pink-600 transition-colors">
+            <h3 className="text-lg font-bold text-[var(--text-primary)] group-hover:text-pink-600 transition-colors">
               {breed.name}
             </h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400">{breed.nameEn}</p>
+            <p className="text-sm text-[var(--text-secondary)]">{breed.nameEn}</p>
           </div>
           <span className="text-2xl">{breed.emoji}</span>
         </div>
@@ -68,13 +68,13 @@ function BreedCard({ breed, score, showRank = false }: BreedCardProps) {
             </span>
           ))}
           {breed.traits.length > 3 && (
-            <span className="inline-block bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-full text-xs">
+            <span className="inline-block bg-[var(--bg-page)] text-[var(--text-secondary)] px-2 py-0.5 rounded-full text-xs">
               +{breed.traits.length - 3}
             </span>
           )}
         </div>
 
-        <div className="grid grid-cols-3 gap-2 text-xs text-gray-600 dark:text-gray-300">
+        <div className="grid grid-cols-3 gap-2 text-xs text-[var(--text-secondary)]">
           <div className="flex items-center gap-1">
             <span>{getSizeEmoji(breed.size)}</span>
             <span className="capitalize">{breed.size}</span>
@@ -89,11 +89,11 @@ function BreedCard({ breed, score, showRank = false }: BreedCardProps) {
           </div>
         </div>
 
-        <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
+        <div className="mt-3 pt-3 border-t border-[var(--border-default)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-gray-500 dark:text-gray-400">한국 인기도</span>
+            <span className="text-xs text-[var(--text-secondary)]">한국 인기도</span>
             <div className="flex items-center gap-2">
-              <div className="w-24 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+              <div className="w-24 bg-[var(--bg-page)] rounded-full h-2">
                 <div
                   className="bg-gradient-to-r from-pink-500 to-purple-600 h-2 rounded-full"
                   style={{ width: `${breed.korea_popularity}%` }}

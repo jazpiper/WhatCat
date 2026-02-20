@@ -11,7 +11,7 @@ import { PageContainer, Card } from '@/components/ui';
 const BreedFilters = dynamic(() => import('@/components/BreedFilters'), {
   ssr: false,
   loading: () => (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-4 animate-pulse h-[520px]" />
+    <div className="bg-[var(--bg-surface)] rounded-2xl shadow-md p-4 animate-pulse h-[520px]" />
   ),
 });
 
@@ -122,10 +122,10 @@ export default function BreedsClient({
       <PageContainer contentClassName="max-w-7xl">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 mb-2 text-center">
+          <h1 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-2 text-center">
             🐱 고양이 품종 찾기
           </h1>
-          <p className="text-gray-600 dark:text-gray-400 text-center mb-6">
+          <p className="text-[var(--text-secondary)] text-center mb-6">
             원하는 조건으로 나에게 딱 맞는 냥이를 찾아보세요!
           </p>
 
@@ -133,7 +133,7 @@ export default function BreedsClient({
           <div className="max-w-2xl mx-auto">
             <div className="relative">
               <Search
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500"
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--text-secondary)]"
                 size={20}
                 aria-hidden="true"
               />
@@ -143,10 +143,10 @@ export default function BreedsClient({
                 onChange={(e) => handleSearchChange(e.target.value)}
                 placeholder="품종명, 특징으로 검색..."
                 maxLength={50}
-                className={`w-full pl-12 pr-12 py-4 bg-white dark:bg-gray-800 rounded-2xl shadow-md border focus:ring-2 outline-none transition-all text-lg text-gray-800 dark:text-gray-100 ${
+                className={`w-full pl-12 pr-12 py-4 bg-[var(--bg-surface)] rounded-2xl shadow-md border border-[var(--border-default)] focus:ring-2 outline-none transition-all text-lg text-[var(--text-primary)] ${
                   searchError
                     ? 'border-red-300 focus:border-red-500 focus:ring-red-200'
-                    : 'border-gray-200 dark:border-gray-700 focus:border-pink-400 focus:ring-pink-200'
+                    : 'focus:border-pink-400 focus:ring-pink-200'
                 }`}
                 aria-label="품종 검색"
                 aria-invalid={!!searchError}
@@ -155,7 +155,7 @@ export default function BreedsClient({
               {searchQuery && !searchError && (
                 <button
                   onClick={clearSearch}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
                   aria-label="검색어 지우기"
                 >
                   <X size={20} />
@@ -165,14 +165,14 @@ export default function BreedsClient({
             {searchError && (
               <p
                 id="search-error"
-                className="mt-2 text-sm text-red-600 dark:text-red-400 text-center flex items-center justify-center gap-1"
+                className="mt-2 text-sm text-red-500 text-center flex items-center justify-center gap-1"
               >
                 <span>⚠️</span>
                 <span>{searchError}</span>
               </p>
             )}
             {!searchError && searchQuery && (
-              <p className="mt-2 text-sm text-gray-500 dark:text-gray-400 text-center">
+              <p className="mt-2 text-sm text-[var(--text-secondary)] text-center">
                 {searchQuery.length} / 50자
               </p>
             )}
@@ -182,12 +182,12 @@ export default function BreedsClient({
         {/* Active Filters Display */}
         {searchQuery && (
           <div className="mb-4 flex flex-wrap items-center gap-2">
-            <span className="text-sm text-gray-600 dark:text-gray-400">검색어:</span>
-              <span className="inline-flex items-center gap-1 bg-pink-100 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full text-sm">
+            <span className="text-sm text-[var(--text-secondary)]">검색어:</span>
+              <span className="inline-flex items-center gap-1 bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm">
               &quot;{searchQuery}&quot;
               <button
                 onClick={clearSearch}
-                className="ml-1 hover:text-pink-900 dark:hover:text-pink-100 transition-colors"
+                className="ml-1 hover:text-pink-700 transition-colors"
               >
                 <X size={16} />
               </button>
@@ -202,7 +202,7 @@ export default function BreedsClient({
             <button
               type="button"
               onClick={() => setIsFiltersOpen(true)}
-              className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm text-gray-800 dark:text-gray-100"
+              className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border-default)] shadow-sm text-[var(--text-primary)]"
             >
               <SlidersHorizontal size={18} />
               필터 열기
@@ -240,12 +240,12 @@ export default function BreedsClient({
                 onClick={() => setIsFiltersOpen(false)}
                 aria-label="필터 닫기"
               />
-              <div className="absolute right-0 top-0 h-full w-[90%] max-w-sm bg-white dark:bg-gray-800 shadow-2xl overflow-y-auto">
-                <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4 flex items-center justify-between">
-                  <div className="font-bold text-gray-800 dark:text-gray-100">필터</div>
+                <div className="absolute right-0 top-0 h-full w-[90%] max-w-sm bg-[var(--bg-surface)] shadow-2xl overflow-y-auto">
+                <div className="sticky top-0 bg-[var(--bg-surface)] border-b border-[var(--border-default)] p-4 flex items-center justify-between">
+                  <div className="font-bold text-[var(--text-primary)]">필터</div>
                   <button
                     onClick={() => setIsFiltersOpen(false)}
-                    className="p-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+                    className="p-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                     aria-label="닫기"
                   >
                     <X size={20} />
@@ -274,21 +274,21 @@ export default function BreedsClient({
           <div className="flex-1">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100">
+                <h2 className="text-xl font-bold text-[var(--text-primary)]">
                   {filteredBreeds.length}개의 품종
                 </h2>
                 {filteredBreeds.length !== breeds.length && (
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-[var(--text-secondary)]">
                     총 {breeds.length}개 품종 중 필터링됨
                   </p>
                 )}
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-600 dark:text-gray-400">정렬:</span>
+                <span className="text-sm text-[var(--text-secondary)]">정렬:</span>
                 <select
                   value={sort}
                   onChange={(e) => handleSortChange(e.target.value as SortOption)}
-                  className="px-3 py-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 text-sm focus:border-pink-400 focus:ring-2 focus:ring-pink-200 outline-none text-gray-800 dark:text-gray-100"
+                  className="px-3 py-2 bg-[var(--bg-surface)] rounded-lg border border-[var(--border-default)] text-sm focus:border-pink-400 focus:ring-2 focus:ring-pink-200 outline-none text-[var(--text-primary)]"
                 >
                   <option value="popularity">인기순</option>
                   <option value="name-asc">이름 오름차순</option>
@@ -310,10 +310,10 @@ export default function BreedsClient({
 
                   {!isFiltering && visibleCount < filteredBreeds.length && (
                     <div className="mt-8 flex justify-center">
-                      <button
-                        onClick={() => setVisibleCount((c) => Math.min(filteredBreeds.length, c + PAGE_SIZE))}
-                        className="px-6 py-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition text-gray-800 dark:text-gray-100"
-                      >
+                    <button
+                      onClick={() => setVisibleCount((c) => Math.min(filteredBreeds.length, c + PAGE_SIZE))}
+                      className="px-6 py-3 bg-[var(--bg-surface)] rounded-xl border border-[var(--border-default)] shadow-sm hover:shadow-md transition text-[var(--text-primary)]"
+                    >
                         더 보기 ({visibleCount}/{filteredBreeds.length})
                       </button>
                     </div>
@@ -322,9 +322,9 @@ export default function BreedsClient({
 
                 {isFiltering && (
                   <div className="absolute inset-0 flex items-start justify-center pt-6">
-                    <div className="inline-flex items-center gap-2 bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 rounded-full px-4 py-2 shadow-sm">
+                    <div className="inline-flex items-center gap-2 bg-[var(--bg-page)]/80 border border-[var(--border-default)] rounded-full px-4 py-2 shadow-sm">
                       <span className="w-2.5 h-2.5 rounded-full bg-pink-500 animate-pulse" />
-                      <span className="text-sm text-gray-700 dark:text-gray-300">필터 적용 중…</span>
+                      <span className="text-sm text-[var(--text-secondary)]">필터 적용 중…</span>
                     </div>
                   </div>
                 )}
@@ -332,10 +332,10 @@ export default function BreedsClient({
             ) : (
               <Card variant="outlined" className="text-center">
                 <div className="text-6xl mb-4">😿</div>
-                <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-2">
+                <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2">
                   조건에 맞는 품종이 없습니다
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-6">필터 조건을 완화해보세요.</p>
+                <p className="text-[var(--text-secondary)] mb-6">필터 조건을 완화해보세요.</p>
                 <button
                   onClick={() => {
                     setFilters(defaultFilters);

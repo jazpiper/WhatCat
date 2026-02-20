@@ -66,10 +66,10 @@ function CompareContent() {
       <PageContainer contentClassName="max-w-3xl">
         <Card className="text-center">
           <div className="text-6xl mb-4">😕</div>
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">
+          <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-4">
             비교할 결과를 찾을 수 없습니다
           </h1>
-          <p className="text-gray-600 dark:text-gray-400 mb-6">
+          <p className="text-[var(--text-secondary)] mb-6">
             결과 URL이 올바르지 않습니다.
           </p>
           <Link
@@ -120,7 +120,7 @@ function CompareContent() {
   return (
     <PageContainer contentClassName="max-w-5xl">
       <div className="mb-6">
-        <Link href="/" className="text-pink-500 dark:text-pink-400 hover:underline flex items-center gap-2">
+        <Link href="/" className="text-pink-500 hover:underline flex items-center gap-2">
           <ArrowLeft size={20} />
           처음으로
         </Link>
@@ -140,10 +140,10 @@ function CompareContent() {
       )}
 
       <Card className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100 text-center mb-2">
+        <h1 className="text-3xl font-bold text-[var(--text-primary)] text-center mb-2">
           🤝 결과 비교
         </h1>
-        <p className="text-center text-gray-600 dark:text-gray-400 mb-8">
+        <p className="text-center text-[var(--text-secondary)] mb-8">
           두 분의 테스트 결과를 비교해봤어요!
         </p>
 
@@ -151,39 +151,39 @@ function CompareContent() {
           <div className="bg-gradient-to-br from-pink-100 to-purple-100 dark:from-pink-900/30 dark:to-purple-900/30 rounded-2xl p-6">
             <div className="text-center mb-4">
               <div className="text-6xl mb-2">🙋</div>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">나의 결과</p>
+              <p className="text-sm text-[var(--text-secondary)] mb-2">나의 결과</p>
               <div className="text-4xl mb-2">{breed1.emoji}</div>
-              <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-1">
+              <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-1">
                 {breed1.name}
               </h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{breed1.nameEn}</p>
-              <div className="mt-4 text-3xl font-bold text-pink-600 dark:text-pink-400">
+              <p className="text-sm text-[var(--text-secondary)]">{breed1.nameEn}</p>
+              <div className="mt-4 text-3xl font-bold text-pink-600">
                 {numScore1}%
               </div>
             </div>
 
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-600 dark:text-gray-400">조용함:</span>
-                <span className="font-semibold text-gray-800 dark:text-gray-100">
+                <span className="text-[var(--text-secondary)]">조용함:</span>
+                <span className="font-semibold text-[var(--text-primary)]">
                   {breed1.personality.quiet}/5
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600 dark:text-gray-400">활동성:</span>
-                <span className="font-semibold text-gray-800 dark:text-gray-100">
+                <span className="text-[var(--text-secondary)]">활동성:</span>
+                <span className="font-semibold text-[var(--text-primary)]">
                   {breed1.personality.activity}/5
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600 dark:text-gray-400">사교성:</span>
-                <span className="font-semibold text-gray-800 dark:text-gray-100">
+                <span className="text-[var(--text-secondary)]">사교성:</span>
+                <span className="font-semibold text-[var(--text-primary)]">
                   {breed1.personality.social}/5
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600 dark:text-gray-400">관리 난이도:</span>
-                <span className="font-semibold text-gray-800 dark:text-gray-100">
+                <span className="text-[var(--text-secondary)]">관리 난이도:</span>
+                <span className="font-semibold text-[var(--text-primary)]">
                   {breed1.maintenance.grooming}/5
                 </span>
               </div>
@@ -193,39 +193,39 @@ function CompareContent() {
           <div className="bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 rounded-2xl p-6">
             <div className="text-center mb-4">
               <div className="text-6xl mb-2">🧑‍🤝‍🧑</div>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">친구 결과</p>
+              <p className="text-sm text-[var(--text-secondary)] mb-2">친구 결과</p>
               <div className="text-4xl mb-2">{breed2.emoji}</div>
-              <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-1">
+              <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-1">
                 {breed2.name}
               </h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{breed2.nameEn}</p>
-              <div className="mt-4 text-3xl font-bold text-purple-600 dark:text-purple-400">
+              <p className="text-sm text-[var(--text-secondary)]">{breed2.nameEn}</p>
+              <div className="mt-4 text-3xl font-bold text-purple-600">
                 {numScore2}%
               </div>
             </div>
 
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-600 dark:text-gray-400">조용함:</span>
-                <span className="font-semibold text-gray-800 dark:text-gray-100">
+                <span className="text-[var(--text-secondary)]">조용함:</span>
+                <span className="font-semibold text-[var(--text-primary)]">
                   {breed2.personality.quiet}/5
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600 dark:text-gray-400">활동성:</span>
-                <span className="font-semibold text-gray-800 dark:text-gray-100">
+                <span className="text-[var(--text-secondary)]">활동성:</span>
+                <span className="font-semibold text-[var(--text-primary)]">
                   {breed2.personality.activity}/5
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600 dark:text-gray-400">사교성:</span>
-                <span className="font-semibold text-gray-800 dark:text-gray-100">
+                <span className="text-[var(--text-secondary)]">사교성:</span>
+                <span className="font-semibold text-[var(--text-primary)]">
                   {breed2.personality.social}/5
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600 dark:text-gray-400">관리 난이도:</span>
-                <span className="font-semibold text-gray-800 dark:text-gray-100">
+                <span className="text-[var(--text-secondary)]">관리 난이도:</span>
+                <span className="font-semibold text-[var(--text-primary)]">
                   {breed2.maintenance.grooming}/5
                 </span>
               </div>
@@ -236,79 +236,79 @@ function CompareContent() {
         <div className="bg-gradient-to-r from-pink-50 to-purple-50 dark:from-pink-900/20 dark:to-purple-900/20 rounded-2xl p-6">
           <div className="flex items-center gap-2 mb-4">
             <span className="text-3xl">📊</span>
-            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">
+            <h3 className="text-xl font-bold text-[var(--text-primary)]">
               비교 인사이트
             </h3>
           </div>
-          <p className="text-gray-700 dark:text-gray-300 text-center text-lg mb-4">{insight}</p>
+          <p className="text-[var(--text-secondary)] text-center text-lg mb-4">{insight}</p>
 
           <div className="grid md:grid-cols-3 gap-4">
-            <div className="bg-white dark:bg-gray-700 rounded-xl p-4">
+            <div className="bg-[var(--bg-surface)] rounded-xl p-4">
               <div className="flex items-center gap-2 mb-2">
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                    activityDiff < 2 ? 'bg-green-100 dark:bg-green-900/50' : 'bg-orange-100 dark:bg-orange-900/50'
+                    activityDiff < 2 ? 'bg-green-100' : 'bg-orange-100'
                   }`}
                 >
                   {activityDiff < 2 ? (
-                    <Minus size={16} className="text-green-600 dark:text-green-400" />
+                    <Minus size={16} className="text-green-600" />
                   ) : activityDiff > 2 ? (
-                    <TrendingUp size={16} className="text-orange-600 dark:text-orange-400" />
+                    <TrendingUp size={16} className="text-orange-600" />
                   ) : (
-                    <Minus size={16} className="text-gray-600 dark:text-gray-400" />
+                    <Minus size={16} className="text-[var(--text-secondary)]" />
                   )}
                 </div>
-                <span className="font-semibold text-gray-800 dark:text-gray-100">활동성</span>
+                <span className="font-semibold text-[var(--text-primary)]">활동성</span>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-[var(--text-secondary)]">
                 {breed1.personality.activity > breed2.personality.activity
                   ? '나의 냥이가 더 활동적이에요'
                   : '친구 냥이가 더 활동적이에요'}
               </p>
             </div>
 
-            <div className="bg-white dark:bg-gray-700 rounded-xl p-4">
+            <div className="bg-[var(--bg-surface)] rounded-xl p-4">
               <div className="flex items-center gap-2 mb-2">
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                    quietDiff < 2 ? 'bg-green-100 dark:bg-green-900/50' : 'bg-orange-100 dark:bg-orange-900/50'
+                    quietDiff < 2 ? 'bg-green-100' : 'bg-orange-100'
                   }`}
                 >
                   {quietDiff < 2 ? (
-                    <Minus size={16} className="text-green-600 dark:text-green-400" />
+                    <Minus size={16} className="text-green-600" />
                   ) : quietDiff > 2 ? (
-                    <TrendingDown size={16} className="text-orange-600 dark:text-orange-400" />
+                    <TrendingDown size={16} className="text-orange-600" />
                   ) : (
-                    <Minus size={16} className="text-gray-600 dark:text-gray-400" />
+                    <Minus size={16} className="text-[var(--text-secondary)]" />
                   )}
                 </div>
-                <span className="font-semibold text-gray-800 dark:text-gray-100">조용함</span>
+                <span className="font-semibold text-[var(--text-primary)]">조용함</span>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-[var(--text-secondary)]">
                 {breed1.personality.quiet > breed2.personality.quiet
                   ? '나의 냥이가 더 조용해요'
                   : '친구 냥이가 더 조용해요'}
               </p>
             </div>
 
-            <div className="bg-white dark:bg-gray-700 rounded-xl p-4">
+            <div className="bg-[var(--bg-surface)] rounded-xl p-4">
               <div className="flex items-center gap-2 mb-2">
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                    socialDiff < 2 ? 'bg-green-100 dark:bg-green-900/50' : 'bg-orange-100 dark:bg-orange-900/50'
+                    socialDiff < 2 ? 'bg-green-100' : 'bg-orange-100'
                   }`}
                 >
                   {socialDiff < 2 ? (
-                    <Minus size={16} className="text-green-600 dark:text-green-400" />
+                    <Minus size={16} className="text-green-600" />
                   ) : socialDiff > 2 ? (
-                    <TrendingUp size={16} className="text-orange-600 dark:text-orange-400" />
+                    <TrendingUp size={16} className="text-orange-600" />
                   ) : (
-                    <Minus size={16} className="text-gray-600 dark:text-gray-400" />
+                    <Minus size={16} className="text-[var(--text-secondary)]" />
                   )}
                 </div>
-                <span className="font-semibold text-gray-800 dark:text-gray-100">사교성</span>
+                <span className="font-semibold text-[var(--text-primary)]">사교성</span>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-[var(--text-secondary)]">
                 {breed1.personality.social > breed2.personality.social
                   ? '나의 냥이가 더 사교적이에요'
                   : '친구 냥이가 더 사교적이에요'}
@@ -321,28 +321,28 @@ function CompareContent() {
       <div className="grid md:grid-cols-2 gap-4">
         <Link
           href="/nyongmatch"
-          className="flex items-center justify-center gap-2 bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all"
+          className="flex items-center justify-center gap-2 bg-[var(--bg-surface)] rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all"
         >
           <span className="text-4xl">🧪</span>
           <div className="text-left">
-            <h3 className="font-bold text-gray-800 dark:text-gray-100">다시 냥이매칭하기</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">새로운 품종 찾기</p>
+            <h3 className="font-bold text-[var(--text-primary)]">다시 냥이매칭하기</h3>
+            <p className="text-sm text-[var(--text-secondary)]">새로운 품종 찾기</p>
           </div>
         </Link>
 
         <Link
           href="/result"
-          className="flex items-center justify-center gap-2 bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all"
+          className="flex items-center justify-center gap-2 bg-[var(--bg-surface)] rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all"
         >
           <span className="text-4xl">🏠</span>
           <div className="text-left">
-            <h3 className="font-bold text-gray-800 dark:text-gray-100">내 결과 보기</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">나의 품종 상세보기</p>
+            <h3 className="font-bold text-[var(--text-primary)]">내 결과 보기</h3>
+            <p className="text-sm text-[var(--text-secondary)]">나의 품종 상세보기</p>
           </div>
         </Link>
       </div>
 
-      <footer className="text-center mt-8 text-gray-500 dark:text-gray-400 text-sm">
+      <footer className="text-center mt-8 text-[var(--text-secondary)] text-sm">
         <p>&copy; 2026 냥이 매칭. All rights reserved.</p>
       </footer>
     </PageContainer>

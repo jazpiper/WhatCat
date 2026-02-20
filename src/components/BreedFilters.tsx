@@ -38,15 +38,15 @@ const FilterSection = memo(function FilterSection({ title, icon, defaultOpen = f
   const toggleOpen = useCallback(() => setIsOpen(prev => !prev), []);
 
   return (
-    <div className="border-b border-gray-200 dark:border-gray-700 last:border-b-0">
+    <div className="border-b border-[var(--border-default)] last:border-b-0">
       <h3>
         <button
           onClick={toggleOpen}
-          className="w-full flex items-center justify-between py-3 px-2 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          className="w-full flex items-center justify-between py-3 px-2 hover:bg-[var(--bg-page)] transition-colors"
           aria-expanded={isOpen}
           aria-controls={sectionId}
         >
-          <span className="flex items-center gap-2 font-medium text-gray-700 dark:text-gray-200">
+            <span className="flex items-center gap-2 font-medium text-[var(--text-primary)]">
             <span aria-hidden="true">{icon}</span>
             <span>{title}</span>
           </span>
@@ -85,10 +85,10 @@ const RangeSlider = memo(function RangeSlider({ label, icon, value, onChange, mi
   return (
     <div className="mb-4">
       <div className="flex items-center justify-between mb-2">
-        <span className="text-sm text-gray-600 dark:text-gray-300" id={`label-${label.replace(/\s+/g, '-')}`}>
+        <span className="text-sm text-[var(--text-secondary)]" id={`label-${label.replace(/\s+/g, '-')}`}>
           <span aria-hidden="true">{icon}</span> {label}
         </span>
-        <span className="text-xs text-gray-500 dark:text-gray-400" aria-live="polite">
+        <span className="text-xs text-[var(--text-secondary)]" aria-live="polite">
           {localMin} - {localMax}
         </span>
       </div>
@@ -100,7 +100,7 @@ const RangeSlider = memo(function RangeSlider({ label, icon, value, onChange, mi
           max={max - 1}
           value={localMin}
           onChange={handleMinChange}
-          className="flex-1 h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-pink-500"
+          className="flex-1 h-2 bg-[var(--bg-page)] rounded-lg appearance-none cursor-pointer accent-pink-500"
           aria-label={`${label} 최소값`}
           aria-valuemin={min}
           aria-valuemax={max - 1}
@@ -113,7 +113,7 @@ const RangeSlider = memo(function RangeSlider({ label, icon, value, onChange, mi
           max={max}
           value={localMax}
           onChange={handleMaxChange}
-          className="flex-1 h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-purple-500"
+          className="flex-1 h-2 bg-[var(--bg-page)] rounded-lg appearance-none cursor-pointer accent-purple-500"
           aria-label={`${label} 최대값`}
           aria-valuemin={min + 1}
           aria-valuemax={max}
@@ -150,7 +150,7 @@ const CheckboxGroup = memo(function CheckboxGroup({ options, selectedValues, onC
             className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-sm transition-all focus:outline-none focus:ring-2 focus:ring-pink-300 focus:ring-offset-1 ${
               isSelected
                 ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md'
-                : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'
+                : 'bg-[var(--bg-page)] text-[var(--text-secondary)] hover:bg-[var(--bg-surface)]'
             }`}
             aria-pressed={isSelected}
           >
@@ -192,7 +192,7 @@ const FilterContent = memo(function FilterContent({
               className={`inline-flex items-center px-3 py-1.5 rounded-full text-sm transition-all ${
                 sort === option.value
                   ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md'
-                  : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'
+                  : 'bg-[var(--bg-page)] text-[var(--text-secondary)] hover:bg-[var(--bg-surface)]'
               }`}
             >
               {option.label}
@@ -222,7 +222,7 @@ const FilterContent = memo(function FilterContent({
       {/* Cost */}
       <FilterSection title="비용" icon="💰">
         <div className="mb-3">
-          <p className="text-xs text-gray-600 dark:text-gray-300 mb-2">초기 비용</p>
+          <p className="text-xs text-[var(--text-secondary)] mb-2">초기 비용</p>
           <CheckboxGroup
             options={COST_OPTIONS.initial}
             selectedValues={filters.costs?.initial || []}
@@ -234,7 +234,7 @@ const FilterContent = memo(function FilterContent({
           />
         </div>
         <div>
-          <p className="text-xs text-gray-600 dark:text-gray-300 mb-2">월 비용</p>
+          <p className="text-xs text-[var(--text-secondary)] mb-2">월 비용</p>
           <CheckboxGroup
             options={COST_OPTIONS.monthly}
             selectedValues={filters.costs?.monthly || []}
@@ -381,12 +381,12 @@ export default function BreedFilters({
       <div className="lg:hidden mb-4">
         <button
           onClick={openMobileFilters}
-          className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 hover:border-pink-300 dark:hover:border-pink-500 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-300"
+          className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[var(--bg-surface)] rounded-xl shadow-md border border-[var(--border-default)] hover:border-pink-300 dark:hover:border-pink-500 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-300"
           aria-label={`필터 열기${activeFilterCount > 0 ? ` (${activeFilterCount}개 적용됨)` : ''}`}
           aria-expanded={isMobileOpen}
         >
           <SlidersHorizontal size={20} className="text-pink-500" aria-hidden="true" />
-          <span className="font-medium text-gray-700 dark:text-gray-200">필터</span>
+          <span className="font-medium text-[var(--text-primary)]">필터</span>
           {activeFilterCount > 0 && (
             <span className="bg-pink-500 text-white text-xs px-2 py-0.5 rounded-full" aria-label={`${activeFilterCount}개 필터 적용됨`}>
               {activeFilterCount}
@@ -408,12 +408,12 @@ export default function BreedFilters({
             onClick={closeMobileFilters}
             aria-hidden="true"
           />
-          <div className="absolute inset-y-0 right-0 w-full max-w-md bg-white dark:bg-gray-800 shadow-xl overflow-y-auto">
-            <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-3 flex items-center justify-between z-10">
-              <h2 id="mobile-filter-title" className="text-lg font-bold text-gray-800 dark:text-gray-100">필터</h2>
+          <div className="absolute inset-y-0 right-0 w-full max-w-md bg-[var(--bg-surface)] shadow-xl overflow-y-auto">
+            <div className="sticky top-0 bg-[var(--bg-surface)] border-b border-[var(--border-default)] px-4 py-3 flex items-center justify-between z-10">
+              <h2 id="mobile-filter-title" className="text-lg font-bold text-[var(--text-primary)]">필터</h2>
               <button
                 onClick={closeMobileFilters}
-                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300"
+                className="p-2 hover:bg-[var(--bg-page)] rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300"
                 aria-label="필터 닫기"
               >
                 <X size={24} />
@@ -429,7 +429,7 @@ export default function BreedFilters({
                 handleSortChange={handleSortChange}
               />
             </div>
-            <div className="sticky bottom-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 p-4">
+            <div className="sticky bottom-0 bg-[var(--bg-surface)] border-t border-[var(--border-default)] p-4">
               <button
                 onClick={closeMobileFilters}
                 className="w-full py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-pink-300"
@@ -443,10 +443,10 @@ export default function BreedFilters({
 
       {/* Desktop Sidebar */}
       <aside className="hidden lg:block" aria-label="품종 필터">
-        <div className="sticky top-20 bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-200 dark:border-gray-700 overflow-hidden">
-          <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-pink-50 to-purple-50 dark:from-purple-900/40 dark:to-pink-900/40">
-            <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100">필터</h2>
-            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+        <div className="sticky top-20 bg-[var(--bg-surface)] rounded-2xl shadow-md border border-[var(--border-default)] overflow-hidden">
+            <div className="px-4 py-3 border-b border-[var(--border-default)] bg-gradient-to-r from-pink-50 to-purple-50 dark:from-purple-900/40 dark:to-pink-900/40">
+            <h2 className="text-lg font-bold text-[var(--text-primary)]">필터</h2>
+            <p className="text-sm text-[var(--text-secondary)] mt-1">
               {resultCount}개의 품종 / 총 {totalCount}개
             </p>
           </div>
