@@ -14,6 +14,7 @@
 - 품종 상세 페이지 PRD(신): [Breed Detail Page Enhancement v2](./prd-breed-detail-page.md)
 - 신규 기능 PRD: [WhatCat 신규 기능 PRD](./prd-new-features.md)
 - 테마/UIUX 재기획: [Theme/UIUX Replan](./theme-uiux-replan-2026-02-20.md)
+- 신규 아이디어 보드: [WhatCat 신규 기능 아이디어](./new-feature-ideas.md)
 
 ### 제품/UX
 - 매칭 로직 개요: [Matching Logic](./matching-logic-analysis.md)
