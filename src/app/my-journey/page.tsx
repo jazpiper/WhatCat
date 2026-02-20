@@ -153,7 +153,7 @@ function MyJourneyPageContent() {
       <div className="flex items-center justify-between mb-8">
         <Link
           href="/"
-          className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-pink-600 dark:hover:text-pink-400 transition-colors"
+          className="flex items-center gap-2 text-[var(--text-secondary)] dark:text-[var(--text-secondary)] hover:text-pink-600 dark:hover:text-pink-400 transition-colors"
         >
           <ArrowLeft size={24} />
           <span>홈으로</span>
@@ -161,7 +161,7 @@ function MyJourneyPageContent() {
         <div className="flex gap-2">
           <button
             onClick={handleImport}
-            className="p-2 rounded-full bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400"
+            className="p-2 rounded-full bg-white dark:bg-[var(--bg-surface)] shadow-sm hover:shadow-md transition-all text-[var(--text-secondary)] dark:text-[var(--text-secondary)] hover:text-purple-600 dark:hover:text-purple-400"
             title="데이터 불러오기"
           >
             <Upload size={20} />
@@ -169,7 +169,7 @@ function MyJourneyPageContent() {
           <button
             onClick={handleExport}
             disabled={results.length === 0}
-            className="p-2 rounded-full bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="p-2 rounded-full bg-white dark:bg-[var(--bg-surface)] shadow-sm hover:shadow-md transition-all text-[var(--text-secondary)] dark:text-[var(--text-secondary)] hover:text-blue-600 dark:hover:text-blue-400 disabled:opacity-50 disabled:cursor-not-allowed"
             title="데이터 내보내기"
           >
             <Download size={20} />
@@ -177,7 +177,7 @@ function MyJourneyPageContent() {
           <button
             onClick={handleClearAll}
             disabled={results.length === 0}
-            className="p-2 rounded-full bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="p-2 rounded-full bg-white dark:bg-[var(--bg-surface)] shadow-sm hover:shadow-md transition-all text-[var(--text-secondary)] dark:text-[var(--text-secondary)] hover:text-red-600 dark:hover:text-red-400 disabled:opacity-50 disabled:cursor-not-allowed"
             title="전체 삭제"
           >
             <Trash2 size={20} />
@@ -200,19 +200,19 @@ function MyJourneyPageContent() {
         <Card variant="outlined" className="text-center p-4">
           <div className="text-3xl mb-2">📝</div>
           <div className="text-2xl font-bold text-pink-600">{results.length}</div>
-          <div className="text-sm text-gray-500 dark:text-gray-400">테스트 횟수</div>
+          <div className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-secondary)]">테스트 횟수</div>
         </Card>
         <Card variant="outlined" className="text-center p-4">
           <div className="text-3xl mb-2">🐱</div>
           <div className="text-2xl font-bold text-purple-600">{uniqueBreeds}</div>
-          <div className="text-sm text-gray-500 dark:text-gray-400">발견한 품종</div>
+          <div className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-secondary)]">발견한 품종</div>
         </Card>
         <Card variant="outlined" className="text-center p-4 col-span-2">
           <div className="text-3xl mb-2">🏆</div>
           <div className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-orange-500">
             {mostFrequent ? `${mostFrequent.breedName} (${mostFrequent.count}회)` : '아직 없음'}
           </div>
-          <div className="text-sm text-gray-500 dark:text-gray-400">가장 자주 매칭된 품종</div>
+          <div className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-secondary)]">가장 자주 매칭된 품종</div>
         </Card>
       </div>
 
@@ -226,7 +226,7 @@ function MyJourneyPageContent() {
           <div className="flex gap-2">
             <button
               onClick={() => setShowClearConfirm(false)}
-              className="px-4 py-2 bg-white dark:bg-gray-800 border border-red-300 dark:border-red-700 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/50 transition-colors"
+              className="px-4 py-2 bg-white dark:bg-[var(--bg-surface)] border border-red-300 dark:border-red-700 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/50 transition-colors"
             >
               취소
             </button>
@@ -250,7 +250,7 @@ function MyJourneyPageContent() {
         </button>
         <Link
           href="/nyongmatch"
-          className="px-4 py-2 rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 font-semibold whitespace-nowrap"
+          className="px-4 py-2 rounded-full bg-white dark:bg-[var(--bg-surface)] text-[var(--text-primary)] dark:text-[var(--text-secondary)] hover:bg-[var(--bg-page)] dark:hover:bg-[var(--bg-surface)] font-semibold whitespace-nowrap"
         >
           🐱 새 테스트
         </Link>
@@ -261,7 +261,7 @@ function MyJourneyPageContent() {
         <div className="grid gap-6">
           {/* Timeline */}
           <Card>
-            <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-4 flex items-center gap-2">
               <Calendar className="text-pink-500" size={24} aria-hidden="true" />
               테스트 기록
             </h2>
@@ -292,7 +292,7 @@ function MyJourneyPageContent() {
           <div className="grid md:grid-cols-2 gap-6">
             {/* Personality Trends */}
             <Card>
-              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+              <h2 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-4 flex items-center gap-2">
                 <TrendingUp className="text-purple-500" size={24} aria-hidden="true" />
                 성격 트렌드
               </h2>
@@ -307,7 +307,7 @@ function MyJourneyPageContent() {
 
             {/* Breed Distribution */}
             <Card>
-              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+              <h2 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-4 flex items-center gap-2">
                 <Award className="text-blue-500" size={24} aria-hidden="true" />
                 품종 분포
               </h2>
@@ -323,7 +323,7 @@ function MyJourneyPageContent() {
 
           {/* Detailed Results List */}
           <Card>
-            <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">상세 기록</h2>
+            <h2 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-4">상세 기록</h2>
             <div className="space-y-3">
               {results.map((result) => (
                 <div
@@ -333,24 +333,24 @@ function MyJourneyPageContent() {
                   <div className="flex items-center gap-4">
                     <div className="text-4xl">{result.emoji}</div>
                     <div>
-                      <h3 className="font-semibold text-gray-800 dark:text-gray-100">{result.breedName}</h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">{formatResultDate(result.date)}</p>
+                      <h3 className="font-semibold text-[var(--text-primary)] dark:text-[var(--text-secondary)]">{result.breedName}</h3>
+                      <p className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-secondary)]">{formatResultDate(result.date)}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
                     <div className="text-right">
                       <div className="text-lg font-bold text-pink-600">{result.score}%</div>
-                      <div className="text-xs text-gray-400 dark:text-gray-500">매칭 점수</div>
+                      <div className="text-xs text-[var(--text-secondary)] dark:text-[var(--text-secondary)]">매칭 점수</div>
                     </div>
                     <button
                       onClick={() => router.push(`/breed/${result.breedId}`)}
-                      className="px-3 py-1 text-sm bg-white dark:bg-gray-700 rounded-full text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-gray-600 transition-colors"
+                      className="px-3 py-1 text-sm bg-white dark:bg-[var(--bg-surface)] rounded-full text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-[var(--bg-surface)] transition-colors"
                     >
                       상세보기
                     </button>
                     <button
                       onClick={() => handleDeleteResult(result.id)}
-                      className="p-2 text-gray-400 hover:text-red-500 transition-colors"
+                      className="p-2 text-[var(--text-secondary)] hover:text-red-500 transition-colors"
                     >
                       <Trash2 size={18} />
                     </button>
@@ -364,8 +364,8 @@ function MyJourneyPageContent() {
         /* Empty State */
         <Card className="text-center p-12">
           <div className="text-8xl mb-6">🐱</div>
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-3">아직 테스트 기록이 없어요</h2>
-          <p className="text-gray-600 dark:text-gray-300 mb-6">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-3">아직 테스트 기록이 없어요</h2>
+          <p className="text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-6">
             냥이매치를 시작해서 나의 인생냥이를 찾아보세요!
           </p>
           <Link
@@ -377,7 +377,7 @@ function MyJourneyPageContent() {
         </Card>
       )}
 
-      <footer className="text-center mt-12 text-gray-500 dark:text-gray-400 text-sm">
+      <footer className="text-center mt-12 text-[var(--text-secondary)] dark:text-[var(--text-secondary)] text-sm">
         <p>&copy; 2026 냥이 매칭. All rights reserved.</p>
       </footer>
     </PageContainer>

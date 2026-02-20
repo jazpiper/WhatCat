@@ -163,7 +163,7 @@ const InstagramStoryCard = memo(function InstagramStoryCard({
           </div>
 
           {/* Trust badges */}
-          <div className="flex items-center justify-center gap-3 mt-3 text-gray-500 text-xs">
+          <div className="flex items-center justify-center gap-3 mt-3 text-[var(--text-secondary)] text-xs">
             <span className="flex items-center gap-1">
               <span>🎯</span> 정확한 분석
             </span>

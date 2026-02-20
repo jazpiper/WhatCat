@@ -50,7 +50,7 @@ export function BreedDistributionChart({ data }: BreedDistributionChartProps) {
 function BreedDistributionChartInner({ data }: BreedDistributionChartProps) {
   if (data.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-12 text-gray-400">
+      <div className="flex flex-col items-center justify-center py-12 text-[var(--text-secondary)]">
         <div className="text-5xl mb-4">🥧</div>
         <p className="text-lg">아직 데이터가 없어요</p>
       </div>
@@ -78,7 +78,7 @@ function BreedDistributionChartInner({ data }: BreedDistributionChartProps) {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+      <h3 className="text-lg font-semibold text-[var(--text-primary)] flex items-center gap-2">
         <span>🥧</span>
         <span>품종 분포</span>
       </h3>
@@ -99,8 +99,8 @@ function BreedDistributionChartInner({ data }: BreedDistributionChartProps) {
           >
             <div className="absolute inset-4 bg-white rounded-full flex items-center justify-center">
               <div className="text-center">
-                <div className="text-3xl font-bold text-gray-800">{data.length}</div>
-                <div className="text-xs text-gray-500">품종</div>
+                <div className="text-3xl font-bold text-[var(--text-primary)]">{data.length}</div>
+                <div className="text-xs text-[var(--text-secondary)]">품종</div>
               </div>
             </div>
           </div>
@@ -111,14 +111,14 @@ function BreedDistributionChartInner({ data }: BreedDistributionChartProps) {
           {segments.map((segment) => (
             <div
               key={segment.breedId}
-              className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex items-center justify-between p-2 rounded-lg hover:bg-[var(--bg-page)] transition-colors"
             >
               <div className="flex items-center gap-2">
                 <div
                   className={`w-4 h-4 rounded ${segment.color.bg}`}
                   style={{ minWidth: '16px' }}
                 />
-                <span className="text-sm text-gray-700 truncate max-w-[120px]">
+                <span className="text-sm text-[var(--text-primary)] truncate max-w-[120px]">
                   {segment.breedName}
                 </span>
               </div>
@@ -126,7 +126,7 @@ function BreedDistributionChartInner({ data }: BreedDistributionChartProps) {
                 <span className={`text-sm font-semibold ${segment.color.text}`}>
                   {segment.percentage}%
                 </span>
-                <span className="text-xs text-gray-400">({segment.count}회)</span>
+                <span className="text-xs text-[var(--text-secondary)]">({segment.count}회)</span>
               </div>
             </div>
           ))}

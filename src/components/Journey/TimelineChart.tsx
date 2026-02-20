@@ -30,7 +30,7 @@ export function TimelineChart({ items, onItemClick }: TimelineChartProps) {
 function TimelineChartInner({ items, onItemClick }: TimelineChartProps) {
   if (items.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-12 text-gray-400">
+      <div className="flex flex-col items-center justify-center py-12 text-[var(--text-secondary)]">
         <div className="text-5xl mb-4">📊</div>
         <p className="text-lg">아직 테스트 기록이 없어요</p>
         <p className="text-sm mt-2">테스트를 완료하면 여기에 표시됩니다!</p>
@@ -75,22 +75,22 @@ function TimelineChartInner({ items, onItemClick }: TimelineChartProps) {
             />
 
             {/* Card */}
-            <div className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 group-hover:border-pink-200">
+            <div className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all duration-300 border border-[var(--border-default)] group-hover:border-pink-200">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="text-3xl">{item.breedEmoji}</div>
                   <div>
-                    <h3 className="font-semibold text-gray-800 group-hover:text-pink-600 transition-colors">
+                    <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-pink-600 transition-colors">
                       {item.breedName}
                     </h3>
-                    <p className="text-xs text-gray-500">{formatDate(item.timestamp)}</p>
+                    <p className="text-xs text-[var(--text-secondary)]">{formatDate(item.timestamp)}</p>
                   </div>
                 </div>
                 <div className="text-right">
                   <div className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">
                     {item.matchScore}%
                   </div>
-                  <p className="text-xs text-gray-400">매칭 점수</p>
+                  <p className="text-xs text-[var(--text-secondary)]">매칭 점수</p>
                 </div>
               </div>
             </div>

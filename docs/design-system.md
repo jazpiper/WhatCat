@@ -1,6 +1,6 @@
 # WhatCat 디자인 시스템
 
-**버전:** 1.1.0  
+**버전:** 1.1.1  
 **업데이트:** 2026-02-20
 
 ## 목표
@@ -84,6 +84,8 @@
 - 테마 토글/네비게이션/공용 UI 컴포넌트 토큰화 완료
 - 핵심 페이지(`/`, `/nyongmatch`, `/result`, `/breeds`) 다크모드 보정 완료
 - 보조 페이지(`/about`, `/privacy`, `/terms`) 및 주요 skeleton 다크모드 보정 완료
+- 전체 스캔 기준 `src/app`, `src/components`, `src/data` 내 `gray-*` 하드컬러 클래스 잔존 없음 (`rg` 기준)
+- 57개 파일에 대해 `text/bg/border/ring/fill/stroke/placeholder` 계열 토큰 치환 일괄 반영
 
 ## 관련 문서
 - 재기획안: `docs/theme-uiux-replan-2026-02-20.md`

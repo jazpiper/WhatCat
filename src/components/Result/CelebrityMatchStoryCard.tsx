@@ -157,18 +157,18 @@ const CelebrityMatchStoryCard = memo(function CelebrityMatchStoryCard({
           </h2>
 
           {/* Match description */}
-          <p className="text-lg text-gray-600 text-center mb-6 px-4">
+          <p className="text-lg text-[var(--text-secondary)] text-center mb-6 px-4">
             당신은 <span className="font-bold text-amber-600">{celebrityMatch.name}</span>과(와) 같은 냥이 타입!
           </p>
 
           {/* Breed info card */}
           <div className="bg-white rounded-2xl p-5 shadow-xl border border-amber-100 w-full max-w-xs mb-6">
             <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">나의 인생냥이</p>
-              <p className="text-2xl font-bold text-gray-800 mb-1">
+              <p className="text-sm text-[var(--text-secondary)] mb-1">나의 인생냥이</p>
+              <p className="text-2xl font-bold text-[var(--text-primary)] mb-1">
                 {breed.emoji} {breed.name}
               </p>
-              <p className="text-xs text-gray-400">{breed.nameEn}</p>
+              <p className="text-xs text-[var(--text-secondary)]">{breed.nameEn}</p>
             </div>
           </div>
 
@@ -216,7 +216,7 @@ const CelebrityMatchStoryCard = memo(function CelebrityMatchStoryCard({
           </div>
 
           {/* Trust badges */}
-          <div className="flex items-center justify-center gap-3 mt-3 text-gray-500 text-xs">
+          <div className="flex items-center justify-center gap-3 mt-3 text-[var(--text-secondary)] text-xs">
             <span className="flex items-center gap-1">
               <span>🌟</span> 유명인 매칭
             </span>

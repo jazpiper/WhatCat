@@ -4,7 +4,7 @@ import { Skeleton } from './Skeleton';
 
 export default function ResultSkeleton() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-gray-900">
+    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-[var(--bg-surface)] dark:via-purple-950 dark:to-[var(--bg-surface)]">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-8">
@@ -13,7 +13,7 @@ export default function ResultSkeleton() {
         </div>
 
         {/* Main Result Card */}
-        <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 mb-8">
+        <div className="bg-white dark:bg-[var(--bg-surface)] rounded-3xl shadow-xl p-8 mb-8">
           {/* Breed Image and Info */}
           <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
             <Skeleton variant="circular" className="w-32 h-32 flex-shrink-0" />
@@ -29,7 +29,7 @@ export default function ResultSkeleton() {
           </div>
 
           {/* Match Score */}
-          <div className="bg-gradient-to-r from-pink-50 to-purple-50 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-6 mb-8">
+          <div className="bg-gradient-to-r from-pink-50 to-purple-50 dark:from-[var(--bg-surface)] dark:to-[var(--bg-surface)] rounded-2xl p-6 mb-8">
             <div className="text-center">
               <Skeleton className="h-8 w-40 mx-auto mb-2" />
               <Skeleton className="h-16 w-32 mx-auto" />
@@ -43,7 +43,7 @@ export default function ResultSkeleton() {
               {[1, 2, 3, 4, 5].map((i) => (
                 <div key={i} className="flex items-center gap-4">
                   <Skeleton className="h-5 w-20 flex-shrink-0" />
-                  <div className="flex-1 h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                  <div className="flex-1 h-3 bg-[var(--bg-page)] dark:bg-[var(--bg-surface)] rounded-full overflow-hidden">
                     <Skeleton className="h-full w-3/4 rounded-none" />
                   </div>
                   <Skeleton className="h-5 w-8 flex-shrink-0" />
@@ -75,7 +75,7 @@ export default function ResultSkeleton() {
         </div>
 
         {/* Other Breeds */}
-        <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8">
+        <div className="bg-white dark:bg-[var(--bg-surface)] rounded-3xl shadow-xl p-8">
           <Skeleton className="h-7 w-48 mb-6" />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[1, 2, 3, 4].map((i) => (

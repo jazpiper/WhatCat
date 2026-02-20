@@ -17,7 +17,7 @@ export function Skeleton({ className, variant = 'default', ...props }: SkeletonP
   return (
     <div
       className={cn(
-        'animate-pulse bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 bg-[length:200%_100%]',
+        'animate-pulse bg-gradient-to-r from-[var(--bg-page)] via-[var(--bg-surface)] to-[var(--bg-page)] dark:from-[var(--bg-surface)] dark:via-[var(--bg-surface)] dark:to-[var(--bg-surface)] bg-[length:200%_100%]',
         variantClasses[variant],
         className
       )}

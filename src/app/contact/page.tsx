@@ -15,11 +15,11 @@ export default function ContactPage() {
                 </div>
 
                 <div className="bg-white rounded-3xl shadow-xl p-8">
-                    <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+                    <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-6 text-center">
                         문의하기
                     </h1>
 
-                    <div className="text-center mb-10 text-gray-600">
+                    <div className="text-center mb-10 text-[var(--text-secondary)]">
                         <p className="mb-2">냥이 매칭 서비스 이용 중 궁금한 점이나 제안하고 싶은 내용이 있으신가요?</p>
                         <p>아래 채널을 통해 문의해 주시면 정성껏 답변해 드리겠습니다.</p>
                     </div>
@@ -30,8 +30,8 @@ export default function ContactPage() {
                             <div className="bg-pink-500 text-white p-4 rounded-full mb-4 group-hover:scale-110 transition-transform">
                                 <Mail size={32} />
                             </div>
-                            <h2 className="text-xl font-bold text-gray-800 mb-2">이메일 문의</h2>
-                            <p className="text-gray-600 mb-4 sm:text-sm">일반 문의 및 제휴 제안</p>
+                            <h2 className="text-xl font-bold text-[var(--text-primary)] mb-2">이메일 문의</h2>
+                            <p className="text-[var(--text-secondary)] mb-4 sm:text-sm">일반 문의 및 제휴 제안</p>
                             <a
                                 href="mailto:slots_just.6q@icloud.com"
                                 className="text-pink-600 font-semibold hover:underline"
@@ -41,12 +41,12 @@ export default function ContactPage() {
                         </div>
                     </div>
 
-                    <div className="mt-12 p-6 bg-gray-50 rounded-2xl">
-                        <h2 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <div className="mt-12 p-6 bg-[var(--bg-page)] rounded-2xl">
+                        <h2 className="text-lg font-bold text-[var(--text-primary)] mb-4 flex items-center gap-2">
                             <MessageSquare className="text-pink-500" size={20} />
                             자주 묻는 질문(FAQ) 안내
                         </h2>
-                        <p className="text-gray-600 mb-4">
+                        <p className="text-[var(--text-secondary)] mb-4">
                             문의하시기 전에 FAQ 페이지를 먼저 확인해 보세요. 대부분의 궁금증을 빠르게 해결하실 수 있습니다.
                         </p>
                         <Link
@@ -57,7 +57,7 @@ export default function ContactPage() {
                         </Link>
                     </div>
 
-                    <div className="mt-10 text-center text-sm text-gray-500">
+                    <div className="mt-10 text-center text-sm text-[var(--text-secondary)]">
                         <p>보통 평일 기준 24시간 이내에 답변을 드리고자 노력하고 있습니다.</p>
                         <p className="mt-1">감사합니다. 🐱</p>
                     </div>

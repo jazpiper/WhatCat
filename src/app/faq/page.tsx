@@ -274,7 +274,7 @@ export default function FAQPage() {
               onClick={() => toggleCategory(categoryIndex)}
               className="w-full px-6 py-4 flex items-center justify-between bg-gradient-to-r from-pink-100 to-purple-100 hover:from-pink-200 hover:to-purple-200 transition-all duration-300 dark:from-pink-900/30 dark:to-purple-900/30 dark:hover:from-pink-900/50 dark:hover:to-purple-900/50"
             >
-              <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">{category.title}</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)] dark:text-[var(--text-secondary)]">{category.title}</h2>
               <div className={`transform transition-transform duration-300 ${openCategory === categoryIndex ? 'rotate-180' : ''}`}>
                 <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -292,13 +292,13 @@ export default function FAQPage() {
                 {category.items.map((item, itemIndex) => (
                   <div
                     key={itemIndex}
-                    className="border border-gray-100 dark:border-gray-700 rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-200"
+                    className="border border-[var(--border-default)] dark:border-[var(--border-default)] rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-200"
                   >
                     <button
                       onClick={() => toggleItem(itemIndex)}
-                      className="w-full px-5 py-4 text-left flex items-start justify-between gap-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200"
+                      className="w-full px-5 py-4 text-left flex items-start justify-between gap-4 hover:bg-[var(--bg-page)] dark:hover:bg-[var(--bg-surface)] transition-colors duration-200"
                     >
-                      <span className="text-gray-700 dark:text-gray-200 font-medium flex-1">{item.question}</span>
+                      <span className="text-[var(--text-primary)] dark:text-[var(--text-secondary)] font-medium flex-1">{item.question}</span>
                       <div className={`flex-shrink-0 mt-1 transform transition-transform duration-300 ${openItem === itemIndex ? 'rotate-180' : ''}`}>
                         <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -311,7 +311,7 @@ export default function FAQPage() {
                       }`}
                     >
                       <div className="px-5 pb-4 pt-0">
-                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed pl-4 border-l-4 border-purple-300 dark:border-purple-600">
+                        <p className="text-[var(--text-secondary)] dark:text-[var(--text-secondary)] leading-relaxed pl-4 border-l-4 border-purple-300 dark:border-purple-600">
                           {item.answer}
                         </p>
                       </div>
@@ -326,7 +326,7 @@ export default function FAQPage() {
 
       {/* Footer */}
       <div className="mt-12 text-center">
-        <p className="text-gray-500 dark:text-gray-400 text-sm">
+        <p className="text-[var(--text-secondary)] dark:text-[var(--text-secondary)] text-sm">
           다른 궁금한 점이 있으시면 고객센터에 문의해주세요
         </p>
       </div>

@@ -42,7 +42,7 @@ export function TrendChart({ data }: TrendChartProps) {
 function TrendChartInner({ data }: TrendChartProps) {
   if (data.length < 2) {
     return (
-      <div className="flex flex-col items-center justify-center py-12 text-gray-400">
+      <div className="flex flex-col items-center justify-center py-12 text-[var(--text-secondary)]">
         <div className="text-5xl mb-4">📈</div>
         <p className="text-lg">트렌드를 보려면 최소 2번 이상 테스트를 완료해주세요</p>
         <p className="text-sm mt-2">성격 변화를 시각적으로 볼 수 있어요!</p>
@@ -55,7 +55,7 @@ function TrendChartInner({ data }: TrendChartProps) {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+      <h3 className="text-lg font-semibold text-[var(--text-primary)] flex items-center gap-2">
         <span>📈</span>
         <span>성격 트렌드</span>
       </h3>
@@ -68,18 +68,18 @@ function TrendChartInner({ data }: TrendChartProps) {
         const avg = Math.round(values.reduce((a, b) => a + b, 0) / values.length);
 
         return (
-          <div key={trait} className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
+          <div key={trait} className="bg-white rounded-lg p-4 shadow-sm border border-[var(--border-default)]">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <span className="text-xl">{traitInfo.emoji}</span>
-                <span className="font-medium text-gray-700">{traitInfo.label}</span>
+                <span className="font-medium text-[var(--text-primary)]">{traitInfo.label}</span>
               </div>
               <div className="flex items-center gap-3 text-sm">
-                <span className="text-gray-400">최소 {min}</span>
+                <span className="text-[var(--text-secondary)]">최소 {min}</span>
                 <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">
                   평균 {avg}
                 </span>
-                <span className="text-gray-400">최대 {max}</span>
+                <span className="text-[var(--text-secondary)]">최대 {max}</span>
               </div>
             </div>
 
@@ -99,7 +99,7 @@ function TrendChartInner({ data }: TrendChartProps) {
             </div>
 
             {/* Trend indicator */}
-            <div className="flex items-center justify-between mt-2 text-xs text-gray-400">
+            <div className="flex items-center justify-between mt-2 text-xs text-[var(--text-secondary)]">
               <span>과거</span>
               <span>최근</span>
             </div>

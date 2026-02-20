@@ -80,7 +80,7 @@ export default function MatchExplanation({ breed, reasons }: MatchExplanationPro
       case 'maintenance':
         return 'bg-green-50 border-green-200';
       default:
-        return 'bg-gray-50 border-gray-200';
+        return 'bg-[var(--bg-page)] border-[var(--border-default)]';
     }
   };
 
@@ -88,12 +88,12 @@ export default function MatchExplanation({ breed, reasons }: MatchExplanationPro
     <div ref={containerRef} className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-200">
       <div className="flex items-center gap-2 mb-4">
         <Heart className="text-pink-500" size={24} />
-        <h3 className="text-xl font-bold text-gray-800">
+        <h3 className="text-xl font-bold text-[var(--text-primary)]">
           왜 {breed.name}인가요?
         </h3>
       </div>
 
-      <p className="text-sm text-gray-600 mb-6">
+      <p className="text-sm text-[var(--text-secondary)] mb-6">
         당신의 성향과 {breed.name}의 특징을 분석한 결과예요!
       </p>
 
@@ -108,10 +108,10 @@ export default function MatchExplanation({ breed, reasons }: MatchExplanationPro
                 {getCategoryIcon(reason.category)}
               </div>
               <div className="flex-1">
-                <h4 className="font-semibold text-gray-800 mb-1">
+                <h4 className="font-semibold text-[var(--text-primary)] mb-1">
                   {reason.title}
                 </h4>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
                   {reason.description}
                 </p>
               </div>
@@ -131,7 +131,7 @@ export default function MatchExplanation({ breed, reasons }: MatchExplanationPro
       )}
 
       <div className="mt-6 p-4 bg-white/60 rounded-xl border border-purple-200">
-        <p className="text-sm text-gray-700 text-center leading-relaxed">
+        <p className="text-sm text-[var(--text-primary)] text-center leading-relaxed">
           <span className="font-semibold text-purple-600">매칭 알고리즘</span>은 성격(30%), 관리 난이도(25%),
           라이프스타일(20%), 외형(15%), 비용(10%)을 종합적으로 분석해요.
         </p>

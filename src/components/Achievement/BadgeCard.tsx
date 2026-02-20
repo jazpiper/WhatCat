@@ -53,7 +53,7 @@ export default function BadgeCard({
       className={`relative ${sizeClasses.card} bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border-2 text-left overflow-hidden group ${
         isUnlocked
           ? `${rarityConfig.borderColor} border-opacity-50 hover:scale-105`
-          : 'border-gray-200 opacity-70 hover:opacity-100'
+          : 'border-[var(--border-default)] opacity-70 hover:opacity-100'
       }`}
     >
       {/* Background gradient based on rarity */}
@@ -65,7 +65,7 @@ export default function BadgeCard({
 
       {/* Lock overlay for locked achievements */}
       {!isUnlocked && (
-        <div className="absolute top-2 right-2 text-gray-400">
+        <div className="absolute top-2 right-2 text-[var(--text-secondary)]">
           <Lock size={16} />
         </div>
       )}
@@ -86,7 +86,7 @@ export default function BadgeCard({
 
         {/* Title and Rarity */}
         <div className="mb-1">
-          <h3 className={`${sizeClasses.title} font-bold text-gray-800`}>
+          <h3 className={`${sizeClasses.title} font-bold text-[var(--text-primary)]`}>
             {achievement.nameKo}
           </h3>
           <span
@@ -97,18 +97,18 @@ export default function BadgeCard({
         </div>
 
         {/* Description */}
-        <p className={`${sizeClasses.description} text-gray-600 mb-2`}>
+        <p className={`${sizeClasses.description} text-[var(--text-secondary)] mb-2`}>
           {achievement.description}
         </p>
 
         {/* Progress Bar */}
         {showProgress && !isUnlocked && progress > 0 && (
           <div className="mt-2">
-            <div className="flex items-center justify-between text-xs text-gray-500 mb-1">
+            <div className="flex items-center justify-between text-xs text-[var(--text-secondary)] mb-1">
               <span>진행률</span>
               <span className="font-medium">{progressText}</span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+            <div className="w-full bg-[var(--bg-page)] rounded-full h-2 overflow-hidden">
               <div
                 className={`h-full ${rarityConfig.progressColor} transition-all duration-500`}
                 style={{ width: `${progress}%` }}

@@ -81,7 +81,7 @@ export default function GuidesPage() {
 
                 {/* Card Body */}
                 <div className="p-6">
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  <p className="text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-4">
                     {guide.description}
                   </p>
                   <div
@@ -118,19 +118,19 @@ export default function GuidesPage() {
           <li className="flex items-start gap-3">
             <span className="text-pink-500 font-bold">•</span>
             <span>
-              <strong className="text-gray-800 dark:text-gray-100">입양 전:</strong> 입양 가이드를 통해 환경과 준비물을 미리 확인하세요
+              <strong className="text-[var(--text-primary)] dark:text-[var(--text-secondary)]">입양 전:</strong> 입양 가이드를 통해 환경과 준비물을 미리 확인하세요
             </span>
           </li>
           <li className="flex items-start gap-3">
             <span className="text-purple-500 font-bold">•</span>
             <span>
-              <strong className="text-gray-800 dark:text-gray-100">초보자:</strong> 초보자 가이드로 기본 지식부터 천천히 배워보세요
+              <strong className="text-[var(--text-primary)] dark:text-[var(--text-secondary)]">초보자:</strong> 초보자 가이드로 기본 지식부터 천천히 배워보세요
             </span>
           </li>
           <li className="flex items-start gap-3">
             <span className="text-pink-500 font-bold">•</span>
             <span>
-              <strong className="text-gray-800 dark:text-gray-100">매칭 전:</strong> 냥이매칭 테스트로 나의 인생냥이를 찾아보세요
+              <strong className="text-[var(--text-primary)] dark:text-[var(--text-secondary)]">매칭 전:</strong> 냥이매칭 테스트로 나의 인생냥이를 찾아보세요
             </span>
           </li>
         </ul>

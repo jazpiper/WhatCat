@@ -28,7 +28,7 @@ export default function CompatibilityCard({
     if (score >= 80) return 'text-rose-500';
     if (score >= 70) return 'text-orange-500';
     if (score >= 60) return 'text-yellow-600';
-    return 'text-gray-600';
+    return 'text-[var(--text-secondary)]';
   };
 
   // 프로그레스 바 색상
@@ -37,7 +37,7 @@ export default function CompatibilityCard({
     if (score >= 80) return 'from-rose-400 to-pink-500';
     if (score >= 70) return 'from-orange-400 to-rose-400';
     if (score >= 60) return 'from-yellow-400 to-orange-400';
-    return 'from-gray-400 to-gray-500';
+    return 'from-[var(--bg-surface)] to-[var(--bg-surface)]';
   };
 
   // 배경 그라디언트
@@ -45,8 +45,8 @@ export default function CompatibilityCard({
     if (score >= 90) return 'from-pink-100 via-rose-50 to-purple-100';
     if (score >= 80) return 'from-rose-50 via-pink-50 to-purple-50';
     if (score >= 70) return 'from-orange-50 via-yellow-50 to-pink-50';
-    if (score >= 60) return 'from-yellow-50 via-orange-50 to-gray-50';
-    return 'from-gray-50 via-slate-50 to-gray-100';
+    if (score >= 60) return 'from-yellow-50 via-orange-50 to-[var(--bg-page)]';
+    return 'from-[var(--bg-page)] via-slate-50 to-[var(--bg-page)]';
   };
 
   return (
@@ -57,10 +57,10 @@ export default function CompatibilityCard({
     >
       {/* 헤더 */}
       <div className="text-center mb-6">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+        <h2 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-2">
           {emoji} MBTI 궁합 결과
         </h2>
-        <p className="text-gray-600">두 냥이의 궁합을 분석했어요!</p>
+        <p className="text-[var(--text-secondary)]">두 냥이의 궁합을 분석했어요!</p>
       </div>
 
       {/* MBTI 비교 섹션 */}
@@ -69,7 +69,7 @@ export default function CompatibilityCard({
         <div className="flex flex-col items-center">
           {breed1Emoji && <span className="text-4xl mb-2">{breed1Emoji}</span>}
           {breed1Name && (
-            <p className="text-sm text-gray-600 mb-2">{breed1Name}</p>
+            <p className="text-sm text-[var(--text-secondary)] mb-2">{breed1Name}</p>
           )}
           <MBTIBadge mbti={mbti1} size="lg" showEmoji={true} showNickname={true} />
         </div>
@@ -77,14 +77,14 @@ export default function CompatibilityCard({
         {/* 하트 애니메이션 */}
         <div className="flex flex-col items-center justify-center">
           <div className="text-4xl md:text-5xl animate-pulse">💕</div>
-          <div className="mt-2 text-gray-400 text-2xl">✦</div>
+          <div className="mt-2 text-[var(--text-secondary)] text-2xl">✦</div>
         </div>
 
         {/* MBTI 2 */}
         <div className="flex flex-col items-center">
           {breed2Emoji && <span className="text-4xl mb-2">{breed2Emoji}</span>}
           {breed2Name && (
-            <p className="text-sm text-gray-600 mb-2">{breed2Name}</p>
+            <p className="text-sm text-[var(--text-secondary)] mb-2">{breed2Name}</p>
           )}
           <MBTIBadge mbti={mbti2} size="lg" showEmoji={true} showNickname={true} />
         </div>
@@ -96,11 +96,11 @@ export default function CompatibilityCard({
           <span className={`text-4xl md:text-5xl font-bold ${getScoreColor(score)}`}>
             {score}
           </span>
-          <span className="text-2xl text-gray-500">점</span>
+          <span className="text-2xl text-[var(--text-secondary)]">점</span>
         </div>
 
         {/* 프로그레스 바 */}
-        <div className="w-full h-4 bg-gray-200 rounded-full overflow-hidden mb-4">
+        <div className="w-full h-4 bg-[var(--bg-page)] rounded-full overflow-hidden mb-4">
           <div
             className={`h-full bg-gradient-to-r ${getProgressGradient(
               score
@@ -119,7 +119,7 @@ export default function CompatibilityCard({
 
       {/* 메시지 */}
       <div className="text-center">
-        <p className="text-gray-700 leading-relaxed">{message}</p>
+        <p className="text-[var(--text-primary)] leading-relaxed">{message}</p>
       </div>
 
       {/* MBTI 설명 */}
@@ -127,16 +127,16 @@ export default function CompatibilityCard({
         <div className="bg-white/50 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-2">
             <MBTIBadge mbti={mbti1} size="sm" showEmoji={false} showNickname={false} />
-            <span className="font-semibold text-gray-800">{mbti1.nickname}</span>
+            <span className="font-semibold text-[var(--text-primary)]">{mbti1.nickname}</span>
           </div>
-          <p className="text-sm text-gray-600 leading-relaxed">{mbti1.description}</p>
+          <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{mbti1.description}</p>
         </div>
         <div className="bg-white/50 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-2">
             <MBTIBadge mbti={mbti2} size="sm" showEmoji={false} showNickname={false} />
-            <span className="font-semibold text-gray-800">{mbti2.nickname}</span>
+            <span className="font-semibold text-[var(--text-primary)]">{mbti2.nickname}</span>
           </div>
-          <p className="text-sm text-gray-600 leading-relaxed">{mbti2.description}</p>
+          <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{mbti2.description}</p>
         </div>
       </div>
     </div>

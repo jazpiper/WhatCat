@@ -63,7 +63,7 @@ export default function BreedDetailActions({ breed }: { breed: Breed }) {
       <button
         type="button"
         onClick={handleNativeShare}
-        className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 text-xs md:text-sm hover:shadow-sm transition"
+        className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/80 dark:bg-[var(--bg-surface)] border border-[var(--border-default)] dark:border-[var(--border-default)] text-[var(--text-primary)] dark:text-[var(--text-secondary)] text-xs md:text-sm hover:shadow-sm transition"
         aria-label="공유하기"
       >
         <Share2 size={16} />
@@ -72,7 +72,7 @@ export default function BreedDetailActions({ breed }: { breed: Breed }) {
       <button
         type="button"
         onClick={handleCopyLink}
-        className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 text-xs md:text-sm hover:shadow-sm transition"
+        className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/80 dark:bg-[var(--bg-surface)] border border-[var(--border-default)] dark:border-[var(--border-default)] text-[var(--text-primary)] dark:text-[var(--text-secondary)] text-xs md:text-sm hover:shadow-sm transition"
         aria-label="링크 복사"
       >
         {copied ? <Check size={16} /> : <Copy size={16} />}

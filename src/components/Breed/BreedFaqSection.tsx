@@ -20,8 +20,8 @@ export default function BreedFaqSection({ breedName, faqs }: BreedFaqSectionProp
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-4 md:p-6">
-      <h2 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 text-center">
+    <div className="bg-white dark:bg-[var(--bg-surface)] rounded-3xl shadow-xl p-4 md:p-6">
+      <h2 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-4 text-center">
         <span className="mr-2">❓</span>
         {breedName} 자주 묻는 질문
       </h2>
@@ -30,13 +30,13 @@ export default function BreedFaqSection({ breedName, faqs }: BreedFaqSectionProp
         {faqs.map((faq, index) => (
           <div
             key={index}
-            className="border border-gray-100 dark:border-gray-700 rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-200"
+            className="border border-[var(--border-default)] dark:border-[var(--border-default)] rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-200"
           >
             <button
               onClick={() => toggleFaq(index)}
-              className="w-full px-5 py-4 text-left flex items-start justify-between gap-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+              className="w-full px-5 py-4 text-left flex items-start justify-between gap-4 hover:bg-[var(--bg-page)] dark:hover:bg-[var(--bg-surface)] transition-colors duration-200"
             >
-              <span className="text-gray-700 dark:text-gray-200 font-medium flex-1">
+              <span className="text-[var(--text-primary)] dark:text-[var(--text-secondary)] font-medium flex-1">
                 {faq.question}
               </span>
               <div
@@ -65,7 +65,7 @@ export default function BreedFaqSection({ breedName, faqs }: BreedFaqSectionProp
               }`}
             >
               <div className="px-5 pb-4 pt-0">
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed pl-4 border-l-4 border-purple-400 dark:border-purple-500">
+                <p className="text-[var(--text-secondary)] dark:text-[var(--text-secondary)] leading-relaxed pl-4 border-l-4 border-purple-400 dark:border-purple-500">
                   {faq.answer}
                 </p>
               </div>

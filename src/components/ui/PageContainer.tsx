@@ -11,7 +11,7 @@ interface PageContainerProps {
  * PageContainer - Unified page layout wrapper with gradient background
  *
  * Design tokens:
- * - Background: Gradient from pink-50 via purple-50 to blue-50 (dark: gray-900 via purple-950 to gray-900)
+ * - Background: Gradient from pink-50 via purple-50 to blue-50 (dark: surface tokens applied)
  * - Layout: min-h-screen, container mx-auto px-4 py-8 max-w-4xl
  * - Use `contentClassName` to override container constraints (max-w, padding, alignment).
  */
@@ -21,7 +21,7 @@ export function PageContainer({ children, className, contentClassName }: PageCon
       className={cn(
         'min-h-screen',
         'bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50',
-        'dark:from-gray-900 dark:via-purple-950 dark:to-gray-900',
+        'dark:from-[var(--bg-surface)] dark:via-purple-950 dark:to-[var(--bg-surface)]',
         className
       )}
     >

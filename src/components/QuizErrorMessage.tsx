@@ -61,7 +61,7 @@ export function QuizErrorMessage({
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+      <div className="max-w-md w-full bg-white rounded-2xl shadow-lg p-8 border border-[var(--border-default)]">
         {/* Error Icon */}
         <div className="flex justify-center mb-6">
           <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center">
@@ -73,12 +73,12 @@ export function QuizErrorMessage({
         <div className="text-5xl text-center mb-4">{config.icon}</div>
 
         {/* Title */}
-        <h2 className="text-2xl font-bold text-gray-800 text-center mb-4">
+        <h2 className="text-2xl font-bold text-[var(--text-primary)] text-center mb-4">
           {config.title}
         </h2>
 
         {/* Description */}
-        <p className="text-gray-600 text-center mb-6">{displayMessage}</p>
+        <p className="text-[var(--text-secondary)] text-center mb-6">{displayMessage}</p>
 
         {/* Action Buttons */}
         <div className="flex flex-col gap-3">
@@ -95,7 +95,7 @@ export function QuizErrorMessage({
           {showHomeButton && (
             <Link
               href="/"
-              className="w-full bg-gray-100 text-gray-700 py-3 px-6 rounded-xl font-medium hover:bg-gray-200 transition-all flex items-center justify-center gap-2"
+              className="w-full bg-[var(--bg-page)] text-[var(--text-primary)] py-3 px-6 rounded-xl font-medium hover:bg-[var(--bg-page)] transition-all flex items-center justify-center gap-2"
             >
               <Home size={20} />
               홈으로 가기

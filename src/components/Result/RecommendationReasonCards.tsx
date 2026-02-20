@@ -16,8 +16,8 @@ export default function RecommendationReasonCards({ results }: RecommendationRea
   return (
     <section className="mt-8">
       <div className="text-center mb-4">
-        <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">💌 TOP 3 추천 이유</h3>
-        <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">점수만 보지 말고, 나에게 맞는 포인트를 같이 확인해봐요.</p>
+        <h3 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)]">💌 TOP 3 추천 이유</h3>
+        <p className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mt-1">점수만 보지 말고, 나에게 맞는 포인트를 같이 확인해봐요.</p>
       </div>
 
       <div className="space-y-4">
@@ -27,7 +27,7 @@ export default function RecommendationReasonCards({ results }: RecommendationRea
           return (
             <div
               key={result.breed.id}
-              className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm p-5"
+              className="bg-white dark:bg-[var(--bg-surface)] rounded-2xl border border-[var(--border-default)] dark:border-[var(--border-default)] shadow-sm p-5"
             >
               <div className="flex items-start gap-3">
                 <div className="text-2xl flex-shrink-0" aria-hidden="true">
@@ -48,8 +48,8 @@ export default function RecommendationReasonCards({ results }: RecommendationRea
                   )}
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <h4 className="font-bold text-gray-800 dark:text-gray-100 truncate">{result.breed.name}</h4>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">{result.breed.nameEn}</span>
+                      <h4 className="font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] truncate">{result.breed.name}</h4>
+                      <span className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-secondary)]">{result.breed.nameEn}</span>
                       <span className="text-sm font-semibold text-pink-600">{result.score}%</span>
                     </div>
                     {exp.badges && exp.badges.length > 0 && (
@@ -76,24 +76,24 @@ export default function RecommendationReasonCards({ results }: RecommendationRea
               </div>
 
               <div className="mt-4 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-4 border border-purple-100 dark:border-purple-800/50">
-                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{exp.summary}</p>
+                <p className="text-sm text-[var(--text-primary)] dark:text-[var(--text-secondary)] leading-relaxed">{exp.summary}</p>
 
                 <div className="mt-4 grid gap-3 md:grid-cols-2">
-                  <div className="bg-white/70 dark:bg-gray-700/50 rounded-xl p-3 border border-white dark:border-gray-700">
-                    <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">좋은 점</p>
+                  <div className="bg-white/70 dark:bg-[var(--bg-surface)] rounded-xl p-3 border border-white dark:border-[var(--border-default)]">
+                    <p className="text-sm font-semibold text-[var(--text-primary)] dark:text-[var(--text-secondary)]">좋은 점</p>
                     <ul className="mt-2 space-y-1.5">
                       {exp.pros.map((line, i) => (
-                        <li key={i} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        <li key={i} className="text-sm text-[var(--text-primary)] dark:text-[var(--text-secondary)] leading-relaxed">
                           • {line}
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <div className="bg-white/70 dark:bg-gray-700/50 rounded-xl p-3 border border-white dark:border-gray-700">
-                    <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">조금만 주의해요</p>
+                  <div className="bg-white/70 dark:bg-[var(--bg-surface)] rounded-xl p-3 border border-white dark:border-[var(--border-default)]">
+                    <p className="text-sm font-semibold text-[var(--text-primary)] dark:text-[var(--text-secondary)]">조금만 주의해요</p>
                     <ul className="mt-2 space-y-1.5">
                       {exp.cons.map((line, i) => (
-                        <li key={i} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        <li key={i} className="text-sm text-[var(--text-primary)] dark:text-[var(--text-secondary)] leading-relaxed">
                           • {line}
                         </li>
                       ))}

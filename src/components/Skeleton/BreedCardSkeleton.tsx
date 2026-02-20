@@ -12,7 +12,7 @@ export default function BreedCardSkeleton({ count = 1 }: BreedCardSkeletonProps)
       {Array.from({ length: count }).map((_, i) => (
         <div
           key={i}
-          className="bg-gradient-to-br from-pink-50 to-purple-50 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-6 border-2 border-pink-100 dark:border-gray-500"
+          className="bg-gradient-to-br from-pink-50 to-purple-50 dark:from-[var(--bg-surface)] dark:to-[var(--bg-surface)] rounded-2xl p-6 border-2 border-pink-100 dark:border-[var(--border-default)]"
         >
           <div className="flex items-start justify-between mb-3">
             <Skeleton variant="circular" className="w-16 h-16" />

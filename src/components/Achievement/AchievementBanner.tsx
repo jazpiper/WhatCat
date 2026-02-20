@@ -99,14 +99,14 @@ export default function AchievementBanner({
             <div className="text-5xl">{currentAchievement.icon}</div>
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="font-bold text-gray-800">{currentAchievement.nameKo}</h3>
+                <h3 className="font-bold text-[var(--text-primary)]">{currentAchievement.nameKo}</h3>
                 <span
                   className={`px-2 py-0.5 rounded-full text-xs font-medium ${rarityConfig.bgColor} ${rarityConfig.textColor}`}
                 >
                   {rarityConfig.label}
                 </span>
               </div>
-              <p className="text-sm text-gray-600">{currentAchievement.description}</p>
+              <p className="text-sm text-[var(--text-secondary)]">{currentAchievement.description}</p>
             </div>
           </div>
 
@@ -119,7 +119,7 @@ export default function AchievementBanner({
                   className={`w-2 h-2 rounded-full transition-all ${
                     index === currentIndex
                       ? rarityConfig.progressColor
-                      : 'bg-gray-300'
+                      : 'bg-[var(--bg-surface)]'
                   }`}
                 />
               ))}
@@ -138,7 +138,7 @@ export default function AchievementBanner({
             ) : (
               <button
                 onClick={handleClose}
-                className="flex-1 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition-all"
+                className="flex-1 py-2 bg-[var(--bg-page)] text-[var(--text-primary)] rounded-lg font-medium hover:bg-[var(--bg-surface)] transition-all"
               >
                 닫기
               </button>

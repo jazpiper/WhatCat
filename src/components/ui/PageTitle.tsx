@@ -12,8 +12,8 @@ interface PageTitleProps {
  * PageTitle - Unified page title component with optional subtitle and emoji
  *
  * Design tokens:
- * - Title: text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 text-center mb-4
- * - Subtitle: text-gray-600 dark:text-gray-300 text-center
+ * - Title: text-3xl md:text-4xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] text-center mb-4
+ * - Subtitle: text-[var(--text-secondary)] dark:text-[var(--text-secondary)] text-center
  */
 export function PageTitle({
   children,

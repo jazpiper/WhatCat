@@ -60,20 +60,20 @@ export default function ProgressIndicator({
       {/* 상단 정보 바 */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+          <span className="text-sm font-medium text-[var(--text-secondary)] dark:text-[var(--text-secondary)]">
             질문 {currentQuestion + 1} / {totalQuestions}
           </span>
           <span className="px-2 py-1 text-xs font-semibold rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white" aria-live="polite" aria-atomic="true">
             {progressPercent}%
           </span>
         </div>
-        <span className="text-sm text-gray-500 dark:text-gray-400">
+        <span className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-secondary)]">
           {remainingTime}
         </span>
       </div>
 
       {/* 진행 바 */}
-      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-6 overflow-hidden" role="progressbar" aria-valuenow={progressPercent} aria-valuemin={0} aria-valuemax={100} aria-label="전체 진행률">
+      <div className="w-full bg-[var(--bg-page)] dark:bg-[var(--bg-surface)] rounded-full h-2 mb-6 overflow-hidden" role="progressbar" aria-valuenow={progressPercent} aria-valuemin={0} aria-valuemax={100} aria-label="전체 진행률">
         <motion.div
           className="h-full bg-gradient-to-r from-pink-500 to-purple-600 rounded-full"
           initial={{ width: 0 }}
@@ -105,17 +105,17 @@ export default function ProgressIndicator({
       </div>
 
       {/* 범례 */}
-      <div className="flex items-center justify-center gap-4 mt-4 text-xs text-gray-500 dark:text-gray-400">
+      <div className="flex items-center justify-center gap-4 mt-4 text-xs text-[var(--text-secondary)] dark:text-[var(--text-secondary)]">
         <div className="flex items-center gap-1">
           <div className="w-3 h-3 rounded-full bg-gradient-to-r from-pink-500 to-purple-600" />
           <span>완료</span>
         </div>
         <div className="flex items-center gap-1">
-          <div className="w-3 h-3 rounded-full border-2 border-pink-500 bg-white dark:bg-gray-800" />
+          <div className="w-3 h-3 rounded-full border-2 border-pink-500 bg-white dark:bg-[var(--bg-surface)]" />
           <span>현재</span>
         </div>
         <div className="flex items-center gap-1">
-          <div className="w-3 h-3 rounded-full border-2 border-gray-300 dark:border-gray-600" />
+          <div className="w-3 h-3 rounded-full border-2 border-[var(--border-default)] dark:border-[var(--border-default)]" />
           <span>남음</span>
         </div>
       </div>
@@ -137,9 +137,9 @@ function QuestionDot({ status, icon, label, questionNumber }: QuestionDotProps) 
     completed:
       'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md',
     current:
-      'bg-white dark:bg-gray-800 border-2 border-pink-500 text-pink-500 shadow-lg',
+      'bg-white dark:bg-[var(--bg-surface)] border-2 border-pink-500 text-pink-500 shadow-lg',
     remaining:
-      'bg-gray-100 dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500',
+      'bg-[var(--bg-page)] dark:bg-[var(--bg-surface)] border-2 border-[var(--border-default)] dark:border-[var(--border-default)] text-[var(--text-secondary)] dark:text-[var(--text-secondary)]',
   };
 
   const statusLabels = {
@@ -167,11 +167,11 @@ function QuestionDot({ status, icon, label, questionNumber }: QuestionDotProps) 
       </motion.div>
 
       {/* 툴팁 (Desktop hover) */}
-      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 dark:bg-gray-700 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none hidden sm:block z-10" role="tooltip">
+      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none hidden sm:block z-10" role="tooltip">
         <div className="font-medium">{label}</div>
-        <div className="text-gray-300">질문 {questionNumber}</div>
+        <div className="text-[var(--text-secondary)]">질문 {questionNumber}</div>
         {/* 화살표 */}
-        <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900 dark:border-t-gray-700" aria-hidden="true" />
+        <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-[var(--text-primary)] dark:border-t-[var(--text-primary)]" aria-hidden="true" />
       </div>
 
       {/* 현재 질문 표시 애니메이션 */}

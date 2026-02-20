@@ -141,11 +141,11 @@ export const RARITY_CONFIG = {
   common: {
     label: '일반',
     icon: '⚪',
-    color: 'from-gray-400 to-gray-500',
-    bgColor: 'bg-gray-100',
-    textColor: 'text-gray-700',
-    borderColor: 'border-gray-300',
-    progressColor: 'bg-gray-500',
+    color: 'from-[var(--bg-surface)] to-[var(--bg-surface)]',
+    bgColor: 'bg-[var(--bg-page)]',
+    textColor: 'text-[var(--text-primary)]',
+    borderColor: 'border-[var(--border-default)]',
+    progressColor: 'bg-[var(--bg-surface)]',
   },
   rare: {
     label: '희귀',

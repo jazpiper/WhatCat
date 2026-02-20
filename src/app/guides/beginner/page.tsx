@@ -187,7 +187,7 @@ export default function BeginnerGuidePage() {
               >
                 <div className="text-2xl mb-2">{index + 1}</div>
                 <h4 className="font-semibold text-pink-700 mb-1">{item.name}</h4>
-                <p className="text-sm text-gray-600">{item.desc}</p>
+                <p className="text-sm text-[var(--text-secondary)]">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -320,19 +320,19 @@ export default function BeginnerGuidePage() {
                 className={`flex items-center gap-3 p-4 rounded-xl cursor-pointer transition-all duration-200 ${
                   checkedItems.has(index)
                     ? 'bg-gradient-to-r from-pink-100 to-purple-100 border-2 border-pink-300'
-                    : 'bg-gray-50 border-2 border-gray-200 hover:border-pink-300'
+                    : 'bg-[var(--bg-page)] border-2 border-[var(--border-default)] hover:border-pink-300'
                 }`}
               >
                 <div
                   className={`w-6 h-6 rounded-md flex items-center justify-center transition-all ${
                     checkedItems.has(index)
                       ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white'
-                      : 'bg-gray-200'
+                      : 'bg-[var(--bg-page)]'
                   }`}
                 >
                   {checkedItems.has(index) && <span className="text-sm">✓</span>}
                 </div>
-                <span className={`text-sm md:text-base ${checkedItems.has(index) ? 'line-through text-gray-400' : 'text-gray-700'}`}>
+                <span className={`text-sm md:text-base ${checkedItems.has(index) ? 'line-through text-[var(--text-secondary)]' : 'text-[var(--text-primary)]'}`}>
                   {item}
                 </span>
               </div>

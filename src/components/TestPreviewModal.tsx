@@ -157,7 +157,7 @@ export function TestPreviewModal({ isOpen, onClose, onStart }: TestPreviewModalP
     >
       <div
         ref={modalRef}
-        className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto"
+        className="bg-white dark:bg-[var(--bg-surface)] rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto"
       >
         {/* Header */}
         <div className="sticky top-0 bg-gradient-to-r from-pink-500 to-purple-600 dark:from-pink-600 dark:to-purple-700 text-white p-6 rounded-t-3xl">
@@ -186,7 +186,7 @@ export function TestPreviewModal({ isOpen, onClose, onStart }: TestPreviewModalP
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="bg-blue-50 dark:bg-blue-900/30 rounded-xl p-4 text-center border border-blue-100 dark:border-blue-700">
               <Clock className="text-blue-500 dark:text-blue-400 mx-auto mb-2" size={24} />
-              <p className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-1">
+              <p className="text-sm font-semibold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-1">
                 소요 시간
               </p>
               <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">약 2분</p>
@@ -194,7 +194,7 @@ export function TestPreviewModal({ isOpen, onClose, onStart }: TestPreviewModalP
 
             <div className="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-4 text-center border border-purple-100 dark:border-purple-700">
               <FileQuestion className="text-purple-500 dark:text-purple-400 mx-auto mb-2" size={24} />
-              <p className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-1">
+              <p className="text-sm font-semibold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-1">
                 질문 수
               </p>
               <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">14개</p>
@@ -202,7 +202,7 @@ export function TestPreviewModal({ isOpen, onClose, onStart }: TestPreviewModalP
 
             <div className="bg-pink-50 dark:bg-pink-900/30 rounded-xl p-4 text-center border border-pink-100 dark:border-pink-700">
               <Target className="text-pink-500 dark:text-pink-400 mx-auto mb-2" size={24} />
-              <p className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-1">
+              <p className="text-sm font-semibold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-1">
                 카테고리
               </p>
               <p className="text-2xl font-bold text-pink-600 dark:text-pink-400">5가지</p>
@@ -210,15 +210,15 @@ export function TestPreviewModal({ isOpen, onClose, onStart }: TestPreviewModalP
           </div>
 
           {/* Categories */}
-          <div className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4">
-            <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+          <div className="bg-[var(--bg-page)] dark:bg-[var(--bg-surface)] rounded-xl p-4">
+            <p className="text-sm font-semibold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-3">
               📋 분석 카테고리
             </p>
             <div className="flex flex-wrap gap-2">
               {['라이프스타일', '성격', '관리', '외형', '비용'].map((cat) => (
                 <span
                   key={cat}
-                  className="bg-white dark:bg-gray-800 px-3 py-1.5 rounded-full text-sm text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600"
+                  className="bg-white dark:bg-[var(--bg-surface)] px-3 py-1.5 rounded-full text-sm text-[var(--text-primary)] dark:text-[var(--text-secondary)] border border-[var(--border-default)] dark:border-[var(--border-default)]"
                 >
                   {cat}
                 </span>
@@ -228,26 +228,26 @@ export function TestPreviewModal({ isOpen, onClose, onStart }: TestPreviewModalP
 
           {/* Sample Questions */}
           <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-xl p-4 border border-amber-200 dark:border-amber-700">
-            <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 flex items-center gap-2">
+            <p className="text-sm font-semibold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-3 flex items-center gap-2">
               <Sparkles size={16} className="text-amber-500" />
               미리보기 질문
             </p>
             <div className="space-y-3">
               {SAMPLE_QUESTIONS.map((q, index) => (
-                <div key={index} className="bg-white dark:bg-gray-800 rounded-lg p-3">
+                <div key={index} className="bg-white dark:bg-[var(--bg-surface)] rounded-lg p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-xs px-2 py-0.5 bg-amber-100 dark:bg-amber-700 text-amber-700 dark:text-amber-200 rounded-full">
                       {q.category}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-700 dark:text-gray-300 font-medium mb-2">
+                  <p className="text-sm text-[var(--text-primary)] dark:text-[var(--text-secondary)] font-medium mb-2">
                     Q. {q.question}
                   </p>
                   <div className="flex flex-wrap gap-1">
                     {q.options.map((opt, optIndex) => (
                       <span
                         key={optIndex}
-                        className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full"
+                        className="text-xs px-2 py-1 bg-[var(--bg-page)] dark:bg-[var(--bg-surface)] text-[var(--text-secondary)] dark:text-[var(--text-secondary)] rounded-full"
                       >
                         {opt}
                       </span>
@@ -260,7 +260,7 @@ export function TestPreviewModal({ isOpen, onClose, onStart }: TestPreviewModalP
 
           {/* Description */}
           <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 border border-blue-200 dark:border-blue-700">
-            <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+            <p className="text-sm text-[var(--text-primary)] dark:text-[var(--text-secondary)] leading-relaxed">
               🎯 <span className="font-semibold text-blue-600 dark:text-blue-400">정확한 분석</span>을 위해
               각 질문에 신중하게 답변해 주세요. 결과는 20종의 인기 품종 데이터를 바탕으로
               계산되며, 다양한 요소를 종합적으로 고려하여 최적의 매칭을 찾아드립니다!
@@ -269,7 +269,7 @@ export function TestPreviewModal({ isOpen, onClose, onStart }: TestPreviewModalP
         </div>
 
         {/* Footer Buttons */}
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 space-y-3">
+        <div className="p-6 border-t border-[var(--border-default)] dark:border-[var(--border-default)] space-y-3">
           <button
             ref={startButtonRef}
             onClick={handleStart}
@@ -280,7 +280,7 @@ export function TestPreviewModal({ isOpen, onClose, onStart }: TestPreviewModalP
           </button>
           <button
             onClick={handleLater}
-            className="w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 py-3 rounded-xl font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+            className="w-full bg-[var(--bg-page)] dark:bg-[var(--bg-surface)] hover:bg-[var(--bg-page)] dark:hover:bg-[var(--bg-surface)] text-[var(--text-primary)] dark:text-[var(--text-secondary)] py-3 rounded-xl font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--border-default)] focus:ring-offset-2"
           >
             다음에 하기
           </button>

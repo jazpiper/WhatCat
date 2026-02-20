@@ -16,7 +16,7 @@ const popularBreeds = breeds.breeds
 
 export default function HomePage() {
   return (
-    <main id="main-content" className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-gray-900 transition-colors duration-300">
+    <main id="main-content" className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-[var(--bg-surface)] dark:via-purple-950 dark:to-[var(--bg-surface)] transition-colors duration-300">
       {/* 구조화된 데이터 */}
       <StructuredData
         type="WebSite"
@@ -95,7 +95,7 @@ export default function HomePage() {
                 href={`/breed/${breed.id}`}
                 className="group"
               >
-                <div className="bg-gradient-to-br from-pink-50 to-purple-50 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-6 hover:shadow-lg hover:scale-105 transition-all duration-300 border-2 border-pink-100 dark:border-gray-500">
+                <div className="bg-gradient-to-br from-pink-50 to-purple-50 dark:from-[var(--bg-surface)] dark:to-[var(--bg-surface)] rounded-2xl p-6 hover:shadow-lg hover:scale-105 transition-all duration-300 border-2 border-pink-100 dark:border-[var(--border-default)]">
                   <div className="flex items-start justify-between mb-3">
                     {breed.image && (
                       <CatImage
@@ -116,7 +116,7 @@ export default function HomePage() {
                         </div>
                       )}
                       {index === 1 && (
-                        <div className="bg-gray-300 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">
+                        <div className="bg-[var(--bg-surface)] text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">
                           2
                         </div>
                       )}

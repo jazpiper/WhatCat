@@ -63,18 +63,18 @@ export class ChartErrorBoundary extends Component<ChartErrorBoundaryProps, Chart
       }
 
       return (
-        <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-xl border border-gray-200">
-          <BarChart3 className="text-gray-400 mb-3" size={32} />
-          <div className="flex items-center gap-2 text-gray-700 mb-2">
+        <div className="flex flex-col items-center justify-center p-8 bg-[var(--bg-page)] rounded-xl border border-[var(--border-default)]">
+          <BarChart3 className="text-[var(--text-secondary)] mb-3" size={32} />
+          <div className="flex items-center gap-2 text-[var(--text-primary)] mb-2">
             <AlertTriangle size={18} className="text-amber-500" />
             <span className="font-medium">차트를 표시할 수 없습니다</span>
           </div>
-          <p className="text-sm text-gray-500 mb-4 text-center">
+          <p className="text-sm text-[var(--text-secondary)] mb-4 text-center">
             {this.props.chartName ? `${this.props.chartName} 차트` : '차트'}를 불러오는 중 오류가 발생했습니다.
           </p>
           <button
             onClick={this.handleRetry}
-            className="px-4 py-2 text-sm bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors"
+            className="px-4 py-2 text-sm bg-[var(--bg-page)] hover:bg-[var(--bg-surface)] rounded-lg transition-colors"
           >
             다시 시도
           </button>

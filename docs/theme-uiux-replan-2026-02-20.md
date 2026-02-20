@@ -78,6 +78,17 @@
 - 우선 페이지: `/`, `/nyongmatch`, `/result`, `/breeds`
 - 이후 페이지 확장 적용 + 예외 케이스(배너/광고/서드파티 위젯) 검수
 
+## 6-bis) 실행 이력 (2026-02-20)
+- 상태: `gray-*` 색상 하드코딩 잔여 최소화 2차 정리 완료
+- 범위: `src/app`, `src/components`, `src/data/achievements.ts`
+- 변경: `text/bg/border/ring/from/to/via/fill/stroke/placeholder` 계열의 `gray-*` 유틸리티를
+  토큰 기반 유틸리티로 일괄 변환
+- 검증:
+  - `npm run build` 통과
+  - `npm run lint` 통과
+  - `rg -n "gray-[0-9]{2,3}" src` 실행 결과 `0` 건
+- 주의: 시각적 QA(실제 브라우저/스크린샷)은 수동 점검이 남음
+
 ## 7) 산출물
 - 기획 문서 1개(본 문서)
 - 토큰 명세 문서 1개(`docs/design-tokens.md` 신규)

@@ -489,7 +489,7 @@ export default function ResultClient() {
   }
 
   return (
-    <main id="main-content" className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-gray-900 transition-colors duration-300">
+    <main id="main-content" className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-[var(--bg-surface)] dark:via-purple-950 dark:to-[var(--bg-surface)] transition-colors duration-300">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <div className="mb-6 flex items-center justify-between">
           <Link href="/" onClick={resetTest} className="text-pink-500 dark:text-pink-400 hover:underline flex items-center gap-2 font-medium">
@@ -508,7 +508,7 @@ export default function ResultClient() {
           </button>
         </div>
 
-        <div ref={resultRef} className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 mb-8 border border-gray-100 dark:border-gray-700">
+        <div ref={resultRef} className="bg-white dark:bg-[var(--bg-surface)] rounded-3xl shadow-xl p-8 mb-8 border border-[var(--border-default)] dark:border-[var(--border-default)]">
           <ResultHeader
             breed={firstResult.breed}
             animatedScore={animatedScore}
@@ -557,7 +557,7 @@ export default function ResultClient() {
 
         <AdSense adSlot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ID || "5187796077"} />
 
-        <div className="text-center text-gray-400 dark:text-gray-500 text-xs mt-8">
+        <div className="text-center text-[var(--text-secondary)] dark:text-[var(--text-secondary)] text-xs mt-8">
           <p>&copy; 2026 냥이 매칭. All rights reserved.</p>
         </div>
       </div>

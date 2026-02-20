@@ -58,7 +58,7 @@ export default function BadgeGallery({
       <div className="flex items-center justify-center py-12">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-pink-500" />
-          <p className="text-gray-600 mt-4">도전 과제를 불러오는 중...</p>
+          <p className="text-[var(--text-secondary)] mt-4">도전 과제를 불러오는 중...</p>
         </div>
       </div>
     );
@@ -91,9 +91,9 @@ export default function BadgeGallery({
               icon={<Lock size={16} />}
               label="미달성"
               count={lockedAchievements.length}
-              color="text-gray-600"
+              color="text-[var(--text-secondary)]"
             />
-            <div className="w-px bg-gray-300 mx-1" />
+            <div className="w-px bg-[var(--bg-surface)] mx-1" />
             {(['legendary', 'epic', 'rare', 'common'] as const).map((rarity) => (
               <FilterButton
                 key={rarity}
@@ -113,13 +113,13 @@ export default function BadgeGallery({
       <div className="mb-6 bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-gray-600">달성률</p>
-            <p className="text-2xl font-bold text-gray-800">
+            <p className="text-sm text-[var(--text-secondary)]">달성률</p>
+            <p className="text-2xl font-bold text-[var(--text-primary)]">
               {unlockedAchievements.length} / {achievements.length}
             </p>
           </div>
           <div className="flex-1 mx-4">
-            <div className="w-full bg-gray-200 rounded-full h-3">
+            <div className="w-full bg-[var(--bg-page)] rounded-full h-3">
               <div
                 className="bg-gradient-to-r from-pink-500 to-purple-600 h-3 rounded-full transition-all duration-500"
                 style={{ width: `${(unlockedAchievements.length / achievements.length) * 100}%` }}
@@ -127,7 +127,7 @@ export default function BadgeGallery({
             </div>
           </div>
           <div className="text-right">
-            <p className="text-sm text-gray-600">진행률</p>
+            <p className="text-sm text-[var(--text-secondary)]">진행률</p>
             <p className="text-2xl font-bold text-pink-600">
               {Math.round((unlockedAchievements.length / achievements.length) * 100)}%
             </p>
@@ -152,14 +152,14 @@ export default function BadgeGallery({
       {displayAchievements.length === 0 && (
         <div className="text-center py-12">
           <div className="text-6xl mb-4">🔍</div>
-          <p className="text-gray-600">표시할 도전 과제가 없습니다.</p>
+          <p className="text-[var(--text-secondary)]">표시할 도전 과제가 없습니다.</p>
         </div>
       )}
 
       {/* Show more indicator */}
       {maxDisplay && filteredAchievements.length > maxDisplay && (
         <div className="mt-6 text-center">
-          <p className="text-gray-600">
+          <p className="text-[var(--text-secondary)]">
             외 {filteredAchievements.length - maxDisplay}개의 도전 과제가 더 있습니다
           </p>
         </div>
@@ -184,7 +184,7 @@ function FilterButton({ active, onClick, icon, label, count, color }: FilterButt
       className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
         active
           ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md'
-          : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+          : 'bg-white text-[var(--text-primary)] hover:bg-[var(--bg-page)] border border-[var(--border-default)]'
       }`}
     >
       <span className={color && !active ? color : ''}>
@@ -193,7 +193,7 @@ function FilterButton({ active, onClick, icon, label, count, color }: FilterButt
       <span>{label}</span>
       <span
         className={`px-1.5 py-0.5 rounded-full text-xs ${
-          active ? 'bg-white/20' : 'bg-gray-200'
+          active ? 'bg-white/20' : 'bg-[var(--bg-page)]'
         }`}
       >
         {count}

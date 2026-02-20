@@ -41,6 +41,14 @@
 - [ ] 콘솔에 hydration mismatch가 없다.
 - [ ] 테마 변경 시 눈에 띄는 깜빡임/잔상 전환이 없다.
 
+## 최근 정리 결과 (2026-02-20)
+- 적용: `src/app`, `src/components`, `src/data/achievements.ts` 내 `-gray-*` 하드컬러 토큰 정리
+- 검증:
+  - `npm run build` ✅
+  - `npm run lint` ✅
+  - `rg -n "gray-[0-9]{2,3}" src` → `0` 건
+- 미완료: FOUC 체감 점검, 스크린샷 회귀는 운영 브라우저에서 수동 실행 필요
+
 ## 실행 메모
 - 권장 브라우저: Chrome 최신, Safari(iOS), Samsung Internet
 - 체크 순서: `light -> dark -> system`

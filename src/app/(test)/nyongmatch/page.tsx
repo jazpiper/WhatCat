@@ -54,7 +54,7 @@ export default function TestPage() {
   const hasAnswer = question ? answers.some((a) => a.questionId === question.id) : false;
 
   return (
-    <main id="main-content" className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-gray-900 transition-colors duration-300">
+    <main id="main-content" className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-[var(--bg-surface)] dark:via-purple-950 dark:to-[var(--bg-surface)] transition-colors duration-300">
       <div className="container mx-auto px-4 py-8 max-w-5xl">
         <div className="mb-8">
           <Link href="/" className="text-pink-500 dark:text-pink-400 hover:underline">
@@ -63,7 +63,7 @@ export default function TestPage() {
         </div>
 
         <div className="grid md:grid-cols-[1fr_300px] gap-6">
-          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8">
+          <div className="bg-white dark:bg-[var(--bg-surface)] rounded-3xl shadow-xl p-8">
             {/* Progress Indicator */}
             <div className="mb-8">
               <ProgressIndicator
@@ -75,7 +75,7 @@ export default function TestPage() {
 
             {/* 냥이 힌트 */}
             <div className="bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 rounded-2xl p-4 mb-6 text-center">
-              <div className="text-sm text-gray-700 dark:text-gray-300">
+              <div className="text-sm text-[var(--text-primary)] dark:text-[var(--text-secondary)]">
                 💡 <span className="font-semibold">냥이 팁!</span> {catTip}
               </div>
             </div>
@@ -93,7 +93,7 @@ export default function TestPage() {
                 >
                   <div className="text-center mb-8">
                     <div className="text-6xl mb-6">🤔</div>
-                    <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">
+                    <h2 className="text-2xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-4">
                       {question.question}
                     </h2>
                   </div>
@@ -117,7 +117,7 @@ export default function TestPage() {
               {currentQuestion > 0 && (
                 <button
                   onClick={handlePrevious}
-                  className="px-6 py-3 rounded-full border-2 border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  className="px-6 py-3 rounded-full border-2 border-[var(--border-default)] dark:border-[var(--border-default)] text-[var(--text-secondary)] dark:text-[var(--text-secondary)] hover:bg-[var(--bg-page)] dark:hover:bg-[var(--bg-surface)] transition-colors"
                 >
                   이전
                 </button>

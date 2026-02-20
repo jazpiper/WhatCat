@@ -103,21 +103,21 @@ function AchievementsPageContent() {
                 className={`p-4 rounded-xl border-2 transition-all ${
                   isUnlocked(achievement.id)
                     ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-700'
-                    : 'bg-gray-50 dark:bg-gray-700/50 border-gray-200 dark:border-gray-600'
+                    : 'bg-[var(--bg-page)] dark:bg-[var(--bg-surface)] border-[var(--border-default)] dark:border-[var(--border-default)]'
                 }`}
               >
                 <div className="flex items-start gap-3">
                   <span className="text-3xl">{achievement.icon}</span>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <h3 className="font-bold text-gray-800 dark:text-gray-100">{achievement.nameKo}</h3>
+                      <h3 className="font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)]">{achievement.nameKo}</h3>
                       {isUnlocked(achievement.id) && (
                         <span className="text-xs bg-green-500 text-white px-2 py-0.5 rounded-full">
                           달성 완료
                         </span>
                       )}
                     </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{achievement.description}</p>
+                    <p className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-2">{achievement.description}</p>
                     <span
                       className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${
                         achievement.rarity === 'legendary'
@@ -126,7 +126,7 @@ function AchievementsPageContent() {
                           ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/50 dark:text-purple-300'
                           : achievement.rarity === 'rare'
                           ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300'
-                          : 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
+                          : 'bg-[var(--bg-page)] text-[var(--text-primary)] dark:bg-[var(--bg-surface)] dark:text-[var(--text-secondary)]'
                       }`}
                     >
                       {
@@ -158,10 +158,10 @@ function AchievementsPageContent() {
               <Card variant="elevated">
               <div className="text-center">
                 <div className="text-6xl mb-4">{selectedAchievement.icon}</div>
-                <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-1">
+                <h3 className="text-2xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-1">
                   {selectedAchievement.nameKo}
                 </h3>
-                <p className="text-gray-500 dark:text-gray-400 mb-2">{selectedAchievement.name}</p>
+                <p className="text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-2">{selectedAchievement.name}</p>
                 <span
                   className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${
                     selectedAchievement.rarity === 'legendary'
@@ -170,7 +170,7 @@ function AchievementsPageContent() {
                       ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/50 dark:text-purple-300'
                       : selectedAchievement.rarity === 'rare'
                       ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300'
-                      : 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
+                      : 'bg-[var(--bg-page)] text-[var(--text-primary)] dark:bg-[var(--bg-surface)] dark:text-[var(--text-secondary)]'
                   }`}
                 >
                   {
@@ -185,17 +185,17 @@ function AchievementsPageContent() {
                 </span>
               </div>
 
-              <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
-                <p className="text-gray-700 dark:text-gray-300 text-center">{selectedAchievement.description}</p>
+              <div className="mt-4 p-4 bg-[var(--bg-page)] dark:bg-[var(--bg-surface)] rounded-xl">
+                <p className="text-[var(--text-primary)] dark:text-[var(--text-secondary)] text-center">{selectedAchievement.description}</p>
               </div>
 
               <div className="mt-4 flex items-center justify-between">
-                <span className="text-sm text-gray-600 dark:text-gray-400">상태:</span>
+                <span className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-secondary)]">상태:</span>
                 <span
                   className={`font-bold ${
                     isUnlocked(selectedAchievement.id)
                       ? 'text-green-600 dark:text-green-400'
-                      : 'text-gray-400'
+                      : 'text-[var(--text-secondary)]'
                   }`}
                 >
                   {isUnlocked(selectedAchievement.id) ? '달성 완료! 🎉' : '미달성'}
@@ -214,7 +214,7 @@ function AchievementsPageContent() {
         )}
 
         {/* Footer */}
-        <footer className="text-center text-gray-500 dark:text-gray-400 text-sm">
+        <footer className="text-center text-[var(--text-secondary)] dark:text-[var(--text-secondary)] text-sm">
           <p>&copy; 2026 냥이 매칭. All rights reserved.</p>
         </footer>
       </PageContainer>
@@ -232,10 +232,10 @@ function StatCard({ icon, label, value }: StatCardProps) {
   return (
     <Card variant="default" className="p-4">
       <div className="flex items-center gap-3 mb-2">
-        <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg">{icon}</div>
-        <span className="text-sm text-gray-600 dark:text-gray-300">{label}</span>
+        <div className="p-2 bg-[var(--bg-page)] dark:bg-[var(--bg-surface)] rounded-lg">{icon}</div>
+        <span className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-secondary)]">{label}</span>
       </div>
-      <p className="text-2xl font-bold text-gray-800 dark:text-gray-100">{value}</p>
+      <p className="text-2xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)]">{value}</p>
     </Card>
   );
 }

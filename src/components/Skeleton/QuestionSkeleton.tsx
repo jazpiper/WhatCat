@@ -4,7 +4,7 @@ import { Skeleton } from './Skeleton';
 
 export default function QuestionSkeleton() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-gray-900">
+    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-[var(--bg-surface)] dark:via-purple-950 dark:to-[var(--bg-surface)]">
       <div className="container mx-auto px-4 py-8 max-w-5xl">
         {/* Back Button */}
         <div className="mb-8">
@@ -12,14 +12,14 @@ export default function QuestionSkeleton() {
         </div>
 
         <div className="grid md:grid-cols-[1fr_300px] gap-6">
-          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8">
+          <div className="bg-white dark:bg-[var(--bg-surface)] rounded-3xl shadow-xl p-8">
             {/* Progress Bar */}
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
                 <Skeleton className="h-5 w-24" />
                 <Skeleton className="h-5 w-12" />
               </div>
-              <div className="w-full h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+              <div className="w-full h-3 bg-[var(--bg-page)] dark:bg-[var(--bg-surface)] rounded-full overflow-hidden">
                 <Skeleton className="h-full w-1/3 rounded-none" />
               </div>
 
@@ -52,7 +52,7 @@ export default function QuestionSkeleton() {
                 {[1, 2, 3, 4].map((i) => (
                   <div
                     key={i}
-                    className="w-full p-6 rounded-2xl border-2 border-gray-200 dark:border-gray-600"
+                    className="w-full p-6 rounded-2xl border-2 border-[var(--border-default)] dark:border-[var(--border-default)]"
                   >
                     <div className="flex items-center justify-center gap-4">
                       <Skeleton variant="circular" className="w-6 h-6" />

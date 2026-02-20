@@ -4,7 +4,7 @@ import { Skeleton } from './Skeleton';
 
 export default function MyResultsSkeleton() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-gray-900">
+    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-[var(--bg-surface)] dark:via-purple-950 dark:to-[var(--bg-surface)]">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Header */}
         <div className="mb-8">
@@ -21,7 +21,7 @@ export default function MyResultsSkeleton() {
         </div>
 
         {/* Personality Trends */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 mb-6 border border-gray-100 dark:border-gray-700">
+        <div className="bg-white dark:bg-[var(--bg-surface)] rounded-2xl shadow-lg p-6 mb-6 border border-[var(--border-default)] dark:border-[var(--border-default)]">
           <Skeleton className="h-7 w-40 mb-4" />
           <Skeleton className="h-5 w-32 mb-4" />
           <div className="space-y-3">
@@ -38,7 +38,7 @@ export default function MyResultsSkeleton() {
         {/* Results List */}
         <div className="space-y-4">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 border border-gray-100 dark:border-gray-700">
+            <div key={i} className="bg-white dark:bg-[var(--bg-surface)] rounded-2xl shadow-lg p-6 border border-[var(--border-default)] dark:border-[var(--border-default)]">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-4">
                   <Skeleton variant="circular" className="w-16 h-16" />

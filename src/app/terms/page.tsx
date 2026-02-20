@@ -3,7 +3,7 @@ import AdSense from '@/components/AdSense';
 
 export default function TermsPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-orange-50 to-white dark:from-gray-900 dark:to-gray-950 py-12 px-4">
+    <main className="min-h-screen bg-gradient-to-b from-orange-50 to-white dark:from-[var(--bg-surface)] dark:to-[var(--bg-surface)] py-12 px-4">
       <div className="max-w-4xl mx-auto">
         <Link href="/" className="inline-flex items-center text-orange-600 dark:text-orange-300 hover:text-orange-700 dark:hover:text-orange-200 mb-8 transition-colors">
           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -12,18 +12,18 @@ export default function TermsPage() {
           홈으로 돌아가기
         </Link>
 
-        <article className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12 border border-transparent dark:border-gray-700">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-8">
+        <article className="bg-white dark:bg-[var(--bg-surface)] rounded-2xl shadow-xl p-8 md:p-12 border border-transparent dark:border-[var(--border-default)]">
+          <h1 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-8">
             이용약관
           </h1>
 
-          <p className="text-gray-600 dark:text-gray-300 mb-8">
+          <p className="text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-8">
             최종 업데이트: 2026년 2월 2일
           </p>
 
-          <div className="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 space-y-6">
+          <div className="prose prose-lg dark:prose-invert max-w-none text-[var(--text-primary)] dark:text-[var(--text-secondary)] space-y-6">
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제1조 (목적)</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)] mt-8 mb-4">제1조 (목적)</h2>
               <p>
                 본 이용약관은 &quot;냥이 매칭&quot;(이하 &quot;서비스&quot;)에서 제공하는 인터넷 서비스의 이용조건 및 절차를 규정합니다.
                 사용자는 본 약관에 동의함으로써 서비스를 이용할 수 있습니다.
@@ -31,7 +31,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제2조 (정의)</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)] mt-8 mb-4">제2조 (정의)</h2>
               <p>
                 <strong>&quot;서비스&quot;</strong>란 &quot;냥이 매칭&quot;가 제공하는 고양이 품종 매칭 테스트 웹 서비스를 말합니다.<br />
                 <strong>&quot;사용자&quot;</strong>란 본 약관에 따라 서비스를 이용하는 회원 및 비회원을 말합니다.<br />
@@ -40,7 +40,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제3조 (서비스 이용 계약)</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)] mt-8 mb-4">제3조 (서비스 이용 계약)</h2>
               <p>
                 사용자는 서비스에서 제공하는 약관에 동의함으로써 서비스 이용 계약을 체결합니다.
                 회원가입 또는 서비스 이용 시 약관에 동의한 것으로 간주됩니다.
@@ -48,7 +48,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제4조 (서비스 이용의 제한)</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)] mt-8 mb-4">제4조 (서비스 이용의 제한)</h2>
               <p>사용자는 다음 각 호에 해당하는 행위를 해서는 안 됩니다:</p>
               <ul className="list-disc pl-6 mt-2 space-y-2">
                 <li>서비스의 정상적인 운영을 방해하는 행위</li>
@@ -60,7 +60,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제5조 (콘텐츠의 권리)</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)] mt-8 mb-4">제5조 (콘텐츠의 권리)</h2>
               <p>
                 서비스에서 제공하는 모든 콘텐츠(고양이 품종 정보, 테스트 결과, 텍스트, 이미지 등)의
                 지적재산권은 &quot;냥이 매칭&quot; 또는 원저작자에게 있습니다.
@@ -69,7 +69,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제6조 (서비스의 변경 및 중단)</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)] mt-8 mb-4">제6조 (서비스의 변경 및 중단)</h2>
               <p>
                 &quot;냥이 매칭&quot;는 서비스의 내용, 운영 정책, 기술적 사양 등을 변경할 권리를 가집니다.
                 또한 시스템 점검, 업그레이드, 기술적 문제 등의 사유로 서비스를 일시적으로 중단할 수 있습니다.
@@ -78,7 +78,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제7조 (책임의 제한)</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)] mt-8 mb-4">제7조 (책임의 제한)</h2>
               <p>
                 &quot;냥이 매칭&quot;는 무료로 제공되는 서비스로, 사용자가 서비스를 통해 얻은 정보나
                 매칭 결과에 대하여 보증하지 않습니다.
@@ -91,7 +91,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제8조 (광고)</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)] mt-8 mb-4">제8조 (광고)</h2>
               <p>
                 본 서비스는 Google AdSense와 같은 써드파티 광고 서비스를 제공합니다.
                 광고는 서비스 운영 비용을 충당하기 위해 표시됩니다.
@@ -103,7 +103,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제9조 (개인정보 보호)</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)] mt-8 mb-4">제9조 (개인정보 보호)</h2>
               <p>
                 사용자의 개인정보는 [개인정보처리방침](/privacy)에 따라 보호됩니다.
                 &quot;냥이 매칭&quot;는 개인정보보호법을 준수하며, 사용자의 개인정보를 안전하게 보호하기 위해
@@ -112,7 +112,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제10조 (약관의 변경)</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)] mt-8 mb-4">제10조 (약관의 변경)</h2>
               <p>
                 &quot;냥이 매칭&quot;는 관련 법령의 변경 또는 서비스 정책의 변경 등 필요한 경우
                 본 약관을 변경할 수 있습니다. 변경된 약관은 웹사이트에 게시되며,
@@ -121,7 +121,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제11조 (분쟁 해결)</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)] mt-8 mb-4">제11조 (분쟁 해결)</h2>
               <p>
                 서비스 이용과 관련하여 분쟁이 발생한 경우, 당사자 간의 협의로 해결합니다.
                 협의로 해결되지 않는 경우, 대한민국 법에 따라 해결합니다.
@@ -129,7 +129,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제12조 (약관의 효력)</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)] mt-8 mb-4">제12조 (약관의 효력)</h2>
               <p>
                 본 약관은 2026년 2월 2일부터 효력을 가집니다.
               </p>

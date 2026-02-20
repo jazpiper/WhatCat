@@ -50,7 +50,7 @@ export default function FamousMatchCard({ breed, score = 0 }: FamousMatchCardPro
   return (
     <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl p-6 border border-amber-200 dark:border-amber-800/50">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 flex items-center gap-2">
+        <h3 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] flex items-center gap-2">
           <Sparkles className="text-amber-500" size={20} />
           당신과 같은 냥이를 가진 사람들
         </h3>
@@ -62,20 +62,20 @@ export default function FamousMatchCard({ breed, score = 0 }: FamousMatchCardPro
         )}
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-transparent dark:border-gray-700">
+      <div className="bg-white dark:bg-[var(--bg-surface)] rounded-xl p-4 shadow-sm border border-transparent dark:border-[var(--border-default)]">
         <div className="flex items-start gap-4">
           <div className="text-4xl">
             {selectedMatch.type === 'celebrity' ? '🌟' : selectedMatch.type === 'character' ? '🎭' : '📜'}
           </div>
           <div className="flex-1">
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">
+            <p className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-1">
               {getTypeLabel(selectedMatch.type)} 매치
             </p>
-            <p className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">
+            <p className="text-lg font-semibold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-1">
               {selectedMatch.name}
             </p>
             {selectedMatch.description && (
-              <p className="text-sm text-gray-600 dark:text-gray-300">
+              <p className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-secondary)]">
                 {selectedMatch.description}
               </p>
             )}
@@ -84,7 +84,7 @@ export default function FamousMatchCard({ breed, score = 0 }: FamousMatchCardPro
       </div>
 
       <div className="mt-4 text-center">
-        <p className="text-sm text-gray-600 dark:text-gray-300">
+        <p className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-secondary)]">
           <span className="font-semibold text-amber-600">{resultPercentage}%</span>의 사용자가 이 품종을 받았습니다
         </p>
         {isRare && (

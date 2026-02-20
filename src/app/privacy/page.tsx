@@ -18,7 +18,7 @@ export const revalidate = 86400; // 24시간마다 재생성
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-gray-900">
+    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-[var(--bg-surface)] dark:via-purple-950 dark:to-[var(--bg-surface)]">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <div className="mb-6">
           <Link href="/" className="text-pink-500 dark:text-pink-400 hover:underline flex items-center gap-2">
@@ -27,14 +27,14 @@ export default function PrivacyPage() {
           </Link>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 border border-transparent dark:border-gray-700">
-          <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6 text-center">
+        <div className="bg-white dark:bg-[var(--bg-surface)] rounded-3xl shadow-xl p-8 border border-transparent dark:border-[var(--border-default)]">
+          <h1 className="text-3xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-6 text-center">
             개인정보처리방침
           </h1>
 
-          <div className="space-y-6 text-gray-700 dark:text-gray-300">
+          <div className="space-y-6 text-[var(--text-primary)] dark:text-[var(--text-secondary)]">
             <section>
-              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
+              <h2 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-3">
                 1. 수집하는 개인정보의 항목
               </h2>
               <ul className="list-disc list-inside space-y-2 ml-4">
@@ -43,7 +43,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
+              <h2 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-3">
                 2. 개인정보의 수집 목적
               </h2>
               <p>
@@ -54,7 +54,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
+              <h2 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-3">
                 3. 개인정보의 보유 및 이용 기간
               </h2>
               <p>
@@ -64,7 +64,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
+              <h2 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-3">
                 4. 제3자 제공
               </h2>
               <p>
@@ -75,7 +75,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
+              <h2 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-3">
                 5. 쿠키(Cookie) 및 로그 정보
               </h2>
               <ul className="list-disc list-inside space-y-2 ml-4">
@@ -86,7 +86,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
+              <h2 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-3">
                 6. 쿠키 및 광고
               </h2>
               <p className="mb-3">
@@ -110,7 +110,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
+              <h2 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-3">
                 7. 개인정보의 파기
               </h2>
               <p>
@@ -120,7 +120,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
+              <h2 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-3">
                 8. 이용자의 권리와 의무
               </h2>
               <ul className="list-disc list-inside space-y-2 ml-4">
@@ -131,11 +131,11 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
+              <h2 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-3">
                 9. 개인정보처리책임자의 연락처
               </h2>
               <div className="bg-pink-50 dark:bg-pink-900/20 rounded-xl p-4 border border-pink-100 dark:border-pink-800/50">
-                <p className="text-gray-800 dark:text-gray-100">
+                <p className="text-[var(--text-primary)] dark:text-[var(--text-secondary)]">
                   개인정보와 관련한 문의사항은 아래 문의하기 페이지를 통해 보내주세요.
                 </p>
                 <Link

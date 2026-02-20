@@ -60,19 +60,19 @@ export default function RelatedBreeds({ mainBreed, relatedBreeds }: RelatedBreed
     if (similarity >= 90) return 'text-green-600 dark:text-green-300 bg-green-50 dark:bg-green-900/30';
     if (similarity >= 80) return 'text-blue-600 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/30';
     if (similarity >= 70) return 'text-purple-600 dark:text-purple-300 bg-purple-50 dark:bg-purple-900/30';
-    return 'text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-700/50';
+    return 'text-[var(--text-secondary)] dark:text-[var(--text-secondary)] bg-[var(--bg-page)] dark:bg-[var(--bg-surface)]';
   };
 
   return (
     <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl p-6 border border-blue-200 dark:border-blue-800/50">
       <div className="flex items-center gap-2 mb-4">
         <TrendingUp className="text-blue-500" size={24} />
-        <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">
+        <h3 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)]">
           비슷한 품종도 좋아하실 것 같아요
         </h3>
       </div>
 
-      <p className="text-sm text-gray-600 dark:text-gray-300 mb-6">
+      <p className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-6">
         성격이 비슷한 다른 품종들도 함께 확인해보세요!
       </p>
 
@@ -82,10 +82,10 @@ export default function RelatedBreeds({ mainBreed, relatedBreeds }: RelatedBreed
             key={relatedBreed.breed.id}
               data-index={index}
             onClick={() => handleBreedClick(relatedBreed)}
-            className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer group border border-gray-100 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500"
+            className="bg-white dark:bg-[var(--bg-surface)] rounded-xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer group border border-[var(--border-default)] dark:border-[var(--border-default)] hover:border-blue-300 dark:hover:border-blue-500"
           >
             {/* Breed Image */}
-            <div className="relative w-full h-32 mb-3 rounded-lg overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+            <div className="relative w-full h-32 mb-3 rounded-lg overflow-hidden bg-gradient-to-br from-[var(--bg-page)] to-[var(--bg-page)]">
               {relatedBreed.breed.image ? (
                 <Image
                   src={relatedBreed.breed.image}
@@ -108,13 +108,13 @@ export default function RelatedBreeds({ mainBreed, relatedBreeds }: RelatedBreed
             </div>
 
             {/* Breed Name */}
-            <h4 className="font-bold text-gray-800 dark:text-gray-100 mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors">
+            <h4 className="font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors">
               {relatedBreed.breed.name}
             </h4>
 
             {/* Key Difference */}
             {relatedBreed.keyDifference && (
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
+              <p className="text-xs text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-2">
                 {relatedBreed.keyDifference}
               </p>
             )}
@@ -124,7 +124,7 @@ export default function RelatedBreeds({ mainBreed, relatedBreeds }: RelatedBreed
               {relatedBreed.breed.traits.slice(0, 2).map((trait) => (
                 <span
                   key={trait}
-                  className="text-xs px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full"
+                  className="text-xs px-2 py-0.5 bg-[var(--bg-page)] dark:bg-[var(--bg-surface)] text-[var(--text-secondary)] dark:text-[var(--text-secondary)] rounded-full"
                 >
                   {trait}
                 </span>
@@ -140,8 +140,8 @@ export default function RelatedBreeds({ mainBreed, relatedBreeds }: RelatedBreed
         ))}
       </div>
 
-      <div className="mt-6 p-4 bg-white/60 dark:bg-gray-800/70 rounded-xl border border-blue-200 dark:border-blue-800/50">
-        <p className="text-sm text-gray-700 dark:text-gray-300 text-center leading-relaxed">
+      <div className="mt-6 p-4 bg-white/60 dark:bg-[var(--bg-surface)] rounded-xl border border-blue-200 dark:border-blue-800/50">
+        <p className="text-sm text-[var(--text-primary)] dark:text-[var(--text-secondary)] text-center leading-relaxed">
           <span className="font-semibold text-blue-600">유사도</span>는 성격 특성(활동성, 애정도, 사교성, 조용함, 충성심)을
           기반으로 계산되어요. 클릭하면 품종 상세 페이지로 이동해요!
         </p>

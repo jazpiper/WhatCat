@@ -413,7 +413,7 @@ export default function BreedFilters({
               <h2 id="mobile-filter-title" className="text-lg font-bold text-[var(--text-primary)]">필터</h2>
               <button
                 onClick={closeMobileFilters}
-                className="p-2 hover:bg-[var(--bg-page)] rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300"
+                className="p-2 hover:bg-[var(--bg-page)] rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--border-default)]"
                 aria-label="필터 닫기"
               >
                 <X size={24} />

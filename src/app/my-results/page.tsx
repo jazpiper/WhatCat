@@ -24,14 +24,14 @@ interface PersonalityBarProps {
 const PersonalityBar = memo(function PersonalityBar({ label, value, color }: PersonalityBarProps) {
   return (
     <div className="flex items-center gap-3">
-      <span className="text-xs text-gray-600 dark:text-gray-400 w-16">{label}</span>
-      <div className="flex-1 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+      <span className="text-xs text-[var(--text-secondary)] dark:text-[var(--text-secondary)] w-16">{label}</span>
+      <div className="flex-1 h-2 bg-[var(--bg-page)] dark:bg-[var(--bg-surface)] rounded-full overflow-hidden">
         <div
           className={`h-full ${color} transition-all duration-500`}
           style={{ width: `${(value / 5) * 100}%` }}
         />
       </div>
-      <span className="text-xs font-medium text-gray-700 dark:text-gray-300 w-8 text-right">{value}</span>
+      <span className="text-xs font-medium text-[var(--text-primary)] dark:text-[var(--text-secondary)] w-8 text-right">{value}</span>
     </div>
   );
 });
@@ -130,7 +130,7 @@ function MyResultsPageContent() {
       <PageContainer className="flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block w-12 h-12 border-4 border-pink-500 border-t-transparent rounded-full animate-spin" />
-          <p className="text-xl text-gray-600 dark:text-gray-300 mt-4">불러오는 중...</p>
+          <p className="text-xl text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mt-4">불러오는 중...</p>
         </div>
       </PageContainer>
     );
@@ -203,11 +203,11 @@ function MyResultsPageContent() {
       {/* Personality Trends */}
       {trends && results.length >= 2 && (
         <Card variant="outlined" className="mb-6">
-          <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+          <h2 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-4 flex items-center gap-2">
             <TrendingUp className="text-purple-500" />
             내 성격 트렌드
           </h2>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+          <p className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-4">
             총 {trends.totalTests}회 테스트 기반
           </p>
           <div className="space-y-3">
@@ -224,10 +224,10 @@ function MyResultsPageContent() {
       {results.length === 0 ? (
         <Card className="text-center p-12">
           <div className="text-6xl mb-4">🐱</div>
-          <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-2">
+          <h3 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-2">
             아직 저장된 결과가 없어요
           </h3>
-          <p className="text-gray-600 dark:text-gray-300 mb-6">
+          <p className="text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-6">
             테스트를 완료하면 결과가 자동으로 저장됩니다
           </p>
           <Link
@@ -247,7 +247,7 @@ function MyResultsPageContent() {
       )}
 
       {/* Footer */}
-      <div className="text-center text-gray-400 dark:text-gray-500 text-xs mt-12">
+      <div className="text-center text-[var(--text-secondary)] dark:text-[var(--text-secondary)] text-xs mt-12">
         <p>&copy; 2026 냥이 매칭. All rights reserved.</p>
       </div>
 
@@ -255,15 +255,15 @@ function MyResultsPageContent() {
       {showDeleteConfirm && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <Card className="max-w-md w-full" variant="elevated">
-            <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2">결과 삭제</h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">이 결과를 삭제하시겠습니까?</p>
+            <h3 className="text-lg font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-2">결과 삭제</h3>
+            <p className="text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-6">이 결과를 삭제하시겠습니까?</p>
             <div className="flex gap-3">
               <button
                 onClick={() => {
                   setShowDeleteConfirm(false);
                   setDeleteTargetId(null);
                 }}
-                className="flex-1 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                className="flex-1 px-4 py-2 bg-[var(--bg-page)] dark:bg-[var(--bg-surface)] text-[var(--text-primary)] dark:text-[var(--text-secondary)] rounded-lg hover:bg-[var(--bg-surface)] dark:hover:bg-[var(--bg-surface)] transition-colors"
               >
                 취소
               </button>
@@ -282,14 +282,14 @@ function MyResultsPageContent() {
       {showClearConfirm && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <Card className="max-w-md w-full" variant="elevated">
-            <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2">전체 삭제</h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">
+            <h3 className="text-lg font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)] mb-2">전체 삭제</h3>
+            <p className="text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-6">
               모든 결과를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.
             </p>
             <div className="flex gap-3">
               <button
                 onClick={() => setShowClearConfirm(false)}
-                className="flex-1 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                className="flex-1 px-4 py-2 bg-[var(--bg-page)] dark:bg-[var(--bg-surface)] text-[var(--text-primary)] dark:text-[var(--text-secondary)] rounded-lg hover:bg-[var(--bg-surface)] dark:hover:bg-[var(--bg-surface)] transition-colors"
               >
                 취소
               </button>
@@ -334,7 +334,7 @@ function PaginatedResultsList({ results, formatResultDate, onDelete }: Paginated
         <div className="pt-4 flex justify-center">
           <button
             onClick={() => setVisibleCount((c) => Math.min(results.length, c + PAGE_SIZE))}
-            className="px-6 py-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition text-gray-800 dark:text-gray-100"
+            className="px-6 py-3 bg-white dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-default)] dark:border-[var(--border-default)] shadow-sm hover:shadow-md transition text-[var(--text-primary)] dark:text-[var(--text-secondary)]"
           >
             더 보기 ({visibleCount}/{results.length})
           </button>
@@ -357,9 +357,9 @@ const ResultCard = memo(function ResultCard({ result, onDelete, formatResultDate
         <div className="flex items-center gap-4">
           <div className="text-4xl">{result.emoji}</div>
           <div>
-            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">{result.breedName}</h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400">{result.breedNameEn}</p>
-            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">{formatResultDate(result.date)}</p>
+            <h3 className="text-xl font-bold text-[var(--text-primary)] dark:text-[var(--text-secondary)]">{result.breedName}</h3>
+            <p className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-secondary)]">{result.breedNameEn}</p>
+            <p className="text-xs text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mt-1">{formatResultDate(result.date)}</p>
           </div>
         </div>
         <div className="flex flex-col items-end gap-2">
@@ -368,7 +368,7 @@ const ResultCard = memo(function ResultCard({ result, onDelete, formatResultDate
           </div>
           <button
             onClick={() => onDelete(result.id)}
-            className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-colors"
+            className="p-2 text-[var(--text-secondary)] hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-colors"
             aria-label="삭제"
           >
             <Trash2 size={18} />
@@ -377,26 +377,26 @@ const ResultCard = memo(function ResultCard({ result, onDelete, formatResultDate
       </div>
 
       {result.personality && (
-        <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+        <div className="mt-4 pt-4 border-t border-[var(--border-default)] dark:border-[var(--border-default)]">
           <div className="grid grid-cols-5 gap-2 text-center">
             <div>
-              <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">활동성</div>
+              <div className="text-xs text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-1">활동성</div>
               <div className="text-sm font-semibold text-pink-500">{result.personality.activity}</div>
             </div>
             <div>
-              <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">애정도</div>
+              <div className="text-xs text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-1">애정도</div>
               <div className="text-sm font-semibold text-red-500">{result.personality.affection}</div>
             </div>
             <div>
-              <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">사교성</div>
+              <div className="text-xs text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-1">사교성</div>
               <div className="text-sm font-semibold text-purple-500">{result.personality.social}</div>
             </div>
             <div>
-              <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">조용함</div>
+              <div className="text-xs text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-1">조용함</div>
               <div className="text-sm font-semibold text-blue-500">{result.personality.quiet}</div>
             </div>
             <div>
-              <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">충성심</div>
+              <div className="text-xs text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-1">충성심</div>
               <div className="text-sm font-semibold text-amber-500">{result.personality.loyalty}</div>
             </div>
           </div>
