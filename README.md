@@ -82,6 +82,10 @@ cp .env.example .env.local
 
 MIT
 
+## 문서
+
+- 문서 홈: [WhatCat Docs](docs/README.md)
+
 ## 최근 변경 기록
 
 - 정리/정합성 변경 요약: [PR 정리: 346850d](docs/pr-summary-346850d.md)

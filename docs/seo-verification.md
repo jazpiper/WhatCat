@@ -3,12 +3,10 @@
 이 문서는 `/breed/[id]`의 SEO/OG/JSON-LD가 정상적으로 적용되는지 확인하는 체크리스트입니다.
 
 ## 1) Control UI로 확인(빠른 수동 체크)
-1. OpenClaw 대시보드 열기
-   - 터미널에서: `openclaw dashboard`
-2. WhatCat을 실행
-   - `npm run dev` 또는 `npm run start`
-3. 브라우저에서 예시 페이지 열기
-   - `http://localhost:3000/breed/<id>`
+1. WhatCat 실행
+   - `npm run dev`(로컬 개발) 또는 `npm run start`
+2. 브라우저에서 예시 페이지 열기
+   - `http://localhost:3001/breed/<id>`
 
 ### 체크 포인트
 - View Source(페이지 소스 보기)에서 아래 항목이 있는지 확인
@@ -23,7 +21,7 @@
 서버가 실행 중인 상태에서 아래 스크립트를 실행합니다.
 
 ```bash
-node scripts/verify-breed-seo.mjs --id russian-blue --base http://localhost:3000
+node scripts/verify-breed-seo.mjs --id russian-blue --base http://localhost:3001
 ```
 
 - 모든 항목이 OK면 `Result: OK`
