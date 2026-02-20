@@ -46,7 +46,9 @@
 - 검증:
   - `npm run build` ✅
   - `npm run lint` ✅
-  - `npm run theme:qa:snap` 환경 점검(Playwright 미설치로 미실행): `-`
+  - `npm run theme:qa:snap`(현재 환경) ❌
+    - 실패 원인: `playwright`가 브라우저 실행 중 `content/browser/sandbox_host_linux.cc: Check failed: . shutdown: Operation not permitted`
+    - `theme-qa`는 운영/CI에서 별도 환경 재시도 필요
   - `rg -n "gray-[0-9]{2,3}" src` → `0` 건
 - 미완료: FOUC 체감 점검, 스크린샷 회귀는 운영 브라우저에서 수동 실행 필요
 
