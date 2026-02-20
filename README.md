@@ -82,6 +82,10 @@ cp .env.example .env.local
 
 MIT
 
+## 최근 변경 기록
+
+- 정리/정합성 변경 요약: [PR 정리: 346850d](docs/pr-summary-346850d.md)
+
 ## 연락처
 
 문의사항은 [문의하기](https://what-cat-psi.vercel.app/contact) 페이지를 이용해주세요.
