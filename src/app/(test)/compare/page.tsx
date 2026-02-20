@@ -63,7 +63,7 @@ function CompareContent() {
 
   if (!breed1 || !breed2) {
     return (
-      <PageContainer className="max-w-3xl">
+      <PageContainer contentClassName="max-w-3xl">
         <Card className="text-center">
           <div className="text-6xl mb-4">😕</div>
           <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">
@@ -118,7 +118,7 @@ function CompareContent() {
   const socialDiff = personalityDiff.social;
 
   return (
-    <PageContainer className="max-w-5xl">
+    <PageContainer contentClassName="max-w-5xl">
       <div className="mb-6">
         <Link href="/" className="text-pink-500 dark:text-pink-400 hover:underline flex items-center gap-2">
           <ArrowLeft size={20} />

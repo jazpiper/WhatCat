@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 interface PageContainerProps {
   children: React.ReactNode;
   className?: string;
+  contentClassName?: string;
 }
 
 /**
@@ -12,8 +13,9 @@ interface PageContainerProps {
  * Design tokens:
  * - Background: Gradient from pink-50 via purple-50 to blue-50 (dark: gray-900 via purple-950 to gray-900)
  * - Layout: min-h-screen, container mx-auto px-4 py-8 max-w-4xl
+ * - Use `contentClassName` to override container constraints (max-w, padding, alignment).
  */
-export function PageContainer({ children, className }: PageContainerProps) {
+export function PageContainer({ children, className, contentClassName }: PageContainerProps) {
   return (
     <div
       className={cn(
@@ -23,7 +25,7 @@ export function PageContainer({ children, className }: PageContainerProps) {
         className
       )}
     >
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <div className={cn('container mx-auto px-4 py-8 max-w-4xl', contentClassName)}>
         {children}
       </div>
     </div>

@@ -32,7 +32,7 @@ export default function GuidesPage() {
   }, []);
 
   return (
-    <PageContainer className="pt-0">
+    <PageContainer contentClassName="pt-0">
       {/* Header */}
       <div className="bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 py-16 -mx-4 -mt-8 px-4 mb-8 dark:from-pink-600 dark:via-purple-600 dark:to-pink-600">
         <div className="max-w-4xl mx-auto text-center">

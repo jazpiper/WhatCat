@@ -38,6 +38,7 @@
   - `--bg-page`, `--bg-surface`, `--text-primary`, `--text-secondary`, `--border-default`, `--accent-primary`
 - 컴포넌트는 Tailwind arbitrary value 또는 매핑 클래스로 변수만 소비.
 - `!important` 기반 다크모드 강제 규칙 제거.
+- 추가 조치(현행): `prefers-color-scheme: dark`를 이용한 루트 토큰 오버라이드는 제거하고, `next-themes` 클래스 경로(`.light`, `.dark`)로만 모드 토큰을 결정한다.
 
 ### B. 타이포그래피
 - 기본 본문 폰트: 한국어 가독성 우선 폰트로 통일(예: `Pretendard` 또는 `Noto Sans KR`) + Geist fallback.

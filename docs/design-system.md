@@ -13,6 +13,8 @@
 - 지원 모드: `light`, `dark`, `system`
 - 저장 키: `whatcat-theme`
 - 레이아웃 설정: `src/app/layout.tsx`
+- 토글 동작 규칙: 클래스 기반 토글(`light`/`dark`) + `system` 자동해석은 `next-themes`가 담당한다.
+- 권장 CSS 바인딩: 전역은 `:root`(light baseline) + `.dark`(dark tokens) + `.light`(명시적 light override)만 사용한다.
 
 ## 전역 토큰
 정의 위치: `src/app/globals.css`
@@ -72,6 +74,11 @@
 - `.dark .bg-*` 형태 전역 강제 치환
 - `!important` 기반 다크모드 덮어쓰기
 - 전역 `*` 트랜지션으로 색상 변경 강제
+- `prefers-color-scheme: dark`를 이용한 전역 루트 오버라이드(`:root`)와 클래스 기반 다크(`.dark`) 동시 사용
+
+## 분석 노트 (2026-02-20)
+- `next-themes`가 루트에 `light`/`dark` 클래스를 넣어 모드를 제어할 때, `:root`에 `prefers-color-scheme: dark`를 함께 두면 OS 다크가 클래스보다 넓은 범위를 덮어써 라이트 강제 반영이 깨진다.
+- 라이트 선택 시 즉시 반영되지 않는 이슈를 막기 위해 루트는 라이트 기본값만 유지하고 `.light`를 명시해 사용자가 라이트를 선택했을 때를 항상 덮어쓰도록 해야 한다.
 
 ## 적용 상태 (2026-02-20)
 - 테마 토글/네비게이션/공용 UI 컴포넌트 토큰화 완료

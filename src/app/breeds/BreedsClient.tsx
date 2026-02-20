@@ -119,7 +119,7 @@ export default function BreedsClient({
 
   return (
     <ErrorBoundary>
-      <PageContainer className="max-w-7xl">
+      <PageContainer contentClassName="max-w-7xl">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 mb-2 text-center">

@@ -224,7 +224,7 @@ function DailyQuizPageContent() {
   }
 
   return (
-    <PageContainer className="max-w-2xl">
+    <PageContainer contentClassName="max-w-2xl">
       {/* Inline Error Alert */}
       {shareError && (
         <QuizErrorAlert

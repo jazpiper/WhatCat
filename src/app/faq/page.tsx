@@ -254,7 +254,7 @@ export default function FAQPage() {
   };
 
   return (
-    <PageContainer className="pt-12">
+    <PageContainer contentClassName="pt-12">
       {/* Header */}
       <PageTitle
         subtitle="WhatCat 이용에 관한 궁금증을 해결해 드립니다"

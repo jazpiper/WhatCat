@@ -72,3 +72,56 @@
 - [ ] 1) 점검 중 콘솔 경고/에러(특히 hydration/theme mismatch) 없음
 - [ ] 2) 점검 스크린샷(라이트/다크, 모바일/데스크톱)으로 전/후 변경점 비교 보관
 - [ ] 3) 이상 징후(미세 깜박임 지속/비정상 텍스트 색 반전)가 있으면 즉시 색 토큰/헤더 스크립트 적용 지점 추적
+
+### 시나리오 E: 라이트 강제 반전 회피
+- [ ] 1) 코드에서 `:root`에 `prefers-color-scheme: dark` 오버라이드가 없고, 라이트/다크 토글은 `.light` `.dark`로만 제어되는지 확인
+- [ ] 2) 라이트 모드에서 임의 OS 다크 환경으로 재시작해도 `light` 사용자 설정이 유지되는지 확인
+- [ ] 3) 스위처 상태(`light/dark/system`)와 실제 렌더 토큰(`--bg-page`, `--text-primary`)가 동기화되는지 확인
+
+## 8. 테마/스크린샷 한 번 점검 체크리스트 (권장)
+- [ ] 실행 명령(선택)
+  - 수동 실행: `node scripts/theme-screenshot-check.mjs`
+  - 권장 사전 준비
+    - `npm i -D playwright`
+    - `npx playwright install chromium`
+    - `npm run dev`
+
+- [ ] 준비
+  - `npm run dev` 실행 (`localhost:3001` 기본)
+  - 브라우저 콘솔에서 기존 캐시/확장 프로그램 영향 최소화
+  - `localStorage.removeItem('whatcat-theme')`로 초기화(필요 시)
+
+- [ ] 체크 대상 페이지
+  - `/`
+  - `/breeds`
+  - `/daily-quiz`
+  - `/compare`
+  - `/nyongmatch`
+  - `/result`
+
+- [ ] ThemeToggle 기능 확인
+  - 네비게이션의 토글을 `라이트` → `다크` → `시스템` 순으로 클릭
+  - 각 단계에서 **1초 내** 아래 토큰이 반영되는지 확인
+    - `getComputedStyle(document.documentElement).getPropertyValue('--bg-page')`
+    - `getComputedStyle(document.documentElement).getPropertyValue('--text-primary')`
+    - `document.documentElement.classList.contains('dark')`
+  - 변경 직후 페이지 새로고침해도 동일 테마 유지
+
+- [ ] 스크린샷 체크(모바일/데스크톱)
+  - 각 페이지에서 아래 2배열 화면(라이트/다크) 각각 1장 캡처
+  - 데스크톱: `>= 1280` 기준, 모바일: `375x812` 기준
+  - 캡처 저장 파일명 예시
+    - `theme-home-light.png`
+    - `theme-home-dark.png`
+    - `theme-breeds-light.png`
+    - `theme-breeds-dark.png`
+    - `theme-daily-quiz-light.png`
+    - `theme-daily-quiz-dark.png`
+
+- [ ] 시스템 모드 상호작용
+  - OS/브라우저 다크 모드 토글 전환 시 `ThemeToggle`이 `system` 상태일 때 페이지가 재로드 없이 따라오는지 확인
+
+- [ ] 실패 징후가 보일 때 확인점
+  - 라이트에서 `--bg-page`가 `#0f172a` 계열로 고정되는지
+  - 토글 버튼은 바뀌는데 실제 UI token이 안 바뀌는지
+  - 이동 경로별 초기 렌더에서 2회 이상 색상 깜박임(FOUC) 발생 여부
