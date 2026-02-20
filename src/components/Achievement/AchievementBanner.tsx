@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { X, Trophy } from 'lucide-react';
 import { achievements } from '@/data/achievements';
 import { RARITY_CONFIG } from '@/data/achievements';
@@ -24,6 +24,11 @@ export default function AchievementBanner({
   const totalToShow = achievementIds.length;
   const hasMore = currentIndex < totalToShow - 1;
 
+  const handleClose = useCallback(() => {
+    setVisible(false);
+    if (onClose) onClose();
+  }, [onClose]);
+
   useEffect(() => {
     if (currentAchievement) {
       logAchievementUnlocked({
@@ -46,12 +51,7 @@ export default function AchievementBanner({
     }, 4000);
 
     return () => clearTimeout(timer);
-  }, [currentIndex, hasMore, autoClose]);
-
-  const handleClose = () => {
-    setVisible(false);
-    if (onClose) onClose();
-  };
+  }, [currentIndex, hasMore, autoClose, handleClose]);
 
   const handleNext = () => {
     if (hasMore) {

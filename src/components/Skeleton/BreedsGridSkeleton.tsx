@@ -12,7 +12,7 @@ export default function BreedsGridSkeleton({ count = 6 }: BreedsGridSkeletonProp
       {Array.from({ length: count }).map((_, i) => (
         <div
           key={i}
-          className="bg-white rounded-2xl shadow-md p-5 border border-gray-100 hover:shadow-md transition-all"
+          className="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-5 border border-gray-100 dark:border-gray-700 hover:shadow-md transition-all"
         >
           <div className="flex items-start gap-4">
             <Skeleton variant="circular" className="w-16 h-16 flex-shrink-0" />

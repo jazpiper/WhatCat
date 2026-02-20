@@ -17,7 +17,7 @@ import {
   getPersonalityTrends,
   formatResultDate,
 } from '@/utils/resultStorage';
-import { logError, ErrorType } from '@/utils/errorHandler';
+import { logError } from '@/utils/errorHandler';
 
 export function useResultsStorage() {
   const [results, setResults] = useState<SavedResult[]>([]);

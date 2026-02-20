@@ -7,6 +7,7 @@
 
 import { useEffect } from 'react';
 import { QuizErrorMessage, type QuizErrorMessageProps } from '@/components/QuizErrorMessage';
+import { logEvent } from '@/lib/google-analytics';
 
 export default function DailyQuizError({
   error,
@@ -20,17 +21,14 @@ export default function DailyQuizError({
     console.error('[DailyQuiz] Error boundary caught:', error);
 
     // Log to analytics if available
-    if (typeof window !== 'undefined' && 'gtag' in window) {
-      try {
-        (window as any).gtag('event', 'daily_quiz_error', {
-          error_message: error.message,
-          error_name: error.name,
-          error_digest: error.digest,
-        });
-      } catch {
-        // Analytics logging failed
-      }
-    }
+    logEvent({
+      name: 'daily_quiz_error',
+      params: {
+        error_message: error.message,
+        error_name: error.name,
+        error_digest: error.digest,
+      },
+    });
 
     // Note: Sentry integration can be added later if needed
     // For now, we log to console and analytics

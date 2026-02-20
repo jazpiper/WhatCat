@@ -5,7 +5,7 @@ import { useAchievements } from '@/hooks/useAchievements';
 import { achievements } from '@/data/achievements';
 import BadgeCard from './BadgeCard';
 import { RARITY_CONFIG } from '@/data/achievements';
-import { Filter, Trophy, Lock } from 'lucide-react';
+import { Trophy, Lock } from 'lucide-react';
 
 type FilterType = 'all' | 'unlocked' | 'locked' | 'common' | 'rare' | 'epic' | 'legendary';
 
@@ -187,7 +187,9 @@ function FilterButton({ active, onClick, icon, label, count, color }: FilterButt
           : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
       }`}
     >
-      {typeof icon === 'string' ? <span>{icon}</span> : icon}
+      <span className={color && !active ? color : ''}>
+        {typeof icon === 'string' ? <span>{icon}</span> : icon}
+      </span>
       <span>{label}</span>
       <span
         className={`px-1.5 py-0.5 rounded-full text-xs ${

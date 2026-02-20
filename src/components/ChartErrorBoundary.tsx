@@ -2,6 +2,7 @@
 
 import React, { Component, ReactNode } from 'react';
 import { AlertTriangle, BarChart3 } from 'lucide-react';
+import { logEvent } from '@/lib/google-analytics';
 
 interface ChartErrorBoundaryProps {
   children: ReactNode;
@@ -39,16 +40,13 @@ export class ChartErrorBoundary extends Component<ChartErrorBoundaryProps, Chart
     console.error('[ChartErrorBoundary] Component stack:', errorInfo.componentStack);
 
     // Log to analytics
-    if (typeof window !== 'undefined' && 'gtag' in window) {
-      try {
-        (window as any).gtag('event', 'chart_error', {
-          chart_name: this.props.chartName || 'unknown',
-          error_message: error.message,
-        });
-      } catch {
-        // Analytics failed
-      }
-    }
+    logEvent({
+      name: 'chart_error',
+      params: {
+        chart_name: this.props.chartName || 'unknown',
+        error_message: error.message,
+      },
+    });
   }
 
   handleRetry = (): void => {

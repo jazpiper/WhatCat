@@ -4,7 +4,7 @@ import { Skeleton } from './Skeleton';
 
 export default function DailyQuizSkeleton() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50">
+    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-gray-900">
       <div className="container mx-auto px-4 py-8 max-w-2xl">
         {/* Header */}
         <div className="mb-6">
@@ -29,7 +29,7 @@ export default function DailyQuizSkeleton() {
         </div>
 
         {/* Quiz Card */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
           <Skeleton className="h-7 w-24 rounded-full mb-4" />
           <Skeleton className="h-7 w-full mb-6" />
           <Skeleton className="h-7 w-4/5 mb-6" />
@@ -37,7 +37,7 @@ export default function DailyQuizSkeleton() {
           {/* Options */}
           <div className="space-y-3">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="w-full p-4 rounded-xl border-2 border-gray-200">
+              <div key={i} className="w-full p-4 rounded-xl border-2 border-gray-200 dark:border-gray-600">
                 <div className="flex items-center gap-3">
                   <Skeleton variant="circular" className="w-8 h-8" />
                   <Skeleton className="h-5 w-3/4" />
@@ -48,7 +48,7 @@ export default function DailyQuizSkeleton() {
         </div>
 
         {/* Milestones */}
-        <div className="mt-8 bg-white/50 rounded-2xl p-6 border border-gray-100">
+        <div className="mt-8 bg-white/50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
           <Skeleton className="h-6 w-40 mb-4" />
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[1, 2, 3, 4].map((i) => (

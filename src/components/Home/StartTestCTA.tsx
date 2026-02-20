@@ -7,9 +7,21 @@ import TestPreviewModal from '@/components/TestPreviewModal';
 export default function StartTestCTA() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const getStorageValue = (key: string) => {
+    if (typeof window === 'undefined') {
+      return null;
+    }
+
+    try {
+      return localStorage.getItem(key);
+    } catch {
+      return null;
+    }
+  };
+
   const handleStartTest = () => {
-    const hasSeenPreview = localStorage.getItem('hasSeenTestPreview');
-    const hasCompletedTest = localStorage.getItem('lastTestResult');
+    const hasSeenPreview = getStorageValue('hasSeenTestPreview');
+    const hasCompletedTest = getStorageValue('lastTestResult');
 
     if (!hasSeenPreview && !hasCompletedTest) {
       setIsModalOpen(true);

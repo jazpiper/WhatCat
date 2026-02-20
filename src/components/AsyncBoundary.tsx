@@ -31,17 +31,6 @@ export function AsyncBoundary({
     error: null,
   });
 
-  const value = React.useMemo(
-    () => ({
-      isLoading: state.isLoading,
-      error: state.error,
-      setLoading: (loading: boolean) => setState((prev) => ({ ...prev, isLoading: loading })),
-      setError: (error: Error | null) => setState((prev) => ({ ...prev, error })),
-      clearError: () => setState((prev) => ({ ...prev, error: null })),
-    }),
-    [state.isLoading, state.error]
-  );
-
   // If loading, show loading state
   if (state.isLoading && loading) {
     return <>{loading}</>;
@@ -97,26 +86,24 @@ export function AsyncBoundaryProvider({
 }: {
   children: ReactNode;
 }) {
-  const [state, setState] = React.useState<AsyncBoundaryState>({
-    isLoading: false,
-    error: null,
-  });
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState<Error | null>(null);
 
   const value = React.useMemo(
     () => ({
-      isLoading: state.isLoading,
-      error: state.error,
-      setLoading: (loading: boolean) => setState((prev) => ({ ...prev, isLoading: loading })),
-      setError: (error: Error | null) => setState((prev) => ({ ...prev, error })),
-      clearError: () => setState((prev) => ({ ...prev, error: null })),
+      isLoading,
+      error,
+      setLoading: setIsLoading,
+      setError,
+      clearError: () => setError(null),
     }),
-    [state.isLoading, state.error]
+    [isLoading, error]
   );
 
   return (
     <AsyncBoundaryContext.Provider value={value}>
       <ErrorBoundary
-        onError={(error) => setState((prev) => ({ ...prev, error }))}
+        onError={(boundaryError) => setError(boundaryError)}
       >
         {children}
       </ErrorBoundary>

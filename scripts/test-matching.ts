@@ -8,7 +8,7 @@
 
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { calculateMatch, calculateVectorOnly, calculateOriginalOnly } from '../src/utils/matching';
+import { calculateVectorOnly, calculateOriginalOnly } from '../src/utils/matching';
 
 // 데이터 로드
 const questionsData = JSON.parse(

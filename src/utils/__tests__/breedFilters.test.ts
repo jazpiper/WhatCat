@@ -8,7 +8,6 @@ import {
   defaultFilters,
   getActiveFilterCount,
   filtersToSearchParams,
-  searchParamsToFilters,
 } from '../breedFilters';
 import { Breed } from '@/types';
 
@@ -119,7 +118,13 @@ describe('filterBreeds', () => {
   it('should filter by personality range', () => {
     const filters = {
       ...defaultFilters,
-      personality: { activity: [4, 5], affection: [1, 5], social: [1, 5], quiet: [1, 5], loyalty: [1, 5] }
+      personality: {
+        activity: [4, 5] as [number, number],
+        affection: [1, 5] as [number, number],
+        social: [1, 5] as [number, number],
+        quiet: [1, 5] as [number, number],
+        loyalty: [1, 5] as [number, number],
+      }
     };
     const result = filterBreeds(mockBreeds, filters);
     expect(result.length).toBe(1);
@@ -200,7 +205,13 @@ describe('getActiveFilterCount', () => {
   it('should count personality range filters', () => {
     const filters = {
       ...defaultFilters,
-      personality: { activity: [3, 5], affection: [1, 5], social: [1, 5], quiet: [1, 5], loyalty: [1, 5] }
+      personality: {
+        activity: [3, 5] as [number, number],
+        affection: [1, 5] as [number, number],
+        social: [1, 5] as [number, number],
+        quiet: [1, 5] as [number, number],
+        loyalty: [1, 5] as [number, number],
+      }
     };
     const count = getActiveFilterCount(filters);
     expect(count).toBe(1);

@@ -1,8 +1,44 @@
 import { UserAchievements, UserAchievementState } from '@/types';
 import { achievements, getNewlyUnlockedAchievements } from '@/data/achievements';
-import { safeGetStorage, safeSetStorage, safeRemoveStorage, ErrorType, logError } from '@/utils/errorHandler';
+import { safeGetStorage, safeSetStorage, safeRemoveStorage, logError } from '@/utils/errorHandler';
 
 const ACHIEVEMENTS_STORAGE_KEY = 'whatcat_achievements';
+type UnknownAchievementShape = { [key: string]: unknown };
+
+function isUserAchievementState(value: unknown): value is UserAchievementState {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const state = value as UserAchievementState;
+  return (
+    typeof state.testsCompleted === 'number' &&
+    Number.isFinite(state.testsCompleted) &&
+    Array.isArray(state.breedsMatched) &&
+    typeof state.platformsShared === 'number' &&
+    Number.isFinite(state.platformsShared) &&
+    typeof state.breedsViewed === 'number' &&
+    Number.isFinite(state.breedsViewed) &&
+    typeof state.guidesViewed === 'number' &&
+    Number.isFinite(state.guidesViewed) &&
+    typeof state.friendsCompared === 'number' &&
+    Number.isFinite(state.friendsCompared) &&
+    typeof state.highestScore === 'number' &&
+    Number.isFinite(state.highestScore)
+  );
+}
+
+function isUserAchievements(value: unknown): value is UserAchievements {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const achievements = value as UnknownAchievementShape;
+  return (
+    Array.isArray(achievements.unlocked) &&
+    isUserAchievementState(achievements.state)
+  );
+}
 
 /**
  * Default user achievement state
@@ -30,9 +66,9 @@ export const DEFAULT_USER_ACHIEVEMENTS: UserAchievements = {
  * Load user achievements from localStorage
  */
 export function loadUserAchievements(): UserAchievements {
-  const stored = safeGetStorage<UserAchievements | null>(ACHIEVEMENTS_STORAGE_KEY, null);
+  const stored = safeGetStorage<unknown>(ACHIEVEMENTS_STORAGE_KEY, null);
 
-  if (!stored) {
+  if (!isUserAchievements(stored)) {
     return DEFAULT_USER_ACHIEVEMENTS;
   }
 
@@ -195,18 +231,14 @@ export function exportAchievements(): string {
  */
 export function importAchievements(json: string): boolean {
   try {
-    const imported = JSON.parse(json) as UserAchievements;
+    const parsed = JSON.parse(json) as unknown;
 
-    // Basic validation
-    if (
-      !imported.unlocked ||
-      !Array.isArray(imported.unlocked) ||
-      !imported.state
-    ) {
+    if (!isUserAchievements(parsed)) {
       return false;
     }
 
-    saveUserAchievements(imported);
+    // Basic validation
+    saveUserAchievements(parsed);
     return true;
   } catch (error) {
     logError(error, 'importAchievements');

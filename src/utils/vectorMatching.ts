@@ -66,8 +66,6 @@ const DEFAULT_WEIGHTS: VectorWeights = {
   cost: 0.05,
 };
 
-const VECTOR_DIMENSIONS = 20;
-
 /**
  * 사용자 답변을 20차원 벡터로 변환
  */
@@ -535,7 +533,7 @@ export function calculateVectorMatch(
     const breakdown = {
       personality: calculatePersonalityMatch(userVector, breedVector),
       maintenance: calculateMaintenanceMatch(userVector, breedVector),
-      lifestyle: calculateLifestyleMatch(userVector, breedVector),
+      lifestyle: calculateLifestyleMatch(userVector),
       appearance: calculateAppearanceMatch(userVector, breedVector),
       cost: calculateCostMatch(userVector, breedVector),
     };
@@ -614,8 +612,7 @@ function calculateMaintenanceMatch(
  * 라이프스타일 매칭 점수 계산
  */
 function calculateLifestyleMatch(
-  userVec: UserProfileVector,
-  breedVec: UserProfileVector
+  userVec: UserProfileVector
 ): number {
   return (userVec.lifestyle / 5) * 100;
 }

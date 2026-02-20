@@ -59,7 +59,7 @@ function CompareContent() {
       // Track achievement progress
       trackFriendComparison();
     }
-  }, [breed1Id, breed2Id, trackComparison]);
+  }, [breed1, breed2, trackComparison]);
 
   if (!breed1 || !breed2) {
     return (
@@ -83,42 +83,39 @@ function CompareContent() {
     );
   }
 
-  const personalityDiff = Math.abs(
-    breed1.personality.activity - breed2.personality.activity
-  );
-  const activityDiff = Math.abs(
-    breed1.personality.activity - breed2.personality.activity
-  );
-  const quietDiff = Math.abs(
-    breed1.personality.quiet - breed2.personality.quiet
-  );
-  const socialDiff = Math.abs(
-    breed1.personality.social - breed2.personality.social
-  );
+  const personalityDiff = {
+    activity: Math.abs(breed1.personality.activity - breed2.personality.activity),
+    quiet: Math.abs(breed1.personality.quiet - breed2.personality.quiet),
+    social: Math.abs(breed1.personality.social - breed2.personality.social),
+  };
+
+  const personalityGroupDiff =
+    (personalityDiff.activity + personalityDiff.quiet + personalityDiff.social) / 3;
+
   const maintenanceDiff = Math.abs(
     breed1.maintenance.grooming - breed2.maintenance.grooming
   );
 
-  const maxDiff = Math.max(
-    personalityDiff,
-    activityDiff,
-    quietDiff,
-    socialDiff,
-    maintenanceDiff
-  );
+  const diffCandidates = [
+    { label: '성격 전반', diff: personalityGroupDiff },
+    { label: '활동성', diff: personalityDiff.activity },
+    { label: '조용함', diff: personalityDiff.quiet },
+    { label: '사교성', diff: personalityDiff.social },
+    { label: '관리 난이도', diff: maintenanceDiff },
+  ];
 
-  let insight = '';
-  if (maxDiff === personalityDiff) {
-    insight = '두 분은 전반적인 성격 유형에서 가장 차이가 커요!';
-  } else if (maxDiff === activityDiff) {
-    insight = '두 분은 활동성 면에서 가장 차이가 커요!';
-  } else if (maxDiff === quietDiff) {
-    insight = '두 분은 조용함 정도에서 가장 차이가 커요!';
-  } else if (maxDiff === socialDiff) {
-    insight = '두 분은 사교성 면에서 가장 차이가 커요!';
-  } else if (maxDiff === maintenanceDiff) {
-    insight = '두 분은 관리 난이도 측면에서 가장 차이가 커요!';
-  }
+  const maxDiff = Math.max(...diffCandidates.map((item) => item.diff));
+  const topDiffs = diffCandidates.filter((item) => item.diff === maxDiff);
+
+  const insight =
+    maxDiff === 0
+      ? '두 분의 성향이 꽤 비슷해서 비교 포인트가 작아요!'
+      : topDiffs.length > 1
+        ? `${topDiffs.map((item) => item.label).join(', ')} 항목이 비슷한 정도로 가장 크게 다릅니다!`
+        : `${topDiffs[0].label}에서 가장 차이가 커요!`;
+  const activityDiff = personalityDiff.activity;
+  const quietDiff = personalityDiff.quiet;
+  const socialDiff = personalityDiff.social;
 
   return (
     <PageContainer className="max-w-5xl">

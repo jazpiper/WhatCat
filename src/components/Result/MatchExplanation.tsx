@@ -12,16 +12,17 @@ interface MatchExplanationProps {
 
 export default function MatchExplanation({ breed, reasons }: MatchExplanationProps) {
   const [visibleReasons, setVisibleReasons] = useState(3);
-  const [timeSpent, setTimeSpent] = useState(0);
-  const [scrollDepth, setScrollDepth] = useState(0);
   const { trackView } = useMatchExplanation();
   const containerRef = useRef<HTMLDivElement>(null);
+  const timeSpentRef = useRef(0);
+  const scrollDepthRef = useRef(0);
 
   // Track engagement
   useEffect(() => {
     const startTime = Date.now();
     const interval = setInterval(() => {
-      setTimeSpent(Date.now() - startTime);
+      const elapsed = Date.now() - startTime;
+      timeSpentRef.current = elapsed;
     }, 1000);
 
     // Track scroll depth
@@ -30,7 +31,7 @@ export default function MatchExplanation({ breed, reasons }: MatchExplanationPro
         const scrollTop = containerRef.current.scrollTop;
         const scrollHeight = containerRef.current.scrollHeight - containerRef.current.clientHeight;
         const depth = scrollHeight > 0 ? Math.round((scrollTop / scrollHeight) * 100) : 0;
-        setScrollDepth(depth);
+        scrollDepthRef.current = depth;
       }
     };
 
@@ -45,7 +46,7 @@ export default function MatchExplanation({ breed, reasons }: MatchExplanationPro
         container.removeEventListener('scroll', handleScroll);
       }
       // Track final engagement when component unmounts
-      trackView(breed.id, timeSpent, scrollDepth);
+      trackView(breed.id, timeSpentRef.current, scrollDepthRef.current);
     };
   }, [breed.id, trackView]);
 

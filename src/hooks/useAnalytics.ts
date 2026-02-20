@@ -75,13 +75,17 @@ export function useQuestionViewed(questionIndex: number) {
  * Tracks when a user answers a question
  */
 export function useQuestionAnswered() {
-  const startTime = useRef<number>(Date.now())
+  const startTime = useRef<number | null>(null)
+
+  useEffect(() => {
+    startTime.current = Date.now()
+  }, [])
 
   const trackAnswer = (questionIndex: number, answerValue: string) => {
     const params: QuestionAnsweredEvent = {
       question_index: questionIndex,
       answer_value: answerValue,
-      time_to_answer: Date.now() - startTime.current,
+      time_to_answer: Date.now() - (startTime.current ?? Date.now()),
     }
 
     logQuestionAnswered(params)
@@ -167,12 +171,16 @@ export function useResultRetry() {
  * Tracks when user explores a breed
  */
 export function useBreedExplore() {
-  const startTime = useRef<number>(Date.now())
+  const startTime = useRef<number | null>(null)
+
+  useEffect(() => {
+    startTime.current = Date.now()
+  }, [])
 
   const trackExplore = (breedViewed: string) => {
     const params: BreedExploreEvent = {
       breed_viewed: breedViewed,
-      time_spent: Date.now() - startTime.current,
+      time_spent: Date.now() - (startTime.current ?? Date.now()),
     }
 
     logBreedExplore(params)

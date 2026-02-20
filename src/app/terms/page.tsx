@@ -3,25 +3,25 @@ import AdSense from '@/components/AdSense';
 
 export default function TermsPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-orange-50 to-white py-12 px-4">
+    <main className="min-h-screen bg-gradient-to-b from-orange-50 to-white dark:from-gray-900 dark:to-gray-950 py-12 px-4">
       <div className="max-w-4xl mx-auto">
-        <Link href="/" className="inline-flex items-center text-orange-600 hover:text-orange-700 mb-8 transition-colors">
+        <Link href="/" className="inline-flex items-center text-orange-600 dark:text-orange-300 hover:text-orange-700 dark:hover:text-orange-200 mb-8 transition-colors">
           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
           홈으로 돌아가기
         </Link>
 
-        <article className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+        <article className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12 border border-transparent dark:border-gray-700">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-8">
             이용약관
           </h1>
 
-          <p className="text-gray-600 mb-8">
+          <p className="text-gray-600 dark:text-gray-300 mb-8">
             최종 업데이트: 2026년 2월 2일
           </p>
 
-          <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
+          <div className="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 space-y-6">
             <section>
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">제1조 (목적)</h2>
               <p>
@@ -135,9 +135,9 @@ export default function TermsPage() {
               </p>
             </section>
 
-            <section className="bg-orange-50 rounded-lg p-6 mt-8">
-              <h2 className="text-xl font-bold text-orange-900 mb-4">문의처</h2>
-              <p className="text-orange-800">
+            <section className="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-6 mt-8 border border-orange-100 dark:border-orange-800/50">
+              <h2 className="text-xl font-bold text-orange-900 dark:text-orange-300 mb-4">문의처</h2>
+              <p className="text-orange-800 dark:text-orange-200">
                 본 약관에 대한 문의사항이 있으시면 웹사이트를 통해 문의해 주시기 바랍니다.
               </p>
             </section>

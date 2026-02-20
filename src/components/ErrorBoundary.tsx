@@ -3,6 +3,7 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
 import Link from 'next/link';
+import { logEvent } from '@/lib/google-analytics';
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -42,17 +43,14 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     console.error('[ErrorBoundary] Error info:', errorInfo);
 
     // Log to analytics if available
-    if (typeof window !== 'undefined' && 'gtag' in window) {
-      try {
-        (window as any).gtag('event', 'exception', {
-          description: error.message,
-          fatal: false,
-          error_stack: errorInfo.componentStack,
-        });
-      } catch {
-        // Analytics failed
-      }
-    }
+    logEvent({
+      name: 'exception',
+      params: {
+        description: error.message,
+        fatal: false,
+        error_stack: errorInfo.componentStack,
+      },
+    });
 
     // Call custom error handler if provided
     if (this.props.onError) {

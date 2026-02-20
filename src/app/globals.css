@@ -1,8 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --background: #fff7fb;
+  --foreground: #1f2937;
+  --bg-page: #fff7fb;
+  --bg-surface: #ffffff;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --border-default: #e5e7eb;
+  --accent-primary: #ec4899;
+  --nav-bg-start: #ec4899;
+  --nav-bg-mid: #a855f7;
+  --nav-bg-end: #db2777;
+  --nav-text: #ffffff;
+  --nav-muted: rgba(255, 255, 255, 0.75);
 }
 
 @theme inline {
@@ -19,78 +31,44 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    color-scheme: dark;
+    --background: #0f172a;
+    --foreground: #f8fafc;
+    --bg-page: #0f172a;
+    --bg-surface: #1f2937;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --border-default: #374151;
+    --accent-primary: #f472b6;
+    --nav-bg-start: #7e124e;
+    --nav-bg-mid: #4c1d95;
+    --nav-bg-end: #6a103f;
+    --nav-text: #f8fafc;
+    --nav-muted: rgba(248, 250, 252, 0.75);
   }
 }
 
-/* Dark mode class support */
 .dark {
   --background: #0f172a;
   --foreground: #f1f5f9;
+  --bg-page: #0f172a;
+  --bg-surface: #1f2937;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --border-default: #374151;
+  --accent-primary: #f472b6;
+  --nav-bg-start: #7e124e;
+  --nav-bg-mid: #4c1d95;
+  --nav-bg-end: #6a103f;
+  --nav-text: #f8fafc;
+  --nav-muted: rgba(248, 250, 252, 0.75);
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Force dark mode styles for common patterns */
-.dark .bg-white {
-  background-color: #1f2937 !important;
-}
-
-.dark .bg-gray-50 {
-  background-color: #111827 !important;
-}
-
-.dark .bg-gray-100 {
-  background-color: #1f2937 !important;
-}
-
-.dark .text-gray-800 {
-  color: #f3f4f6 !important;
-}
-
-.dark .text-gray-700 {
-  color: #e5e7eb !important;
-}
-
-.dark .text-gray-600 {
-  color: #d1d5db !important;
-}
-
-.dark .border-gray-200 {
-  border-color: #374151 !important;
-}
-
-.dark .border-gray-100 {
-  border-color: #4b5563 !important;
-}
-
-/* Dark mode gradient overrides */
-.dark .from-pink-50 {
-  --tw-gradient-from: #831843 !important;
-}
-
-.dark .via-purple-50 {
-  --tw-gradient-via: #581c87 !important;
-}
-
-.dark .to-blue-50 {
-  --tw-gradient-to: #1e3a5f !important;
-}
-
-.dark .from-gray-900 {
-  --tw-gradient-from: #030712 !important;
-}
-
-/* Smooth color transitions */
-* {
-  transition-property: background-color, border-color, color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 200ms;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), "Pretendard", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 /* Shimmer animation for skeleton loaders */
@@ -123,7 +101,7 @@ body {
 
 /* Focus visible improvements */
 *:focus-visible {
-  outline: 2px solid #ec4899;
+  outline: 2px solid var(--accent-primary);
   outline-offset: 2px;
 }
 

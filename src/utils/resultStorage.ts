@@ -4,16 +4,36 @@
  */
 
 import type { SavedResult, ResultStorageState } from '@/types';
-import { safeGetStorage, safeSetStorage, safeRemoveStorage, ErrorType, logError } from '@/utils/errorHandler';
+import { safeGetStorage, safeSetStorage, safeRemoveStorage, logError } from '@/utils/errorHandler';
 
 const STORAGE_KEY = 'nyongmatch_results';
 const MAX_RESULTS = 10;
+
+function isSavedResult(value: unknown): value is SavedResult {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const item = value as Partial<SavedResult>;
+  return (
+    typeof item.breedId === 'string' &&
+    typeof item.breedName === 'string' &&
+    typeof item.score === 'number' &&
+    typeof item.date === 'string'
+  );
+}
 
 /**
  * Load all saved results from localStorage
  */
 export function loadResults(): SavedResult[] {
-  return safeGetStorage<SavedResult[]>(STORAGE_KEY, []);
+  const storageValue = safeGetStorage<unknown>(STORAGE_KEY, null);
+
+  if (!Array.isArray(storageValue)) {
+    return [];
+  }
+
+  return storageValue.filter(isSavedResult);
 }
 
 /**
@@ -81,21 +101,13 @@ export function exportResults(): string {
  */
 export function importResults(jsonString: string): { success: boolean; imported: number; error?: string } {
   try {
-    const imported: SavedResult[] = JSON.parse(jsonString);
+    const imported: unknown = JSON.parse(jsonString);
 
     if (!Array.isArray(imported)) {
       return { success: false, imported: 0, error: 'Invalid format: expected array' };
     }
 
-    // Validate each result
-    const validResults = imported.filter((r) => {
-      return (
-        r.breedId &&
-        r.breedName &&
-        typeof r.score === 'number' &&
-        r.date
-      );
-    });
+    const validResults = imported.filter(isSavedResult);
 
     if (validResults.length === 0) {
       return { success: false, imported: 0, error: 'No valid results found' };

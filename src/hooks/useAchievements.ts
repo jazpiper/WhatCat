@@ -5,15 +5,10 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import type { UserAchievements, UserAchievementState } from '@/types';
+import type { UserAchievements } from '@/types';
 import {
   loadUserAchievements,
   updateAchievementState,
-  trackTestCompleted,
-  trackBreedViewed,
-  trackGuideViewed,
-  trackFriendComparison,
-  trackSocialShare,
 } from '@/utils/achievements';
 import { achievements } from '@/data/achievements';
 import {
@@ -22,28 +17,9 @@ import {
   logAchievementsPageViewed,
 } from '@/lib/google-analytics';
 
-export function useAchievements() {
-  const [userAchievements, setUserAchievements] = useState<UserAchievements>({
-    unlocked: [],
-    state: {
-      testsCompleted: 0,
-      breedsMatched: [],
-      platformsShared: 0,
-      breedsViewed: 0,
-      guidesViewed: 0,
-      friendsCompared: 0,
-      highestScore: 0,
-    },
-    lastUpdated: new Date().toISOString(),
-  });
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Load achievements on mount
-  useEffect(() => {
-    const loaded = loadUserAchievements();
-    setUserAchievements(loaded);
-    setIsLoading(false);
-  }, []);
+  export function useAchievements() {
+  const [userAchievements, setUserAchievements] = useState<UserAchievements>(() => loadUserAchievements());
+  const isLoading = false;
 
   // Track test completion and check for new achievements
   const completeTest = useCallback((breedId: string, score: number) => {
@@ -196,7 +172,7 @@ export function useAchievements() {
  */
 export function useAchievementsPageViewed() {
   useEffect(() => {
-    const { unlocked, state } = loadUserAchievements();
+    const { unlocked } = loadUserAchievements();
 
     logAchievementsPageViewed({
       total_unlocked: unlocked.length,

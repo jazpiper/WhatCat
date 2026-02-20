@@ -38,17 +38,15 @@ export function createError(type: ErrorType, message: string, originalError?: un
   };
 }
 
-/**
- * Safely execute a function with error handling
- * @param fn - Function to execute
- * @param errorType - Type of error if it fails
- * @param fallback - Fallback value to return on error
- * @returns Result of the function or fallback value
+ /**
+  * Safely execute a function with error handling
+  * @param fn - Function to execute
+  * @param errorType - Type of error if it fails
+ * @returns Result object with success/data or error
  */
 export function safeExecute<T>(
   fn: () => T,
   errorType: ErrorType = ErrorType.UNKNOWN,
-  fallback: T
 ): { success: true; data: T } | { success: false; error: AppError } {
   try {
     const data = fn();
@@ -242,7 +240,7 @@ export function simulateLocalStorageQuotaError(): void {
       localStorage.setItem(`test_${key}`, data);
       key++;
     }
-  } catch (error) {
+  } catch {
     // Expected to fail with QuotaExceededError
     console.log('[ErrorHandler] localStorage quota filled for testing');
   }

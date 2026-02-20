@@ -161,7 +161,7 @@ describe('useFormValidation hook', () => {
     };
     const { result } = renderHook(() => useFormValidation(schema));
 
-    let isValid: boolean;
+    let isValid = false;
     act(() => {
       isValid = result.current.validate({ name: 'John', email: 'test@example.com' });
     });

@@ -8,15 +8,12 @@ import {
   Trash2,
   Download,
   Upload,
-  X,
-  FileDown,
   TrendingUp,
   Sparkles,
 } from 'lucide-react';
 import type { SavedResult } from '@/types';
-import MyResultsSkeleton from '@/components/Skeleton/MyResultsSkeleton';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
-import { PageContainer, Card, PageTitle, Section } from '@/components/ui';
+import { PageContainer, Card, PageTitle } from '@/components/ui';
 
 interface PersonalityBarProps {
   label: string;
@@ -61,15 +58,6 @@ function MyResultsPageContent() {
     formatResultDate,
   } = useResultsStorage();
 
-  // Pagination
-  const PAGE_SIZE = 10;
-  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
-
-  const visibleResults = useMemo(
-    () => results.slice(0, visibleCount),
-    [results, visibleCount]
-  );
-
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
   const [showClearConfirm, setShowClearConfirm] = useState(false);
@@ -85,11 +73,6 @@ function MyResultsPageContent() {
       });
     }
   }, [isLoading, results.length, trends]);
-
-  // Reset pagination when results change (import/delete)
-  useEffect(() => {
-    setVisibleCount(PAGE_SIZE);
-  }, [results.length]);
 
   const handleDelete = (id: string) => {
     setDeleteTargetId(id);
@@ -255,27 +238,12 @@ function MyResultsPageContent() {
           </Link>
         </Card>
       ) : (
-        <div className="space-y-4">
-          {visibleResults.map((result) => (
-            <ResultCard
-              key={result.id}
-              result={result}
-              onDelete={handleDelete}
-              formatResultDate={formatResultDate}
-            />
-          ))}
-
-          {visibleCount < results.length && (
-            <div className="pt-4 flex justify-center">
-              <button
-                onClick={() => setVisibleCount((c) => Math.min(results.length, c + PAGE_SIZE))}
-                className="px-6 py-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition text-gray-800 dark:text-gray-100"
-              >
-                더 보기 ({visibleCount}/{results.length})
-              </button>
-            </div>
-          )}
-        </div>
+        <PaginatedResultsList
+          key={results.length}
+          results={results}
+          formatResultDate={formatResultDate}
+          onDelete={handleDelete}
+        />
       )}
 
       {/* Footer */}
@@ -336,6 +304,43 @@ function MyResultsPageContent() {
         </div>
       )}
     </PageContainer>
+  );
+}
+
+interface PaginatedResultsListProps {
+  results: SavedResult[];
+  formatResultDate: (date: string) => string;
+  onDelete: (id: string) => void;
+}
+
+function PaginatedResultsList({ results, formatResultDate, onDelete }: PaginatedResultsListProps) {
+  const PAGE_SIZE = 10;
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+
+  const visibleResults = useMemo(() => results.slice(0, visibleCount), [results, visibleCount]);
+
+  return (
+    <div className="space-y-4">
+      {visibleResults.map((result) => (
+        <ResultCard
+          key={result.id}
+          result={result}
+          onDelete={onDelete}
+          formatResultDate={formatResultDate}
+        />
+      ))}
+
+      {visibleCount < results.length && (
+        <div className="pt-4 flex justify-center">
+          <button
+            onClick={() => setVisibleCount((c) => Math.min(results.length, c + PAGE_SIZE))}
+            className="px-6 py-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition text-gray-800 dark:text-gray-100"
+          >
+            더 보기 ({visibleCount}/{results.length})
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
 

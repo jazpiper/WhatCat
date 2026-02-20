@@ -1,61 +1,47 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
-import { Moon, Sun } from 'lucide-react';
+import { Laptop, Moon, Sun } from 'lucide-react';
+
+const THEME_OPTIONS = [
+  { value: 'light', label: '라이트', icon: Sun },
+  { value: 'dark', label: '다크', icon: Moon },
+  { value: 'system', label: '시스템', icon: Laptop },
+] as const;
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
 
-  // useEffect only runs on the client, so now we can safely show the UI
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return (
-      <div className="w-9 h-9 rounded-lg bg-white/10 animate-pulse" />
-    );
-  }
-
-  const isDark = theme === 'dark';
+  const currentTheme = theme ?? 'system';
 
   return (
-    <button
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className="relative w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/50"
-      aria-label={isDark ? '라이트 모드로 전환' : '다크 모드로 전환'}
-      aria-pressed={isDark}
+    <div
+      className="inline-flex items-center rounded-xl border border-white/25 bg-white/10 p-1 backdrop-blur-md"
+      role="radiogroup"
+      aria-label="테마 선택"
     >
-      <motion.IconWrapper isDark={isDark}>
-        {isDark ? (
-          <Sun className="w-5 h-5 text-yellow-300" strokeWidth={2} aria-hidden="true" />
-        ) : (
-          <Moon className="w-5 h-5 text-white" strokeWidth={2} aria-hidden="true" />
-        )}
-      </motion.IconWrapper>
-    </button>
+      {THEME_OPTIONS.map((option) => {
+        const Icon = option.icon;
+        const isActive = currentTheme === option.value;
+        return (
+          <button
+            key={option.value}
+            type="button"
+            onClick={() => setTheme(option.value)}
+            className={[
+              'inline-flex h-7 w-9 items-center justify-center rounded-lg transition-colors',
+              'focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70',
+              isActive ? 'bg-white/30 text-white shadow-sm' : 'text-white/80 hover:bg-white/15 hover:text-white',
+            ].join(' ')}
+            role="radio"
+            aria-checked={isActive}
+            aria-label={`${option.label} 모드`}
+            title={`${option.label} 모드`}
+          >
+            <Icon className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
+          </button>
+        );
+      })}
+    </div>
   );
-}
-
-// Simple motion wrapper for smooth icon transitions
-namespace motion {
-  export interface IconWrapperProps {
-    children: React.ReactNode;
-    isDark: boolean;
-  }
-
-  export function IconWrapper({ children, isDark }: IconWrapperProps) {
-    return (
-      <div
-        className="transition-all duration-300 ease-in-out"
-        style={{
-          transform: isDark ? 'rotate(0deg)' : 'rotate(180deg)',
-        }}
-      >
-        {children}
-      </div>
-    );
-  }
 }

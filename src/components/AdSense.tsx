@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { logError, ErrorType } from '@/utils/errorHandler';
+import { logError } from '@/utils/errorHandler';
 
 declare global {
   interface Window {

@@ -224,7 +224,7 @@ export function createShareUrl(results: ShareResult[]): string {
 /**
  * 카카오톡 공유 URL을 생성합니다.
  */
-export function createKakaoShareUrl(result: ShareResult, breedName: string, emoji: string): string {
+export function createKakaoShareUrl(result: ShareResult): string {
   const shareUrl = createShareUrl([result]);
   return encodeURIComponent(shareUrl);
 }

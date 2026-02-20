@@ -17,6 +17,17 @@ interface BreedDistributionChartProps {
   data: BreedDistributionItem[];
 }
 
+interface PieChartSegment extends BreedDistributionItem {
+  startAngle: number;
+  angle: number;
+  endAngle: number;
+  color: {
+    bg: string;
+    text: string;
+    light: string;
+  };
+}
+
 const COLORS = [
   { bg: 'bg-pink-500', text: 'text-pink-600', light: 'bg-pink-100' },
   { bg: 'bg-purple-500', text: 'text-purple-600', light: 'bg-purple-100' },
@@ -46,28 +57,24 @@ function BreedDistributionChartInner({ data }: BreedDistributionChartProps) {
     );
   }
 
-  // Calculate pie chart segments
-  let currentAngle = 0;
-  const segments = data.map((item, index) => {
-    const angle = (item.percentage / 100) * 360;
-    const startAngle = currentAngle;
-    currentAngle += angle;
-    return {
-      ...item,
-      startAngle,
-      angle,
-      color: COLORS[index % COLORS.length],
-    };
-  });
+  const segments: PieChartSegment[] = data.reduce<PieChartSegment[]>(
+    (acc, item, index) => {
+      const previousAngle = acc[acc.length - 1]?.endAngle ?? 0;
+      const angle = (item.percentage / 100) * 360;
 
-  // Calculate dash array for CSS pie chart
-  const total = 100;
-  const accumulated: number[] = [];
-  let acc = 0;
-  for (const item of data) {
-    accumulated.push(acc);
-    acc += item.percentage;
-  }
+      return [
+        ...acc,
+        {
+          ...item,
+          startAngle: previousAngle,
+          angle,
+          endAngle: previousAngle + angle,
+          color: COLORS[index % COLORS.length],
+        },
+      ];
+    },
+    []
+  );
 
   return (
     <div className="space-y-4">
@@ -83,7 +90,7 @@ function BreedDistributionChartInner({ data }: BreedDistributionChartProps) {
             className="w-full h-full rounded-full shadow-lg"
             style={{
               background: segments
-                .map((s, i) => {
+                .map((s) => {
                   const endAngle = s.startAngle + s.angle;
                   return `${s.color.bg} ${s.startAngle}deg ${endAngle}deg`;
                 })

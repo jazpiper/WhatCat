@@ -5,7 +5,7 @@
  * Displays user's test history, personality trends, and breed distribution
  */
 
-import React, { useEffect, useState, Suspense, lazy } from 'react';
+import { useEffect, useState, Suspense, lazy } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
@@ -17,20 +17,11 @@ import {
   TrendingUp,
   Award,
 } from 'lucide-react';
-import {
-  loadResults,
-  clearAllResults,
-  deleteResult,
-  exportResults,
-  getPersonalityTrends,
-  formatResultDate,
-} from '@/utils/resultStorage';
-import type { SavedResult } from '@/types';
 import { useResultsStorage } from '@/hooks/useResultsStorage';
 import { logJourneyViewed, logJourneyCleared, logJourneyExported, logJourneyImported } from '@/lib/google-analytics';
 import JourneySkeleton from '@/components/Skeleton/JourneySkeleton';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
-import { PageContainer, Card, PageTitle, Section } from '@/components/ui';
+import { PageContainer, Card, PageTitle } from '@/components/ui';
 
 // Lazy load chart components for better performance
 const TimelineChart = lazy(() =>
@@ -55,9 +46,16 @@ export default function MyJourneyPage() {
 
 function MyJourneyPageContent() {
   const router = useRouter();
-  const { results, isLoading, clearAll, exportResults: exportResultsHook, importResults } = useResultsStorage();
+  const {
+    results,
+    isLoading,
+    clearAll,
+    exportResults: exportResultsHook,
+    importResults,
+    deleteResult,
+    formatResultDate,
+  } = useResultsStorage();
   const [showClearConfirm, setShowClearConfirm] = useState(false);
-  const [chartsLoading, setChartsLoading] = useState(true);
 
   useEffect(() => {
     // Analytics
@@ -66,10 +64,7 @@ function MyJourneyPageContent() {
       unique_breeds: new Set(results.map((r) => r.breedId)).size,
       has_data: results.length > 0,
     });
-    // Simulate charts loading for smoother UX
-    const timer = setTimeout(() => setChartsLoading(false), 500);
-    return () => clearTimeout(timer);
-  }, [results.length]);
+  }, [results]);
 
   const handleClearAll = async () => {
     if (showClearConfirm) {

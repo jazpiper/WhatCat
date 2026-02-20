@@ -7,6 +7,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { logEvent } from '@/lib/google-analytics';
 
 const STORAGE_KEY = 'nyongmatch_daily_quiz';
 
@@ -30,6 +31,22 @@ export interface DailyQuizError {
   readonly error: Error | null;
 }
 
+function isDailyQuizState(value: unknown): value is DailyQuizState {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const state = value as Record<string, unknown>;
+  return (
+    typeof state.lastQuizDate === 'string' &&
+    typeof state.streak === 'number' &&
+    Number.isFinite(state.streak) &&
+    typeof state.totalCompleted === 'number' &&
+    Number.isFinite(state.totalCompleted) &&
+    typeof state.lastCompletedDate === 'string'
+  );
+}
+
 export function useDailyQuiz() {
   const [state, setState] = useState<DailyQuizState>(initialState);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -42,7 +59,7 @@ export function useDailyQuiz() {
       if (stored) {
         const parsed = JSON.parse(stored);
         // Validate the parsed data structure
-        if (parsed && typeof parsed === 'object' && 'streak' in parsed) {
+        if (isDailyQuizState(parsed)) {
           setState(parsed);
         } else {
           console.warn('[DailyQuiz] Invalid state data, using defaults');
@@ -61,16 +78,13 @@ export function useDailyQuiz() {
       });
 
       // Log to analytics if available
-      if (typeof window !== 'undefined' && 'gtag' in window) {
-        try {
-          (window as any).gtag('event', 'daily_quiz_storage_error', {
-            error_type: 'load',
-            error_message: err.message,
-          });
-        } catch {
-          // Analytics failed
-        }
-      }
+      logEvent({
+        name: 'daily_quiz_storage_error',
+        params: {
+          error_type: 'load',
+          error_message: err.message,
+        },
+      });
     } finally {
       setIsLoaded(true);
     }
@@ -105,17 +119,14 @@ export function useDailyQuiz() {
         }
 
         // Log to analytics
-        if (typeof window !== 'undefined' && 'gtag' in window) {
-          try {
-            (window as any).gtag('event', 'daily_quiz_storage_error', {
-              error_type: 'save',
-              error_message: err.message,
-              is_quota_error: err.name === 'QuotaExceededError',
-            });
-          } catch {
-            // Analytics failed
-          }
-        }
+        logEvent({
+          name: 'daily_quiz_storage_error',
+          params: {
+            error_type: 'save',
+            error_message: err.message,
+            is_quota_error: err.name === 'QuotaExceededError',
+          },
+        });
       }
     }
   }, [state, isLoaded, error]);
@@ -170,16 +181,13 @@ export function useDailyQuiz() {
       });
 
       // Log to analytics
-      if (typeof window !== 'undefined' && 'gtag' in window) {
-        try {
-          (window as any).gtag('event', 'daily_quiz_streak_error', {
-            error_message: err.message,
-            last_date: lastDate,
-          });
-        } catch {
-          // Analytics failed
-        }
-      }
+      logEvent({
+        name: 'daily_quiz_streak_error',
+        params: {
+          error_message: err.message,
+          last_date: lastDate,
+        },
+      });
 
       return 0;
     }
@@ -261,15 +269,12 @@ export function useDailyQuiz() {
       });
 
       // Log to analytics
-      if (typeof window !== 'undefined' && 'gtag' in window) {
-        try {
-          (window as any).gtag('event', 'daily_quiz_complete_error', {
-            error_message: error.message,
-          });
-        } catch {
-          // Analytics failed
-        }
-      }
+      logEvent({
+        name: 'daily_quiz_complete_error',
+        params: {
+          error_message: error.message,
+        },
+      });
 
       // Return a safe default state
       return { streak: state.streak, isNewMilestone: false };

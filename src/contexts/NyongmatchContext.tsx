@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode, useMemo, useCallback } from 'react';
 import { useDebouncedValue } from '@/hooks/useDebouncedValue';
 import { AnswerScore } from '@/types';
+import { safeSetStorage, safeRemoveStorage, logError, ErrorType, createError } from '@/utils/errorHandler';
 
 const STORAGE_KEY = 'nyongmatch_answers';
 const QUESTION_KEY = 'nyongmatch_question';
@@ -21,22 +22,71 @@ interface NyongmatchContextType {
 
 const NyongmatchContext = createContext<NyongmatchContextType | undefined>(undefined);
 
+function safeGetStorageItem(storageKey: string): string | null {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  try {
+    return localStorage.getItem(storageKey);
+  } catch {
+    return null;
+  }
+}
+
+function isAnswerScore(value: unknown): value is AnswerScore {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const answer = value as { questionId?: unknown; answerId?: unknown };
+  return typeof answer.questionId === 'string' && typeof answer.answerId === 'string';
+}
+
+function safeParseNumberStorageValue(storageKey: string): number {
+  if (typeof window === 'undefined') {
+    return 0;
+  }
+
+  const saved = safeGetStorageItem(storageKey);
+  if (!saved) {
+    return 0;
+  }
+
+  const parsed = parseInt(saved, 10);
+  return Number.isFinite(parsed) ? Math.max(0, Math.min(parsed, 13)) : 0;
+}
+
+function safeParseAnswersStorageValue(storageKey: string): AnswerScore[] {
+  if (typeof window === 'undefined') {
+    return [];
+  }
+
+  const saved = safeGetStorageItem(storageKey);
+  if (!saved) {
+    return [];
+  }
+
+  try {
+    const parsed = JSON.parse(saved) as unknown;
+    if (Array.isArray(parsed) && parsed.every(isAnswerScore)) {
+      return parsed as AnswerScore[];
+    }
+  } catch {
+    return [];
+  }
+
+  return [];
+}
+
 export function NyongmatchProvider({ children }: { children: ReactNode }) {
   // Initialize state from localStorage
   const [currentQuestion, setCurrentQuestion] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem(QUESTION_KEY);
-      return saved ? parseInt(saved, 10) : 0;
-    }
-    return 0;
+    return safeParseNumberStorageValue(QUESTION_KEY);
   });
 
   const [answers, setAnswers] = useState<AnswerScore[]>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      return saved ? JSON.parse(saved) : [];
-    }
-    return [];
+    return safeParseAnswersStorageValue(STORAGE_KEY);
   });
 
   const [isCompleted, setIsCompleted] = useState(false);
@@ -45,15 +95,29 @@ export function NyongmatchProvider({ children }: { children: ReactNode }) {
 
   // Save answers to localStorage (debounced to reduce write churn)
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(debouncedAnswers));
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const success = safeSetStorage(STORAGE_KEY, debouncedAnswers);
+    if (!success) {
+      logError(
+        createError(ErrorType.LOCAL_STORAGE, 'Failed to persist nyongmatch answers', { key: STORAGE_KEY })
+      );
     }
   }, [debouncedAnswers]);
 
   // Save current question to localStorage whenever it changes
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(QUESTION_KEY, currentQuestion.toString());
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const success = safeSetStorage(QUESTION_KEY, currentQuestion.toString());
+    if (!success) {
+      logError(
+        createError(ErrorType.LOCAL_STORAGE, 'Failed to persist current question', { key: QUESTION_KEY })
+      );
     }
   }, [currentQuestion]);
 
@@ -82,9 +146,20 @@ export function NyongmatchProvider({ children }: { children: ReactNode }) {
     setAnswers([]);
     setIsCompleted(false);
     // Clear localStorage
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem(STORAGE_KEY);
-      localStorage.removeItem(QUESTION_KEY);
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const resultStored = safeRemoveStorage(STORAGE_KEY);
+    const resultQuestion = safeRemoveStorage(QUESTION_KEY);
+
+    if (!resultStored || !resultQuestion) {
+      logError(
+        createError(ErrorType.LOCAL_STORAGE, 'Failed to clear nyongmatch test storage', {
+          answersCleared: resultStored,
+          questionCleared: resultQuestion,
+        })
+      );
     }
   }, []);
 

@@ -45,14 +45,14 @@ export default function FriendCompare({
     }, [setFriendLink, hasSubmitted, validateField]);
 
     return (
-        <div className="bg-white rounded-3xl shadow-xl p-6 mb-6 border border-gray-100">
-            <h3 className="text-xl font-bold text-gray-800 mb-6 text-center flex items-center justify-center gap-2">
+        <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 mb-6 border border-gray-100 dark:border-gray-700">
+            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-6 text-center flex items-center justify-center gap-2">
                 <span className="text-pink-500">🤝</span> 친구 결과랑 비교하기
             </h3>
 
             <div className="space-y-4">
                 <div>
-                    <label htmlFor="friend-link" className="block text-sm font-medium text-gray-700 mb-2 ml-1">
+                    <label htmlFor="friend-link" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 ml-1">
                         친구의 결과 링크를 입력해주세요
                     </label>
                     <div className="flex flex-col sm:flex-row gap-2">
@@ -68,10 +68,10 @@ export default function FriendCompare({
                                     }
                                 }}
                                 placeholder="https://what-cat-psi.vercel.app/result?..."
-                                className={`w-full px-4 py-3 rounded-xl border-2 focus:ring-2 focus:outline-none text-gray-800 transition-all ${
+                                className={`w-full px-4 py-3 rounded-xl border-2 focus:ring-2 focus:outline-none text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 transition-all ${
                                     errors.friendLink
                                         ? 'border-red-300 focus:border-red-500 focus:ring-red-200'
-                                        : 'border-gray-200 focus:border-pink-500 focus:ring-pink-200'
+                                        : 'border-gray-200 dark:border-gray-700 focus:border-pink-500 focus:ring-pink-200'
                                 }`}
                                 aria-label="친구 결과 링크 입력"
                                 aria-invalid={!!errors.friendLink}
@@ -94,11 +94,11 @@ export default function FriendCompare({
                     </div>
                 </div>
 
-                <div className="bg-purple-50 rounded-2xl p-4 border border-purple-100">
+                <div className="bg-purple-50 dark:bg-purple-900/20 rounded-2xl p-4 border border-purple-100 dark:border-purple-800/50">
                     <div className="flex gap-3">
                         <span className="text-xl mt-0.5">💡</span>
-                        <div className="text-sm text-gray-700 leading-relaxed">
-                            <p className="font-bold text-purple-900 mb-1">어떻게 비교하나요?</p>
+                        <div className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                            <p className="font-bold text-purple-900 dark:text-purple-300 mb-1">어떻게 비교하나요?</p>
                             <p>친구가 보내준 결과 링크를 위 칸에 넣고 버튼을 누르면, 두 분의 고양이 품종을 나란히 비교해볼 수 있어요!</p>
                         </div>
                     </div>

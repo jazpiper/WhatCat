@@ -1,308 +1,83 @@
 # WhatCat 디자인 시스템
 
-**버전:** 1.0.0
-**작성일:** 2026-02-19
-
----
-
-## 개요
-
-WhatCat 프로젝트의 일관된 UI/UX를 위한 디자인 시스템입니다. 모든 페이지에서 통일된 스타일과 다크모드를 지원합니다.
-
----
-
-## 디자인 토큰
-
-### 색상
-
-| 용도 | 라이트 모드 | 다크 모드 |
-|------|------------|----------|
-| 배경 그라데이션 | `from-pink-50 via-purple-50 to-blue-50` | `dark:from-gray-900 dark:via-purple-950 dark:to-gray-900` |
-| 카드 배경 | `bg-white` | `dark:bg-gray-800` |
-| 타이틀 | `text-gray-800` | `dark:text-gray-100` |
-| 본문 | `text-gray-600` | `dark:text-gray-300` |
-| 설명/부제 | `text-gray-500` | `dark:text-gray-400` |
-| 보더 | `border-gray-200` | `dark:border-gray-700` |
-
-### 둥글기 (Border Radius)
-
-| 이름 | 값 | 용도 |
-|------|-----|------|
-| `rounded-xl` | 12px | 작은 카드, 버튼 |
-| `rounded-2xl` | 16px | 섹션 내부 |
-| `rounded-3xl` | 24px | 메인 카드 |
-
-### 그림자 (Shadow)
-
-| 이름 | 값 | 용도 |
-|------|-----|------|
-| `shadow-md` | 중간 | 일반 카드 |
-| `shadow-lg` | 큼 | 강조 카드 |
-| `shadow-xl` | 매우 큼 | 메인 컨테이너 |
-
----
-
-## 컴포넌트
-
-### 1. PageContainer
-
-페이지 전체를 감싸는 컨테이너입니다. 통일된 배경과 다크모드를 제공합니다.
-
-**위치:** `src/components/ui/PageContainer.tsx`
-
-```tsx
-import { PageContainer } from '@/components/ui';
-
-// 사용 예시
-export default function MyPage() {
-  return (
-    <PageContainer>
-      {/* 페이지 내용 */}
-    </PageContainer>
-  );
-}
-```
-
-**Props:**
-
-| 이름 | 타입 | 필수 | 설명 |
-|------|------|------|------|
-| `children` | `React.ReactNode` | O | 페이지 내용 |
-| `className` | `string` | X | 추가 클래스 |
-
-**스타일:**
-- `min-h-screen`
-- `bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50`
-- `dark:from-gray-900 dark:via-purple-950 dark:to-gray-900`
-- `container mx-auto px-4 py-8 max-w-4xl`
-
----
-
-### 2. Card
-
-콘텐츠를 담는 카드 컴포넌트입니다. 3가지 variant를 지원합니다.
-
-**위치:** `src/components/ui/Card.tsx`
-
-```tsx
-import { Card } from '@/components/ui';
-
-// 사용 예시
-<Card>
-  기본 카드
-</Card>
-
-<Card variant="elevated">
-  강조된 카드
-</Card>
-
-<Card variant="outlined">
-  테두리만 있는 카드
-</Card>
-```
-
-**Props:**
-
-| 이름 | 타입 | 필수 | 기본값 | 설명 |
-|------|------|------|--------|------|
-| `children` | `React.ReactNode` | O | - | 카드 내용 |
-| `variant` | `'default' \| 'elevated' \| 'outlined'` | X | `'default'` | 카드 스타일 |
-| `className` | `string` | X | - | 추가 클래스 |
-
-**Variant 스타일:**
-
-| Variant | 스타일 |
-|---------|-------|
-| `default` | `bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6` |
-| `elevated` | `bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-6 ring-1 ring-purple-100 dark:ring-purple-900/50` |
-| `outlined` | `bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 p-6` |
-
----
-
-### 3. PageTitle
-
-페이지 제목을 표시하는 컴포넌트입니다.
-
-**위치:** `src/components/ui/PageTitle.tsx`
-
-```tsx
-import { PageTitle } from '@/components/ui';
-
-// 사용 예시
-<PageTitle emoji="🐱" subtitle="고양이 성격 테스트">
-  WhatCat
-</PageTitle>
-```
-
-**Props:**
-
-| 이름 | 타입 | 필수 | 설명 |
-|------|------|------|------|
-| `children` | `React.ReactNode` | O | 제목 텍스트 |
-| `subtitle` | `string` | X | 부제 |
-| `emoji` | `string` | X | 이모지 |
-| `className` | `string` | X | 추가 클래스 |
-
-**스타일:**
-- 제목: `text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 text-center mb-4`
-- 이모지: `text-4xl md:text-5xl mb-2 text-center`
-- 부제: `text-gray-600 dark:text-gray-300 text-center`
-
----
-
-### 4. Section
-
-섹션 제목과 내용을 감싸는 컴포넌트입니다. 다양한 색상 variant를 지원합니다.
-
-**위치:** `src/components/ui/Section.tsx`
-
-```tsx
-import { Section } from '@/components/ui';
-
-// 사용 예시
-<Section title="소개" emoji="✨" variant="purple">
-  <p>테스트에 대한 설명...</p>
-</Section>
-```
-
-**Props:**
-
-| 이름 | 타입 | 필수 | 기본값 | 설명 |
-|------|------|------|--------|------|
-| `title` | `string` | O | - | 섹션 제목 |
-| `emoji` | `string` | X | - | 이모지 |
-| `children` | `React.ReactNode` | O | - | 섹션 내용 |
-| `variant` | `'default' \| 'pink' \| 'purple' \| 'blue' \| 'amber' \| 'green'` | X | `'default'` | 색상 |
-| `className` | `string` | X | - | 추가 클래스 |
-
-**Variant 스타일:**
-
-| Variant | 배경 그라데이션 |
-|---------|----------------|
-| `default` | `from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900` |
-| `pink` | `from-pink-50 to-pink-100 dark:from-pink-900/30 dark:to-pink-800/30` |
-| `purple` | `from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30` |
-| `blue` | `from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30` |
-| `amber` | `from-amber-50 to-amber-100 dark:from-amber-900/30 dark:to-amber-800/30` |
-| `green` | `from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30` |
-
----
-
-## 사용 예시
-
-### 기본 페이지 구조
-
-```tsx
-import { PageContainer, Card, PageTitle, Section } from '@/components/ui';
-
-export default function MyPage() {
-  return (
-    <PageContainer>
-      <PageTitle emoji="🐱" subtitle="고양이 성격 테스트">
-        WhatCat
-      </PageTitle>
-
-      <Card variant="elevated">
-        <Section title="소개" emoji="✨" variant="purple">
-          <p>테스트에 대한 설명...</p>
-        </Section>
-      </Card>
-
-      <Card>
-        <Section title="특징" emoji="🎭" variant="pink">
-          <ul>
-            <li>특징 1</li>
-            <li>특징 2</li>
-          </ul>
-        </Section>
-      </Card>
-    </PageContainer>
-  );
-}
-```
-
-### 다크모드 고려사항
-
-모든 컴포넌트는 자동으로 다크모드를 지원합니다. 추가 작업 없이 `ThemeProvider`가 관리합니다.
-
-```tsx
-// layout.tsx에서 이미 설정됨
-<ThemeProvider
-  attribute="class"
-  defaultTheme="system"
-  enableSystem
-  storageKey="whatcat-theme"
->
-```
-
----
-
-## 적용된 페이지
-
-| 페이지 | 적용 컴포넌트 |
-|--------|--------------|
-| `/` (홈) | PageContainer, Card |
-| `/nyongmatch` | PageContainer, Card |
-| `/result` | PageContainer, Card |
-| `/compare` | PageContainer, Card |
-| `/breeds` | PageContainer, Card |
-| `/breed/[id]` | PageContainer, Card |
-| `/my-results` | PageContainer, Card, PageTitle |
-| `/my-journey` | PageContainer, Card, PageTitle |
-| `/achievements` | PageContainer, Card, PageTitle, Section |
-| `/daily-quiz` | PageContainer, Card, PageTitle, Section |
-| `/guides` | PageContainer, Card, PageTitle, Section |
-| `/faq` | PageContainer, Card, PageTitle, Section |
-
----
-
-## 유틸리티
-
-### cn 함수
-
-클래스를 병합하는 유틸리티 함수입니다.
-
-**위치:** `src/lib/utils.ts`
-
-```tsx
-import { cn } from '@/lib/utils';
-
-// 사용 예시
-<div className={cn(
-  'bg-white dark:bg-gray-800',
-  isActive && 'bg-pink-500',
-  className
-)}>
-```
-
----
-
-## 유지보수 가이드
-
-### 새 페이지 추가 시
-
-1. `PageContainer`로 페이지 감싸기
-2. 내용은 `Card` 컴포넌트 사용
-3. 제목은 `PageTitle` 사용
-4. 섹션은 `Section` 사용
-
-### 색상 변경 시
-
-1. `globals.css`의 CSS 변수 확인
-2. 컴포넌트의 Tailwind 클래스 수정
-3. 다크모드 스타일도 함께 수정
-
-### 새 컴포넌트 추가 시
-
-1. `src/components/ui/`에 파일 생성
-2. `index.ts`에 export 추가
-3. 이 문서에 사용법 추가
-
----
-
-## 참고 파일
-
-- 컴포넌트: `src/components/ui/`
-- 유틸리티: `src/lib/utils.ts`
-- 글로벌 스타일: `src/app/globals.css`
-- Tailwind 설정: `tailwind.config.js`
+**버전:** 1.1.0  
+**업데이트:** 2026-02-20
+
+## 목표
+- 라이트/다크 전환 시 시각적 안정성 유지
+- 공용 컴포넌트 재사용으로 화면 일관성 확보
+- 전역 강제 오버라이드(`!important`) 없이 토큰 기반 운영
+
+## 테마 아키텍처
+- 테마 엔진: `next-themes`
+- 지원 모드: `light`, `dark`, `system`
+- 저장 키: `whatcat-theme`
+- 레이아웃 설정: `src/app/layout.tsx`
+
+## 전역 토큰
+정의 위치: `src/app/globals.css`
+
+### 핵심 토큰
+- `--bg-page`: 페이지 기본 배경
+- `--bg-surface`: 카드/패널 표면 배경
+- `--text-primary`: 주요 텍스트
+- `--text-secondary`: 보조 텍스트
+- `--border-default`: 기본 경계선
+- `--accent-primary`: 포커스/강조
+
+### 네비게이션 토큰
+- `--nav-bg-start`
+- `--nav-bg-mid`
+- `--nav-bg-end`
+- `--nav-text`
+- `--nav-muted`
+
+## 타이포그래피
+- 기본 폰트: `var(--font-geist-sans), Pretendard, Noto Sans KR, ...`
+- 헤드라인/본문은 `text-[var(--text-primary)]`, `text-[var(--text-secondary)]`를 우선 사용
+
+## 공용 컴포넌트
+
+### `ThemeToggle`
+- 위치: `src/components/ThemeToggle.tsx`
+- 3상태 선택형 (`light` / `dark` / `system`)
+- 접근성: `radiogroup` + `role="radio"`
+
+### `Navigation`
+- 위치: `src/components/Navigation.tsx`
+- 토큰 기반 그라디언트/텍스트 색상 사용
+- 모바일/데스크톱 모두 동일한 테마 색 규칙 적용
+
+### `Card`
+- 위치: `src/components/ui/Card.tsx`
+- variants: `default`, `elevated`, `outlined`
+- 표면/텍스트/보더 모두 토큰 사용
+
+### `PageTitle`
+- 위치: `src/components/ui/PageTitle.tsx`
+- 제목: `--text-primary`
+- 부제: `--text-secondary`
+
+### `Section`
+- 위치: `src/components/ui/Section.tsx`
+- 기본 배경: `--bg-surface`
+- 색상 variant: `pink`, `purple`, `blue`, `amber`, `green`
+
+## 사용 가이드
+- 신규 화면은 `PageContainer + Card + PageTitle + Section` 조합 우선
+- `bg-white`, `text-gray-800` 단독 사용은 지양하고 `dark:*` 또는 토큰을 함께 사용
+- 다크 대응 없는 고정 색상은 PR에서 차단
+
+## 금지 사항
+- `.dark .bg-*` 형태 전역 강제 치환
+- `!important` 기반 다크모드 덮어쓰기
+- 전역 `*` 트랜지션으로 색상 변경 강제
+
+## 적용 상태 (2026-02-20)
+- 테마 토글/네비게이션/공용 UI 컴포넌트 토큰화 완료
+- 핵심 페이지(`/`, `/nyongmatch`, `/result`, `/breeds`) 다크모드 보정 완료
+- 보조 페이지(`/about`, `/privacy`, `/terms`) 및 주요 skeleton 다크모드 보정 완료
+
+## 관련 문서
+- 재기획안: `docs/theme-uiux-replan-2026-02-20.md`
+- QA 체크리스트: `docs/theme-qa-checklist.md`

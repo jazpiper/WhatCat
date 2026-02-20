@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useCallback } from 'react';
+import { useCallback } from 'react';
 import AnswerOptionButton from '@/components/Test/AnswerOptionButton';
 import { useTest } from '@/contexts/NyongmatchContext';
 import { questions } from '@/data/questions';
@@ -23,19 +23,13 @@ export default function TestPage() {
 
   const question = questions[currentQuestion];
 
-  // 진행률 계산 (useMemo로 캐싱)
-  const progress = useMemo(
-    () => Math.min(((currentQuestion + 1) / questions.length) * 100, 100),
-    [currentQuestion]
-  );
-
   // 선택된 답변 찾기 (단순화)
   const selectedAnswer = question
     ? answers.find((a) => a.questionId === question.id)?.answerId ?? null
     : null;
 
   // 냥이 힌트 (질문마다 무작위)
-  const catTip = useMemo(() => getRandomCatTip(), [currentQuestion]);
+  const catTip = getRandomCatTip();
 
   const handleAnswer = useCallback((answerId: string) => {
     if (!question) return;

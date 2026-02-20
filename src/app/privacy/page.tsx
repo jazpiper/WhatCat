@@ -18,23 +18,23 @@ export const revalidate = 86400; // 24시간마다 재생성
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50">
+    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-gray-900">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <div className="mb-6">
-          <Link href="/" className="text-pink-500 hover:underline flex items-center gap-2">
+          <Link href="/" className="text-pink-500 dark:text-pink-400 hover:underline flex items-center gap-2">
             <ArrowLeft size={20} />
             처음으로
           </Link>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-xl p-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+        <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 border border-transparent dark:border-gray-700">
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6 text-center">
             개인정보처리방침
           </h1>
 
-          <div className="space-y-6 text-gray-700">
+          <div className="space-y-6 text-gray-700 dark:text-gray-300">
             <section>
-              <h2 className="text-xl font-bold text-gray-800 mb-3">
+              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
                 1. 수집하는 개인정보의 항목
               </h2>
               <ul className="list-disc list-inside space-y-2 ml-4">
@@ -43,7 +43,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-gray-800 mb-3">
+              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
                 2. 개인정보의 수집 목적
               </h2>
               <p>
@@ -54,7 +54,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-gray-800 mb-3">
+              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
                 3. 개인정보의 보유 및 이용 기간
               </h2>
               <p>
@@ -64,7 +64,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-gray-800 mb-3">
+              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
                 4. 제3자 제공
               </h2>
               <p>
@@ -75,7 +75,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-gray-800 mb-3">
+              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
                 5. 쿠키(Cookie) 및 로그 정보
               </h2>
               <ul className="list-disc list-inside space-y-2 ml-4">
@@ -86,7 +86,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-gray-800 mb-3">
+              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
                 6. 쿠키 및 광고
               </h2>
               <p className="mb-3">
@@ -98,19 +98,19 @@ export default function PrivacyPage() {
                 사용자는 언제든지 브라우저 설정에서 쿠키 사용을 거부할 수 있지만,
                 이 경우 일부 서비스 기능이 제한될 수 있습니다.
               </p>
-              <div className="bg-blue-50 rounded-lg p-4 mt-4">
-                <h3 className="font-bold text-blue-900 mb-2">Google AdSense 쿠키 정책</h3>
-                <ul className="list-disc list-inside space-y-1 ml-4 text-sm text-blue-800">
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mt-4 border border-blue-100 dark:border-blue-800/50">
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-2">Google AdSense 쿠키 정책</h3>
+                <ul className="list-disc list-inside space-y-1 ml-4 text-sm text-blue-800 dark:text-blue-200">
                   <li>Google은 쿠키를 사용하여 광고를 게시하고, 사용자가 광고를 클릭했을 때를 추적합니다.</li>
                   <li>Google은 DART 쿠키를 사용하여 Google 광고를 통해 웹사이트를 방문한 사용자에게 광고를 게시합니다.</li>
                   <li>사용자는 Google 광고 콘텐츠 쿠키 사용을 거부할 수 있습니다.</li>
-                  <li>자세한 내용은 <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold">Google 개인정보처리방침</a>을 참조하세요.</li>
+                  <li>자세한 내용은 <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-300 hover:underline font-semibold">Google 개인정보처리방침</a>을 참조하세요.</li>
                 </ul>
               </div>
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-gray-800 mb-3">
+              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
                 7. 개인정보의 파기
               </h2>
               <p>
@@ -120,7 +120,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-gray-800 mb-3">
+              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
                 8. 이용자의 권리와 의무
               </h2>
               <ul className="list-disc list-inside space-y-2 ml-4">
@@ -131,16 +131,16 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-gray-800 mb-3">
+              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
                 9. 개인정보처리책임자의 연락처
               </h2>
-              <div className="bg-pink-50 rounded-xl p-4">
-                <p className="text-gray-800">
+              <div className="bg-pink-50 dark:bg-pink-900/20 rounded-xl p-4 border border-pink-100 dark:border-pink-800/50">
+                <p className="text-gray-800 dark:text-gray-100">
                   개인정보와 관련한 문의사항은 아래 문의하기 페이지를 통해 보내주세요.
                 </p>
                 <Link
                   href="/contact"
-                  className="text-pink-600 font-semibold hover:underline inline-block mt-2"
+                  className="text-pink-600 dark:text-pink-300 font-semibold hover:underline inline-block mt-2"
                 >
                   문의하기 바로가기
                 </Link>

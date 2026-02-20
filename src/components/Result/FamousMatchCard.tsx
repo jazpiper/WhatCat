@@ -42,28 +42,15 @@ export default function FamousMatchCard({ breed, score = 0 }: FamousMatchCardPro
     }
   };
 
-  const getTypeIcon = (type: FamousMatch['type']) => {
-    switch (type) {
-      case 'celebrity':
-        return '⭐';
-      case 'character':
-        return '🎭';
-      case 'historical':
-        return '📜';
-      default:
-        return '✨';
-    }
-  };
-
   // seed 기반 일관된 유명인 선택 (breed.id + score 조합)
   const seed = `${breed.id}-${score}`;
   const hash = getSeededRandom(seed);
   const selectedMatch = breed.famous_matches[hash % breed.famous_matches.length];
 
   return (
-    <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 border border-amber-200">
+    <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl p-6 border border-amber-200 dark:border-amber-800/50">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+        <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 flex items-center gap-2">
           <Sparkles className="text-amber-500" size={20} />
           당신과 같은 냥이를 가진 사람들
         </h3>
@@ -75,20 +62,20 @@ export default function FamousMatchCard({ breed, score = 0 }: FamousMatchCardPro
         )}
       </div>
 
-      <div className="bg-white rounded-xl p-4 shadow-sm">
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-transparent dark:border-gray-700">
         <div className="flex items-start gap-4">
           <div className="text-4xl">
             {selectedMatch.type === 'celebrity' ? '🌟' : selectedMatch.type === 'character' ? '🎭' : '📜'}
           </div>
           <div className="flex-1">
-            <p className="text-sm text-gray-500 mb-1">
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">
               {getTypeLabel(selectedMatch.type)} 매치
             </p>
-            <p className="text-lg font-semibold text-gray-800 mb-1">
+            <p className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">
               {selectedMatch.name}
             </p>
             {selectedMatch.description && (
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-600 dark:text-gray-300">
                 {selectedMatch.description}
               </p>
             )}
@@ -97,11 +84,11 @@ export default function FamousMatchCard({ breed, score = 0 }: FamousMatchCardPro
       </div>
 
       <div className="mt-4 text-center">
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-600 dark:text-gray-300">
           <span className="font-semibold text-amber-600">{resultPercentage}%</span>의 사용자가 이 품종을 받았습니다
         </p>
         {isRare && (
-          <p className="text-xs text-purple-600 mt-2">
+          <p className="text-xs text-purple-600 dark:text-purple-300 mt-2">
             선택된 소수의 사람들만 이 희귀한 품종과 매칭되었습니다! 🎉
           </p>
         )}

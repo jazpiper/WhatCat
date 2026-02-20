@@ -8,11 +8,11 @@ interface CardProps {
 }
 
 const variantStyles = {
-  default: 'bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6',
+  default: 'bg-[var(--bg-surface)] text-[var(--text-primary)] rounded-3xl shadow-xl p-6',
   elevated:
-    'bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-6 shadow-purple-200/50 dark:shadow-purple-900/30',
+    'bg-[var(--bg-surface)] text-[var(--text-primary)] rounded-3xl shadow-2xl p-6 shadow-purple-200/50 dark:shadow-purple-900/30',
   outlined:
-    'bg-white dark:bg-gray-800 rounded-3xl p-6 border border-gray-200 dark:border-gray-700',
+    'bg-[var(--bg-surface)] text-[var(--text-primary)] rounded-3xl p-6 border border-[var(--border-default)]',
 };
 
 /**

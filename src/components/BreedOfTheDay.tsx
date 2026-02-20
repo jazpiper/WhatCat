@@ -11,10 +11,10 @@ import { Sparkles, Share2, Calendar } from 'lucide-react';
 import { getBreedOfTheDay, getNextBreedOfTheDayCountdown } from '@/utils/breedOfTheDay';
 import { logBreedOfTheDayViewed, logBreedOfTheDayClicked, logBreedOfTheDayShared } from '@/lib/google-analytics';
 import CatImage from '@/components/CatImage';
-import { logError, ErrorType } from '@/utils/errorHandler';
+import { logError } from '@/utils/errorHandler';
 
 export function BreedOfTheDay() {
-  const [breedData, setBreedData] = useState(getBreedOfTheDay());
+  const breedData = getBreedOfTheDay();
   const [countdown, setCountdown] = useState(getNextBreedOfTheDayCountdown());
 
   useEffect(() => {
@@ -57,21 +57,21 @@ export function BreedOfTheDay() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-purple-100 via-pink-100 to-blue-100 rounded-3xl p-6 shadow-xl border-2 border-purple-200">
+    <div className="bg-gradient-to-br from-purple-100 via-pink-100 to-blue-100 dark:from-purple-900/30 dark:via-pink-900/30 dark:to-blue-900/30 rounded-3xl p-6 shadow-xl border-2 border-purple-200 dark:border-purple-800/50">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Sparkles className="text-purple-500" size={24} />
-          <h3 className="text-xl font-bold text-gray-800">오늘의 냥이</h3>
+          <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">오늘의 냥이</h3>
         </div>
-        <div className="flex items-center gap-1 text-sm text-gray-500 bg-white/80 px-3 py-1 rounded-full">
+        <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-300 bg-white/80 dark:bg-gray-800/70 px-3 py-1 rounded-full">
           <Calendar size={16} />
           <span>{countdown}시간 후 변경</span>
         </div>
       </div>
 
       {/* Content */}
-      <div className="bg-white rounded-2xl p-5 shadow-sm">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-transparent dark:border-gray-700">
         <div className="flex flex-col sm:flex-row gap-4">
           {/* Image */}
           {breedData.breed.image && (
@@ -96,13 +96,13 @@ export function BreedOfTheDay() {
           <div className="flex-1 text-center sm:text-left">
             <div className="flex items-center justify-center sm:justify-start gap-2 mb-2">
               <span className="text-3xl">{breedData.breed.emoji}</span>
-              <h4 className="text-2xl font-bold text-gray-800">{breedData.breed.name}</h4>
+              <h4 className="text-2xl font-bold text-gray-800 dark:text-gray-100">{breedData.breed.name}</h4>
             </div>
-            <p className="text-sm text-gray-500 mb-3">{breedData.breed.nameEn}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">{breedData.breed.nameEn}</p>
 
             {/* Fun Fact */}
-            <div className="bg-gradient-to-r from-pink-50 to-purple-50 rounded-xl p-3 mb-3">
-              <p className="text-sm font-medium text-gray-700 flex items-start gap-2">
+            <div className="bg-gradient-to-r from-pink-50 to-purple-50 dark:from-pink-900/20 dark:to-purple-900/20 rounded-xl p-3 mb-3">
+              <p className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-start gap-2">
                 <span>💡</span>
                 <span>{breedData.funFact}</span>
               </p>
@@ -132,13 +132,13 @@ export function BreedOfTheDay() {
               <Link
                 href={`/breed/${breedData.breed.id}`}
                 onClick={handleCTAClick}
-                className="inline-flex items-center gap-1 px-4 py-2 bg-white border-2 border-purple-300 text-purple-600 rounded-full text-sm font-semibold hover:bg-purple-50 transition-all duration-300"
+                className="inline-flex items-center gap-1 px-4 py-2 bg-white dark:bg-gray-800 border-2 border-purple-300 dark:border-purple-700 text-purple-600 dark:text-purple-300 rounded-full text-sm font-semibold hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-all duration-300"
               >
                 상세정보
               </Link>
               <button
                 onClick={handleShare}
-                className="inline-flex items-center justify-center p-2 bg-white border-2 border-gray-200 text-gray-600 rounded-full hover:bg-gray-50 transition-all duration-300"
+                className="inline-flex items-center justify-center p-2 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 rounded-full hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
                 title="공유하기"
               >
                 <Share2 size={18} />

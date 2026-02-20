@@ -30,8 +30,8 @@ export async function generateMetadata({
   let title = '냥이 매칭 결과 | 나의 인생냥이를 찾아보세요';
   let description = '나와 가장 잘 맞는 고양이 품종을 찾아보세요! 냥이 매칭 테스트로 당신의 인생냥이를 발견하세요.';
   let ogImageUrl = `${BASE_URL}/api/og?type=default`;
-  let ogImageWidth = 1200;
-  let ogImageHeight = 630;
+  const ogImageWidth = 1200;
+  const ogImageHeight = 630;
 
   // URL 파라미터에서 품종과 점수가 있는 경우 동적 OG 이미지 생성
   if (breedId && scoreParam) {

@@ -61,7 +61,7 @@ export default async function BreedLayout({ children, params }: Props) {
     // FAQ 구조화된 데이터
     const faqs = breed ? getBreedFaqs(breed.id) : [];
     const faqStructuredData = breed && faqs.length > 0
-        ? generateFaqPageStructuredData(breed.name, faqs, canonicalUrl)
+        ? generateFaqPageStructuredData(breed.name, faqs)
         : null;
 
     return (

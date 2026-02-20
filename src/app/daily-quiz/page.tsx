@@ -8,6 +8,7 @@ import {
   logDailyQuizViewed,
   logDailyQuizAnswered,
   logStreakMilestone,
+  logEvent,
 } from '@/lib/google-analytics';
 import {
   CheckCircle,
@@ -58,15 +59,12 @@ function DailyQuizPageContent() {
     } catch (err) {
       console.error('[DailyQuiz] Failed to load quiz data:', err);
       // Log error to analytics
-      if (typeof window !== 'undefined' && 'gtag' in window) {
-        try {
-          (window as any).gtag('event', 'daily_quiz_data_error', {
-            error_message: err instanceof Error ? err.message : String(err),
-          });
-        } catch {
-          // Analytics failed
-        }
-      }
+      logEvent({
+        name: 'daily_quiz_data_error',
+        params: {
+          error_message: err instanceof Error ? err.message : String(err),
+        },
+      });
       return null;
     }
   }, []);
@@ -169,16 +167,13 @@ function DailyQuizPageContent() {
       }
 
       // Log share success to analytics
-      if (typeof window !== 'undefined' && 'gtag' in window) {
-        try {
-          (window as any).gtag('event', 'daily_quiz_shared', {
-            method: 'clipboard',
-            streak: state.streak,
-          });
-        } catch {
-          // Analytics failed
-        }
-      }
+      logEvent({
+        name: 'daily_quiz_shared',
+        params: {
+          method: 'clipboard',
+          streak: state.streak,
+        },
+      });
     } catch (err) {
       const error = err instanceof Error ? err : new Error(String(err));
       console.error('[DailyQuiz] Share failed:', error);
@@ -188,16 +183,13 @@ function DailyQuizPageContent() {
       setTimeout(() => setShareError(null), 3000);
 
       // Log share error to analytics
-      if (typeof window !== 'undefined' && 'gtag' in window) {
-        try {
-          (window as any).gtag('event', 'daily_quiz_share_error', {
-            error_message: error.message,
-            streak: state.streak,
-          });
-        } catch {
-          // Analytics failed
-        }
-      }
+      logEvent({
+        name: 'daily_quiz_share_error',
+        params: {
+          error_message: error.message,
+          streak: state.streak,
+        },
+      });
     }
   };
 

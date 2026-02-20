@@ -1,8 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { X, Clock, FileQuestion, Target, Sparkles, ArrowRight } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 import { logPreviewModalShown, logPreviewModalDismissed, logTestStartedAfterPreview } from '@/lib/google-analytics';
 
 interface TestPreviewModalProps {
@@ -24,14 +23,56 @@ const SAMPLE_QUESTIONS = [
   },
 ];
 
+const getStorageValue = (key: string) => {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+};
+
+const setStorageValue = (key: string, value: string) => {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+
+  try {
+    localStorage.setItem(key, value);
+    return true;
+  } catch {
+    return false;
+  }
+};
+
 export function TestPreviewModal({ isOpen, onClose, onStart }: TestPreviewModalProps) {
-  const router = useRouter();
-  const [hasSeenBefore, setHasSeenBefore] = useState(false);
-  const [modalOpenTime, setModalOpenTime] = useState<number>(0);
+  const modalOpenTimeRef = useRef<number>(0);
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const startButtonRef = useRef<HTMLButtonElement>(null);
   const previouslyFocusedElement = useRef<HTMLElement | null>(null);
+
+  const handleClose = useCallback((action: 'later' | 'start' | 'close') => {
+    // Track dismissal action
+    logPreviewModalDismissed({ action });
+
+    if (action === 'start') {
+      // Mark as seen
+      setStorageValue('hasSeenTestPreview', 'true');
+      // Track test started
+      const timeToStart = Date.now() - modalOpenTimeRef.current;
+      logTestStartedAfterPreview({ time_to_start: timeToStart });
+      onStart();
+    } else if (action === 'later') {
+      // Mark as seen so we don't show again
+      setStorageValue('hasSeenTestPreview', 'true');
+    }
+
+    onClose();
+  }, [onClose, onStart]);
 
   // Focus trap implementation
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
@@ -58,17 +99,13 @@ export function TestPreviewModal({ isOpen, onClose, onStart }: TestPreviewModalP
       e.preventDefault();
       firstElement.focus();
     }
-  }, []);
+  }, [handleClose]);
 
   useEffect(() => {
-    // Check if user has seen the preview before
-    const seen = localStorage.getItem('hasSeenTestPreview');
-    setHasSeenBefore(!!seen);
-
     if (isOpen) {
-      setModalOpenTime(Date.now());
+      modalOpenTimeRef.current = Date.now();
       // Track preview modal shown
-      logPreviewModalShown({ seen_before: !!seen });
+      logPreviewModalShown({ seen_before: !!getStorageValue('hasSeenTestPreview') });
 
       // Store the previously focused element
       previouslyFocusedElement.current = document.activeElement as HTMLElement;
@@ -92,25 +129,6 @@ export function TestPreviewModal({ isOpen, onClose, onStart }: TestPreviewModalP
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, handleKeyDown]);
-
-  const handleClose = (action: 'later' | 'start' | 'close') => {
-    // Track dismissal action
-    logPreviewModalDismissed({ action });
-
-    if (action === 'start') {
-      // Mark as seen
-      localStorage.setItem('hasSeenTestPreview', 'true');
-      // Track test started
-      const timeToStart = Date.now() - modalOpenTime;
-      logTestStartedAfterPreview({ time_to_start: timeToStart });
-      onStart();
-    } else if (action === 'later') {
-      // Mark as seen so we don't show again
-      localStorage.setItem('hasSeenTestPreview', 'true');
-    }
-
-    onClose();
-  };
 
   const handleStart = () => {
     handleClose('start');

@@ -4,7 +4,7 @@ import { Skeleton } from './Skeleton';
 
 export default function JourneySkeleton() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50">
+    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-gray-900">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -25,7 +25,7 @@ export default function JourneySkeleton() {
         {/* Stats Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="bg-white rounded-2xl p-4 shadow-sm text-center">
+            <div key={i} className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm text-center border border-transparent dark:border-gray-700">
               <Skeleton className="h-12 w-12 mx-auto mb-2" />
               <Skeleton className="h-8 w-16 mx-auto mb-2" />
               <Skeleton className="h-4 w-20 mx-auto" />
@@ -40,7 +40,7 @@ export default function JourneySkeleton() {
         </div>
 
         {/* Timeline Section */}
-        <div className="bg-white rounded-3xl shadow-xl p-6 mb-6">
+        <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 mb-6 border border-transparent dark:border-gray-700">
           <Skeleton className="h-7 w-36 mb-4" />
           <div className="space-y-4">
             {[1, 2, 3].map((i) => (
@@ -54,11 +54,11 @@ export default function JourneySkeleton() {
 
         {/* Charts Section */}
         <div className="grid md:grid-cols-2 gap-6 mb-6">
-          <div className="bg-white rounded-3xl shadow-xl p-6">
+          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 border border-transparent dark:border-gray-700">
             <Skeleton className="h-7 w-36 mb-4" />
             <Skeleton className="h-48 w-full" />
           </div>
-          <div className="bg-white rounded-3xl shadow-xl p-6">
+          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 border border-transparent dark:border-gray-700">
             <Skeleton className="h-7 w-36 mb-4" />
             <Skeleton className="h-48 w-full" />
           </div>

@@ -2,9 +2,9 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
-import { Cat, Heart, BookOpen, Lightbulb } from 'lucide-react';
+import { Cat, Heart, BookOpen } from 'lucide-react';
 import { trackGuideViewed } from '@/utils/achievements';
-import { PageContainer, Card, PageTitle, Section } from '@/components/ui';
+import { PageContainer, Card, Section } from '@/components/ui';
 
 const guides = [
   {

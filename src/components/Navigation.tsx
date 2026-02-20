@@ -24,14 +24,14 @@ const footerLinks = [
 
 export default function Navigation() {
   return (
-    <nav className="bg-gradient-to-r from-pink-500/90 via-purple-500/90 to-pink-500/90 backdrop-blur-md shadow-lg sticky top-0 z-50 transition-all duration-300">
+    <nav className="sticky top-0 z-50 bg-gradient-to-r from-[var(--nav-bg-start)] via-[var(--nav-bg-mid)] to-[var(--nav-bg-end)] backdrop-blur-md shadow-lg transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link
               href="/"
-              className="text-white font-bold text-xl hover:text-pink-200 transition-colors flex items-center gap-2"
+              className="flex items-center gap-2 text-xl font-bold text-[var(--nav-text)] transition-colors hover:text-white"
               aria-label="냥이 매칭 홈으로 이동"
             >
               <span className="text-2xl" aria-hidden="true">
@@ -48,8 +48,8 @@ export default function Navigation() {
                 key={item.name}
                 href={item.href}
                 className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200"
-                activeClassName="bg-white/20 text-white shadow-md"
-                inactiveClassName="text-white/90 hover:bg-white/10 hover:text-white"
+                activeClassName="bg-white/20 text-[var(--nav-text)] shadow-md"
+                inactiveClassName="text-[var(--nav-muted)] hover:bg-white/10 hover:text-[var(--nav-text)]"
               >
                 {item.name}
               </NavLink>
@@ -62,7 +62,7 @@ export default function Navigation() {
             <ThemeToggle />
             <details id="mobile-nav" className="relative">
               <summary
-                className="list-none text-white p-2 rounded-lg hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer"
+                className="list-none p-2 rounded-lg text-[var(--nav-text)] hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer"
                 aria-label="메뉴"
               >
                 <svg
@@ -78,7 +78,7 @@ export default function Navigation() {
                 </svg>
               </summary>
 
-              <div className="absolute right-0 mt-2 w-64 origin-top-right rounded-2xl overflow-hidden bg-gradient-to-b from-purple-500/90 to-pink-500/90 backdrop-blur-lg shadow-2xl border border-white/10">
+              <div className="absolute right-0 mt-2 w-64 origin-top-right overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-[var(--nav-bg-mid)] to-[var(--nav-bg-end)] backdrop-blur-lg shadow-2xl">
                 <div className="px-3 py-3 space-y-1">
                   {navigation.map((item) => (
                     <NavLink
@@ -86,8 +86,8 @@ export default function Navigation() {
                       href={item.href}
                       closeMobileMenu
                       className="block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200"
-                      activeClassName="bg-white/30 text-white shadow-md"
-                      inactiveClassName="text-white/90 hover:bg-white/10"
+                      activeClassName="bg-white/30 text-[var(--nav-text)] shadow-md"
+                      inactiveClassName="text-[var(--nav-muted)] hover:bg-white/10 hover:text-[var(--nav-text)]"
                     >
                       {item.name}
                     </NavLink>
@@ -99,8 +99,8 @@ export default function Navigation() {
                         key={item.name}
                         href={item.href}
                         closeMobileMenu
-                        className="text-xs text-white/70 hover:text-white transition-colors"
-                        activeClassName="text-white"
+                        className="text-xs text-[var(--nav-muted)] hover:text-[var(--nav-text)] transition-colors"
+                        activeClassName="text-[var(--nav-text)]"
                         inactiveClassName=""
                         aria-label={`${item.name} 페이지로 이동`}
                       >
@@ -122,8 +122,8 @@ export default function Navigation() {
             <NavLink
               key={item.name}
               href={item.href}
-              className="text-white/60 hover:text-white transition-colors"
-              activeClassName="text-white"
+              className="text-[var(--nav-muted)] hover:text-[var(--nav-text)] transition-colors"
+              activeClassName="text-[var(--nav-text)]"
               inactiveClassName=""
               aria-label={`${item.name} 페이지로 이동`}
             >

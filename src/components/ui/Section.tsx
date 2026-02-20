@@ -10,7 +10,7 @@ interface SectionProps {
 }
 
 const variantStyles = {
-  default: 'bg-white dark:bg-gray-800',
+  default: 'bg-[var(--bg-surface)]',
   pink: 'bg-gradient-to-r from-pink-50 to-pink-100 dark:from-pink-950/50 dark:to-pink-900/50',
   purple:
     'bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-950/50 dark:to-purple-900/50',
@@ -22,7 +22,7 @@ const variantStyles = {
 };
 
 const titleVariantStyles = {
-  default: 'text-gray-800 dark:text-gray-100',
+  default: 'text-[var(--text-primary)]',
   pink: 'text-pink-700 dark:text-pink-300',
   purple: 'text-purple-700 dark:text-purple-300',
   blue: 'text-blue-700 dark:text-blue-300',
@@ -59,7 +59,7 @@ export function Section({
         {emoji && <span className="mr-2">{emoji}</span>}
         {title}
       </h2>
-      <div className="text-gray-600 dark:text-gray-300">{children}</div>
+      <div className="text-[var(--text-secondary)]">{children}</div>
     </section>
   );
 }

@@ -23,12 +23,12 @@ export function PageTitle({
 }: PageTitleProps) {
   return (
     <div className={cn('text-center mb-4', className)}>
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100">
+      <h1 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)]">
         {emoji && <span className="mr-2">{emoji}</span>}
         {children}
       </h1>
       {subtitle && (
-        <p className="mt-2 text-gray-600 dark:text-gray-300">{subtitle}</p>
+        <p className="mt-2 text-[var(--text-secondary)]">{subtitle}</p>
       )}
     </div>
   );

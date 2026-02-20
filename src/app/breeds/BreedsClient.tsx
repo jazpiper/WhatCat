@@ -6,7 +6,6 @@ import { useRouter, usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { breeds } from '@/data/breeds';
 import BreedCard from '@/components/BreedCard';
-import BreedsGridSkeleton from '@/components/Skeleton/BreedsGridSkeleton';
 import { PageContainer, Card } from '@/components/ui';
 
 const BreedFilters = dynamic(() => import('@/components/BreedFilters'), {
@@ -29,6 +28,8 @@ import { logBreedSearchUsed } from '@/lib/google-analytics';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { isSafeInput } from '@/utils/sanitize';
 
+const PAGE_SIZE = 18;
+
 export default function BreedsClient({
   initialFilters,
   initialSort,
@@ -36,7 +37,6 @@ export default function BreedsClient({
   initialFilters: Partial<BreedFiltersType>;
   initialSort: SortOption;
 }) {
-  const [isFiltering, setIsFiltering] = useState(false);
   const [searchError, setSearchError] = useState<string>('');
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const router = useRouter();
@@ -51,33 +51,32 @@ export default function BreedsClient({
   const debouncedSearchQuery = useDebouncedValue(searchQuery, 250);
 
   // Pagination (keep initial render cheap)
-  const PAGE_SIZE = 18;
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const isFiltering = debouncedSearchQuery !== searchQuery;
+
+  const activeFilters = useMemo(
+    () => ({
+      ...filters,
+      searchQuery: debouncedSearchQuery,
+    }),
+    [filters, debouncedSearchQuery]
+  );
 
   // Filter and sort breeds
   const filteredBreeds = useMemo(() => {
-    const filtered = filterBreeds(breeds, filters);
+    const filtered = filterBreeds(breeds, activeFilters);
     return sortBreeds(filtered, sort);
-  }, [filters, sort]);
+  }, [activeFilters, sort]);
 
   const visibleBreeds = useMemo(
     () => filteredBreeds.slice(0, visibleCount),
     [filteredBreeds, visibleCount]
   );
 
-  // Apply debounced searchQuery to filters (avoid re-filtering + URL churn on every keystroke)
-  useEffect(() => {
-    setIsFiltering(true);
-    setFilters((prev) => ({ ...prev, searchQuery: debouncedSearchQuery }));
-    setVisibleCount(PAGE_SIZE); // reset pagination on new search
-    const t = setTimeout(() => setIsFiltering(false), 200);
-    return () => clearTimeout(t);
-  }, [debouncedSearchQuery]);
-
   // Debounce URL updates to avoid churn while dragging sliders / tapping filters
   const queryString = useMemo(
-    () => filtersToSearchParams(filters, sort).toString(),
-    [filters, sort]
+    () => filtersToSearchParams(activeFilters, sort).toString(),
+    [activeFilters, sort]
   );
   const debouncedQueryString = useDebouncedValue(queryString, 200);
 
@@ -86,13 +85,13 @@ export default function BreedsClient({
     const url = debouncedQueryString ? `${pathname}?${debouncedQueryString}` : pathname;
     router.replace(url, { scroll: false });
 
-    if (filters.searchQuery) {
+    if (activeFilters.searchQuery) {
       logBreedSearchUsed({
-        search_query: filters.searchQuery,
+        search_query: activeFilters.searchQuery,
         result_count: filteredBreeds.length,
       });
     }
-  }, [debouncedQueryString, pathname, router, filteredBreeds.length, filters.searchQuery]);
+  }, [debouncedQueryString, pathname, router, filteredBreeds.length, activeFilters.searchQuery]);
 
   const handleSearchChange = (value: string) => {
     const sanitized = value.trim().slice(0, 50);
@@ -104,18 +103,18 @@ export default function BreedsClient({
 
     setSearchError('');
     setSearchQuery(sanitized);
+    setVisibleCount(PAGE_SIZE);
   };
 
   const clearSearch = () => {
     setSearchError('');
     setSearchQuery('');
+    setVisibleCount(PAGE_SIZE);
   };
 
   const handleSortChange = useCallback((newSort: SortOption) => {
-    setIsFiltering(true);
     setSort(newSort);
     setVisibleCount(PAGE_SIZE);
-    setTimeout(() => setIsFiltering(false), 300);
   }, []);
 
   return (
@@ -184,8 +183,8 @@ export default function BreedsClient({
         {searchQuery && (
           <div className="mb-4 flex flex-wrap items-center gap-2">
             <span className="text-sm text-gray-600 dark:text-gray-400">검색어:</span>
-            <span className="inline-flex items-center gap-1 bg-pink-100 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full text-sm">
-              "{searchQuery}"
+              <span className="inline-flex items-center gap-1 bg-pink-100 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full text-sm">
+              &quot;{searchQuery}&quot;
               <button
                 onClick={clearSearch}
                 className="ml-1 hover:text-pink-900 dark:hover:text-pink-100 transition-colors"

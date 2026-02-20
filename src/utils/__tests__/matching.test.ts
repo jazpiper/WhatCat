@@ -6,11 +6,11 @@ import {
   calculateMatch,
   getRankEmoji,
 } from '../matching';
-import { breeds } from '../../data/breeds';
 import { questions } from '../../data/questions';
+import { MatchResult } from '../matching';
+import type { Breed } from '@/types';
 
-// Mock breed data for testing
-const mockBreed = {
+const mockBreed: Breed = {
   id: 'test-breed',
   name: '테스트 고양이',
   nameEn: 'Test Cat',
@@ -41,6 +41,16 @@ const mockBreed = {
   korea_popularity: 50,
 };
 
+function normalizeMatchResults(
+  result: ReturnType<typeof calculateMatch>
+): MatchResult[] {
+  if ('results' in result) {
+    return result.results;
+  }
+
+  return result;
+}
+
 describe('getRankEmoji', () => {
   it('should return correct emoji for rank 1', () => {
     expect(getRankEmoji(1)).toBe('🥇');
@@ -68,13 +78,17 @@ describe('calculateMatch', () => {
         answerId: questions[0].options[0].id,
       },
     ];
-    const results = calculateMatch(answers, [mockBreed as any], questions);
+    const results = normalizeMatchResults(
+      calculateMatch(answers, [mockBreed], questions, { useVector: false })
+    );
     expect(results).toBeDefined();
     expect(results.length).toBeGreaterThan(0);
   });
 
   it('should return results even with no answers (returns all breeds with default scores)', () => {
-    const results = calculateMatch([], [mockBreed as any], questions);
+    const results = normalizeMatchResults(
+      calculateMatch([], [mockBreed], questions, { useVector: false })
+    );
     // The function calculates scores even with no answers, returning all breeds
     expect(results).toBeDefined();
     expect(results.length).toBe(1);
@@ -87,7 +101,9 @@ describe('calculateMatch', () => {
         answerId: questions[0].options[0].id,
       },
     ];
-    const results = calculateMatch(answers, [mockBreed as any], questions);
+    const results = normalizeMatchResults(
+      calculateMatch(answers, [mockBreed], questions, { useVector: false })
+    );
     if (results.length > 1) {
       for (let i = 0; i < results.length - 1; i++) {
         expect(results[i].score).toBeGreaterThanOrEqual(results[i + 1].score);
@@ -102,7 +118,9 @@ describe('calculateMatch', () => {
         answerId: questions[0].options[0].id,
       },
     ];
-    const results = calculateMatch(answers, [mockBreed as any], questions);
+    const results = normalizeMatchResults(
+      calculateMatch(answers, [mockBreed], questions, { useVector: false })
+    );
     if (results.length > 0) {
       expect(results[0]).toHaveProperty('breed');
       expect(results[0]).toHaveProperty('score');
@@ -118,7 +136,9 @@ describe('calculateMatch', () => {
         answerId: questions[0].options[0].id,
       },
     ];
-    const results = calculateMatch(answers, [mockBreed as any], questions);
+    const results = normalizeMatchResults(
+      calculateMatch(answers, [mockBreed], questions, { useVector: false })
+    );
     if (results.length > 0) {
       expect(results[0]).toHaveProperty('breakdown');
       expect(results[0].breakdown).toHaveProperty('personality');
@@ -136,7 +156,9 @@ describe('calculateMatch', () => {
         answerId: questions[0].options[0].id,
       },
     ];
-    const results = calculateMatch(answers, [mockBreed as any], questions);
+    const results = normalizeMatchResults(
+      calculateMatch(answers, [mockBreed], questions, { useVector: false })
+    );
     if (results.length > 0) {
       expect(results[0]).toHaveProperty('reasons');
       expect(Array.isArray(results[0].reasons)).toBe(true);

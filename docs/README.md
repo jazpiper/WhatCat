@@ -13,6 +13,9 @@
 - ADR: [`docs/adr/`](./adr/)
 - SEO 검증: [SEO Verification](./seo-verification.md)
 - 분석/트래킹: [Analytics Guide](./ANALYTICS_GUIDE.md), [GA4 Summary](./GA4_IMPLEMENTATION_SUMMARY.md)
+- 디자인 시스템: [Design System](./design-system.md)
+- 테마 재기획: [Theme/UIUX Replan](./theme-uiux-replan-2026-02-20.md)
+- 테마 QA 체크리스트: [Theme QA Checklist](./theme-qa-checklist.md)
 
 ## 문서 규칙(권장)
 - 의사결정은 ADR로 남기기: `docs/adr/NNN-*.md`

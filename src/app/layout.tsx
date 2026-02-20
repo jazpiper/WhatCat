@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import Navigation from "../components/Navigation";
 import ServiceWorkerRegister from "../components/ServiceWorkerRegister";
-import { ThemeProvider } from "../components/ThemeProvider";
+import { ThemeProvider } from "next-themes";
 import { GoogleAnalyticsScript } from "../lib/google-analytics";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -86,26 +86,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <head>
-        <Script
-          id="theme-init"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                const theme = localStorage.getItem('whatcat-theme') || 'system';
-                const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                const resolvedTheme = theme === 'system' ? systemTheme : theme;
-                if (resolvedTheme === 'dark') {
-                  document.documentElement.classList.add('dark');
-                } else {
-                  document.documentElement.classList.remove('dark');
-                }
-              })();
-            `,
-          }}
-        />
-      </head>
+      <head>{/* next-themes will handle theme initialization */}</head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -130,7 +111,7 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange={false}
+          disableTransitionOnChange
           storageKey="whatcat-theme"
         >
           <Navigation />

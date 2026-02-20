@@ -25,61 +25,91 @@ export function GoogleAnalyticsScript() {
  * Based on Sophia's event schema recommendation
  */
 
-// Event Types
-export interface GAEvent {
+type GtagCommand = 'event' | 'config' | 'js' | 'set'
+type GtagParams = Record<string, unknown>
+
+type WindowWithGtag = {
+  gtag?: (command: GtagCommand, eventName: string, params?: GtagParams) => void
+}
+
+declare global {
+  interface Window {
+    gtag?: WindowWithGtag['gtag']
+  }
+}
+
+interface TrackEvent {
   name: string
-  params?: any
+  params?: GtagParams
+}
+
+function trackEvent(event: TrackEvent) {
+  const { name, params } = event
+
+  if (typeof window === 'undefined') {
+    return
+  }
+
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', name, params)
+  }
+}
+
+// Event Types
+export interface GAEvent extends GtagParams {
+  name: string
+  params?: GtagParams
 }
 
 // Test Events
-export interface TestStartEvent {
+export interface TestStartEvent extends GtagParams {
   timestamp: string
   referrer: string
   device: string
   utm_source?: string
 }
 
-export interface QuestionViewedEvent {
+export interface QuestionViewedEvent extends GtagParams {
   question_index: number
   time_spent: number
 }
 
-export interface QuestionAnsweredEvent {
+export interface QuestionAnsweredEvent extends GtagParams {
   question_index: number
   answer_value: string
   time_to_answer: number
 }
 
-export interface TestCompletedEvent {
+export interface TestCompletedEvent extends GtagParams {
   total_time: number
   result_breed: string
   confidence_score: number
 }
 
-export interface TestAbandonedEvent {
+export interface TestAbandonedEvent extends GtagParams {
   question_index: number
   time_spent: number
   reason?: string
 }
 
 // User Behavior Events
-export interface FriendComparisonClickedEvent {
+export interface FriendComparisonClickedEvent extends GtagParams {
   own_breed: string
   friend_breed: string
 }
 
-export interface ResultRetryEvent {
+export interface ResultRetryEvent extends GtagParams {
   breed_change: boolean
   new_answers: boolean
 }
 
-export interface BreedExploreEvent {
+export interface BreedExploreEvent extends GtagParams {
   breed_viewed: string
   time_spent: number
 }
 
 // Social Share Events
-export interface ResultSharedEvent {
+export interface ResultSharedEvent extends GtagParams {
   platform: 'instagram' | 'instagram_story' | 'celebrity_story' | 'thread' | 'kakaotalk' | 'copy' | 'default'
   breed_shared: string
   timestamp: string
@@ -87,9 +117,7 @@ export interface ResultSharedEvent {
 
 // Utility function to log events
 export function logEvent(event: GAEvent) {
-  if (typeof window !== 'undefined' && 'gtag' in window) {
-    (window as any).gtag('event', event.name, event.params)
-  }
+  trackEvent(event)
 }
 
 // Specific event logging functions
@@ -157,7 +185,7 @@ export function logResultShared(params: ResultSharedEvent) {
 }
 
 // Custom events for user feedback
-export interface UserFeedbackEvent {
+export interface UserFeedbackEvent extends GtagParams {
   rating: number // 1-5 stars
   comments?: string
   feedback_type?: 'satisfaction' | 'suggestion' | 'bug'
@@ -171,7 +199,7 @@ export function logUserFeedback(params: UserFeedbackEvent) {
 }
 
 // Ad performance events
-export interface AdPerformanceEvent {
+export interface AdPerformanceEvent extends GtagParams {
   ad_slot: string
   ad_type: 'banner' | 'interstitial' | 'reward'
   page: string
@@ -186,7 +214,7 @@ export function logAdPerformance(params: AdPerformanceEvent) {
 }
 
 // Result storage events
-export interface ResultSavedEvent {
+export interface ResultSavedEvent extends GtagParams {
   breed_id: string
   breed_name: string
   score: number
@@ -200,7 +228,7 @@ export function logResultSaved(params: ResultSavedEvent) {
   })
 }
 
-export interface ResultsViewedEvent {
+export interface ResultsViewedEvent extends GtagParams {
   total_results: number
   has_trends: boolean
 }
@@ -213,7 +241,7 @@ export function logResultsViewed(params: ResultsViewedEvent) {
 }
 
 // Daily quiz events
-export interface DailyQuizViewedEvent {
+export interface DailyQuizViewedEvent extends GtagParams {
   current_streak: number
   total_completed: number
   is_completed_today: boolean
@@ -226,7 +254,7 @@ export function logDailyQuizViewed(params: DailyQuizViewedEvent) {
   })
 }
 
-export interface DailyQuizAnsweredEvent {
+export interface DailyQuizAnsweredEvent extends GtagParams {
   question_id: string
   is_correct: boolean
   current_streak: number
@@ -239,7 +267,7 @@ export function logDailyQuizAnswered(params: DailyQuizAnsweredEvent) {
   })
 }
 
-export interface StreakMilestoneEvent {
+export interface StreakMilestoneEvent extends GtagParams {
   milestone: number
   total_completed: number
 }
@@ -252,21 +280,21 @@ export function logStreakMilestone(params: StreakMilestoneEvent) {
 }
 
 // Journey events
-export interface JourneyViewedEvent {
+export interface JourneyViewedEvent extends GtagParams {
   total_tests: number
   unique_breeds: number
   has_data: boolean
 }
 
-export interface JourneyClearedEvent {
+export interface JourneyClearedEvent extends GtagParams {
   results_count: number
 }
 
-export interface JourneyExportedEvent {
+export interface JourneyExportedEvent extends GtagParams {
   results_count: number
 }
 
-export interface JourneyImportedEvent {
+export interface JourneyImportedEvent extends GtagParams {
   imported_count: number
 }
 
@@ -299,17 +327,17 @@ export function logJourneyImported(params: JourneyImportedEvent) {
 }
 
 // Breed of the day events
-export interface BreedOfTheDayViewedEvent {
+export interface BreedOfTheDayViewedEvent extends GtagParams {
   breed_id: string
   breed_name: string
 }
 
-export interface BreedOfTheDayClickedEvent {
+export interface BreedOfTheDayClickedEvent extends GtagParams {
   breed_id: string
   breed_name: string
 }
 
-export interface BreedOfTheDaySharedEvent {
+export interface BreedOfTheDaySharedEvent extends GtagParams {
   breed_id: string
   breed_name: string
   platform: 'copy' | 'kakaotalk' | 'default'
@@ -337,7 +365,7 @@ export function logBreedOfTheDayShared(params: BreedOfTheDaySharedEvent) {
 }
 
 // Breed search events
-export interface BreedSearchUsedEvent {
+export interface BreedSearchUsedEvent extends GtagParams {
   search_query: string
   result_count: number
 }
@@ -349,7 +377,7 @@ export function logBreedSearchUsed(params: BreedSearchUsedEvent) {
   })
 }
 
-export interface BreedFilterAppliedEvent {
+export interface BreedFilterAppliedEvent extends GtagParams {
   filters: string
   result_count: number
 }
@@ -362,7 +390,7 @@ export function logBreedFilterApplied(params: BreedFilterAppliedEvent) {
 }
 
 // Achievement events
-export interface AchievementUnlockedEvent {
+export interface AchievementUnlockedEvent extends GtagParams {
   achievement_id: string
   achievement_name: string
   rarity: string
@@ -375,7 +403,7 @@ export function logAchievementUnlocked(params: AchievementUnlockedEvent) {
   })
 }
 
-export interface AchievementViewedEvent {
+export interface AchievementViewedEvent extends GtagParams {
   achievement_id: string
   source: 'gallery' | 'result' | 'profile'
 }
@@ -387,7 +415,7 @@ export function logAchievementViewed(params: AchievementViewedEvent) {
   })
 }
 
-export interface AchievementsPageViewedEvent {
+export interface AchievementsPageViewedEvent extends GtagParams {
   total_unlocked: number
   total_achievements: number
 }
@@ -400,7 +428,7 @@ export function logAchievementsPageViewed(params: AchievementsPageViewedEvent) {
 }
 
 // Famous match events
-export interface FamousMatchViewedEvent {
+export interface FamousMatchViewedEvent extends GtagParams {
   breed_id: string
   match_name: string
   match_type: 'celebrity' | 'character' | 'historical'
@@ -415,7 +443,7 @@ export function logFamousMatchViewed(params: FamousMatchViewedEvent) {
   })
 }
 
-export interface FamousMatchSharedEvent {
+export interface FamousMatchSharedEvent extends GtagParams {
   breed_id: string
   match_name: string
   platform: 'copy' | 'kakaotalk' | 'default'
@@ -429,7 +457,7 @@ export function logFamousMatchShared(params: FamousMatchSharedEvent) {
 }
 
 // Match explanation events
-export interface MatchExplanationViewedEvent {
+export interface MatchExplanationViewedEvent extends GtagParams {
   breed_id: string
   time_spent: number
   scroll_depth: number
@@ -443,7 +471,7 @@ export function logMatchExplanationViewed(params: MatchExplanationViewedEvent) {
 }
 
 // Related breed events
-export interface RelatedBreedViewedEvent {
+export interface RelatedBreedViewedEvent extends GtagParams {
   main_breed_id: string
   related_breed_id: string
   similarity_score: number
@@ -457,7 +485,7 @@ export function logRelatedBreedViewed(params: RelatedBreedViewedEvent) {
   })
 }
 
-export interface RelatedBreedClickedEvent {
+export interface RelatedBreedClickedEvent extends GtagParams {
   main_breed_id: string
   related_breed_id: string
   similarity_score: number
@@ -471,15 +499,15 @@ export function logRelatedBreedClicked(params: RelatedBreedClickedEvent) {
 }
 
 // Test preview modal events
-export interface PreviewModalShownEvent {
+export interface PreviewModalShownEvent extends GtagParams {
   seen_before: boolean
 }
 
-export interface PreviewModalDismissedEvent {
+export interface PreviewModalDismissedEvent extends GtagParams {
   action: 'later' | 'start' | 'close'
 }
 
-export interface TestStartedAfterPreviewEvent {
+export interface TestStartedAfterPreviewEvent extends GtagParams {
   time_to_start: number
 }
 
@@ -505,7 +533,7 @@ export function logTestStartedAfterPreview(params: TestStartedAfterPreviewEvent)
 }
 
 // Error tracking events
-export interface ErrorEvent {
+export interface ErrorEvent extends GtagParams {
   error_type: 'localStorage' | 'quizData' | 'streakCalc' | 'share' | 'unknown'
   error_message: string
   error_context?: string
@@ -519,7 +547,7 @@ export function logError(params: ErrorEvent) {
   })
 }
 
-export interface ErrorRecoveredEvent {
+export interface ErrorRecoveredEvent extends GtagParams {
   error_type: string
   recovery_method: 'retry' | 'fallback' | 'user_action'
 }

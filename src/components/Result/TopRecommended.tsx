@@ -23,8 +23,8 @@ const BreedResultCard = memo(function BreedResultCard({
             href={`/breed/${result.breed.id}`}
             className={`flex items-center gap-4 p-4 rounded-xl transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-300 focus:ring-offset-2 ${
                 index === 0
-                    ? 'bg-gradient-to-r from-pink-100 to-purple-100 border border-pink-200'
-                    : 'bg-gray-50 border border-gray-100'
+                    ? 'bg-gradient-to-r from-pink-100 to-purple-100 dark:from-purple-900/40 dark:to-pink-900/40 border border-pink-200 dark:border-pink-800/50'
+                    : 'bg-gray-50 dark:bg-gray-700/50 border border-gray-100 dark:border-gray-700'
             }`}
             aria-label={`${result.breed.name}(${result.breed.nameEn}) 상세보기 - ${result.score}% 매칭`}
         >
@@ -41,8 +41,8 @@ const BreedResultCard = memo(function BreedResultCard({
                 />
             )}
             <div className="flex-1">
-                <h4 className="font-bold text-gray-800">{result.breed.name}</h4>
-                <p className="text-sm text-gray-600">{result.breed.nameEn}</p>
+                <h4 className="font-bold text-gray-800 dark:text-gray-100">{result.breed.name}</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-300">{result.breed.nameEn}</p>
             </div>
             <div className="text-2xl font-bold text-pink-600">
                 {result.score}%
@@ -53,8 +53,8 @@ const BreedResultCard = memo(function BreedResultCard({
 
 export default function TopRecommended({ results }: TopRecommendedProps) {
     return (
-        <div className="border-t-2 border-pink-100 pt-6">
-            <h3 className="text-xl font-bold text-gray-800 mb-4 text-center">
+        <div className="border-t-2 border-pink-100 dark:border-pink-900/50 pt-6">
+            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4 text-center">
                 🏆 추천 품종 TOP 3
             </h3>
             <div className="space-y-3">

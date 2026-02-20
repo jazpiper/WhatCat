@@ -3,7 +3,15 @@
  * SEO 최적화를 위해 Google에 품종 정보를 제공
  */
 
-export function generateBreedStructuredData(breed: any, url: string) {
+import type { Breed } from '@/types';
+
+export interface JsonLdNode {
+  '@context': string;
+  '@type': string;
+  [key: string]: unknown;
+}
+
+export function generateBreedStructuredData(breed: Breed, url: string): JsonLdNode {
   // NOTE:
   // - Google rich results parsers don't reliably support "Cat" as a top-level type.
   // - Use a conservative WebPage + mainEntity(Thing) structure.
@@ -73,7 +81,12 @@ export function generateWebSiteStructuredData() {
   };
 }
 
-export function generateBreadcrumbStructuredData(items: any[]) {
+export interface BreadcrumbListItem {
+  name: string;
+  url: string;
+}
+
+export function generateBreadcrumbStructuredData(items: BreadcrumbListItem[]): JsonLdNode {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -98,9 +111,8 @@ export interface FaqItem {
 
 export function generateFaqPageStructuredData(
   breedName: string,
-  faqs: FaqItem[],
-  url: string
-) {
+  faqs: FaqItem[]
+): JsonLdNode | null {
   if (!faqs || faqs.length === 0) {
     return null;
   }

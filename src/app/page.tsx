@@ -10,8 +10,9 @@ import StartTestCTA from '@/components/Home/StartTestCTA';
 
 // 정적 데이터 계산 (렌더링 전에 계산)
 const popularBreeds = breeds.breeds
-  .sort((a, b) => b.korea_popularity - a.korea_popularity)
-  .slice(0, 6);
+    .slice()
+    .sort((a, b) => b.korea_popularity - a.korea_popularity)
+    .slice(0, 6);
 
 export default function HomePage() {
   return (
